@@ -1,5 +1,5 @@
 # Covid-19 Angular Progressive Web App
-Progressive Web App built with Angular for Covid-19 data visualization : https://souryvath.github.io/ng-covid-19/
+Progressive Web App built with Angular for Covid-19 data visualization : https://www.cascoronavirus.fr/
 
 ## Installation
 Clone the repository `git clone https://github.com/souryvath/ng-covid-19.git`.
