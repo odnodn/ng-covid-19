@@ -1,12 +1,13 @@
+import { CoronavirusFranceService } from './../../services/coronavirus-france.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject } from '@angular/core';
 import { CoronavirusService } from '@coronavirus/services/coronavirus.service';
-import { DetailedStat, MainStat } from '@coronavirus/models/coronavirus.models';
+import { DetailedStat } from '@coronavirus/models/coronavirus.models';
 import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
-import { CountryPipe } from '@shared/pipes/country.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-coronavirus',
@@ -21,28 +22,30 @@ export class CoronavirusComponent implements OnInit {
   dataDeaths$: Observable<any>;
   dataConfirmed$: Observable<any>;
   tableStatsByCountry$: Observable<DetailedStat>;
-  mainStatsFrance$: Observable<MainStat>;
   detailedStats$: Observable<DetailedStat>;
 
+  franceStats$: Observable<any>;
+
+  countryCtrl = new FormControl();
   countries: any[] = COUNTRIES;
   filteredCountries: any[] = [];
   selectedCountry: any = { country: 'Monde', slug: 'monde', translation: 'Monde', code: 'WL' };
   selectedTypeMap = 'cases';
-
   isBrowser = isPlatformBrowser(this.platformId);
 
   constructor(
     private readonly coronavirusService: CoronavirusService,
-    private readonly countryPipe: CountryPipe,
+    private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private title: Title,
-    private meta: Meta,
+    private readonly title: Title,
+    private readonly meta: Meta,
     @Inject(PLATFORM_ID) private readonly platformId: any
   ) {
   }
 
   ngOnInit(): void {
+    this.coronavirusFranceService.getData();
     this.data$ = this.coronavirusService.getDailyDatas();
     this.filteredCountries = this.countries;
     this.route.params.subscribe(params => {
@@ -58,6 +61,7 @@ export class CoronavirusComponent implements OnInit {
       } else if (this.selectedCountry.country === 'France') {
         this.initFranceDatas();
         this.initMetaTagCountry();
+        this.selectedTypeMap = 'hospital';
       } else {
         this.initCountryDatas();
         this.initMetaTagCountry();
@@ -70,14 +74,16 @@ export class CoronavirusComponent implements OnInit {
   }
 
   filterCountries(value: string) {
-    let search = value;
+    let search = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     if (!search) {
       this.filteredCountries = this.countries;
       return;
     } else {
       search = search.toLowerCase();
     }
-    this.filteredCountries = this.countries.filter(country => country.translation.toLowerCase().indexOf(search) > -1);
+    this.filteredCountries = this.countries.filter(country => (country.translation.toLowerCase())
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .indexOf(search) > -1);
   }
 
   trackByFn(index): void {
@@ -85,6 +91,7 @@ export class CoronavirusComponent implements OnInit {
   }
 
   onSelectCountry(): void {
+    this.selectedTypeMap = 'cases';
     this.router.navigate(['stats', this.selectedCountry.slug]);
   }
 
@@ -139,33 +146,27 @@ export class CoronavirusComponent implements OnInit {
 
   private initWorldDatas(): void {
 
-    /* Disable stat france*/
-    this.mainStatsFrance$ = undefined;
-
     /* For stats and map */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
   }
 
   private initFranceDatas(): void {
-     /* Disable stat france*/
-    this.mainStatsFrance$ = undefined;
 
-    /* Graph page pays en bas */
+    /* Graph page footer */
     this.dataRecovered$ = this.coronavirusService.getDailyDatasByCountry('France', 'recovered');
     this.dataDeaths$ = this.coronavirusService.getDailyDatasByCountry('France', 'deaths');
     this.dataConfirmed$ = this.coronavirusService.getDailyDatasByCountry('France', 'confirmed');
 
-    /* Tableau page pays */
-    this.tableStatsByCountry$ = this.coronavirusService.getFranceStats();
+    /* For map and table */
+    this.franceStats$ = this.coronavirusFranceService.getData();
 
-    /* For stats and map */
+    /* For main stats */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
   }
 
   private initCountryDatas(): void {
-    this.mainStatsFrance$ = undefined;
 
-    /* Graph page pays en bas */
+    /* Graph page footer */
     this.dataRecovered$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.slug, 'recovered');
     this.dataDeaths$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.slug, 'deaths');
     this.dataConfirmed$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.slug, 'confirmed');
@@ -173,7 +174,7 @@ export class CoronavirusComponent implements OnInit {
     /* For stats and map */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
 
-    /* Tableau page pays */
+    /* Table page country */
     this.tableStatsByCountry$ = this.coronavirusService.getDetailedStatsByCountries(this.selectedCountry.code);
   }
 

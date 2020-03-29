@@ -6,7 +6,7 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: null
+    code: 'WL'
   },
   {
     country: 'France',
@@ -25,47 +25,6 @@ export const COUNTRIES = [
       ''
     ],
     code: 'IT'
-  },
-  {
-    country: 'China',
-    slug: 'china',
-    translation: 'Chine',
-    provinces: [
-      'Hubei',
-      'Guangdong',
-      'Henan',
-      'Zhejiang',
-      'Hunan',
-      'Anhui',
-      'Jiangxi',
-      'Shandong',
-      'Jiangsu',
-      'Chongqing',
-      'Sichuan',
-      'Heilongjiang',
-      'Beijing',
-      'Shanghai',
-      'Hebei',
-      'Fujian',
-      'Guangxi',
-      'Shaanxi',
-      'Yunnan',
-      'Hainan',
-      'Guizhou',
-      'Tianjin',
-      'Shanxi',
-      'Gansu',
-      'Hong Kong',
-      'Liaoning',
-      'Jilin',
-      'Xinjiang',
-      'Inner Mongolia',
-      'Ningxia',
-      'Qinghai',
-      'Macau',
-      'Tibet'
-    ],
-    code: 'CN'
   },
   {
     country: 'Spain',
@@ -147,6 +106,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'AO'
+  },
+  {
+    country: 'Anguilla',
+    slug: 'Anguilla',
+    translation: 'Anguilla',
+    code: 'AI'
   },
   {
     country: 'Antigua and Barbuda',
@@ -265,6 +230,12 @@ export const COUNTRIES = [
     code: 'BE'
   },
   {
+    country: 'Belize',
+    slug: 'Belize',
+    translation: 'Belize',
+    code: 'BZ'
+  },
+  {
     country: 'Benin',
     slug: 'benin',
     translation: 'Benin',
@@ -272,6 +243,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'BJ'
+  },
+  {
+    country: 'Bermuda',
+    slug: 'Bermuda',
+    translation: 'Bermudes',
+    code: 'BM'
   },
   {
     country: 'Bhutan',
@@ -429,6 +406,47 @@ export const COUNTRIES = [
     code: 'CL'
   },
   {
+    country: 'China',
+    slug: 'china',
+    translation: 'Chine',
+    provinces: [
+      'Hubei',
+      'Guangdong',
+      'Henan',
+      'Zhejiang',
+      'Hunan',
+      'Anhui',
+      'Jiangxi',
+      'Shandong',
+      'Jiangsu',
+      'Chongqing',
+      'Sichuan',
+      'Heilongjiang',
+      'Beijing',
+      'Shanghai',
+      'Hebei',
+      'Fujian',
+      'Guangxi',
+      'Shaanxi',
+      'Yunnan',
+      'Hainan',
+      'Guizhou',
+      'Tianjin',
+      'Shanxi',
+      'Gansu',
+      'Hong Kong',
+      'Liaoning',
+      'Jilin',
+      'Xinjiang',
+      'Inner Mongolia',
+      'Ningxia',
+      'Qinghai',
+      'Macau',
+      'Tibet'
+    ],
+    code: 'CN'
+  },
+  {
     country: 'Cyprus',
     slug: 'cyprus',
     translation: 'Chypre',
@@ -517,7 +535,8 @@ export const COUNTRIES = [
     translation: 'Diamond Princess',
     provinces: [
       'Diamond Princess'
-    ]
+    ],
+    code: 'GB'
   },
   {
     country: 'Djibouti',
@@ -527,6 +546,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'DJ'
+  },
+  {
+    country: 'Dominica',
+    slug: 'Dominica',
+    translation: 'Dominique',
+    code: 'DM'
   },
   {
     country: 'Egypt',
@@ -564,6 +589,7 @@ export const COUNTRIES = [
     ],
     code: 'ER'
   },
+
   {
     country: 'Estonia',
     slug: 'estonia',
@@ -572,14 +598,6 @@ export const COUNTRIES = [
       ''
     ],
     code: 'EE'
-  },
-  {
-    country: 'Eswatini',
-    slug: 'eswatini',
-    translation: 'Eswatini',
-    provinces: [
-      ''
-    ]
   },
   {
     country: 'US',
@@ -893,6 +911,18 @@ export const COUNTRIES = [
     code: 'GH'
   },
   {
+    country: 'Gibraltar',
+    slug: 'Gibraltar',
+    translation: 'Gibraltar',
+    code: 'GI'
+  },
+  {
+    country: 'Grenada',
+    slug: 'Grenada',
+    translation: 'Grenade',
+    code: 'GD'
+  },
+  {
     country: 'Greenland',
     slug: 'greenland',
     translation: 'Groenland',
@@ -965,6 +995,12 @@ export const COUNTRIES = [
     code: 'GQ'
   },
   {
+    country: 'Guinea-Bissau',
+    slug: 'Guinea-Bissau',
+    translation: 'Guinée-Bissau',
+    code: 'GW'
+  },
+  {
     country: 'French Guiana',
     slug: 'french-guiana',
     translation: 'Guyane',
@@ -1010,6 +1046,12 @@ export const COUNTRIES = [
     code: 'HN'
   },
   {
+    country: 'Hong Kong',
+    slug: 'Hong Kong',
+    translation: 'Hong Kong',
+    code: 'HK'
+  },
+  {
     country: 'Hungary',
     slug: 'hungary',
     translation: 'Hongrie',
@@ -1017,6 +1059,30 @@ export const COUNTRIES = [
       ''
     ],
     code: 'HU'
+  },
+  {
+    country: 'Isle of Man',
+    slug: 'Isle of Man',
+    translation: 'Ile de Man',
+    code: 'IM'
+  },
+  {
+    country: 'Faroe Islands',
+    slug: 'Faroe Islands',
+    translation: 'Iles Féroé',
+    code: 'FO'
+  },
+  {
+    country: 'Turks and Caicos Islands',
+    slug: 'Turks and Caicos Islands',
+    translation: 'Iles Turks et Caïques',
+    code: 'TC'
+  },
+  {
+    country: 'Cayman Islands',
+    slug: 'Cayman Islands',
+    translation: 'Iles caimans',
+    code: 'KY'
   },
   {
     country: 'India',
@@ -1150,7 +1216,8 @@ export const COUNTRIES = [
     translation: 'Kosovo',
     provinces: [
       ''
-    ]
+    ],
+    code: 'XK'
   },
   {
     country: 'Kuwait',
@@ -1160,6 +1227,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'KW'
+  },
+  {
+    country: 'Lao People\'s Democratic Republic',
+    slug: 'Lao People\'s Democratic Republic',
+    translation: 'Laos',
+    code: 'LA'
   },
   {
     country: 'El Salvador',
@@ -1207,6 +1280,12 @@ export const COUNTRIES = [
     code: 'LB'
   },
   {
+    country: 'Libyan Arab Jamahiriya',
+    slug: 'Libyan Arab Jamahiriya',
+    translation: 'Libye',
+    code: 'LY'
+  },
+  {
     country: 'Liberia',
     slug: 'liberia',
     translation: 'Libéria',
@@ -1243,6 +1322,12 @@ export const COUNTRIES = [
     code: 'LU'
   },
   {
+    country: 'Macao',
+    slug: 'Macao',
+    translation: 'Macao',
+    code: 'MO'
+  },
+  {
     country: 'North Macedonia',
     slug: 'north-macedonia',
     translation: 'Macédoine du Nord',
@@ -1250,6 +1335,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'MP'
+  },
+  {
+    country: 'Macedonia, the former Yugoslav Republic of',
+    slug: 'Macedonia, the former Yugoslav Republic of',
+    translation: 'Macédoine du Nord',
+    code: 'MK'
   },
   {
     country: 'Madagascar',
@@ -1268,6 +1359,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'MY'
+  },
+  {
+    country: 'Mali',
+    slug: 'Mali',
+    translation: 'Mali',
+    code: 'ML'
   },
   {
     country: 'Malta',
@@ -1360,6 +1457,12 @@ export const COUNTRIES = [
     code: 'MN'
   },
   {
+    country: 'Montserrat',
+    slug: 'Montserrat',
+    translation: 'Montserrat',
+    code: 'MS'
+  },
+  {
     country: 'Montenegro',
     slug: 'montenegro',
     translation: 'Monténégro',
@@ -1367,6 +1470,18 @@ export const COUNTRIES = [
       ''
     ],
     code: 'ME'
+  },
+  {
+    country: 'Mozambique',
+    slug: 'Mozambique',
+    translation: 'Mozambique',
+    code: 'MZ'
+  },
+  {
+    country: 'Myanmar',
+    slug: 'Myanmar',
+    translation: 'Myanmar',
+    code: 'MM'
   },
   {
     country: 'Namibia',
@@ -1412,6 +1527,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'NO'
+  },
+  {
+    country: 'New Caledonia',
+    slug: 'New Caledonia',
+    translation: 'Nouvelle Calédonie',
+    code: 'NC'
   },
   {
     country: 'New Zealand',
@@ -1525,9 +1646,15 @@ export const COUNTRIES = [
     code: 'PL'
   },
   {
+    country: 'French Polynesia',
+    slug: 'French Polynesia',
+    translation: 'Polynésie française',
+    code: 'PF'
+  },
+  {
     country: 'Puerto Rico',
     slug: 'puerto-rico',
-    translation: 'Puerto Rico',
+    translation: 'Porto Rico',
     provinces: [
       ''
     ],
@@ -1628,6 +1755,12 @@ export const COUNTRIES = [
       ''
     ],
     code: 'RE'
+  },
+  {
+    country: 'Saint Kitts and Nevis',
+    slug: 'Saint Kitts and Nevis',
+    translation: 'Saint-Kitts-et-Nevis',
+    code: 'KN'
   },
   {
     country: 'San Marino',
@@ -1756,6 +1889,18 @@ export const COUNTRIES = [
     code: 'SE'
   },
   {
+    country: 'Swaziland',
+    slug: 'Swaziland',
+    translation: 'Swaziland',
+    code: 'SZ'
+  },
+  {
+    country: 'Syrian Arab Republic',
+    slug: 'Syrian Arab Republic',
+    translation: 'Syrie',
+    code: 'SY'
+  },
+  {
     country: 'Senegal',
     slug: 'senegal',
     translation: 'Sénégal',
@@ -1765,8 +1910,8 @@ export const COUNTRIES = [
     code: 'SN'
   },
   {
-    country: 'Taiwan*',
-    slug: 'taiwan*',
+    country: 'Taiwan',
+    slug: 'taiwan',
     translation: 'Taiwan',
     provinces: [
       ''

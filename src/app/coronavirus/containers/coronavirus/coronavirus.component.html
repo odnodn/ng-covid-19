@@ -1,8 +1,8 @@
 <!-- Select -->
 <div class="content">
   <mat-label class="label" for="country-select">Sélectionner un pays</mat-label>
-  <mat-select role="listbox" [(ngModel)]="selectedCountry" (ngModelChange)="onSelectCountry()" [compareWith]="compareFn"
-    disableRipple>
+  <mat-select role="listbox" [(ngModel)]="selectedCountry" (ngModelChange)="onSelectCountry()"
+    [compareWith]="compareFn">
     <mat-select-trigger>
       <img *ngIf="selectedCountry.code === 'WL'" alt="monde" width="32" height="32"
         src="../../../../assets/images/flag_world.png" />
@@ -16,15 +16,16 @@
       </ngx-mat-select-search>
     </mat-option>
     <mat-option role="option" *ngFor="let country of filteredCountries; trackByFn" [value]="country">
-      <img *ngIf="!country.code" alt="monde" width="32" height="32" src="../../../../assets/images/flag_world.png" />
-      <img *ngIf="country.code" alt="selectedCountry.translation"
+      <img *ngIf="country.code === 'WL'" alt="monde" width="32" height="32"
+        src="../../../../assets/images/flag_world.png" />
+      <img *ngIf="country.code !== 'WL'" alt="country.translation"
         src="https://www.countryflags.io/{{country.code}}/flat/32.png" />
       {{country.translation}}
     </mat-option>
   </mat-select>
 </div>
 
-<!-- Description-->
+<!-- Description -->
 <div class="content">
   <p class="description" *ngIf="selectedCountry.country === 'Monde'">
     Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
@@ -45,62 +46,100 @@
   </p>
 </div>
 
-
-
-
+<!-- Graph Content -->
 <ng-container *ngIf="(detailedStats$ | loading | async) as detailedStats">
-
-
-  <!-- Map et Table -->
   <ng-container *ngIf="detailedStats.value && detailedStats.value.length > 0">
-    <ng-container *ngIf="selectedCountry.country === 'Monde'">
-      <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'FR'"
-        [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}"></app-coronavirus-stats>
-    </ng-container>
+
+    <!-- World Container-->
+    <ng-container *ngIf="selectedCountry.country !== 'France'">
+      <ng-container *ngIf="selectedCountry.country === 'Monde'">
+        <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'FR'"
+          [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}">
+        </app-coronavirus-stats>
+      </ng-container>
       <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: this.selectedCountry.code"
         [selectedCountry]="selectedCountry" (updateMapEvent)="onUpdateMapEvent($event)"></app-coronavirus-stats>
 
-    <div class="columns">
-      <div class="column is-two-thirds">
-        <ng-container *ngIf="selectedCountry.country === 'Monde'">
-          <app-coronavirus-map [selectedCountry]="selectedCountry"
-            [detailedStats]="detailedStats.value | countryfilter: ''" [selectedTypeMap]="selectedTypeMap">
-          </app-coronavirus-map>
-        </ng-container>
-        <ng-container *ngIf="selectedCountry.country !== 'Monde'">
-          <app-coronavirus-map [selectedCountry]="selectedCountry"
-            [detailedStats]="detailedStats.value | countryfilter: selectedCountry.code" [selectedTypeMap]="selectedTypeMap">
-          </app-coronavirus-map>
-        </ng-container>
-      </div>
-      <div class="column" *ngIf="selectedCountry.country === 'Monde'">
-        <app-coronavirus-table [detailedStats]="detailedStats.value | countryfilter: ''"
-          [selectedCountry]="selectedCountry">
-        </app-coronavirus-table>
-      </div>
-      <div class="column" *ngIf="selectedCountry.country !== 'Monde'">
-        <ng-container *ngIf="(tableStatsByCountry$ | loading | async) as tableStatsByCountry">
-          <ng-container *ngIf="tableStatsByCountry.value && tableStatsByCountry.value.length > 0">
-            <app-coronavirus-table [detailedStats]="tableStatsByCountry.value"
+      <div class="columns">
+        <div class="column is-two-thirds" *ngIf="isBrowser">
+          <ng-container *ngIf="selectedCountry.country === 'Monde'">
+            <app-coronavirus-map [selectedCountry]="selectedCountry"
+              [detailedStats]="detailedStats.value | countryfilter: ''" [selectedTypeMap]="selectedTypeMap">
+            </app-coronavirus-map>
+          </ng-container>
+          <ng-container *ngIf="selectedCountry.country !== 'Monde'">
+            <app-coronavirus-map [selectedCountry]="selectedCountry"
+              [detailedStats]="detailedStats.value | countryfilter: selectedCountry.code"
+              [selectedTypeMap]="selectedTypeMap">
+            </app-coronavirus-map>
+          </ng-container>
+        </div>
+        <div class="column" *ngIf="selectedCountry.country === 'Monde'">
+          <app-coronavirus-table [detailedStats]="detailedStats.value | countryfilter: ''"
             [selectedCountry]="selectedCountry">
           </app-coronavirus-table>
+        </div>
+        <div class="column" *ngIf="selectedCountry.country !== 'Monde'">
+          <ng-container *ngIf="(tableStatsByCountry$ | loading | async) as tableStatsByCountry">
+            <ng-container *ngIf="tableStatsByCountry.value && tableStatsByCountry.value.length > 0">
+              <app-coronavirus-table [detailedStats]="tableStatsByCountry.value" [selectedCountry]="selectedCountry">
+              </app-coronavirus-table>
+            </ng-container>
+            <ng-container *ngIf="!tableStatsByCountry.value && !tableStatsByCountry.loading">
+              <article class="message is-danger is-spaced">
+                <div class="message-header">
+                  <p>Données indisponibles</p>
+                </div>
+                <div class="message-body">
+                  Nous n'avons pas trouvé de données.
+                </div>
+              </article>
+            </ng-container>
+            <ng-container *ngIf="detailedStats.loading">
+              <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+            </ng-container>
           </ng-container>
-          <ng-container *ngIf="!tableStatsByCountry.value && !tableStatsByCountry.loading">
-            <article class="message is-danger is-spaced">
-              <div class="message-header">
-                <p>Données indisponibles</p>
-              </div>
-              <div class="message-body">
-                Nous n'avons pas trouvé de données.
-              </div>
-            </article>
-          </ng-container>
-          <ng-container *ngIf="detailedStats.loading">
-            <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
-          </ng-container>
-        </ng-container>
+        </div>
       </div>
-    </div>
+    </ng-container>
+
+    <!-- France Container -->
+    <ng-container *ngIf="selectedCountry.country === 'France'">
+      <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
+        <ng-container *ngIf="franceStats.value">
+          <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'FR'"
+            [franceStats]="franceStats.value"
+            [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}"
+            (updateMapEvent)="onUpdateMapEvent($event)">
+          </app-coronavirus-stats>
+          <div class="columns">
+            <div class="column is-two-thirds" *ngIf="isBrowser">
+              <app-coronavirus-map [selectedCountry]="selectedCountry" [detailedStats]="franceStats.value"
+                [selectedTypeMap]="selectedTypeMap"></app-coronavirus-map>
+            </div>
+            <div class="column">
+              <app-coronavirus-table [detailedStats]="franceStats.value" [selectedCountry]="selectedCountry">
+              </app-coronavirus-table>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!(franceStats.value) && !franceStats.loading">
+          <article class="message is-danger is-spaced">
+            <div class="message-header">
+              <p>Données indisponibles</p>
+            </div>
+            <div class="message-body">
+              Nous n'avons pas trouvé de données.
+            </div>
+          </article>
+        </ng-container>
+        <ng-container *ngIf="franceStats.loading">
+          <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+        </ng-container>
+      </ng-container>
+
+    </ng-container>
+
   </ng-container>
   <ng-container *ngIf="(detailedStats.value && detailedStats.value.length === 0) && !detailedStats.loading">
     <article class="message is-danger is-spaced">
@@ -116,6 +155,8 @@
     <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
   </ng-container>
 </ng-container>
+
+<!-- Graph Footer-->
 <div class="content" *ngIf="(data$ | loading | async) as data">
   <ng-container *ngIf="isBrowser">
     <h1 class="title is-spaced">L'avancée du coronavirus sur les 15 derniers jours</h1>

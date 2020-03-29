@@ -1,3 +1,4 @@
+import { CoronavirusFranceService } from './../../services/coronavirus-france.service';
 import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,20 +17,25 @@ export class CoronavirusTableComponent implements OnInit {
   displayedColumns: string[] = [];
   dataSource: any;
 
-  ngOnInit(): void {
-    this.initDisplayColumns();
-    this.dataSource = new MatTableDataSource(this.detailedStats);
-    this.dataSource.sort = this.sort;
+  constructor(private readonly coronavirusFranceService: CoronavirusFranceService) {
   }
 
-  private initDisplayColumns(): void {
+  ngOnInit(): void {
+    this.initDataTable();
+  }
+
+  private initDataTable(): void {
+    let detailedStats = this.detailedStats;
     if (this.selectedCountry.country === 'Monde') {
-      this.displayedColumns = ['country', 'cases', 'todayCases', 'deaths', 'todayDeaths', 'recovered'];
+      this.displayedColumns = ['translation', 'cases', 'todayCases', 'deaths', 'todayDeaths', 'recovered'];
     } else if (this.selectedCountry.country === 'France') {
-      this.displayedColumns = ['country', 'cases', 'todayCases'];
+      this.displayedColumns = ['region', 'hospital', 'reanimation', 'deaths', 'recovered'];
+      detailedStats = this.coronavirusFranceService.getDataByRegion(this.detailedStats);
     } else {
-      this.displayedColumns = ['country', 'cases', 'deaths', 'recovered'];
+      this.displayedColumns = ['translation', 'cases', 'deaths', 'recovered'];
     }
+    this.dataSource = new MatTableDataSource(detailedStats);
+    this.dataSource.sort = this.sort;
   }
 
 }
