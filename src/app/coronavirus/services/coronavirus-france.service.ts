@@ -13,7 +13,7 @@ import { FRANCE_DEPS } from '@coronavirus/constants/france.constants';
 export class CoronavirusFranceService {
 
   private readonly urlCSVDepartment = 'https://www.data.gouv.fr/fr/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7';
-
+  private readonly urlCSVAge = 'https://www.data.gouv.fr/fr/datasets/r/219427ba-7e90-4eb1-9ac7-4de2e7e2112c';
   constructor(private readonly httpClient: HttpClient) { }
 
   getData(): Observable<any> {
@@ -76,9 +76,9 @@ export class CoronavirusFranceService {
           }
         });
         const statsByGender = {
-          statsTotal,
-          statsMen,
-          statsWomen
+          total: statsTotal,
+          men: statsMen,
+          women: statsWomen
         };
         return {
           statsByDepartment,
@@ -102,5 +102,66 @@ export class CoronavirusFranceService {
       regionDatas.push(item);
     });
     return (regionDatas);
+  }
+
+  getDataByAgeFrance(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({}),
+      responseType: 'text' as 'json'
+    };
+    return this.httpClient.get(`${this.urlCSVAge}`, httpOptions).pipe(
+      map((csv: any) => {
+        const data = Papa.parse(csv).data;
+        const dataByAge = {
+          0: {
+            ageRange: 'ALL',
+            passage: 0,
+            hospital: 0,
+            medical: 0
+          },
+          A: {
+            ageRange: '-15',
+            passage: 0,
+            hospital: 0,
+            medical: 0
+          },
+          B: {
+            ageRange: '15-44',
+            passage: 0,
+            hospital: 0,
+            medical: 0
+          },
+          C: {
+            ageRange: '45-64',
+            passage: 0,
+            hospital: 0,
+            medical: 0
+          },
+          D: {
+            ageRange: '65-74',
+            passage: 0,
+            hospital: 0,
+            medical: 0
+          },
+          E: {
+            ageRange: '75+',
+            passage: 0,
+            hospital: 0,
+            medical: 0
+          }
+        };
+        data.forEach((dataItem) => {
+          if (
+            dataItem[2] === 'A' || dataItem[2] === 'B' ||
+            dataItem[2] === 'C' || dataItem[2] === 'D' ||
+            dataItem[2] === 'E' || dataItem[2] === '0'
+          ) {
+            dataByAge[dataItem[2]].passage = dataByAge[dataItem[2]].passage + Number(dataItem[3]);
+            dataByAge[dataItem[2]].hospital = dataByAge[dataItem[2]].hospital + Number(dataItem[5]);
+            dataByAge[dataItem[2]].medical = dataByAge[dataItem[2]].medical + Number(dataItem[12]);
+          }
+        });
+        return dataByAge;
+      }));
   }
 }

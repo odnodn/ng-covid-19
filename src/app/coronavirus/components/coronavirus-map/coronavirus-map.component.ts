@@ -5,7 +5,6 @@ import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4geodata_franceHigh from '@amcharts/amcharts4-geodata/franceHigh';
-import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { FRANCE_REGIONS } from '@coronavirus/constants/france.constants';
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
 am4core.useTheme(am4themes_animated);
@@ -75,6 +74,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
 
   private initMapFrance(): void {
     const chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
+    chart.responsive.enabled = true;
     chart.geodata = am4geodata_franceHigh;
     chart.projection = new am4maps.projections.Miller();
     const polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());

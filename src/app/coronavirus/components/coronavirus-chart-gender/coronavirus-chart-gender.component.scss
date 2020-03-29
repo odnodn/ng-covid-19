@@ -1,0 +1,16 @@
+.radio-buttons {
+  margin-top: 1em;
+  text-align: center;
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+}
+
+#chartdiv {
+  width: 100%;
+  height: 400px;
+}
+
+.content {
+  // text-align: center;
+}

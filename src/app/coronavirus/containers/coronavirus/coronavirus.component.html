@@ -116,6 +116,18 @@
               </app-coronavirus-table>
             </div>
           </div>
+          <div class="columns">
+            <div class="column" *ngIf="isBrowser">
+              <app-coronavirus-chart-gender [dataGender]="franceStats.value.statsByGender"></app-coronavirus-chart-gender>
+            </div>
+            <div class="column" *ngIf="isBrowser">
+              <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
+                <ng-container *ngIf="franceStatsByAge.value">
+                  <app-coronavirus-chart-age [dataAge]="franceStatsByAge.value"></app-coronavirus-chart-age>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
         </ng-container>
         <ng-container *ngIf="!(franceStats.value) && !franceStats.loading">
           <article class="message is-danger is-spaced">

@@ -25,11 +25,12 @@ export class CoronavirusComponent implements OnInit {
   detailedStats$: Observable<DetailedStat>;
 
   franceStats$: Observable<any>;
+  franceStatsByAge$: Observable<any>;
 
   countryCtrl = new FormControl();
   countries: any[] = COUNTRIES;
   filteredCountries: any[] = [];
-  selectedCountry: any = COUNTRIES[0];
+  selectedCountry: any = COUNTRIES[1];
   selectedTypeMap = 'cases';
   isBrowser = isPlatformBrowser(this.platformId);
 
@@ -45,13 +46,14 @@ export class CoronavirusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.coronavirusFranceService.getData();
+
     this.data$ = this.coronavirusService.getDailyDatas();
     this.filteredCountries = this.countries;
     this.route.params.subscribe(params => {
       if (!params.country) {
-        this.initWorldDatas();
-        this.initMetaTagWorld();
+        this.initFranceDatas();
+        this.initMetaTagCountry();
+        this.selectedTypeMap = 'hospital';
         return;
       }
       this.selectedCountry = this.countries.find((country) => country.slug === params.country);
@@ -162,6 +164,9 @@ export class CoronavirusComponent implements OnInit {
 
     /* For main stats */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
+
+    /* Age */
+    this.franceStatsByAge$ = this.coronavirusFranceService.getDataByAgeFrance();
   }
 
   private initCountryDatas(): void {

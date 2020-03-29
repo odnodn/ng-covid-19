@@ -80,6 +80,16 @@ $success-invert: white;
 }
 
 
+
+.reanimation {
+  color: #E95D0C;
+}
+
+.hospital {
+  color: #F17D07;
+}
+
+
 /* Utilities */
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 
@@ -106,5 +116,17 @@ $success-invert: white;
 @import "../node_modules/bulma/sass/layout/_all.sass";
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color: grey;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color: grey;
+  background-color: grey;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  background-color: grey;
+}
