@@ -84,6 +84,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     const label = chart.chartContainer.createChild(am4core.Label);
     label.fontSize = 20;
     label.align = 'right';
+    label.paddingTop = 20;
+    label.paddingRight = 20;
     label.zIndex = 100;
     if (this.selectedTypeMap === 'hospital') {
       const chartDatas = this.getDatasFrance('hospital');
@@ -164,6 +166,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     label.fontSize = 20;
     label.align = 'right';
     label.zIndex = 100;
+    label.paddingTop = 20;
+    label.paddingRight = 20;
     const polygonTemplate = polygonSeries.mapPolygons.template;
     const hs = polygonTemplate.states.create('hover');
     if (this.selectedCountry.country !== 'Monde') {
@@ -180,7 +184,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#fff2ce',
         max: '#ffbb00'
       };
-      label.text = 'Carte des cas confirmés dans le monde';
+      label.text = 'Carte des cas confirmés';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'confirmés');
     } else if (this.selectedTypeMap === 'deaths') {
       const chartDatas = this.getDatasWorld('deaths');
@@ -190,7 +194,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#e8c0c3',
         max: '#f9461c'
       };
-      label.text = 'Carte des décès dans le monde';
+      label.text = 'Carte des décès';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'morts');
     } else {
       const chartDatas = this.getDatasWorld('recovered');
@@ -200,7 +204,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#bbd9c5',
         max: '#43D787'
       };
-      label.text = 'Carte des cas guéris dans le monde';
+      label.text = 'Carte des cas guéris';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'guéris');
     }
     // remove antarctique

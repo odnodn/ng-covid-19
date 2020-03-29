@@ -42,6 +42,7 @@ export class CoronavirusService {
             cases: item.confirmed,
             todayDeaths: '',
             code: item.iso2,
+            translation: item.iso2 ? COUNTRIES_DICTIONARY[item.iso2] : item.countryRegion,
             provinceState: item.provinceState,
             country: item.countryRegion,
             deathRate: ((item.deaths / item.confirmed) * 100).toFixed(1),
