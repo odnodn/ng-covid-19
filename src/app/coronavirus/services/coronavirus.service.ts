@@ -27,7 +27,7 @@ export class CoronavirusService {
             cases: item.cases,
             deathRate: ((item.deaths / item.cases) * 100).toFixed(1),
             recoveredRate: ((item.recovered / item.cases) * 100).toFixed(1),
-            translation: item.countryInfo.iso2 ? COUNTRIES_DICTIONARY[item.countryInfo.iso2] : item.country
+            translation: !COUNTRIES_DICTIONARY[item.countryInfo.iso2] ? item.country : COUNTRIES_DICTIONARY[item.countryInfo.iso2]
           })))
     );
   }
