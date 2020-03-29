@@ -4,10 +4,7 @@
   <mat-select role="listbox" [(ngModel)]="selectedCountry" (ngModelChange)="onSelectCountry()"
     [compareWith]="compareFn">
     <mat-select-trigger>
-      <img *ngIf="selectedCountry.code === 'WL'" alt="monde" width="32" height="32"
-        src="../../../../assets/images/flag_world.png" />
-      <img *ngIf="selectedCountry.code !== 'WL'" alt="selectedCountry.translation"
-        src="https://www.countryflags.io/{{selectedCountry.code}}/flat/32.png" />
+      <img alt="selectedCountry.translation" [height]="32" [width]="32" [src]="selectedCountry.flag" />
       {{selectedCountry.translation}}
     </mat-select-trigger>
     <mat-option role="option">
@@ -16,10 +13,7 @@
       </ngx-mat-select-search>
     </mat-option>
     <mat-option role="option" *ngFor="let country of filteredCountries; trackByFn" [value]="country">
-      <img *ngIf="country.code === 'WL'" alt="monde" width="32" height="32"
-        src="../../../../assets/images/flag_world.png" />
-      <img *ngIf="country.code !== 'WL'" alt="country.translation"
-        src="https://www.countryflags.io/{{country.code}}/flat/32.png" />
+      <img alt="country.translation" [height]="32" [width]="32" [src]="country.flag" />
       {{country.translation}}
     </mat-option>
   </mat-select>

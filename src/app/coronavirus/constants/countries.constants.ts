@@ -6,7 +6,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'WL'
+    code: 'WL',
+    flag: '/assets/images/flag_world.png'
   },
   {
     country: 'France',
@@ -15,7 +16,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'FR'
+    code: 'FR',
+    flag: 'https://www.countryflags.io/FR/flat/32.png'
   },
   {
     country: 'Italy',
@@ -24,7 +26,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IT'
+    code: 'IT',
+    flag: 'https://www.countryflags.io/IT/flat/32.png'
   },
   {
     country: 'Spain',
@@ -33,7 +36,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ES'
+    code: 'ES',
+    flag: 'https://www.countryflags.io/ES/flat/32.png'
   },
   {
     country: 'Portugal',
@@ -42,7 +46,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PT'
+    code: 'PT',
+    flag: 'https://www.countryflags.io/PT/flat/32.png'
   },
   {
     country: 'Afghanistan',
@@ -51,7 +56,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AF'
+    code: 'AF',
+    flag: 'https://www.countryflags.io/AF/flat/32.png'
   },
   {
     country: 'South Africa',
@@ -60,7 +66,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ZA'
+    code: 'ZA',
+    flag: 'https://www.countryflags.io/ZA/flat/32.png'
   },
   {
     country: 'Albania',
@@ -69,7 +76,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AL'
+    code: 'AL',
+    flag: 'https://www.countryflags.io/AL/flat/32.png'
   },
   {
     country: 'Algeria',
@@ -78,7 +86,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'DZ'
+    code: 'DZ',
+    flag: 'https://www.countryflags.io/DZ/flat/32.png'
   },
   {
     country: 'Germany',
@@ -87,7 +96,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'DE'
+    code: 'DE',
+    flag: 'https://www.countryflags.io/DE/flat/32.png'
   },
   {
     country: 'Andorra',
@@ -96,7 +106,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AD'
+    code: 'AD',
+    flag: 'https://www.countryflags.io/AD/flat/32.png'
   },
   {
     country: 'Angola',
@@ -105,13 +116,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AO'
+    code: 'AO',
+    flag: 'https://www.countryflags.io/AO/flat/32.png'
   },
   {
     country: 'Anguilla',
     slug: 'Anguilla',
     translation: 'Anguilla',
-    code: 'AI'
+    code: 'AI',
+    flag: 'https://www.countryflags.io/AI/flat/32.png'
   },
   {
     country: 'Antigua and Barbuda',
@@ -120,7 +133,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AG'
+    code: 'AG',
+    flag: 'https://www.countryflags.io/AG/flat/32.png'
   },
   {
     country: 'Saudi Arabia',
@@ -129,7 +143,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SA'
+    code: 'SA',
+    flag: 'https://www.countryflags.io/SA/flat/32.png'
   },
   {
     country: 'Argentina',
@@ -138,7 +153,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AR'
+    code: 'AR',
+    flag: 'https://www.countryflags.io/AR/flat/32.png'
   },
   {
     country: 'Armenia',
@@ -147,7 +163,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AM'
+    code: 'AM',
+    flag: 'https://www.countryflags.io/AM/flat/32.png'
   },
   {
     country: 'Aruba',
@@ -156,7 +173,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AW'
+    code: 'AW',
+    flag: 'https://www.countryflags.io/AW/flat/32.png'
   },
   {
     country: 'Australia',
@@ -173,7 +191,8 @@ export const COUNTRIES = [
       'Northern Territory',
       'Australian Capital Territory'
     ],
-    code: 'AU'
+    code: 'AU',
+    flag: 'https://www.countryflags.io/AU/flat/32.png'
   },
   {
     country: 'Austria',
@@ -182,7 +201,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AT'
+    code: 'AT',
+    flag: 'https://www.countryflags.io/AT/flat/32.png'
   },
   {
     country: 'Azerbaijan',
@@ -191,7 +211,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AZ'
+    code: 'AZ',
+    flag: 'https://www.countryflags.io/AZ/flat/32.png'
   },
   {
     country: 'Bahrain',
@@ -200,7 +221,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BH'
+    code: 'BH',
+    flag: 'https://www.countryflags.io/BH/flat/32.png'
   },
   {
     country: 'Bangladesh',
@@ -209,7 +231,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BD'
+    code: 'BD',
+    flag: 'https://www.countryflags.io/BD/flat/32.png'
   },
   {
     country: 'Barbados',
@@ -218,7 +241,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BB'
+    code: 'BB',
+    flag: 'https://www.countryflags.io/BB/flat/32.png'
   },
   {
     country: 'Belgium',
@@ -227,13 +251,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BE'
+    code: 'BE',
+    flag: 'https://www.countryflags.io/BE/flat/32.png'
   },
   {
     country: 'Belize',
     slug: 'Belize',
     translation: 'Belize',
-    code: 'BZ'
+    code: 'BZ',
+    flag: 'https://www.countryflags.io/BZ/flat/32.png'
   },
   {
     country: 'Benin',
@@ -242,13 +268,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BJ'
+    code: 'BJ',
+    flag: 'https://www.countryflags.io/BJ/flat/32.png'
   },
   {
     country: 'Bermuda',
     slug: 'Bermuda',
     translation: 'Bermudes',
-    code: 'BM'
+    code: 'BM',
+    flag: 'https://www.countryflags.io/BM/flat/32.png'
   },
   {
     country: 'Bhutan',
@@ -257,7 +285,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BT'
+    code: 'BT',
+    flag: 'https://www.countryflags.io/BT/flat/32.png'
   },
   {
     country: 'Belarus',
@@ -266,7 +295,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BY'
+    code: 'BY',
+    flag: 'https://www.countryflags.io/BY/flat/32.png'
   },
   {
     country: 'Bolivia',
@@ -275,7 +305,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BO'
+    code: 'BO',
+    flag: 'https://www.countryflags.io/BO/flat/32.png'
   },
   {
     country: 'Bosnia and Herzegovina',
@@ -284,7 +315,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BA'
+    code: 'BA',
+    flag: 'https://www.countryflags.io/BA/flat/32.png'
   },
   {
     country: 'Brunei',
@@ -293,7 +325,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BN'
+    code: 'BN',
+    flag: 'https://www.countryflags.io/BN/flat/32.png'
   },
   {
     country: 'Brazil',
@@ -302,7 +335,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BR'
+    code: 'BR',
+    flag: 'https://www.countryflags.io/BR/flat/32.png'
   },
   {
     country: 'Bulgaria',
@@ -311,7 +345,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BG'
+    code: 'BG',
+    flag: 'https://www.countryflags.io/BG/flat/32.png'
   },
   {
     country: 'Burkina Faso',
@@ -320,7 +355,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BF'
+    code: 'BF',
+    flag: 'https://www.countryflags.io/BF/flat/32.png'
   },
   {
     country: 'Cambodia',
@@ -329,7 +365,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'KH'
+    code: 'KH',
+    flag: 'https://www.countryflags.io/KH/flat/32.png'
   },
   {
     country: 'Cameroon',
@@ -338,7 +375,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CM'
+    code: 'CM',
+    flag: 'https://www.countryflags.io/CM/flat/32.png'
   },
   {
     country: 'Canada',
@@ -358,7 +396,8 @@ export const COUNTRIES = [
       'Nova Scotia',
       'Northwest Territories'
     ],
-    code: 'CA'
+    code: 'CA',
+    flag: 'https://www.countryflags.io/CA/flat/32.png'
   },
   {
     country: 'Cabo Verde',
@@ -367,7 +406,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CV'
+    code: 'CV',
+    flag: 'https://www.countryflags.io/CV/flat/32.png'
   },
   {
     country: 'Cape Verde',
@@ -376,7 +416,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CV'
+    code: 'CV',
+    flag: 'https://www.countryflags.io/CV/flat/32.png'
   },
   {
     country: 'Central African Republic',
@@ -385,7 +426,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CF'
+    code: 'CF',
+    flag: 'https://www.countryflags.io/CF/flat/32.png'
   },
   {
     country: 'Chad',
@@ -394,7 +436,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TD'
+    code: 'TD',
+    flag: 'https://www.countryflags.io/TD/flat/32.png'
   },
   {
     country: 'Chile',
@@ -403,7 +446,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CL'
+    code: 'CL',
+    flag: 'https://www.countryflags.io/CL/flat/32.png'
   },
   {
     country: 'China',
@@ -444,7 +488,8 @@ export const COUNTRIES = [
       'Macau',
       'Tibet'
     ],
-    code: 'CN'
+    code: 'CN',
+    flag: 'https://www.countryflags.io/CN/flat/32.png'
   },
   {
     country: 'Cyprus',
@@ -453,7 +498,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CY'
+    code: 'CY',
+    flag: 'https://www.countryflags.io/CY/flat/32.png'
   },
   {
     country: 'Colombia',
@@ -462,7 +508,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CO'
+    code: 'CO',
+    flag: 'https://www.countryflags.io/CO/flat/32.png'
   },
   {
     country: 'Congo',
@@ -471,7 +518,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CG'
+    code: 'CG',
+    flag: 'https://www.countryflags.io/CG/flat/32.png'
   },
   {
     country: 'Korea, South',
@@ -480,7 +528,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'KR'
+    code: 'KR',
+    flag: 'https://www.countryflags.io/KR/flat/32.png'
   },
   {
     country: 'Costa Rica',
@@ -489,7 +538,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CR'
+    code: 'CR',
+    flag: 'https://www.countryflags.io/CR/flat/32.png'
   },
   {
     country: 'Croatia',
@@ -498,7 +548,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'HR'
+    code: 'HR',
+    flag: 'https://www.countryflags.io/HR/flat/32.png'
   },
   {
     country: 'Cuba',
@@ -507,7 +558,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CU'
+    code: 'CU',
+    flag: 'https://www.countryflags.io/CU/flat/32.png'
   },
   {
     country: 'Cote d\'Ivoire',
@@ -516,7 +568,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CI'
+    code: 'CI',
+    flag: 'https://www.countryflags.io/CI/flat/32.png'
   },
   {
     country: 'Denmark',
@@ -527,7 +580,8 @@ export const COUNTRIES = [
       'Faroe Islands',
       'Greenland'
     ],
-    code: 'DK'
+    code: 'DK',
+    flag: 'https://www.countryflags.io/DK/flat/32.png'
   },
   {
     country: 'Cruise Ship',
@@ -536,7 +590,8 @@ export const COUNTRIES = [
     provinces: [
       'Diamond Princess'
     ],
-    code: 'GB'
+    code: 'DP',
+    flag: '/assets/images/flag_world.png'
   },
   {
     country: 'Djibouti',
@@ -545,13 +600,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'DJ'
+    code: 'DJ',
+    flag: 'https://www.countryflags.io/DJ/flat/32.png'
   },
   {
     country: 'Dominica',
     slug: 'Dominica',
     translation: 'Dominique',
-    code: 'DM'
+    code: 'DM',
+    flag: 'https://www.countryflags.io/DM/flat/32.png'
   },
   {
     country: 'Egypt',
@@ -560,7 +617,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'EG'
+    code: 'EG',
+    flag: 'https://www.countryflags.io/EG/flat/32.png'
   },
   {
     country: 'United Arab Emirates',
@@ -569,7 +627,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'AE'
+    code: 'AE',
+    flag: 'https://www.countryflags.io/AE/flat/32.png'
   },
   {
     country: 'Ecuador',
@@ -578,7 +637,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'EC'
+    code: 'EC',
+    flag: 'https://www.countryflags.io/EC/flat/32.png'
   },
   {
     country: 'Eritrea',
@@ -587,9 +647,9 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ER'
+    code: 'ER',
+    flag: 'https://www.countryflags.io/ER/flat/32.png'
   },
-
   {
     country: 'Estonia',
     slug: 'estonia',
@@ -597,7 +657,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'EE'
+    code: 'EE',
+    flag: 'https://www.countryflags.io/EE/flat/32.png'
   },
   {
     country: 'US',
@@ -854,7 +915,8 @@ export const COUNTRIES = [
       'United States Virgin Islands',
       'US'
     ],
-    code: 'US'
+    code: 'US',
+    flag: 'https://www.countryflags.io/US/flat/32.png'
   },
   {
     country: 'Ethiopia',
@@ -863,7 +925,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ET'
+    code: 'ET',
+    flag: 'https://www.countryflags.io/ET/flat/32.png'
   },
   {
     country: 'Fiji',
@@ -872,7 +935,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'FJ'
+    code: 'FJ',
+    flag: 'https://www.countryflags.io/FJ/flat/32.png'
   },
   {
     country: 'Finland',
@@ -881,7 +945,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'FI'
+    code: 'FI',
+    flag: 'https://www.countryflags.io/FI/flat/32.png'
   },
   {
     country: 'Gabon',
@@ -890,7 +955,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GA'
+    code: 'GA',
+    flag: 'https://www.countryflags.io/GA/flat/32.png'
   },
   {
     country: 'Gambia, The',
@@ -899,7 +965,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GM'
+    code: 'GM',
+    flag: 'https://www.countryflags.io/GM/flat/32.png'
   },
   {
     country: 'Ghana',
@@ -908,19 +975,22 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GH'
+    code: 'GH',
+    flag: 'https://www.countryflags.io/GH/flat/32.png'
   },
   {
     country: 'Gibraltar',
     slug: 'Gibraltar',
     translation: 'Gibraltar',
-    code: 'GI'
+    code: 'GI',
+    flag: 'https://www.countryflags.io/GI/flat/32.png'
   },
   {
     country: 'Grenada',
     slug: 'Grenada',
     translation: 'Grenade',
-    code: 'GD'
+    code: 'GD',
+    flag: 'https://www.countryflags.io/GD/flat/32.png'
   },
   {
     country: 'Greenland',
@@ -929,7 +999,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GL'
+    code: 'GL',
+    flag: 'https://www.countryflags.io/GL/flat/32.png'
   },
   {
     country: 'Greece',
@@ -938,7 +1009,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GR'
+    code: 'GR',
+    flag: 'https://www.countryflags.io/GR/flat/32.png'
   },
   {
     country: 'Guadeloupe',
@@ -947,7 +1019,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GP'
+    code: 'GP',
+    flag: 'https://www.countryflags.io/GP/flat/32.png'
   },
   {
     country: 'Guam',
@@ -956,7 +1029,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GU'
+    code: 'GU',
+    flag: 'https://www.countryflags.io/GU/flat/32.png'
   },
   {
     country: 'Guatemala',
@@ -965,7 +1039,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GT'
+    code: 'GT',
+    flag: 'https://www.countryflags.io/GT/flat/32.png'
   },
   {
     country: 'Guernsey',
@@ -974,7 +1049,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GG'
+    code: 'GG',
+    flag: 'https://www.countryflags.io/GG/flat/32.png'
   },
   {
     country: 'Guinea',
@@ -983,7 +1059,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GN'
+    code: 'GN',
+    flag: 'https://www.countryflags.io/GN/flat/32.png'
   },
   {
     country: 'Equatorial Guinea',
@@ -992,13 +1069,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GQ'
+    code: 'GQ',
+    flag: 'https://www.countryflags.io/GQ/flat/32.png'
   },
   {
     country: 'Guinea-Bissau',
     slug: 'Guinea-Bissau',
     translation: 'Guinée-Bissau',
-    code: 'GW'
+    code: 'GW',
+    flag: 'https://www.countryflags.io/GW/flat/32.png'
   },
   {
     country: 'French Guiana',
@@ -1007,7 +1086,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GF'
+    code: 'GF',
+    flag: 'https://www.countryflags.io/GF/flat/32.png'
   },
   {
     country: 'Guyana',
@@ -1016,7 +1096,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GY'
+    code: 'GY',
+    flag: 'https://www.countryflags.io/GY/flat/32.png'
   },
   {
     country: 'Georgia',
@@ -1025,7 +1106,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'GE'
+    code: 'GE',
+    flag: 'https://www.countryflags.io/GE/flat/32.png'
   },
   {
     country: 'Haiti',
@@ -1034,7 +1116,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'HT'
+    code: 'HT',
+    flag: 'https://www.countryflags.io/HT/flat/32.png'
   },
   {
     country: 'Honduras',
@@ -1043,13 +1126,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'HN'
+    code: 'HN',
+    flag: 'https://www.countryflags.io/HN/flat/32.png'
   },
   {
     country: 'Hong Kong',
     slug: 'Hong Kong',
     translation: 'Hong Kong',
-    code: 'HK'
+    code: 'HK',
+    flag: 'https://www.countryflags.io/HK/flat/32.png'
   },
   {
     country: 'Hungary',
@@ -1058,31 +1143,36 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'HU'
+    code: 'HU',
+    flag: 'https://www.countryflags.io/HU/flat/32.png'
   },
   {
     country: 'Isle of Man',
     slug: 'Isle of Man',
     translation: 'Ile de Man',
-    code: 'IM'
+    code: 'IM',
+    flag: 'https://www.countryflags.io/IM/flat/32.png'
   },
   {
     country: 'Faroe Islands',
     slug: 'Faroe Islands',
     translation: 'Iles Féroé',
-    code: 'FO'
+    code: 'FO',
+    flag: 'https://www.countryflags.io/FO/flat/32.png'
   },
   {
     country: 'Turks and Caicos Islands',
     slug: 'Turks and Caicos Islands',
     translation: 'Iles Turks et Caïques',
-    code: 'TC'
+    code: 'TC',
+    flag: 'https://www.countryflags.io/TC/flat/32.png'
   },
   {
     country: 'Cayman Islands',
     slug: 'Cayman Islands',
     translation: 'Iles caimans',
-    code: 'KY'
+    code: 'KY',
+    flag: 'https://www.countryflags.io/KY/flat/32.png'
   },
   {
     country: 'India',
@@ -1091,7 +1181,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IN'
+    code: 'IN',
+    flag: 'https://www.countryflags.io/IN/flat/32.png'
   },
   {
     country: 'Indonesia',
@@ -1100,7 +1191,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ID'
+    code: 'ID',
+    flag: 'https://www.countryflags.io/ID/flat/32.png'
   },
   {
     country: 'Iran',
@@ -1109,7 +1201,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IR'
+    code: 'IR',
+    flag: 'https://www.countryflags.io/IR/flat/32.png'
   },
   {
     country: 'Iraq',
@@ -1118,7 +1211,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IQ'
+    code: 'IQ',
+    flag: 'https://www.countryflags.io/IQ/flat/32.png'
   },
   {
     country: 'Ireland',
@@ -1127,7 +1221,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IE'
+    code: 'IE',
+    flag: 'https://www.countryflags.io/IE/flat/32.png'
   },
   {
     country: 'Iceland',
@@ -1136,7 +1231,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IS'
+    code: 'IS',
+    flag: 'https://www.countryflags.io/IS/flat/32.png'
   },
   {
     country: 'Israel',
@@ -1145,7 +1241,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'IL'
+    code: 'IL',
+    flag: 'https://www.countryflags.io/IL/flat/32.png'
   },
   {
     country: 'Jamaica',
@@ -1154,7 +1251,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'JM'
+    code: 'JM',
+    flag: 'https://www.countryflags.io/JM/flat/32.png'
   },
   {
     country: 'Japan',
@@ -1163,7 +1261,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'JP'
+    code: 'JP',
+    flag: 'https://www.countryflags.io/JP/flat/32.png'
   },
   {
     country: 'Jersey',
@@ -1172,7 +1271,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'JE'
+    code: 'JE',
+    flag: 'https://www.countryflags.io/JE/flat/32.png'
   },
   {
     country: 'Jordan',
@@ -1181,7 +1281,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'JO'
+    code: 'JO',
+    flag: 'https://www.countryflags.io/JO/flat/32.png'
   },
   {
     country: 'Kazakhstan',
@@ -1190,7 +1291,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'KZ'
+    code: 'KZ',
+    flag: 'https://www.countryflags.io/KZ/flat/32.png'
   },
   {
     country: 'Kenya',
@@ -1199,7 +1301,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'KE'
+    code: 'KE',
+    flag: 'https://www.countryflags.io/KE/flat/32.png'
   },
   {
     country: 'Kyrgyzstan',
@@ -1208,7 +1311,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'KG'
+    code: 'KG',
+    flag: 'https://www.countryflags.io/KG/flat/32.png'
   },
   {
     country: 'Kosovo',
@@ -1217,7 +1321,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'XK'
+    code: 'XK',
+    flag: 'https://www.countryflags.io/XK/flat/32.png'
   },
   {
     country: 'Kuwait',
@@ -1226,13 +1331,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'KW'
+    code: 'KW',
+    flag: 'https://www.countryflags.io/KW/flat/32.png'
   },
   {
     country: 'Lao People\'s Democratic Republic',
     slug: 'Lao People\'s Democratic Republic',
     translation: 'Laos',
-    code: 'LA'
+    code: 'LA',
+    flag: 'https://www.countryflags.io/LA/flat/32.png'
   },
   {
     country: 'El Salvador',
@@ -1241,7 +1348,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SV'
+    code: 'SV',
+    flag: 'https://www.countryflags.io/SV/flat/32.png'
   },
   {
     country: 'Bahamas, The',
@@ -1250,7 +1358,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'BS'
+    code: 'BS',
+    flag: 'https://www.countryflags.io/BS/flat/32.png'
   },
   {
     country: 'Maldives',
@@ -1259,7 +1368,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MV'
+    code: 'MV',
+    flag: 'https://www.countryflags.io/MV/flat/32.png'
   },
   {
     country: 'Latvia',
@@ -1268,7 +1378,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LV'
+    code: 'LV',
+    flag: 'https://www.countryflags.io/LV/flat/32.png'
   },
   {
     country: 'Lebanon',
@@ -1277,13 +1388,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LB'
+    code: 'LB',
+    flag: 'https://www.countryflags.io/LB/flat/32.png'
   },
   {
     country: 'Libyan Arab Jamahiriya',
     slug: 'Libyan Arab Jamahiriya',
     translation: 'Libye',
-    code: 'LY'
+    code: 'LY',
+    flag: 'https://www.countryflags.io/LY/flat/32.png'
   },
   {
     country: 'Liberia',
@@ -1292,7 +1405,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LR'
+    code: 'LR',
+    flag: 'https://www.countryflags.io/LR/flat/32.png'
   },
   {
     country: 'Liechtenstein',
@@ -1301,7 +1415,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LI'
+    code: 'LI',
+    flag: 'https://www.countryflags.io/LI/flat/32.png'
   },
   {
     country: 'Lithuania',
@@ -1310,7 +1425,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LT'
+    code: 'LT',
+    flag: 'https://www.countryflags.io/LT/flat/32.png'
   },
   {
     country: 'Luxembourg',
@@ -1319,13 +1435,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LU'
+    code: 'LU',
+    flag: 'https://www.countryflags.io/LU/flat/32.png'
   },
   {
     country: 'Macao',
     slug: 'Macao',
     translation: 'Macao',
-    code: 'MO'
+    code: 'MO',
+    flag: 'https://www.countryflags.io/MO/flat/32.png'
   },
   {
     country: 'North Macedonia',
@@ -1334,13 +1452,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MP'
+    code: 'MP',
+    flag: 'https://www.countryflags.io/MP/flat/32.png'
   },
   {
     country: 'Macedonia, the former Yugoslav Republic of',
     slug: 'Macedonia, the former Yugoslav Republic of',
     translation: 'Macédoine du Nord',
-    code: 'MK'
+    code: 'MK',
+    flag: 'https://www.countryflags.io/MK/flat/32.png'
   },
   {
     country: 'Madagascar',
@@ -1349,7 +1469,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MG'
+    code: 'MG',
+    flag: 'https://www.countryflags.io/MG/flat/32.png'
   },
   {
     country: 'Malaysia',
@@ -1358,13 +1479,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MY'
+    code: 'MY',
+    flag: 'https://www.countryflags.io/MY/flat/32.png'
   },
   {
     country: 'Mali',
     slug: 'Mali',
     translation: 'Mali',
-    code: 'ML'
+    code: 'ML',
+    flag: 'https://www.countryflags.io/ML/flat/32.png'
   },
   {
     country: 'Malta',
@@ -1373,7 +1496,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MT'
+    code: 'MT',
+    flag: 'https://www.countryflags.io/MT/flat/32.png'
   },
   {
     country: 'Morocco',
@@ -1382,7 +1506,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MA'
+    code: 'MA',
+    flag: 'https://www.countryflags.io/MA/flat/32.png'
   },
   {
     country: 'Martinique',
@@ -1391,7 +1516,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MQ'
+    code: 'MQ',
+    flag: 'https://www.countryflags.io/MQ/flat/32.png'
   },
   {
     country: 'Mauritius',
@@ -1400,7 +1526,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MU'
+    code: 'MU',
+    flag: 'https://www.countryflags.io/MU/flat/32.png'
   },
   {
     country: 'Mauritania',
@@ -1409,7 +1536,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MR'
+    code: 'MR',
+    flag: 'https://www.countryflags.io/MR/flat/32.png'
   },
   {
     country: 'Mayotte',
@@ -1418,7 +1546,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'YT'
+    code: 'YT',
+    flag: 'https://www.countryflags.io/YT/flat/32.png'
   },
   {
     country: 'Mexico',
@@ -1427,7 +1556,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MX'
+    code: 'MX',
+    flag: 'https://www.countryflags.io/MX/flat/32.png'
   },
   {
     country: 'Moldova',
@@ -1436,7 +1566,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MD'
+    code: 'MD',
+    flag: 'https://www.countryflags.io/MD/flat/32.png'
   },
   {
     country: 'Monaco',
@@ -1445,7 +1576,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MC'
+    code: 'MC',
+    flag: 'https://www.countryflags.io/MC/flat/32.png'
   },
   {
     country: 'Mongolia',
@@ -1454,13 +1586,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'MN'
+    code: 'MN',
+    flag: 'https://www.countryflags.io/MN/flat/32.png'
   },
   {
     country: 'Montserrat',
     slug: 'Montserrat',
     translation: 'Montserrat',
-    code: 'MS'
+    code: 'MS',
+    flag: 'https://www.countryflags.io/MS/flat/32.png'
   },
   {
     country: 'Montenegro',
@@ -1469,19 +1603,22 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ME'
+    code: 'ME',
+    flag: 'https://www.countryflags.io/ME/flat/32.png'
   },
   {
     country: 'Mozambique',
     slug: 'Mozambique',
     translation: 'Mozambique',
-    code: 'MZ'
+    code: 'MZ',
+    flag: 'https://www.countryflags.io/MZ/flat/32.png'
   },
   {
     country: 'Myanmar',
     slug: 'Myanmar',
     translation: 'Myanmar',
-    code: 'MM'
+    code: 'MM',
+    flag: 'https://www.countryflags.io/MM/flat/32.png'
   },
   {
     country: 'Namibia',
@@ -1490,7 +1627,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NA'
+    code: 'NA',
+    flag: 'https://www.countryflags.io/NA/flat/32.png'
   },
   {
     country: 'Nicaragua',
@@ -1499,7 +1637,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NI'
+    code: 'NI',
+    flag: 'https://www.countryflags.io/NI/flat/32.png'
   },
   {
     country: 'Niger',
@@ -1508,7 +1647,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NE'
+    code: 'NE',
+    flag: 'https://www.countryflags.io/NE/flat/32.png'
   },
   {
     country: 'Nigeria',
@@ -1517,7 +1657,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NG'
+    code: 'NG',
+    flag: 'https://www.countryflags.io/NG/flat/32.png'
   },
   {
     country: 'Norway',
@@ -1526,13 +1667,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NO'
+    code: 'NO',
+    flag: 'https://www.countryflags.io/NO/flat/32.png'
   },
   {
     country: 'New Caledonia',
     slug: 'New Caledonia',
     translation: 'Nouvelle Calédonie',
-    code: 'NC'
+    code: 'NC',
+    flag: 'https://www.countryflags.io/NC/flat/32.png'
   },
   {
     country: 'New Zealand',
@@ -1541,7 +1684,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NZ'
+    code: 'NZ',
+    flag: 'https://www.countryflags.io/NZ/flat/32.png'
   },
   {
     country: 'Nepal',
@@ -1550,7 +1694,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'NP'
+    code: 'NP',
+    flag: 'https://www.countryflags.io/NP/flat/32.png'
   },
   {
     country: 'Oman',
@@ -1559,7 +1704,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'OM'
+    code: 'OM',
+    flag: 'https://www.countryflags.io/OM/flat/32.png'
   },
   {
     country: 'Uzbekistan',
@@ -1568,7 +1714,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'UZ'
+    code: 'UZ',
+    flag: 'https://www.countryflags.io/UZ/flat/32.png'
   },
   {
     country: 'Pakistan',
@@ -1577,7 +1724,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PK'
+    code: 'PK',
+    flag: 'https://www.countryflags.io/PK/flat/32.png'
   },
   {
     country: 'occupied Palestinian territory',
@@ -1586,7 +1734,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PS'
+    code: 'PS',
+    flag: 'https://www.countryflags.io/PS/flat/32.png'
   },
   {
     country: 'Panama',
@@ -1595,7 +1744,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PA'
+    code: 'PA',
+    flag: 'https://www.countryflags.io/PA/flat/32.png'
   },
   {
     country: 'Papua New Guinea',
@@ -1604,7 +1754,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PG'
+    code: 'PG',
+    flag: 'https://www.countryflags.io/PG/flat/32.png'
   },
   {
     country: 'Paraguay',
@@ -1613,7 +1764,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PY'
+    code: 'PY',
+    flag: 'https://www.countryflags.io/PY/flat/32.png'
   },
   {
     country: 'Netherlands',
@@ -1625,7 +1777,8 @@ export const COUNTRIES = [
       'Aruba',
       'Sint Maarten'
     ],
-    code: 'NL'
+    code: 'NL',
+    flag: 'https://www.countryflags.io/NL/flat/32.png'
   },
   {
     country: 'Philippines',
@@ -1634,7 +1787,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PH'
+    code: 'PH',
+    flag: 'https://www.countryflags.io/PH/flat/32.png'
   },
   {
     country: 'Poland',
@@ -1643,13 +1797,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PL'
+    code: 'PL',
+    flag: 'https://www.countryflags.io/PL/flat/32.png'
   },
   {
     country: 'French Polynesia',
     slug: 'French Polynesia',
     translation: 'Polynésie française',
-    code: 'PF'
+    code: 'PF',
+    flag: 'https://www.countryflags.io/PF/flat/32.png'
   },
   {
     country: 'Puerto Rico',
@@ -1658,7 +1814,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PR'
+    code: 'PR',
+    flag: 'https://www.countryflags.io/PR/flat/32.png'
   },
   {
     country: 'Peru',
@@ -1667,7 +1824,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'PE'
+    code: 'PE',
+    flag: 'https://www.countryflags.io/PE/flat/32.png'
   },
   {
     country: 'Qatar',
@@ -1676,7 +1834,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'QA'
+    code: 'QA',
+    flag: 'https://www.countryflags.io/QA/flat/32.png'
   },
   {
     country: 'Romania',
@@ -1685,7 +1844,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'RO'
+    code: 'RO',
+    flag: 'https://www.countryflags.io/RO/flat/32.png'
   },
   {
     country: 'United Kingdom',
@@ -1700,7 +1860,8 @@ export const COUNTRIES = [
       'Bermuda',
       'Isle of Man'
     ],
-    code: 'GB'
+    code: 'GB',
+    flag: 'https://www.countryflags.io/GB/flat/32.png'
   },
   {
     country: 'Russia',
@@ -1709,7 +1870,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'RU'
+    code: 'RU',
+    flag: 'https://www.countryflags.io/RU/flat/32.png'
   },
   {
     country: 'Rwanda',
@@ -1718,7 +1880,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'RW'
+    code: 'RW',
+    flag: 'https://www.countryflags.io/RW/flat/32.png'
   },
   {
     country: 'Dominican Republic',
@@ -1727,7 +1890,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'DO'
+    code: 'DO',
+    flag: 'https://www.countryflags.io/DO/flat/32.png'
   },
   {
     country: 'Czechia',
@@ -1736,7 +1900,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CZ'
+    code: 'CZ',
+    flag: 'https://www.countryflags.io/CZ/flat/32.png'
   },
   {
     country: 'Republic of the Congo',
@@ -1745,7 +1910,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CD'
+    code: 'CD',
+    flag: 'https://www.countryflags.io/CD/flat/32.png'
   },
   {
     country: 'Reunion',
@@ -1754,13 +1920,15 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'RE'
+    code: 'RE',
+    flag: 'https://www.countryflags.io/RE/flat/32.png'
   },
   {
     country: 'Saint Kitts and Nevis',
     slug: 'Saint Kitts and Nevis',
     translation: 'Saint-Kitts-et-Nevis',
-    code: 'KN'
+    code: 'KN',
+    flag: 'https://www.countryflags.io/KN/flat/32.png'
   },
   {
     country: 'San Marino',
@@ -1769,7 +1937,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SM'
+    code: 'SM',
+    flag: 'https://www.countryflags.io/SM/flat/32.png'
   },
   {
     country: 'Saint Vincent and the Grenadines',
@@ -1778,7 +1947,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'VC'
+    code: 'VC',
+    flag: 'https://www.countryflags.io/VC/flat/32.png'
   },
   {
     country: 'Saint Lucia',
@@ -1787,7 +1957,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LC'
+    code: 'LC',
+    flag: 'https://www.countryflags.io/LC/flat/32.png'
   },
   {
     country: 'Serbia',
@@ -1796,7 +1967,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'RS'
+    code: 'RS',
+    flag: 'https://www.countryflags.io/RS/flat/32.png'
   },
   {
     country: 'Seychelles',
@@ -1805,7 +1977,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SC'
+    code: 'SC',
+    flag: 'https://www.countryflags.io/SC/flat/32.png'
   },
   {
     country: 'Singapore',
@@ -1814,7 +1987,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SG'
+    code: 'SG',
+    flag: 'https://www.countryflags.io/SG/flat/32.png'
   },
   {
     country: 'Slovakia',
@@ -1823,7 +1997,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SK'
+    code: 'SK',
+    flag: 'https://www.countryflags.io/SK/flat/32.png'
   },
   {
     country: 'Slovenia',
@@ -1832,7 +2007,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SI'
+    code: 'SI',
+    flag: 'https://www.countryflags.io/SI/flat/32.png'
   },
   {
     country: 'Somalia',
@@ -1841,7 +2017,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SO'
+    code: 'SO',
+    flag: 'https://www.countryflags.io/SO/flat/32.png'
   },
   {
     country: 'Sudan',
@@ -1850,7 +2027,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SD'
+    code: 'SD',
+    flag: 'https://www.countryflags.io/SD/flat/32.png'
   },
   {
     country: 'Sri Lanka',
@@ -1859,7 +2037,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'LK'
+    code: 'LK',
+    flag: 'https://www.countryflags.io/LK/flat/32.png'
   },
   {
     country: 'Switzerland',
@@ -1868,7 +2047,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'CH'
+    code: 'CH',
+    flag: 'https://www.countryflags.io/CH/flat/32.png'
   },
   {
     country: 'Suriname',
@@ -1877,7 +2057,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SR'
+    code: 'SR',
+    flag: 'https://www.countryflags.io/SR/flat/32.png'
   },
   {
     country: 'Sweden',
@@ -1886,19 +2067,22 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SE'
+    code: 'SE',
+    flag: 'https://www.countryflags.io/SE/flat/32.png'
   },
   {
     country: 'Swaziland',
     slug: 'Swaziland',
     translation: 'Swaziland',
-    code: 'SZ'
+    code: 'SZ',
+    flag: 'https://www.countryflags.io/SZ/flat/32.png'
   },
   {
     country: 'Syrian Arab Republic',
     slug: 'Syrian Arab Republic',
     translation: 'Syrie',
-    code: 'SY'
+    code: 'SY',
+    flag: 'https://www.countryflags.io/SY/flat/32.png'
   },
   {
     country: 'Senegal',
@@ -1907,7 +2091,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'SN'
+    code: 'SN',
+    flag: 'https://www.countryflags.io/SN/flat/32.png'
   },
   {
     country: 'Taiwan',
@@ -1916,7 +2101,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TW'
+    code: 'TW',
+    flag: 'https://www.countryflags.io/TW/flat/32.png'
   },
   {
     country: 'Tanzania',
@@ -1925,7 +2111,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TZ'
+    code: 'TZ',
+    flag: 'https://www.countryflags.io/TZ/flat/32.png'
   },
   {
     country: 'Thailand',
@@ -1934,7 +2121,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TH'
+    code: 'TH',
+    flag: 'https://www.countryflags.io/TH/flat/32.png'
   },
   {
     country: 'East Timor',
@@ -1943,7 +2131,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TL'
+    code: 'TL',
+    flag: 'https://www.countryflags.io/TL/flat/32.png'
   },
   {
     country: 'Togo',
@@ -1952,7 +2141,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TG'
+    code: 'TG',
+    flag: 'https://www.countryflags.io/TG/flat/32.png'
   },
   {
     country: 'Trinidad and Tobago',
@@ -1961,7 +2151,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TT'
+    code: 'TT',
+    flag: 'https://www.countryflags.io/TT/flat/32.png'
   },
   {
     country: 'Tunisia',
@@ -1970,7 +2161,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TN'
+    code: 'TN',
+    flag: 'https://www.countryflags.io/TN/flat/32.png'
   },
   {
     country: 'Turkey',
@@ -1979,7 +2171,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'TR'
+    code: 'TR',
+    flag: 'https://www.countryflags.io/TR/flat/32.png'
   },
   {
     country: 'Uganda',
@@ -1988,7 +2181,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'UG'
+    code: 'UG',
+    flag: 'https://www.countryflags.io/UG/flat/32.png'
   },
   {
     country: 'Ukraine',
@@ -1997,7 +2191,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'UA'
+    code: 'UA',
+    flag: 'https://www.countryflags.io/UA/flat/32.png'
   },
   {
     country: 'Uruguay',
@@ -2006,7 +2201,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'UY'
+    code: 'UY',
+    flag: 'https://www.countryflags.io/UY/flat/32.png'
   },
   {
     country: 'Holy See',
@@ -2015,7 +2211,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'VA'
+    code: 'VA',
+    flag: 'https://www.countryflags.io/VA/flat/32.png'
   },
   {
     country: 'Venezuela',
@@ -2024,7 +2221,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'VE'
+    code: 'VE',
+    flag: 'https://www.countryflags.io/VE/flat/32.png'
   },
   {
     country: 'Vietnam',
@@ -2033,7 +2231,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'VN'
+    code: 'VN',
+    flag: 'https://www.countryflags.io/VN/flat/32.png'
   },
   {
     country: 'Zambia',
@@ -2042,7 +2241,8 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ZM'
+    code: 'ZM',
+    flag: 'https://www.countryflags.io/ZM/flat/32.png'
   },
   {
     country: 'Zimbabwe',
@@ -2051,6 +2251,7 @@ export const COUNTRIES = [
     provinces: [
       ''
     ],
-    code: 'ZW'
+    code: 'ZW',
+    flag: 'https://www.countryflags.io/ZW/flat/32.png'
   }
 ];

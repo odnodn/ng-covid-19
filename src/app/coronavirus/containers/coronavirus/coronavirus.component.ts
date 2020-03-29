@@ -29,7 +29,7 @@ export class CoronavirusComponent implements OnInit {
   countryCtrl = new FormControl();
   countries: any[] = COUNTRIES;
   filteredCountries: any[] = [];
-  selectedCountry: any = { country: 'Monde', slug: 'monde', translation: 'Monde', code: 'WL' };
+  selectedCountry: any = COUNTRIES[0];
   selectedTypeMap = 'cases';
   isBrowser = isPlatformBrowser(this.platformId);
 
