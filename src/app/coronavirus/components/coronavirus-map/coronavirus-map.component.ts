@@ -95,7 +95,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#fff2ce',
         max: '#F17D07'
       };
-      label.text = 'Carte des cas hospitalisés du Coronavirus en France';
+      label.text = 'Carte des cas hospitalisés';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'hospitalisés');
     } else if (this.selectedTypeMap === 'deaths') {
       const chartDatas = this.getDatasFrance('deaths');
@@ -105,7 +105,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#e8c0c3',
         max: '#f9461c'
       };
-      label.text = 'Carte des décès du Coronavirus en France';
+      label.text = 'Carte des décès';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'morts');
     } else if (this.selectedTypeMap === 'recovered') {
       const chartDatas = this.getDatasFrance('recovered');
@@ -115,7 +115,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#bbd9c5',
         max: '#43D787'
       };
-      label.text = 'Carte des cas guéris du Coronavirus en France';
+      label.text = 'Carte des cas guéris';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'guéris');
     } else if (this.selectedTypeMap === 'reanimation') {
       const chartDatas = this.getDatasFrance('reanimation');
@@ -125,7 +125,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#ffe8da',
         max: '#E95D0C'
       };
-      label.text = 'Carte des cas en réanimation du Coronavirus en France';
+      label.text = 'Carte des cas en réanimation';
       this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'en réanimation');
     }
     this.chart = chart;
