@@ -24,7 +24,11 @@
         <article class="tile is-child notification hospital" [class.active-map]="selectedCountry.country === 'France'"
           (click)="updateMap('hospital')">
           <p class="title">{{franceStats?.statsByGender?.total?.hospital}}
+            <span class="increase">
+              {{franceStats?.statsByGender?.total?.todayHospital | symbolNumber}}
+            </span>
           </p>
+
           <p class="subtitle">Hospitalisations en cours</p>
         </article>
       </div>
@@ -32,7 +36,11 @@
         <article class="tile is-child notification reanimation"
           [class.active-map]="selectedCountry.country === 'France'" (click)="updateMap('reanimation')">
           <p class="title">{{franceStats.statsByGender?.total?.reanimation}}
+            <span class="increase">
+              {{franceStats?.statsByGender?.total?.todayReanimation | symbolNumber}}
+            </span>
           </p>
+
           <p class="subtitle">Réanimations en cours</p>
         </article>
       </div>
@@ -57,6 +65,9 @@
           <p class="title">
             <ng-container *ngIf="franceStats">
               {{franceStats.statsByGender?.total?.recovered}}
+              <span class="increase">
+                {{franceStats.statsByGender?.total?.todayRecovered | symbolNumber}}
+              </span>
             </ng-container>
             <ng-container *ngIf="!franceStats">
               {{mainStats.recovered}}

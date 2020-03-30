@@ -25,12 +25,15 @@ export class CoronavirusFranceService {
       map((csv: any) => {
         const data = Papa.parse(csv).data;
         const dataToday = data.filter((row) => row[2] === data[data.length - 2][2]);
-
         const statsTotal = {
           hospital: 0,
+          todayHospital: 0,
           reanimation: 0,
+          todayReanimation: 0,
           recovered: 0,
+          todayRecovered: 0,
           deaths: 0,
+          todayDeaths: 0
         };
         const statsMen = {
           hospital: 0,
@@ -76,6 +79,11 @@ export class CoronavirusFranceService {
             statsWomen.deaths = statsWomen.deaths + Number(itemData[6]);
           }
         });
+        const statsYesterday = this.getYesterdayDatas(data);
+        statsTotal.todayDeaths = statsTotal.deaths - statsYesterday.deaths;
+        statsTotal.todayHospital = statsTotal.hospital - statsYesterday.hospital;
+        statsTotal.todayReanimation = statsTotal.reanimation - statsYesterday.reanimation;
+        statsTotal.todayRecovered = statsTotal.recovered - statsYesterday.recovered;
         const statsByGender = {
           total: statsTotal,
           men: statsMen,
@@ -105,6 +113,26 @@ export class CoronavirusFranceService {
       regionDatas.push(item);
     });
     return (regionDatas);
+  }
+
+  getYesterdayDatas(data: any): any {
+    const dataYesterday = data.filter((row) => row[2] === data[data.length - 310][2]);
+    const statsYesterday = {
+      hospital: 0,
+      reanimation: 0,
+      recovered: 0,
+      deaths: 0,
+      date: data[data.length - 310][2]
+    };
+    dataYesterday.forEach((itemData) => {
+      if (itemData[1] === '0') { // All
+        statsYesterday.hospital = statsYesterday.hospital + Number(itemData[3]);
+        statsYesterday.reanimation = statsYesterday.reanimation + Number(itemData[4]);
+        statsYesterday.recovered = statsYesterday.recovered + Number(itemData[5]);
+        statsYesterday.deaths = statsYesterday.deaths + Number(itemData[6]);
+      }
+    });
+    return statsYesterday;
   }
 
   getDataByAgeFrance(): Observable<any> {

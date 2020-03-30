@@ -93,7 +93,7 @@
 
     <!-- France Container -->
     <ng-container *ngIf="selectedCountry.country === 'France'">
-      <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: this.selectedCountry.code"
+      <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'WL'"
         [selectedCountry]="{country: 'Monde', slug: 'monde', translation: 'Monde', code: 'WL'}"></app-coronavirus-stats>
       <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
         <ng-container *ngIf="franceStats.value">
