@@ -1,13 +1,4 @@
 <div class="content is-spaced">
-  <h2 class="title">
-    {{maps[selectedTypeMap].title}}
-    <ng-container *ngIf="selectedDivisionMap === 'regionFrance'">
-      par région
-    </ng-container>
-    <ng-container *ngIf="selectedDivisionMap === 'departmentFrance'">
-      par département
-    </ng-container>
-  </h2>
   <div #chartElement id="chart-map" style="width: 100%; height: 60vh"></div>
 </div>
 

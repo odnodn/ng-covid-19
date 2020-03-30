@@ -1,5 +1,6 @@
 
-import { Component, OnInit, OnDestroy, NgZone, Input, ChangeDetectionStrategy, OnChanges, ViewChild, ElementRef, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges,
+  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
@@ -20,7 +21,7 @@ export interface ThemeColor {
   selector: 'app-coronavirus-map',
   templateUrl: './coronavirus-map.component.html',
   styleUrls: ['./coronavirus-map.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
 
@@ -32,6 +33,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   polygonTemplate: am4maps.MapPolygon;
   chart: am4maps.MapChart;
   series: am4maps.MapPolygonSeries;
+  title: am4core.Label;
+  hs: any;
   isInitialized = false;
   availableMaps = ['cases', 'deaths', 'recovered'];
 
@@ -122,7 +125,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnDestroy(): void {
     if (!this.chart) {
-      return ;
+      return;
     }
     this.chart.dispose();
   }
@@ -174,6 +177,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       max: am4core.color(this.maps[this.selectedTypeMap].colors.max)
     });
     this.polygonTemplate.tooltipText = '{name} {value} ' + this.maps[this.selectedTypeMap].label;
+    this.title.text = this.maps[this.selectedTypeMap].title;
+    this.hs.properties.fill = this.maps[this.selectedTypeMap].colors.hover;
   }
 
   private initMainMap(): void {
@@ -185,8 +190,16 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.series.useGeodata = true;
     this.series.dataFields.zoomLevel = 'zoomLevel';
     this.series.dataFields.zoomGeoPoint = 'zoomGeoPoint';
-
     this.polygonTemplate = this.series.mapPolygons.template;
+    this.title = this.chart.chartContainer.createChild(am4core.Label);
+    this.hs = this.polygonTemplate.states.create('hover');
+
+    this.title.fontSize = 20;
+    this.title.fontFamily = 'inherit';
+    this.title.paddingTop = 8;
+    this.title.paddingLeft = 8;
+    this.title.align = 'left';
+    this.title.zIndex = 100;
     if (this.countryNotZoom()) {
       this.chart.events.on('ready', () => {
         const target = this.series.getPolygonById(this.selectedCountry.code);

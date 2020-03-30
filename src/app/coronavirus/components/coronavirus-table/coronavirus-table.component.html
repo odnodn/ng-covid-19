@@ -1,8 +1,4 @@
-<!-- <mat-form-field class="field">
-  <mat-label>Rechercher dans le tableau...</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Exemple: Paris...">
-</mat-form-field> -->
-<div class="field">
+<div class="field" *ngIf="selectedCountry.country === 'France'">
   <mat-label for="country-select" class="label">Faire une recherche</mat-label>
   <div class="control">
     <input class="input" (keyup)="applyFilter($event)" type="text" placeholder="Rechercher dans le tableau...">
