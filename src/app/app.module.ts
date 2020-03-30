@@ -1,11 +1,12 @@
-
+import localeFr from '@angular/common/locales/fr';
 import { LayoutModule } from './layout/layout.module';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData, DecimalPipe } from '@angular/common';
+registerLocaleData(localeFr, 'fr-FR');
 
 @NgModule({
   bootstrap: [
@@ -15,7 +16,8 @@ import { DatePipe } from '@angular/common';
     AppComponent
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    DecimalPipe
   ],
   imports: [
     BrowserAnimationsModule,

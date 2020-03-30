@@ -32,7 +32,7 @@
     <!-- Confirmed Column -->
     <ng-container matColumnDef="cases">
       <th id="cases" mat-header-cell *matHeaderCellDef mat-sort-header>Confirmés</th>
-      <td mat-cell *matCellDef="let element" class="has-text-warning">{{element.cases}}</td>
+      <td mat-cell *matCellDef="let element" class="has-text-warning">{{element.cases | number: '' :'fr-FR'}}</td>
     </ng-container>
 
     <!-- Today Column -->
@@ -62,7 +62,7 @@
     <ng-container matColumnDef="hospital">
       <th id="hospital" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisés</th>
       <td mat-cell *matCellDef="let element" class="hospital">
-        {{element.hospital}}
+        {{element.hospital | number: '' :'fr-FR'}}
       </td>
     </ng-container>
 
@@ -70,7 +70,7 @@
     <ng-container matColumnDef="reanimation">
       <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>En réanimation</th>
       <td mat-cell *matCellDef="let element" class="reanimation">
-        {{element.reanimation}}
+        {{element.reanimation | number: '' :'fr-FR'}}
       </td>
     </ng-container>
 
@@ -78,7 +78,7 @@
     <ng-container matColumnDef="recovered">
       <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Guéris</th>
       <td mat-cell *matCellDef="let element" class="has-text-success">
-        {{element.recovered}}<br>
+        {{element.recovered | number: '' :'fr-FR'}}<br>
         <span class="rate" *ngIf="element.recoveredRate">({{element.recoveredRate}} %)</span>
       </td>
     </ng-container>
