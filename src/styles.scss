@@ -79,7 +79,9 @@ $success-invert: white;
   color: black;
 }
 
-
+.mat-select {
+  font-family: inherit;
+}
 
 .reanimation {
   color: #E95D0C;
@@ -89,6 +91,13 @@ $success-invert: white;
   color: #F17D07;
 }
 
+/* Bulma */
+
+.input {
+  border: 2px solid lightgrey !important;
+  border-radius: 0px !important;
+  padding: 1.5em !important;
+}
 
 /* Utilities */
 @import "../node_modules/bulma/sass/utilities/_all.sass";

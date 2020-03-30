@@ -1,11 +1,11 @@
 
-import { Component, OnInit, OnDestroy, NgZone, Input, ChangeDetectionStrategy, OnChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, Input, ChangeDetectionStrategy, OnChanges, ViewChild, ElementRef, SimpleChange } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4geodata_franceHigh from '@amcharts/amcharts4-geodata/franceHigh';
-import { FRANCE_REGIONS } from '@coronavirus/constants/france.constants';
+import am4geodata_franceDepartmentsHigh from '@amcharts/amcharts4-geodata/franceDepartmentsHigh';
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
 am4core.useTheme(am4themes_animated);
 
@@ -20,218 +20,185 @@ export interface ThemeColor {
   selector: 'app-coronavirus-map',
   templateUrl: './coronavirus-map.component.html',
   styleUrls: ['./coronavirus-map.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() detailedStats;
   @Input() selectedTypeMap;
+  @Input() selectedDivisionMap;
   @Input() selectedCountry;
-  chart: am4maps.MapChart;
-  chartDatas: any = [];
-  chartDatasCases: any[] = [];
-  chartDatasDeaths: any[] = [];
-  chartDatasRecovered: any[] = [];
   @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
+  polygonTemplate: am4maps.MapPolygon;
+  chart: am4maps.MapChart;
+  series: am4maps.MapPolygonSeries;
+  isInitialized = false;
+  availableMaps = ['cases', 'deaths', 'recovered'];
 
-  constructor(
-    private readonly zone: NgZone
-  ) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnChanges(): void {
-    if (this.selectedCountry.country !== 'France') {
-      this.initMapWorld();
-      return;
-    }
-    this.initMapFrance();
-  }
-
-  private getDatasFrance(type: string): any {
-    const chartDatas: any[] = [];
-    FRANCE_REGIONS.forEach((regionItem) => {
-      const regionStats = this.detailedStats.statsByDepartment.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
-      let value = 0;
-      if (type === 'hospital') {
-        value = regionStats.reduce((total, obj) => obj.hospital + total, 0);
-      } else if (type === 'reanimation') {
-        value = regionStats.reduce((total, obj) => obj.reanimation + total, 0);
-      } else if (type === 'deaths') {
-        value = regionStats.reduce((total, obj) => obj.deaths + total, 0);
-      } else if (type === 'recovered') {
-        value = regionStats.reduce((total, obj) => obj.home + total, 0);
-      }
-      chartDatas.push({
-        id: regionItem.code,
-        value
-      });
-    });
-    return chartDatas;
-  }
-
-  private initMapFrance(): void {
-    const chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
-    chart.responsive.enabled = true;
-    chart.geodata = am4geodata_franceHigh;
-    chart.projection = new am4maps.projections.Miller();
-    const polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-    polygonSeries.useGeodata = true;
-    const polygonTemplate = polygonSeries.mapPolygons.template;
-    const hs = polygonTemplate.states.create('hover');
-    const label = chart.chartContainer.createChild(am4core.Label);
-    label.fontSize = 20;
-    label.align = 'right';
-    label.paddingTop = 20;
-    label.paddingRight = 20;
-    label.zIndex = 100;
-    if (this.selectedTypeMap === 'hospital') {
-      const chartDatas = this.getDatasFrance('hospital');
-      const colors: ThemeColor = {
-        fill: '#fff2ce',
-        hover: '#F17D07',
-        min: '#fff2ce',
-        max: '#F17D07'
-      };
-      label.text = 'Carte des cas hospitalisés';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'hospitalisés');
-    } else if (this.selectedTypeMap === 'deaths') {
-      const chartDatas = this.getDatasFrance('deaths');
-      const colors: ThemeColor = {
-        fill: '#ffdfe1',
-        hover: '#E83D49',
-        min: '#e8c0c3',
-        max: '#f9461c'
-      };
-      label.text = 'Carte des décès';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'morts');
-    } else if (this.selectedTypeMap === 'recovered') {
-      const chartDatas = this.getDatasFrance('recovered');
-      const colors: ThemeColor = {
-        fill: '#bbd9c5',
-        hover: '#48c774',
-        min: '#bbd9c5',
-        max: '#43D787'
-      };
-      label.text = 'Carte des cas guéris';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'guéris');
-    } else if (this.selectedTypeMap === 'reanimation') {
-      const chartDatas = this.getDatasFrance('reanimation');
-      const colors: ThemeColor = {
-        fill: '#ffe8da',
-        hover: '#E95D0C',
-        min: '#ffe8da',
-        max: '#E95D0C'
-      };
-      label.text = 'Carte des cas en réanimation';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'en réanimation');
-    }
-    this.chart = chart;
-  }
-
-  private getDatasWorld(type: string): any {
-    const chartDatas = [];
-    if (!this.detailedStats.length) {
-      this.detailedStats = [this.detailedStats];
-    }
-    this.detailedStats.forEach((stat) => {
-      let value = 0;
-      if (type === 'cases') {
-        value = stat.cases;
-      } else if (type === 'deaths') {
-        value = stat.deaths;
-      } else if (type === 'recovered') {
-        value = stat.recovered;
-      }
-      chartDatas.push({
-        id: stat.code,
-        value
-      });
-    });
-    return chartDatas;
-  }
-
-  private initMapWorld(): void {
-    const chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
-    chart.geodata = am4geodata_worldLow;
-    chart.geodataNames = am4geodata_lang_FR;
-    chart.projection = new am4maps.projections.Miller();
-    const polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-    polygonSeries.useGeodata = true;
-    polygonSeries.dataFields.zoomLevel = 'zoomLevel';
-    polygonSeries.dataFields.zoomGeoPoint = 'zoomGeoPoint';
-    const label = chart.chartContainer.createChild(am4core.Label);
-    label.fontSize = 20;
-    label.align = 'right';
-    label.zIndex = 100;
-    label.paddingTop = 20;
-    label.paddingRight = 20;
-    const polygonTemplate = polygonSeries.mapPolygons.template;
-    const hs = polygonTemplate.states.create('hover');
-    if (this.selectedCountry.country !== 'Monde') {
-      chart.events.on('ready', () => {
-        const target = polygonSeries.getPolygonById(this.selectedCountry.code);
-        chart.zoomToMapObject(target);
-      });
-    }
-    if (this.selectedTypeMap === 'cases') {
-      const chartDatas = this.getDatasWorld('cases');
-      const colors: ThemeColor = {
+  maps = {
+    cases: {
+      colors: {
         fill: '#fff2ce',
         hover: '#FF8811',
         min: '#fff2ce',
         max: '#ffbb00'
-      };
-      label.text = 'Carte des cas confirmés';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'confirmés');
-    } else if (this.selectedTypeMap === 'deaths') {
-      const chartDatas = this.getDatasWorld('deaths');
-      const colors: ThemeColor = {
-        fill: '#ffdfe1',
-        hover: '#E83D49',
-        min: '#e8c0c3',
-        max: '#f9461c'
-      };
-      label.text = 'Carte des décès';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'morts');
-    } else {
-      const chartDatas = this.getDatasWorld('recovered');
-      const colors: ThemeColor = {
+      },
+      title: 'Carte des cas confirmés',
+      datas: [],
+      label: 'cas confirmés'
+    },
+    recovered: {
+      colors: {
         fill: '#bbd9c5',
         hover: '#48c774',
         min: '#bbd9c5',
         max: '#43D787'
-      };
-      label.text = 'Carte des cas guéris';
-      this.initMap(polygonTemplate, polygonSeries, hs, colors, chartDatas, 'guéris');
+      },
+      title: 'Carte des cas guéris',
+      datas: [],
+      label: 'cas guéris'
+    },
+    deaths: {
+      colors: {
+        fill: '#ffdfe1',
+        hover: '#E83D49',
+        min: '#e8c0c3',
+        max: '#f9461c'
+      },
+      title: 'Carte des décès',
+      datas: [],
+      label: 'décès'
+    },
+    hospital: {
+      colors: {
+        fill: '#fff2ce',
+        hover: '#F17D07',
+        min: '#fff2ce',
+        max: '#F17D07'
+      },
+      title: 'Carte des cas en hospitalisation',
+      datas: [],
+      label: 'en hospitalisation'
+    },
+    reanimation: {
+      colors: {
+        fill: '#ffe8da',
+        hover: '#E95D0C',
+        min: '#ffe8da',
+        max: '#E95D0C'
+      },
+      title: 'Carte des cas en réanimation',
+      datas: [],
+      label: 'en réanimation'
     }
-    // remove antarctique
-    polygonSeries.exclude = ['AQ'];
-    this.chart = chart;
+  };
+
+  divisionMap = {
+    world: am4geodata_worldLow,
+    regionFrance: am4geodata_franceHigh,
+    departmentFrance: am4geodata_franceDepartmentsHigh
+  };
+
+  constructor() {
   }
 
-  private initMap(polygonTemplate: any, polygonSeries: any, hs: any, colors: ThemeColor, datas: any[], type: string) {
-    polygonTemplate.fill = am4core.color(colors.fill);
-    // Create hover state and set alternative fill color
-    hs.properties.fill = am4core.color(colors.hover);
-    polygonSeries.data = datas;
-    polygonSeries.heatRules.push({
-      property: 'fill',
-      target: polygonSeries.mapPolygons.template,
-      min: am4core.color(colors.min),
-      max: am4core.color(colors.max)
-    });
-    polygonTemplate.tooltipText = '{name} {value} ' + type;
+  ngOnInit(): void {
+    this.isInitialized = true;
+    this.initMainMap();
+    this.initDatas();
+    this.updateMap();
+  }
+
+  ngOnChanges(changes: { [propName: string]: SimpleChange }): void {
+    if (this.isInitialized === false) {
+      return;
+    }
+    if (changes.selectedDivisionMap && changes.selectedDivisionMap.previousValue !== changes.selectedDivisionMap.currentValue) {
+      this.chart.geodata = this.divisionMap[this.selectedDivisionMap];
+      this.initDatas();
+    }
+    this.updateMap();
   }
 
   ngOnDestroy(): void {
-    this.zone.runOutsideAngular(() => {
-      if (this.chart) {
-        this.chart.dispose();
+    if (!this.chart) {
+      return ;
+    }
+    this.chart.dispose();
+  }
+
+  private initDatas(): any {
+    if (!this.detailedStats.length) { // One country
+      this.detailedStats = [this.detailedStats];
+    }
+    let id = '';
+    this.maps.cases.datas = [];
+    this.maps.deaths.datas = [];
+    this.maps.recovered.datas = [];
+    this.maps.hospital.datas = [];
+    this.maps.reanimation.datas = [];
+    this.detailedStats.forEach((stat) => {
+      id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
+      this.maps.cases.datas = [{
+        id,
+        value: stat.cases
+      }, ...this.maps.cases.datas];
+      this.maps.deaths.datas = [{
+        id,
+        value: stat.deaths
+      }, ...this.maps.deaths.datas];
+      this.maps.recovered.datas = [{
+        id,
+        value: stat.deaths
+      }, ...this.maps.recovered.datas];
+      if (this.selectedCountry.country === 'France') {
+        this.maps.hospital.datas = [{
+          id,
+          value: stat.hospital
+        }, ...this.maps.hospital.datas];
+        this.maps.reanimation.datas = [{
+          id,
+          value: stat.hospital
+        }, ...this.maps.reanimation.datas];
       }
     });
+  }
+
+  private updateMap(): void { // A chq ngOnChanges
+    this.polygonTemplate.fill = am4core.color(this.maps[this.selectedTypeMap].colors.fill);
+    this.series.data = this.maps[this.selectedTypeMap].datas;
+    this.series.heatRules.push({
+      property: 'fill',
+      target: this.series.mapPolygons.template,
+      min: am4core.color(this.maps[this.selectedTypeMap].colors.min),
+      max: am4core.color(this.maps[this.selectedTypeMap].colors.max)
+    });
+    this.polygonTemplate.tooltipText = '{name} {value} ' + this.maps[this.selectedTypeMap].label;
+  }
+
+  private initMainMap(): void {
+    this.chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
+    this.chart.geodata = this.divisionMap[this.selectedDivisionMap]; // En fonction monde, region, departement
+    this.chart.geodataNames = am4geodata_lang_FR;
+    this.chart.projection = new am4maps.projections.Miller();
+    this.series = this.chart.series.push(new am4maps.MapPolygonSeries());
+    this.series.useGeodata = true;
+    this.series.dataFields.zoomLevel = 'zoomLevel';
+    this.series.dataFields.zoomGeoPoint = 'zoomGeoPoint';
+
+    this.polygonTemplate = this.series.mapPolygons.template;
+    if (this.countryNotZoom()) {
+      this.chart.events.on('ready', () => {
+        const target = this.series.getPolygonById(this.selectedCountry.code);
+        this.chart.zoomToMapObject(target);
+      });
+    }
+    // remove antarctique
+    this.series.exclude = ['AQ'];
+  }
+
+  private countryNotZoom(): boolean {
+    return this.selectedCountry.country !== 'Monde' && this.selectedCountry.country !== 'France';
   }
 
 }

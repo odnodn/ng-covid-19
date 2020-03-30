@@ -56,7 +56,7 @@
         <article class="tile is-child notification is-success active-map" (click)="updateMap('recovered')">
           <p class="title">
             <ng-container *ngIf="franceStats">
-              {{franceStats.statsByGender?.total?.home}}
+              {{franceStats.statsByGender?.total?.recovered}}
             </ng-container>
             <ng-container *ngIf="!franceStats">
               {{mainStats.recovered}}

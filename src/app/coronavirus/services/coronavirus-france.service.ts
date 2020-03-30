@@ -29,19 +29,19 @@ export class CoronavirusFranceService {
         const statsTotal = {
           hospital: 0,
           reanimation: 0,
-          home: 0,
+          recovered: 0,
           deaths: 0,
         };
         const statsMen = {
           hospital: 0,
           reanimation: 0,
-          home: 0,
+          recovered: 0,
           deaths: 0,
         };
         const statsWomen = {
           hospital: 0,
           reanimation: 0,
-          home: 0,
+          recovered: 0,
           deaths: 0,
         };
 
@@ -50,14 +50,15 @@ export class CoronavirusFranceService {
           if (itemData[1] === '0') { // All
             statsTotal.hospital = statsTotal.hospital + Number(itemData[3]);
             statsTotal.reanimation = statsTotal.reanimation + Number(itemData[4]);
-            statsTotal.home = statsTotal.home + Number(itemData[5]);
+            statsTotal.recovered = statsTotal.recovered + Number(itemData[5]);
             statsTotal.deaths = statsTotal.deaths + Number(itemData[6]);
             const statsOneDep = {
               hospital:  Number(itemData[3]),
               reanimation: Number(itemData[4]),
-              home: Number(itemData[5]),
+              recovered: Number(itemData[5]),
               deaths: Number(itemData[6]),
               code: itemData[0],
+              name: FRANCE_DEPS.find((dep) => dep.code.toString() === itemData[0]).dep,
               region: FRANCE_DEPS.find((dep) => dep.code.toString() === itemData[0]).region
             };
             statsByDepartment.push(statsOneDep);
@@ -65,13 +66,13 @@ export class CoronavirusFranceService {
           if (itemData[1] === '1') { // Homme
             statsMen.hospital = statsMen.hospital + Number(itemData[3]);
             statsMen.reanimation = statsMen.reanimation + Number(itemData[4]);
-            statsMen.home = statsMen.home + Number(itemData[5]);
+            statsMen.recovered = statsMen.recovered + Number(itemData[5]);
             statsMen.deaths = statsMen.deaths + Number(itemData[6]);
           }
           if (itemData[1] === '2') { // Femme
             statsWomen.hospital = statsWomen.hospital + Number(itemData[3]);
             statsWomen.reanimation = statsWomen.reanimation + Number(itemData[4]);
-            statsWomen.home = statsWomen.home + Number(itemData[5]);
+            statsWomen.recovered = statsWomen.recovered + Number(itemData[5]);
             statsWomen.deaths = statsWomen.deaths + Number(itemData[6]);
           }
         });
@@ -82,6 +83,7 @@ export class CoronavirusFranceService {
         };
         return {
           statsByDepartment,
+          statsByRegion: this.getDataByRegion(statsByDepartment),
           statsByGender,
           lastUpdate: data[data.length - 2][2]
         };
@@ -91,13 +93,14 @@ export class CoronavirusFranceService {
   getDataByRegion(data: any): any[] {
     const regionDatas = [];
     FRANCE_REGIONS.forEach((regionItem) => {
-      const regionStats = data.statsByDepartment.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
+      const regionStats = data.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
       const item = {
-        region: regionItem.country,
+        name: regionItem.country,
+        code: regionItem.code,
         deaths: regionStats.reduce((total, obj) => obj.deaths + total, 0),
         hospital: regionStats.reduce((total, obj) => obj.hospital + total, 0),
         reanimation: regionStats.reduce((total, obj) => obj.reanimation + total, 0),
-        recovered: regionStats.reduce((total, obj) => obj.home + total, 0)
+        recovered: regionStats.reduce((total, obj) => obj.recovered + total, 0)
       };
       regionDatas.push(item);
     });

@@ -1,67 +1,67 @@
 export const FRANCE_REGIONS = [
   {
     country: 'Auvergne-Rhône-Alpes',
-    code: 'FR-ARA',
+    code: 'ARA',
     id: 84
   },
   {
     country: 'Bourgogne-Franche-Comté',
-    code: 'FR-BFC',
+    code: 'BFC',
     id: 27
   },
   {
     country: 'Bretagne',
-    code: 'FR-BRE',
+    code: 'BRE',
     id: 53
   },
   {
     country: 'Centre-Val de Loire',
-    code: 'FR-CVL',
+    code: 'CVL',
     id: 24
   },
   {
     country: 'Corse',
-    code: 'FR-COR',
+    code: 'COR',
     id: 94
   },
   {
     country: 'Grand Est',
-    code: 'FR-GES',
+    code: 'GES',
     id: 44
   },
   {
     country: 'Hauts-de-France',
-    code: 'FR-HDF',
+    code: 'HDF',
     id: 32
   },
   {
     country: 'Île-de-France',
-    code: 'FR-IDF',
+    code: 'IDF',
     id: 11,
   },
   {
     country: 'Normandie',
-    code: 'FR-NOR',
+    code: 'NOR',
     id: 28
   },
   {
     country: 'Nouvelle-Aquitaine',
-    code: 'FR-NAQ',
+    code: 'NAQ',
     id: 75
   },
   {
     country: 'Occitanie',
-    code: 'FR-OCC',
+    code: 'OCC',
     id: 76
   },
   {
     country: 'Pays de la Loire',
-    code: 'FR-PDL',
+    code: 'PDL',
     id: 52
   },
   {
     country: 'Provence-Alpes-Côte d\'Azur',
-    code: 'FR-PAC',
+    code: 'PAC',
     id: 93
   },
   {
@@ -97,7 +97,7 @@ export const FRANCE_DEPS = [
     dep: 'Ain',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -105,7 +105,7 @@ export const FRANCE_DEPS = [
     dep: 'Aisne',
     region: {
       name: 'Hauts-de-France',
-      code: 'FR-HDF'
+      code: 'HDF'
     }
   },
   {
@@ -113,7 +113,7 @@ export const FRANCE_DEPS = [
     dep: 'Allier',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -121,7 +121,7 @@ export const FRANCE_DEPS = [
     dep: 'Alpes-de-Haute-Provence',
     region: {
       name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'FR-PAC'
+      code: 'PAC'
     }
   },
   {
@@ -129,7 +129,7 @@ export const FRANCE_DEPS = [
     dep: 'Hautes-Alpes',
     region: {
       name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'FR-PAC'
+      code: 'PAC'
     }
   },
   {
@@ -137,7 +137,7 @@ export const FRANCE_DEPS = [
     dep: 'Alpes-Maritimes',
     region: {
       name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'FR-PAC'
+      code: 'PAC'
     }
   },
   {
@@ -145,7 +145,7 @@ export const FRANCE_DEPS = [
     dep: 'Ardèche',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -153,7 +153,7 @@ export const FRANCE_DEPS = [
     dep: 'Ardennes',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -161,7 +161,7 @@ export const FRANCE_DEPS = [
     dep: 'Ariège',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -169,7 +169,7 @@ export const FRANCE_DEPS = [
     dep: 'Aube',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -177,7 +177,7 @@ export const FRANCE_DEPS = [
     dep: 'Aude',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -185,7 +185,7 @@ export const FRANCE_DEPS = [
     dep: 'Aveyron',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -193,7 +193,7 @@ export const FRANCE_DEPS = [
     dep: 'Bouches-du-Rhône',
     region: {
       name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'FR-PAC'
+      code: 'PAC'
     }
   },
   {
@@ -201,7 +201,7 @@ export const FRANCE_DEPS = [
     dep: 'Calvados',
     region: {
       name: 'Normandie',
-      code: 'FR-NOR'
+      code: 'NOR'
     }
   },
   {
@@ -209,7 +209,7 @@ export const FRANCE_DEPS = [
     dep: 'Cantal',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -217,7 +217,7 @@ export const FRANCE_DEPS = [
     dep: 'Charente',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -225,7 +225,7 @@ export const FRANCE_DEPS = [
     dep: 'Charente-Maritime',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -233,7 +233,7 @@ export const FRANCE_DEPS = [
     dep: 'Cher',
     region: {
       name: 'Centre-Val de Loire',
-      code: 'FR-CVL'
+      code: 'CVL'
     }
   },
   {
@@ -241,7 +241,7 @@ export const FRANCE_DEPS = [
     dep: 'Corrèze',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -249,7 +249,7 @@ export const FRANCE_DEPS = [
     dep: 'Côte-d\'Or',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -257,7 +257,7 @@ export const FRANCE_DEPS = [
     dep: 'Côtes-d\'Armor',
     region: {
       name: 'Bretagne',
-      code: 'FR-BRE'
+      code: 'BRE'
     }
   },
   {
@@ -265,7 +265,7 @@ export const FRANCE_DEPS = [
     dep: 'Creuse',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -273,7 +273,7 @@ export const FRANCE_DEPS = [
     dep: 'Dordogne',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -281,7 +281,7 @@ export const FRANCE_DEPS = [
     dep: 'Doubs',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -289,7 +289,7 @@ export const FRANCE_DEPS = [
     dep: 'Drôme',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -297,7 +297,7 @@ export const FRANCE_DEPS = [
     dep: 'Eure',
     region: {
       name: 'Normandie',
-      code: 'FR-NOR'
+      code: 'NOR'
     }
   },
   {
@@ -305,7 +305,7 @@ export const FRANCE_DEPS = [
     dep: 'Eure-et-Loir',
     region: {
       name: 'Centre-Val de Loire',
-      code: 'FR-CVL'
+      code: 'CVL'
     }
   },
   {
@@ -313,7 +313,7 @@ export const FRANCE_DEPS = [
     dep: 'Finistère',
     region: {
       name: 'Bretagne',
-      code: 'FR-BRE'
+      code: 'BRE'
     }
   },
   {
@@ -321,7 +321,7 @@ export const FRANCE_DEPS = [
     dep: 'Corse-du-Sud',
     region: {
       name: 'Corse',
-      code: 'FR-COR'
+      code: 'COR'
     }
   },
   {
@@ -329,7 +329,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Corse',
     region: {
       name: 'Corse',
-      code: 'FR-COR'
+      code: 'COR'
     }
   },
   {
@@ -337,7 +337,7 @@ export const FRANCE_DEPS = [
     dep: 'Gard',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -345,7 +345,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Garonne',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -353,7 +353,7 @@ export const FRANCE_DEPS = [
     dep: 'Gers',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -361,7 +361,7 @@ export const FRANCE_DEPS = [
     dep: 'Gironde',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -369,7 +369,7 @@ export const FRANCE_DEPS = [
     dep: 'Hérault',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -377,7 +377,7 @@ export const FRANCE_DEPS = [
     dep: 'Ille-et-Vilaine',
     region: {
       name: 'Bretagne',
-      code: 'FR-BRE'
+      code: 'BRE'
     }
   },
   {
@@ -385,7 +385,7 @@ export const FRANCE_DEPS = [
     dep: 'Indre',
     region: {
       name: 'Centre-Val de Loire',
-      code: 'FR-CVL'
+      code: 'CVL'
     }
   },
   {
@@ -393,7 +393,7 @@ export const FRANCE_DEPS = [
     dep: 'Indre-et-Loire',
     region: {
       name: 'Centre-Val de Loire',
-      code: 'FR-CVL'
+      code: 'CVL'
     }
   },
   {
@@ -401,7 +401,7 @@ export const FRANCE_DEPS = [
     dep: 'Isère',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -409,7 +409,7 @@ export const FRANCE_DEPS = [
     dep: 'Jura',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -417,7 +417,7 @@ export const FRANCE_DEPS = [
     dep: 'Landes',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -425,7 +425,7 @@ export const FRANCE_DEPS = [
     dep: 'Loir-et-Cher',
     region: {
       name: 'Centre-Val de Loire',
-      code: 'FR-CVL'
+      code: 'CVL'
     }
   },
   {
@@ -433,7 +433,7 @@ export const FRANCE_DEPS = [
     dep: 'Loire',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -441,7 +441,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Loire',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -449,7 +449,7 @@ export const FRANCE_DEPS = [
     dep: 'Loire-Atlantique',
     region: {
       name: 'Pays de la Loire',
-      code: 'FR-PDL'
+      code: 'PDL'
     }
   },
   {
@@ -457,7 +457,7 @@ export const FRANCE_DEPS = [
     dep: 'Loiret',
     region: {
       name: 'Centre-Val de Loire',
-      code: 'FR-CVL'
+      code: 'CVL'
     }
   },
   {
@@ -465,7 +465,7 @@ export const FRANCE_DEPS = [
     dep: 'Lot',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -473,7 +473,7 @@ export const FRANCE_DEPS = [
     dep: 'Lot-et-Garonne',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -481,7 +481,7 @@ export const FRANCE_DEPS = [
     dep: 'Lozère',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -489,7 +489,7 @@ export const FRANCE_DEPS = [
     dep: 'Maine-et-Loire',
     region: {
       name: 'Pays de la Loire',
-      code: 'FR-PDL'
+      code: 'PDL'
     }
   },
   {
@@ -497,7 +497,7 @@ export const FRANCE_DEPS = [
     dep: 'Manche',
     region: {
       name: 'Normandie',
-      code: 'FR-NOR'
+      code: 'NOR'
     }
   },
   {
@@ -505,7 +505,7 @@ export const FRANCE_DEPS = [
     dep: 'Marne',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -513,7 +513,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Marne',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -521,7 +521,7 @@ export const FRANCE_DEPS = [
     dep: 'Mayenne',
     region: {
       name: 'Pays de la Loire',
-      code: 'FR-PDL'
+      code: 'PDL'
     }
   },
   {
@@ -529,7 +529,7 @@ export const FRANCE_DEPS = [
     dep: 'Meurthe-et-Moselle',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -537,7 +537,7 @@ export const FRANCE_DEPS = [
     dep: 'Meuse',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -545,7 +545,7 @@ export const FRANCE_DEPS = [
     dep: 'Morbihan',
     region: {
       name: 'Bretagne',
-      code: 'FR-BRE'
+      code: 'BRE'
     }
   },
   {
@@ -553,7 +553,7 @@ export const FRANCE_DEPS = [
     dep: 'Moselle',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -561,7 +561,7 @@ export const FRANCE_DEPS = [
     dep: 'Nièvre',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -569,7 +569,7 @@ export const FRANCE_DEPS = [
     dep: 'Nord',
     region: {
       name: 'Hauts-de-France',
-      code: 'FR-HDF'
+      code: 'HDF'
     }
   },
   {
@@ -577,7 +577,7 @@ export const FRANCE_DEPS = [
     dep: 'Oise',
     region: {
       name: 'Hauts-de-France',
-      code: 'FR-HDF'
+      code: 'HDF'
     }
   },
   {
@@ -585,7 +585,7 @@ export const FRANCE_DEPS = [
     dep: 'Orne',
     region: {
       name: 'Normandie',
-      code: 'FR-NOR'
+      code: 'NOR'
     }
   },
   {
@@ -593,7 +593,7 @@ export const FRANCE_DEPS = [
     dep: 'Pas-de-Calais',
     region: {
       name: 'Hauts-de-France',
-      code: 'FR-HDF'
+      code: 'HDF'
     }
   },
   {
@@ -601,7 +601,7 @@ export const FRANCE_DEPS = [
     dep: 'Puy-de-Dôme',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -609,7 +609,7 @@ export const FRANCE_DEPS = [
     dep: 'Pyrénées-Atlantiques',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -617,7 +617,7 @@ export const FRANCE_DEPS = [
     dep: 'Hautes-Pyrénées',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -625,7 +625,7 @@ export const FRANCE_DEPS = [
     dep: 'Pyrénées-Orientales',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -633,7 +633,7 @@ export const FRANCE_DEPS = [
     dep: 'Bas-Rhin',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -641,7 +641,7 @@ export const FRANCE_DEPS = [
     dep: 'Haut-Rhin',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -649,7 +649,7 @@ export const FRANCE_DEPS = [
     dep: 'Rhône',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -657,7 +657,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Saône',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -665,7 +665,7 @@ export const FRANCE_DEPS = [
     dep: 'Saône-et-Loire',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -673,7 +673,7 @@ export const FRANCE_DEPS = [
     dep: 'Sarthe',
     region: {
       name: 'Pays de la Loire',
-      code: 'FR-PDL'
+      code: 'PDL'
     }
   },
   {
@@ -681,7 +681,7 @@ export const FRANCE_DEPS = [
     dep: 'Savoie',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -689,7 +689,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Savoie',
     region: {
       name: 'Auvergne-Rhône-Alpes',
-      code: 'FR-ARA'
+      code: 'ARA'
     }
   },
   {
@@ -697,7 +697,7 @@ export const FRANCE_DEPS = [
     dep: 'Paris',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -705,7 +705,7 @@ export const FRANCE_DEPS = [
     dep: 'Seine-Maritime',
     region: {
       name: 'Normandie',
-      code: 'FR-NOR'
+      code: 'NOR'
     }
   },
   {
@@ -713,7 +713,7 @@ export const FRANCE_DEPS = [
     dep: 'Seine-et-Marne',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -721,7 +721,7 @@ export const FRANCE_DEPS = [
     dep: 'Yvelines',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -729,7 +729,7 @@ export const FRANCE_DEPS = [
     dep: 'Deux-Sèvres',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -737,7 +737,7 @@ export const FRANCE_DEPS = [
     dep: 'Somme',
     region: {
       name: 'Hauts-de-France',
-      code: 'FR-HDF'
+      code: 'HDF'
     }
   },
   {
@@ -745,7 +745,7 @@ export const FRANCE_DEPS = [
     dep: 'Tarn',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -753,7 +753,7 @@ export const FRANCE_DEPS = [
     dep: 'Tarn-et-Garonne',
     region: {
       name: 'Occitanie',
-      code: 'FR-OCC'
+      code: 'OCC'
     }
   },
   {
@@ -761,7 +761,7 @@ export const FRANCE_DEPS = [
     dep: 'Var',
     region: {
       name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'FR-PAC'
+      code: 'PAC'
     }
   },
   {
@@ -769,7 +769,7 @@ export const FRANCE_DEPS = [
     dep: 'Vaucluse',
     region: {
       name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'FR-PAC'
+      code: 'PAC'
     }
   },
   {
@@ -777,7 +777,7 @@ export const FRANCE_DEPS = [
     dep: 'Vendée',
     region: {
       name: 'Pays de la Loire',
-      code: 'FR-PDL'
+      code: 'PDL'
     }
   },
   {
@@ -785,7 +785,7 @@ export const FRANCE_DEPS = [
     dep: 'Vienne',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -793,7 +793,7 @@ export const FRANCE_DEPS = [
     dep: 'Haute-Vienne',
     region: {
       name: 'Nouvelle-Aquitaine',
-      code: 'FR-NAQ'
+      code: 'NAQ'
     }
   },
   {
@@ -801,7 +801,7 @@ export const FRANCE_DEPS = [
     dep: 'Vosges',
     region: {
       name: 'Grand Est',
-      code: 'FR-GES'
+      code: 'GES'
     }
   },
   {
@@ -809,7 +809,7 @@ export const FRANCE_DEPS = [
     dep: 'Yonne',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -817,7 +817,7 @@ export const FRANCE_DEPS = [
     dep: 'Territoire de Belfort',
     region: {
       name: 'Bourgogne-Franche-Comté',
-      code: 'FR-BFC'
+      code: 'BFC'
     }
   },
   {
@@ -825,7 +825,7 @@ export const FRANCE_DEPS = [
     dep: 'Essonne',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -833,7 +833,7 @@ export const FRANCE_DEPS = [
     dep: 'Hauts-de-Seine',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -841,7 +841,7 @@ export const FRANCE_DEPS = [
     dep: 'Seine-Saint-Denis',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -849,7 +849,7 @@ export const FRANCE_DEPS = [
     dep: 'Val-de-Marne',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {
@@ -857,7 +857,7 @@ export const FRANCE_DEPS = [
     dep: 'Val-d\'Oise',
     region: {
       name: 'Île-de-France',
-      code: 'FR-IDF'
+      code: 'IDF'
     }
   },
   {

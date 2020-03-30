@@ -1,4 +1,15 @@
-<div class="is-spaced" [class.container-table]="dataSource.data.length > 10">
+<!-- <mat-form-field class="field">
+  <mat-label>Rechercher dans le tableau...</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Exemple: Paris...">
+</mat-form-field> -->
+<div class="field">
+  <mat-label for="country-select" class="label">Faire une recherche</mat-label>
+  <div class="control">
+    <input class="input" (keyup)="applyFilter($event)" type="text" placeholder="Rechercher dans le tableau...">
+  </div>
+</div>
+<div [class.container-table]="dataSource.data.length > 10">
+
   <table aria-describedby="tableDescription" mat-table matSort [dataSource]="dataSource" [matSortDisableClear]="true"
     [matSortActive]="selectedCountry.country === 'France' ? 'hospital' : 'cases'" matSortDirection="desc">
 
@@ -13,12 +24,12 @@
     </ng-container>
 
     <!-- Region Column -->
-    <ng-container matColumnDef="region">
-      <th id="region" mat-header-cell *matHeaderCellDef mat-sort-header>
+    <ng-container matColumnDef="name">
+      <th id="name" mat-header-cell *matHeaderCellDef mat-sort-header>
         Region
       </th>
       <td mat-cell *matCellDef="let element">
-        {{element.region}}
+        {{element.name}}
       </td>
     </ng-container>
 

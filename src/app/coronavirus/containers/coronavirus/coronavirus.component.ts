@@ -1,6 +1,6 @@
 import { CoronavirusFranceService } from './../../services/coronavirus-france.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject, ChangeDetectorRef } from '@angular/core';
 import { CoronavirusService } from '@coronavirus/services/coronavirus.service';
 import { DetailedStat } from '@coronavirus/models/coronavirus.models';
 import { isPlatformBrowser } from '@angular/common';
@@ -32,6 +32,7 @@ export class CoronavirusComponent implements OnInit {
   filteredCountries: any[] = [];
   selectedCountry: any = COUNTRIES[1];
   selectedTypeMap = 'cases';
+  selectedDivisionMap = 'regionFrance';
   isBrowser = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -46,7 +47,6 @@ export class CoronavirusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.data$ = this.coronavirusService.getDailyDatas();
     this.filteredCountries = this.countries;
     this.route.params.subscribe(params => {

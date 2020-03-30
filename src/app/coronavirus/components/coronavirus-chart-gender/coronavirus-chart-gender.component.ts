@@ -14,20 +14,35 @@ export class CoronavirusChartGenderComponent implements OnInit {
   menValue: number;
   womenValue: number;
   labelText: string;
+  chart: am4charts.PieChart;
   constructor() {
   }
 
   ngOnInit(): void {
+    this.initChart();
     this.onSelectTypeChange();
+  }
+
+  initChart(): void {
+    this.chart = am4core.create('chartdiv', am4charts.PieChart);
+    this.chart.responsive.enabled = true;
+    const pieSeries = this.chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = 'value';
+    pieSeries.dataFields.category = 'gender';
+    const as = pieSeries.slices.template.states.getKey('active');
+    as.properties.shiftRadius = 0;
+    pieSeries.slices.template.propertyFields.fill = 'color';
+    pieSeries.alignLabels = false;
+    pieSeries.labels.template.radius = am4core.percent(-40);
+    pieSeries.labels.template.fill = am4core.color('white');
+    pieSeries.ticks.template.disabled = true;
   }
 
 
   onSelectTypeChange(): void {
-    const chart = am4core.create('chartdiv', am4charts.PieChart);
-    chart.responsive.enabled = true;
     this.labelText = 'Répartition des cas guéris selon le genre';
-    this.menValue = this.dataGender.men.home;
-    this.womenValue = this.dataGender.women.home;
+    this.menValue = this.dataGender.men.recovered;
+    this.womenValue = this.dataGender.women.recovered;
     if (this.dataType === 'hospital') {
       this.menValue = this.dataGender.men.hospital;
       this.womenValue = this.dataGender.women.hospital;
@@ -41,7 +56,7 @@ export class CoronavirusChartGenderComponent implements OnInit {
       this.womenValue = this.dataGender.women.reanimation;
       this.labelText = 'Répartition des décès selon le genre';
     }
-    chart.data = [
+    this.chart.data = [
       {
         gender: `Femme `,
         value: this.womenValue,
@@ -54,22 +69,6 @@ export class CoronavirusChartGenderComponent implements OnInit {
       },
 
     ];
-
-    const pieSeries = chart.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = 'value';
-    pieSeries.dataFields.category = 'gender';
-    // chart.innerRadius = am4core.percent(30);
-    const as = pieSeries.slices.template.states.getKey('active');
-    as.properties.shiftRadius = 0;
-    pieSeries.slices.template.propertyFields.fill = 'color';
-    pieSeries.alignLabels = false;
-    // pieSeries.labels.template.bent = true;
-    // pieSeries.labels.template.radius = -10;
-    // pieSeries.labels.template.padding(0, 0, 0, 0);
-    // pieSeries.labels.template.text = '{value.percent.formatNumber(\'#.0\')}%';
-    pieSeries.labels.template.radius = am4core.percent(-40);
-    pieSeries.labels.template.fill = am4core.color('white');
-    pieSeries.ticks.template.disabled = true;
   }
 
 }
