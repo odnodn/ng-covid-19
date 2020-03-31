@@ -13,13 +13,14 @@ export class CoronavirusStatsComponent implements OnInit {
   @Input() selectedCountry;
   @Input() selectedRegion;
   @Input() selectedDepartment;
+  @Input() lastUpdate;
+
   @Output() readonly updateMapEvent: EventEmitter<string> = new EventEmitter<string>(true);
 
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.franceStats);
   }
 
   updateMap(type: string): void {

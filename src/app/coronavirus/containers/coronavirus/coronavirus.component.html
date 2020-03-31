@@ -82,17 +82,17 @@
       <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
         <ng-container *ngIf="franceStats.value">
           <ng-container *ngIf="selectedRegion">
-            <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'FR'"
+            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
             [franceStats]="franceStats.value.region.total | countryfilter: selectedRegion.code" [selectedRegion]="selectedRegion" >
           </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="selectedDepartment">
-            <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'FR'"
+            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
             [franceStats]="franceStats.value.department.total | countryfilter: selectedDepartment.code" [selectedRegion]="selectedDepartment">
           </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-            <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: 'FR'"
+            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
             [franceStats]="franceStats.value.national.total"
             [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}"
             (updateMapEvent)="onUpdateMapEvent($event)">
