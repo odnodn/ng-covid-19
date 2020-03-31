@@ -14,6 +14,7 @@ import { CoronavirusGraphCountryComponent } from './components/coronavirus-graph
 import { CoronavirusChartGenderComponent } from './components/coronavirus-chart-gender/coronavirus-chart-gender.component';
 import { CoronavirusChartAgeComponent } from './components/coronavirus-chart-age/coronavirus-chart-age.component';
 import { CoronavirusSelectComponent } from './components/coronavirus-select/coronavirus-select.component';
+import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-france/coronavirus-links-france.component';
 @NgModule({
   declarations: [
     CoronavirusComponent,
@@ -26,7 +27,8 @@ import { CoronavirusSelectComponent } from './components/coronavirus-select/coro
     CoronavirusGraphCountryComponent,
     CoronavirusChartGenderComponent,
     CoronavirusChartAgeComponent,
-    CoronavirusSelectComponent
+    CoronavirusSelectComponent,
+    CoronavirusLinksFranceComponent
   ],
   imports: [
     CommonModule,

@@ -12,9 +12,19 @@
   </div>
   <div id="menu" class="navbar-menu" [class.is-active]="isActive">
     <div class="navbar-end">
-      <a class="navbar-item" routerLink="stats" (click)="expand()">
-        Statistiques par pays
-      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Statistiques
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" routerLink="/stats/liens/france" (click)="expand()">
+            France par région et département
+          </a>
+          <a class="navbar-item" routerLink="/stats/liens/monde" (click)="expand()">
+            Monde et par pays
+          </a>
+        </div>
+      </div>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Informations
