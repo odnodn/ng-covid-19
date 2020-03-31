@@ -1,5 +1,8 @@
 <h2 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19
-  {{selectedCountry.translation}} </h2>
+  {{selectedCountry?.translation}}
+  {{selectedRegion?.name}}
+  {{selectedDepartment?.name}}
+</h2>
 <ng-container *ngIf="mainStats">
   <div class="content">
     <p *ngIf="mainStats.lastUpdate">
@@ -9,8 +12,8 @@
       Mis à jour le <strong>{{franceStats?.lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique
     </p>
     <div class="tile is-ancestor">
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-warning" [class.active-map]="selectedCountry.country !== 'France'"
+      <div class="tile is-parent" *ngIf="selectedCountry">
+        <article class="tile is-child notification is-warning" [class.active-map]="selectedCountry?.country !== 'France'"
           (click)="updateMap('cases')">
           <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
             <span class="increase">
@@ -20,24 +23,24 @@
           <p class="subtitle">Confirmés</p>
         </article>
       </div>
-      <div class="tile is-parent" *ngIf="franceStats?.statsByGender?.total?.hospital">
-        <article class="tile is-child notification hospital" [class.active-map]="selectedCountry.country === 'France'"
+      <div class="tile is-parent" *ngIf="franceStats?.hospital">
+        <article class="tile is-child notification hospital" [class.active-map]="selectedCountry?.country === 'France'"
           (click)="updateMap('hospital')">
-          <p class="title">{{franceStats?.statsByGender?.total?.hospital | number: '' :'fr-FR'}}
+          <p class="title">{{franceStats?.hospital | number: '' :'fr-FR'}}
             <span class="increase">
-              {{franceStats?.statsByGender?.total?.todayHospital | symbolNumber }}
+              {{franceStats?.todayHospital | symbolNumber }}
             </span>
           </p>
 
           <p class="subtitle">Hospitalisations en cours</p>
         </article>
       </div>
-      <div class="tile is-parent" *ngIf="franceStats?.statsByGender?.total.reanimation">
+      <div class="tile is-parent" *ngIf="franceStats?.reanimation">
         <article class="tile is-child notification reanimation"
-          [class.active-map]="selectedCountry.country === 'France'" (click)="updateMap('reanimation')">
-          <p class="title">{{franceStats.statsByGender?.total?.reanimation | number: '' :'fr-FR'}}
+          [class.active-map]="selectedCountry?.country === 'France'" (click)="updateMap('reanimation')">
+          <p class="title">{{franceStats.reanimation | number: '' :'fr-FR'}}
             <span class="increase">
-              {{franceStats?.statsByGender?.total?.todayReanimation | symbolNumber }}
+              {{franceStats?.todayReanimation | symbolNumber }}
             </span>
           </p>
 
@@ -51,7 +54,7 @@
               {{mainStats.deaths | number: '' :'fr-FR'}}
             </ng-container>
             <ng-container *ngIf="franceStats">
-              {{franceStats.statsByGender?.total?.deaths | number: '' :'fr-FR'}}
+              {{franceStats.deaths | number: '' :'fr-FR'}}
             </ng-container>
             <span class="increase">
               {{mainStats.todayDeaths | symbolNumber}}
@@ -64,9 +67,9 @@
         <article class="tile is-child notification is-success active-map" (click)="updateMap('recovered')">
           <p class="title">
             <ng-container *ngIf="franceStats">
-              {{franceStats.statsByGender?.total?.recovered | number: '' :'fr-FR'}}
+              {{franceStats.recovered | number: '' :'fr-FR'}}
               <span class="increase">
-                {{franceStats.statsByGender?.total?.todayRecovered | symbolNumber }}
+                {{franceStats.todayRecovered | symbolNumber }}
               </span>
             </ng-container>
             <ng-container *ngIf="!franceStats">

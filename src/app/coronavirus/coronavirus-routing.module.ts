@@ -13,6 +13,14 @@ export const coronavirusRoutes: Routes = [
     path: 'stats/:country',
   },
   {
+    component: CoronavirusComponent,
+    path: 'stats/:country/region/:region',
+  },
+  {
+    component: CoronavirusComponent,
+    path: 'stats/:country/departement/:department',
+  },
+  {
     component: CoronavirusLinksComponent,
     path: 'stats',
   }

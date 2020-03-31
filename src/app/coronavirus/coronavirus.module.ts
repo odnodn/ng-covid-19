@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
@@ -13,9 +12,8 @@ import { CoronavirusLinksComponent } from './containers/coronavirus-links/corona
 import { CoronavirusMapComponent } from './components/coronavirus-map/coronavirus-map.component';
 import { CoronavirusGraphCountryComponent } from './components/coronavirus-graph-country/coronavirus-graph-country.component';
 import { CoronavirusChartGenderComponent } from './components/coronavirus-chart-gender/coronavirus-chart-gender.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { CoronavirusChartAgeComponent } from './components/coronavirus-chart-age/coronavirus-chart-age.component';
-
+import { CoronavirusSelectComponent } from './components/coronavirus-select/coronavirus-select.component';
 @NgModule({
   declarations: [
     CoronavirusComponent,
@@ -27,7 +25,8 @@ import { CoronavirusChartAgeComponent } from './components/coronavirus-chart-age
     CoronavirusMapComponent,
     CoronavirusGraphCountryComponent,
     CoronavirusChartGenderComponent,
-    CoronavirusChartAgeComponent
+    CoronavirusChartAgeComponent,
+    CoronavirusSelectComponent
   ],
   imports: [
     CommonModule,

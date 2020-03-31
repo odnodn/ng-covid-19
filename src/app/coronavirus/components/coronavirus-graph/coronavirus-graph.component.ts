@@ -20,6 +20,7 @@ export class CoronavirusGraphComponent implements OnInit {
   colorScheme = {
     domain: ['#ffbb00', '#f9461c', '#43D787']
   };
+  referenceLines: any[] = [];
   constructor(private readonly datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -38,7 +39,6 @@ export class CoronavirusGraphComponent implements OnInit {
         series: this.totalRecovered
       }
     ];
-
   }
 
   private initDatasWorld(): void {

@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
 @Component({
   selector: 'app-coronavirus-chart-gender',
   templateUrl: './coronavirus-chart-gender.component.html',
-  styleUrls: ['./coronavirus-chart-gender.component.scss']
+  styleUrls: ['./coronavirus-chart-gender.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoronavirusChartGenderComponent implements OnInit {
 

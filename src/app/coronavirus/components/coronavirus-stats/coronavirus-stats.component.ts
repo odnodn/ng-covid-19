@@ -11,6 +11,8 @@ export class CoronavirusStatsComponent implements OnInit {
   @Input() mainStats;
   @Input() franceStats;
   @Input() selectedCountry;
+  @Input() selectedRegion;
+  @Input() selectedDepartment;
   @Output() readonly updateMapEvent: EventEmitter<string> = new EventEmitter<string>(true);
 
   constructor() {

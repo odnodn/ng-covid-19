@@ -1,14 +1,13 @@
-import { CoronavirusFranceService } from './../../services/coronavirus-france.service';
+import { FRANCE_REGIONS, FRANCE_DEPS } from '@coronavirus/constants/france.constants';
+import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject } from '@angular/core';
 import { CoronavirusService } from '@coronavirus/services/coronavirus.service';
 import { DetailedStat } from '@coronavirus/models/coronavirus.models';
 import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { FormControl } from '@angular/forms';
-
 @Component({
   selector: 'app-coronavirus',
   templateUrl: './coronavirus.component.html',
@@ -27,12 +26,11 @@ export class CoronavirusComponent implements OnInit {
   franceStats$: Observable<any>;
   franceStatsByAge$: Observable<any>;
 
-  countryCtrl = new FormControl();
-  countries: any[] = COUNTRIES;
-  filteredCountries: any[] = [];
   selectedCountry: any = COUNTRIES[1];
   selectedTypeMap = 'cases';
   selectedDivisionMap = 'regionFrance';
+  selectedRegion: any;
+  selectedDepartment: any;
   isBrowser = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -48,22 +46,32 @@ export class CoronavirusComponent implements OnInit {
 
   ngOnInit(): void {
     this.data$ = this.coronavirusService.getDailyDatas();
-    this.filteredCountries = this.countries;
     this.route.params.subscribe(params => {
+
       if (!params.country) {
         this.initFranceDatas();
         this.initMetaTagCountry();
         this.selectedTypeMap = 'hospital';
         return;
       }
-      this.selectedCountry = this.countries.find((country) => country.slug === params.country);
+
+      this.selectedCountry = COUNTRIES.find((country) => country.slug === params.country);
       if (this.selectedCountry.country === 'Monde') {
         this.initWorldDatas();
         this.initMetaTagWorld();
       } else if (this.selectedCountry.country === 'France') {
+
         this.initFranceDatas();
         this.initMetaTagCountry();
         this.selectedTypeMap = 'hospital';
+        if (params.region) {
+          this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
+          this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
+        }
+        if (params.department) {
+          this.selectedDepartment = FRANCE_DEPS.find((department) => department.slug === params.department);
+          this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'le département');
+        }
       } else {
         this.initCountryDatas();
         this.initMetaTagCountry();
@@ -75,33 +83,24 @@ export class CoronavirusComponent implements OnInit {
     this.selectedTypeMap = $event;
   }
 
-  filterCountries(value: string) {
-    let search = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    if (!search) {
-      this.filteredCountries = this.countries;
-      return;
-    } else {
-      search = search.toLowerCase();
-    }
-    this.filteredCountries = this.countries.filter(country => (country.translation.toLowerCase())
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .indexOf(search) > -1);
-  }
-
-  trackByFn(index): void {
-    return index;
-  }
-
-  onSelectCountry(): void {
+  onSelectCountry(country: any): void {
+    this.selectedCountry = country;
+    this.selectedRegion = undefined;
+    this.selectedDepartment = undefined;
     this.selectedTypeMap = 'cases';
     this.router.navigate(['stats', this.selectedCountry.slug]);
   }
 
-  compareFn(optionOne, optionTwo): boolean {
-    if (optionOne && optionTwo) {
-      return optionOne.slug === optionTwo.slug;
-    }
-    return optionOne.slug === 'monde';
+  onSelectRegion(region: any): void {
+    this.selectedRegion = region;
+    this.selectedDepartment = undefined;
+    this.router.navigate(['stats', this.selectedCountry.slug, 'region', this.selectedRegion.slug]);
+  }
+
+  onSelectDepartment(department: any): void {
+    this.selectedDepartment = department;
+    this.selectedRegion = undefined;
+    this.router.navigate(['stats', this.selectedCountry.slug, 'departement', this.selectedDepartment.slug]);
   }
 
   private initMetaTagWorld(): void {
@@ -146,10 +145,35 @@ export class CoronavirusComponent implements OnInit {
     });
   }
 
+  private initMetaTagRegionAndDepartment(region: any, type: string): void {
+    this.title.setTitle(`Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}`);
+    const tags = [
+      { name: 'description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { name: 'og:url', content: `https://www.cascoronavirus.fr/stats/${region.slug}` },
+      { name: 'og:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
+      { name: 'og:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
+      { name: 'twitter:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'twitter:site', content: '@SouryvathN' },
+    ];
+    tags.forEach((tag) => {
+      this.meta.updateTag(tag);
+    });
+  }
+
   private initWorldDatas(): void {
 
     /* For stats and map */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
+  }
+
+  private initRegionDatas(): void {
+
   }
 
   private initFranceDatas(): void {

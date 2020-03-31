@@ -74,9 +74,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     },
     hospital: {
       colors: {
-        fill: '#fff2ce',
+        fill: '#ffffff',
         hover: '#F17D07',
-        min: '#fff2ce',
+        min: '#fff8f0',
         max: '#F17D07'
       },
       title: 'Carte des cas en hospitalisation',
