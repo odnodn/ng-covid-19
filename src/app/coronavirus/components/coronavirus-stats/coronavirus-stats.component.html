@@ -13,8 +13,8 @@
     </p>
     <div class="tile is-ancestor">
       <div class="tile is-parent" *ngIf="selectedCountry">
-        <article class="tile is-child notification is-warning" [class.active-map]="selectedCountry?.country !== 'France'"
-          (click)="updateMap('cases')">
+        <article class="tile is-child notification is-warning"
+        >
           <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
             <span class="increase">
               {{mainStats.todayCases | symbolNumber }}
@@ -24,8 +24,7 @@
         </article>
       </div>
       <div class="tile is-parent" *ngIf="franceStats?.hospital">
-        <article class="tile is-child notification hospital" [class.active-map]="selectedCountry?.country === 'France'"
-          (click)="updateMap('hospital')">
+        <article class="tile is-child notification hospital">
           <p class="title">{{franceStats?.hospital | number: '' :'fr-FR'}}
             <span class="increase">
               {{franceStats?.todayHospital | symbolNumber }}
@@ -37,7 +36,7 @@
       </div>
       <div class="tile is-parent" *ngIf="franceStats?.reanimation">
         <article class="tile is-child notification reanimation"
-          [class.active-map]="selectedCountry?.country === 'France'" (click)="updateMap('reanimation')">
+>
           <p class="title">{{franceStats.reanimation | number: '' :'fr-FR'}}
             <span class="increase">
               {{franceStats?.todayReanimation | symbolNumber }}
@@ -48,7 +47,7 @@
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification is-danger active-map" (click)="updateMap('deaths')">
+        <article class="tile is-child notification is-danger ">
           <p class="title">
             <ng-container *ngIf="!franceStats">
               {{mainStats.deaths | number: '' :'fr-FR'}}
@@ -64,7 +63,7 @@
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification is-success active-map" (click)="updateMap('recovered')">
+        <article class="tile is-child notification is-success active-map">
           <p class="title">
             <ng-container *ngIf="franceStats">
               {{franceStats.recovered | number: '' :'fr-FR'}}

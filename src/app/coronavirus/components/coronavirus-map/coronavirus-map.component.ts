@@ -26,7 +26,6 @@ export interface ThemeColor {
 export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() detailedStats;
-  @Input() selectedTypeMap;
   @Input() selectedDivisionMap;
   @Input() selectedCountry;
   @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
@@ -54,7 +53,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         fill: '#bbd9c5',
         hover: '#48c774',
-        min: '#bbd9c5',
+        min: '#e2fdef',
         max: '#43D787'
       },
       title: 'Carte des cas guéris',
@@ -65,7 +64,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         fill: '#ffdfe1',
         hover: '#E83D49',
-        min: '#e8c0c3',
+        min: '#fff1ee',
         max: '#f9461c'
       },
       title: 'Carte des décès',
@@ -87,7 +86,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         fill: '#ffe8da',
         hover: '#E95D0C',
-        min: '#ffe8da',
+        min: '#fff1e9',
         max: '#E95D0C'
       },
       title: 'Carte des cas en réanimation',
@@ -101,11 +100,14 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     regionFrance: am4geodata_franceHigh,
     departmentFrance: am4geodata_franceDepartmentsHigh
   };
-
+  selectedTypeMap = 'cases';
   constructor() {
   }
 
   ngOnInit(): void {
+    if (this.selectedCountry.country === 'France') {
+      this.selectedTypeMap = 'hospital';
+    }
     this.isInitialized = true;
     this.initMainMap();
     this.initDatas();
@@ -128,6 +130,10 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this.chart.dispose();
+  }
+
+  onSelectTypeMap(): void {
+    this.updateMap();
   }
 
   private initDatas(): any {

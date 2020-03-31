@@ -83,6 +83,15 @@ $success-invert: white;
   font-family: inherit;
 }
 
+.radio-buttons {
+  margin-top: 1em;
+  text-align: center;
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+}
+
+
 .reanimation {
   color: #E95D0C;
 }

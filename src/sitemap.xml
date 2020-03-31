@@ -1,947 +1,1315 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="httpss://www.sitemaps.org/schemas/sitemap/0.9"> 
 <url>
   <loc>https://www.cascoronavirus.fr/</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>1.00</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://www.cascoronavirus.fr/stats/liens/france</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/liens/monde</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/infos/maladie-coronavirus</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/infos/conseils</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/infos/gouvernement</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/infos/maladie-test-coronavirus</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/ain</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/aisne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/allier</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/alpes-maritimes</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/alpes-de-haute-provence</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/ardennes</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/ardeche</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/ariege</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/aube</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/aude</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/aveyron</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/bas-rhin</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/bouches-du-rhone</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/calvados</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/cantal</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/charente</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/charente-maritime</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/cher</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/correze</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/corse-du-sud</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/creuse</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/cote-d-or</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/cotes-d-armor</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/deux-sevres</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/dordogne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/doubs</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/drome</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/essonne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/eure</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/eure-et-loir</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/finistere</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/gard</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/gers</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/gironde</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/guadeloupe</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/guyane</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haut-rhin</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-corse</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-garonne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-marne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-savoie</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-saone</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/haute-vienne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/hautes-alpes</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/hautes-pyren%C3%A9es</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/hauts-de-seine</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/herault</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/ille-et-vilaine</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/indre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/indre-et-loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/isere</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/jura</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/la-reunion</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/landes</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/loir-et-cher</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/loire-atlantique</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/loiret</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/lot</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/lot-et-garonne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/lozere</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/maine-et-loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/manche</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/marne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/martinique</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/mayenne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/mayotte</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/meurthe-et-moselle</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/meuse</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/morbihan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/moselle</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/nievre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/nord</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/oise</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/orne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/paris</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/pas-de-calais</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/puy-de-dome</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/pyren%C3%A9es-atlantiques</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/pyren%C3%A9es-orientales</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/rhone</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/sarthe</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/savoie</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/saone-et-loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/seine-maritime</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/seine-saint-denis</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/seine-et-marne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/somme</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/tarn</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/tarn-et-garonne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/territoire-de%20belfort</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/val-d-oise</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/val-de-marne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/var</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/vaucluse</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/vendee</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/vienne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/vosges</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/yonne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/departement/yvelines</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/auvergne-rhone-alpes</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/bourgogne-franche-comte</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/bretagne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/centre-val-de-loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/corse</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/grand-est</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/hauts-de-france</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/ile-de-france</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/normandie</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/nouvelle-aquitaine</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/occitanie</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/pays-de-la-loire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/provence-alpes-cote-azur</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/guadeloupe</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/martinique</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/guyane</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/la-reunion</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/france/region/mayotte</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/monde</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/france</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/italy</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/china</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/spain</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/afghanistan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/albania</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/algeria</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/andorra</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/angola</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/antigua-and-barbuda</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/argentina</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/armenia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/aruba</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/australia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/austria</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/azerbaijan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bahamas,-the</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bahrain</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bangladesh</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/barbados</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/belarus</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/belgium</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/benin</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bhutan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bolivia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bosnia-and-herzegovina</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/brazil</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/brunei</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/bulgaria</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/burkina-faso</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cabo-verde</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cambodia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cameroon</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/canada</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cape-verde</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/central-african-republic</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/chad</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/chile</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/colombia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/congo-%28brazzaville%29</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/congo-%28kinshasa%29</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/costa-rica</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cote-divoire</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/croatia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cruise-ship</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cuba</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/cyprus</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/czechia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/denmark</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/djibouti</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/dominican-republic</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/east-timor</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/ecuador</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/egypt</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/el-salvador</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/equatorial-guinea</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/eritrea</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/estonia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/eswatini</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/ethiopia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/fiji</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/finland</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/french-guiana</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/gabon</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/gambia,-the</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/georgia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/germany</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/ghana</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/greece</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/greenland</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/guadeloupe</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/guam</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/guatemala</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/guernsey</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/guinea</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/guyana</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/haiti</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/holy-see</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/honduras</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/hungary</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/iceland</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/india</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/indonesia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/iran</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/iraq</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/ireland</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/israel</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/jamaica</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/japan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/jersey</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/jordan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/kazakhstan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/kenya</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/korea,-south</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/kosovo</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/kuwait</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/kyrgyzstan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/latvia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/lebanon</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/liberia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/liechtenstein</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/lithuania</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/luxembourg</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/madagascar</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/malaysia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/maldives</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/malta</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/martinique</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/mauritania</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/mauritius</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/mayotte</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/mexico</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/moldova</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/monaco</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/mongolia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/montenegro</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/morocco</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/namibia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/nepal</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/netherlands</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/new-zealand</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/nicaragua</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/niger</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/nigeria</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/north-macedonia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/norway</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/occupied-palestinian-territory</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/oman</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/pakistan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/panama</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/papua-new-guinea</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/paraguay</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/peru</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/philippines</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/poland</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/portugal</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/puerto-rico</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/qatar</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/republic-of-the-congo</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/reunion</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/romania</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/russia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/rwanda</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/saint-lucia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/saint-vincent-and-the-grenadines</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/san-marino</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/saudi-arabia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/senegal</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/serbia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/seychelles</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/singapore</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/slovakia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/slovenia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.cascoronavirus.fr/stats/somalia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/afghanistan</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/south-africa</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/sri-lanka</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/albania</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/sudan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/algeria</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/suriname</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/germany</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/sweden</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/andorra</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/switzerland</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/angola</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/taiwan*</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/Anguilla</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/tanzania</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/antigua-and-barbuda</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/thailand</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/saudi-arabia</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/the-bahamas</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/argentina</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/the-gambia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/armenia</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/togo</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/aruba</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/trinidad-and-tobago</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/australia</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/tunisia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/austria</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/turkey</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/azerbaijan</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/uganda</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/bahrain</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/ukraine</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/bangladesh</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/barbados</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/belgium</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Belize</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/benin</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Bermuda</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/bhutan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/belarus</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/bolivia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/bosnia-and-herzegovina</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/brunei</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/brazil</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/bulgaria</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/burkina-faso</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cambodia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cameroon</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/canada</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cabo-verde</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cape-verde</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/central-african-republic</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/chad</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/chile</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/china</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cyprus</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/colombia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/congo</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/korea,-south</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/costa-rica</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/croatia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cuba</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cote-divoire</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/denmark</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/cruise-ship</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/djibouti</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Dominica</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/egypt</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/united-arab-emirates</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/united-kingdom</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/ecuador</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.cascoronavirus.fr/stats/uruguay</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://www.cascoronavirus.fr/stats/eritrea</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/estonia</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/us</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/ethiopia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/fiji</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/finland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/gabon</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/gambia,-the</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/ghana</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Gibraltar</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Grenada</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/greenland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/greece</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/guadeloupe</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/guam</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/guatemala</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/guernsey</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/guinea</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/equatorial-guinea</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Guinea-Bissau</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/french-guiana</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/guyana</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/georgia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/haiti</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/honduras</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Hong%20Kong</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/hungary</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Isle%20of%20Man</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Faroe%20Islands</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Turks%20and%20Caicos%20Islands</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Cayman%20Islands</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/india</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/indonesia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/iran</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/iraq</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/ireland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/iceland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/israel</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/jamaica</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/japan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/jersey</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/jordan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/kazakhstan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/kenya</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/kyrgyzstan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/kosovo</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/kuwait</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Lao%20People's%20Democratic%20Republic</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/el-salvador</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/bahamas,-the</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/maldives</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/latvia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/lebanon</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Libyan%20Arab%20Jamahiriya</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/liberia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/liechtenstein</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/lithuania</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/luxembourg</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Macao</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/north-macedonia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Macedonia,%20the%20former%20Yugoslav%20Republic%20of</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/madagascar</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/malaysia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Mali</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/malta</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/morocco</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/martinique</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/mauritius</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/mauritania</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/mayotte</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/mexico</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/moldova</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/monaco</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/mongolia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Montserrat</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/montenegro</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Mozambique</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Myanmar</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/namibia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/nicaragua</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/niger</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/nigeria</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/norway</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/New%20Caledonia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/new-zealand</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/nepal</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/oman</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/uzbekistan</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/pakistan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/occupied-palestinian-territory</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/panama</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/papua-new-guinea</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/paraguay</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/netherlands</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/philippines</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/poland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/French%20Polynesia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/puerto-rico</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/peru</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/qatar</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/romania</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/united-kingdom</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/russia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/rwanda</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/dominican-republic</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/czechia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/republic-of-the-congo</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/reunion</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Saint%20Kitts%20and%20Nevis</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/san-marino</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/saint-vincent-and-the-grenadines</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/saint-lucia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/serbia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/seychelles</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/singapore</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/slovakia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/slovenia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/somalia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/sudan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/sri-lanka</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/switzerland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/suriname</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/sweden</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Swaziland</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Syrian%20Arab%20Republic</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/senegal</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/taiwan</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/tanzania</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/thailand</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/east-timor</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/togo</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/trinidad-and-tobago</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/tunisia</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/turkey</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/Ouganda</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/ukraine</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/uruguay</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.cascoronavirus.fr/stats/holy-see</loc>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/venezuela</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/vietnam</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/zambia</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>https://www.cascoronavirus.fr/stats/zimbabwe</loc>
-  <lastmod>2020-03-23T22:49:04+00:00</lastmod>
-  <priority>0.64</priority>
+  <changefreq>daily</changefreq>
 </url>
-
-
 </urlset>

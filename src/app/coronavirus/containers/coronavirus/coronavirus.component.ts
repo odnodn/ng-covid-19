@@ -27,7 +27,6 @@ export class CoronavirusComponent implements OnInit {
   franceStatsByAge$: Observable<any>;
 
   selectedCountry: any = COUNTRIES[1];
-  selectedTypeMap = 'cases';
   selectedDivisionMap = 'regionFrance';
   selectedRegion: any;
   selectedDepartment: any;
@@ -51,7 +50,6 @@ export class CoronavirusComponent implements OnInit {
       if (!params.country) {
         this.initFranceDatas();
         this.initMetaTagCountry();
-        this.selectedTypeMap = 'hospital';
         return;
       }
 
@@ -63,7 +61,7 @@ export class CoronavirusComponent implements OnInit {
 
         this.initFranceDatas();
         this.initMetaTagCountry();
-        this.selectedTypeMap = 'hospital';
+
         if (params.region) {
           this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
           this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
@@ -79,15 +77,10 @@ export class CoronavirusComponent implements OnInit {
     });
   }
 
-  onUpdateMapEvent($event: string) {
-    this.selectedTypeMap = $event;
-  }
-
   onSelectCountry(country: any): void {
     this.selectedCountry = country;
     this.selectedRegion = undefined;
-    this.selectedDepartment = undefined;
-    this.selectedTypeMap = 'cases';
+
     this.router.navigate(['stats', this.selectedCountry.slug]);
   }
 

@@ -31,18 +31,18 @@
     <!-- World Container-->
     <ng-container *ngIf="selectedCountry.country !== 'France'">
       <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: selectedCountry.code"
-        [selectedCountry]="selectedCountry" (updateMapEvent)="onUpdateMapEvent($event)"></app-coronavirus-stats>
+        [selectedCountry]="selectedCountry" ></app-coronavirus-stats>
       <div class="columns">
         <div class="column is-two-thirds" *ngIf="isBrowser">
           <ng-container *ngIf="selectedCountry.country === 'Monde'">
             <app-coronavirus-map [selectedDivisionMap]="'world'" [selectedCountry]="selectedCountry"
-              [detailedStats]="detailedStats.value | countryfilter: ''" [selectedTypeMap]="selectedTypeMap">
+              [detailedStats]="detailedStats.value | countryfilter: ''">
             </app-coronavirus-map>
           </ng-container>
           <ng-container *ngIf="selectedCountry.country !== 'Monde'">
             <app-coronavirus-map [selectedDivisionMap]="'world'" [selectedCountry]="selectedCountry"
               [detailedStats]="detailedStats.value | countryfilter: selectedCountry.code"
-              [selectedTypeMap]="selectedTypeMap">
+   >
             </app-coronavirus-map>
           </ng-container>
         </div>
@@ -95,7 +95,7 @@
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
             [franceStats]="franceStats.value.national.total"
             [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}"
-            (updateMapEvent)="onUpdateMapEvent($event)">
+           >
           </app-coronavirus-stats>
           </ng-container>
 
@@ -117,7 +117,7 @@
               <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
                 [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total"
-                [selectedTypeMap]="selectedTypeMap"></app-coronavirus-map>
+                ></app-coronavirus-map>
             </div>
             <div class="column is-spaced">
               <app-coronavirus-table [detailedStats]="selectedDivisionMap === 'regionFrance' ?

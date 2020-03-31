@@ -1,45 +1,16 @@
-.notification {
-  &.active-map {
-    cursor: pointer;
-  }
-
-}
-
 .increase {
   font-size: 0.6em;
   font-weight: normal;
 }
 
-.is-warning {
-  &:hover {
-    background-color: orange;
-  }
-}
-
-.is-danger {
-  &:hover {
-    background-color: red;
-  }
-}
-
-.is-success {
-  &:hover {
-    background-color: #19d570;
-  }
-}
-
 .reanimation {
   background-color: #E95D0C;
   color: white;
-  &:hover {
-    background-color: #d25106;
-  }
+
 }
 
 .hospital {
   background-color: #F17D07;
   color: white;
-  &:hover {
-    background-color: #f17307;
-  }
+
 }

@@ -1,3 +1,12 @@
+<div class="radio-buttons">
+  <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">
+    <mat-radio-button value="cases" *ngIf="selectedCountry.country !== 'France'">Confirmés</mat-radio-button>
+    <mat-radio-button value="hospital" *ngIf="selectedCountry.country === 'France'">En hospitalisation</mat-radio-button>
+    <mat-radio-button value="reanimation" *ngIf="selectedCountry.country === 'France'">En réanimation</mat-radio-button>
+    <mat-radio-button value="deaths">Décès</mat-radio-button>
+    <mat-radio-button value="recovered">Guéris</mat-radio-button>
+  </mat-radio-group>
+</div>
 <div class="content is-spaced">
   <div #chartElement id="chart-map" style="width: 100%; height: 60vh"></div>
 </div>

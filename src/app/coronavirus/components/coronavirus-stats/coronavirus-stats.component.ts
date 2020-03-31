@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-coronavirus-stats',
@@ -15,18 +15,9 @@ export class CoronavirusStatsComponent implements OnInit {
   @Input() selectedDepartment;
   @Input() lastUpdate;
 
-  @Output() readonly updateMapEvent: EventEmitter<string> = new EventEmitter<string>(true);
-
   constructor() {
   }
 
   ngOnInit(): void {
-  }
-
-  updateMap(type: string): void {
-    if (this.selectedCountry.country === 'France' && type === 'cases') {
-      return ;
-    }
-    this.updateMapEvent.emit(type);
   }
 }
