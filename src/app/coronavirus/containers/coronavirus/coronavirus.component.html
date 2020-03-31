@@ -193,7 +193,7 @@
 
 <!-- Graph Footer-->
 <div class="content" *ngIf="(data$ | loading | async) as data">
-  <ng-container *ngIf="isBrowser &&  selectedCountry.country !== 'Monde' && !selectedDepartment && !selectedRegion">
+  <ng-container *ngIf="isBrowser && !selectedDepartment && !selectedRegion">
     <h1 class="title is-spaced">L'avancée du coronavirus sur les 15 derniers jours</h1>
     <div class="columns" *ngIf="selectedCountry.country === 'Monde'">
       <ng-container *ngIf="data.value">
@@ -218,8 +218,8 @@
     <ng-container *ngIf="data.loading">
       <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
     </ng-container>
-    <div class="columns">
-      <div class="column">
+    <div class="columns" *ngIf="isBrowser && !selectedDepartment && !selectedRegion">
+      <div class="column" *ngIf="selectedCountry.country !== 'Monde'">
         <ng-container *ngIf="(dataConfirmed$ | async) as dataConfirmed">
           <ng-container *ngIf="(dataRecovered$ | async) as dataRecovered">
             <ng-container *ngIf="(dataDeaths$ | async) as dataDeaths">

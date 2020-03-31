@@ -12,6 +12,6 @@ img {
   height: 60px;
   border: 2px solid lightgrey;
   &.small {
-    width: 400px;
+    max-width: 400px;
   }
 }

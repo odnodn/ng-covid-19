@@ -19,6 +19,7 @@ export class CoronavirusStatsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.franceStats);
   }
 
   updateMap(type: string): void {
