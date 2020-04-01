@@ -1,7 +1,13 @@
-<div class="chart-wrapper">
+<div class="chart-wrapper" *ngIf="!dataFrance">
   <ngx-charts-line-chart [legendPosition]="'below'" [scheme]="colorScheme" [legend]="true"
     [legendTitle]="'Cas de coronavirus'" [xAxis]="true" [yAxis]="true" [results]="chartDatas" [showRefLines]="true"
     [xAxisLabel]="true" [yAxisLabel]="true">
   </ngx-charts-line-chart>
-
 </div>
+<div class="content" [style.display]="!dataFrance ? 'none' : 'block'">
+  <h2 class="title">
+    Évolution des patients du Coronavirus COVID-19
+  </h2>
+  <div #chartElement id="chart-line"></div>
+</div>
+

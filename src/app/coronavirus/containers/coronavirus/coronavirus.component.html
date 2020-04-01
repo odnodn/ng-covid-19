@@ -1,12 +1,8 @@
 <!-- Select -->
-<app-coronavirus-select
-[selectedCountry]="selectedCountry"
-[selectedRegion]="selectedRegion"
-[selectedDepartment]="selectedDepartment"
-(selectCountryEvent)="onSelectCountry($event)"
-(selectRegionEvent)="onSelectRegion($event)"
-(selectDepartmentEvent)="onSelectDepartment($event)"
-></app-coronavirus-select>
+<app-coronavirus-select [selectedCountry]="selectedCountry" [selectedRegion]="selectedRegion"
+  [selectedDepartment]="selectedDepartment" (selectCountryEvent)="onSelectCountry($event)"
+  (selectRegionEvent)="onSelectRegion($event)" (selectDepartmentEvent)="onSelectDepartment($event)">
+</app-coronavirus-select>
 
 <!-- Description -->
 <div class="content is-spaced">
@@ -31,7 +27,7 @@
     <!-- World Container-->
     <ng-container *ngIf="selectedCountry.country !== 'France'">
       <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: selectedCountry.code"
-        [selectedCountry]="selectedCountry" ></app-coronavirus-stats>
+        [selectedCountry]="selectedCountry"></app-coronavirus-stats>
       <div class="columns">
         <div class="column is-two-thirds" *ngIf="isBrowser">
           <ng-container *ngIf="selectedCountry.country === 'Monde'">
@@ -41,8 +37,7 @@
           </ng-container>
           <ng-container *ngIf="selectedCountry.country !== 'Monde'">
             <app-coronavirus-map [selectedDivisionMap]="'world'" [selectedCountry]="selectedCountry"
-              [detailedStats]="detailedStats.value | countryfilter: selectedCountry.code"
-   >
+              [detailedStats]="detailedStats.value | countryfilter: selectedCountry.code">
             </app-coronavirus-map>
           </ng-container>
         </div>
@@ -82,24 +77,25 @@
       <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
         <ng-container *ngIf="franceStats.value">
           <ng-container *ngIf="selectedRegion">
-            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
-            [franceStats]="franceStats.value.region.total | countryfilter: selectedRegion.code" [selectedRegion]="selectedRegion" >
-          </app-coronavirus-stats>
+            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
+              [mainStats]="detailedStats.value | countryfilter: 'FR'"
+              [franceStats]="franceStats.value.region.total | countryfilter: selectedRegion.code"
+              [selectedRegion]="selectedRegion">
+            </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="selectedDepartment">
-            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
-            [franceStats]="franceStats.value.department.total | countryfilter: selectedDepartment.code" [selectedRegion]="selectedDepartment">
-          </app-coronavirus-stats>
+            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
+              [mainStats]="detailedStats.value | countryfilter: 'FR'"
+              [franceStats]="franceStats.value.department.total | countryfilter: selectedDepartment.code"
+              [selectedRegion]="selectedDepartment">
+            </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="detailedStats.value | countryfilter: 'FR'"
-            [franceStats]="franceStats.value.national.total"
-            [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}"
-           >
-          </app-coronavirus-stats>
+            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
+              [mainStats]="detailedStats.value | countryfilter: 'FR'" [franceStats]="franceStats.value.national.total"
+              [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}">
+            </app-coronavirus-stats>
           </ng-container>
-
-
 
           <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
             <div class="column is-spaced" *ngIf="isBrowser">
@@ -116,27 +112,45 @@
 
               <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
                 [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-              franceStats.value.region.total : franceStats.value.department.total"
-                ></app-coronavirus-map>
+              franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
             </div>
             <div class="column is-spaced">
               <app-coronavirus-table [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-              franceStats.value.region.total : franceStats.value.department.total"
-                [selectedCountry]="selectedCountry">
+              franceStats.value.region.total : franceStats.value.department.total" [selectedCountry]="selectedCountry">
               </app-coronavirus-table>
             </div>
           </div>
+          <div class="columns" *ngIf="selectedDepartment">
+
+          </div>
           <div class="columns">
+            <div class="column is-spaced is-half">
+              <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+                <app-coronavirus-graph [dataFrance]="franceStats.value.timeline.national.total"></app-coronavirus-graph>
+              </ng-container>
+              <ng-container *ngIf="selectedRegion">
+                <app-coronavirus-graph
+                  [dataFrance]="franceStats.value.timeline.region | countryfilter: selectedRegion.code">
+                </app-coronavirus-graph>
+              </ng-container>
+              <ng-container *ngIf="selectedDepartment">
+                <app-coronavirus-graph
+                  [dataFrance]="franceStats.value.timeline.department | countryfilter: selectedDepartment.code">
+                </app-coronavirus-graph>
+              </ng-container>
+            </div>
             <div class="column is-spaced" *ngIf="isBrowser">
               <ng-container *ngIf="selectedRegion">
-                <app-coronavirus-chart-gender [dataGender]="{men: (franceStats.value.region.men | countryfilter: selectedRegion.code), women: (franceStats.value.region.women | countryfilter: selectedRegion.code)}">
+                <app-coronavirus-chart-gender
+                  [dataGender]="{men: (franceStats.value.region.men | countryfilter: selectedRegion.code), women: (franceStats.value.region.women | countryfilter: selectedRegion.code)}">
                 </app-coronavirus-chart-gender>
               </ng-container>
               <ng-container *ngIf="selectedDepartment">
-                <app-coronavirus-chart-gender [dataGender]="{men: (franceStats.value.department.men | countryfilter: selectedDepartment.code), women: (franceStats.value.department.women | countryfilter: selectedDepartment.code)}">
+                <app-coronavirus-chart-gender
+                  [dataGender]="{men: (franceStats.value.department.men | countryfilter: selectedDepartment.code), women: (franceStats.value.department.women | countryfilter: selectedDepartment.code)}">
                 </app-coronavirus-chart-gender>
               </ng-container>
-              <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+              <ng-container *ngIf="!selectedRegion && !selectedDepartment && selectedCountry.country === 'France'">
                 <app-coronavirus-chart-gender [dataGender]="franceStats.value.national">
                 </app-coronavirus-chart-gender>
               </ng-container>
@@ -145,18 +159,23 @@
               <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
                 <ng-container *ngIf="franceStatsByAge.value">
                   <ng-container *ngIf="selectedRegion">
-                    <app-coronavirus-chart-age [dataAge]="(franceStatsByAge.value.region | countryfilter: selectedRegion.code)"></app-coronavirus-chart-age>
+                    <app-coronavirus-chart-age
+                      [dataAge]="(franceStatsByAge.value.region | countryfilter: selectedRegion.code)">
+                    </app-coronavirus-chart-age>
                   </ng-container>
                   <ng-container *ngIf="selectedDepartment">
-                    <app-coronavirus-chart-age [dataAge]="(franceStatsByAge.value.department | countryfilter: selectedDepartment.code)"></app-coronavirus-chart-age>
+                    <app-coronavirus-chart-age
+                      [dataAge]="(franceStatsByAge.value.department | countryfilter: selectedDepartment.code)">
+                    </app-coronavirus-chart-age>
                   </ng-container>
                   <ng-container *ngIf="!selectedRegion && !selectedDepartment">
                     <app-coronavirus-chart-age [dataAge]="franceStatsByAge.value.national"></app-coronavirus-chart-age>
-                    </ng-container>
+                  </ng-container>
                 </ng-container>
               </ng-container>
             </div>
           </div>
+
         </ng-container>
         <ng-container *ngIf="!(franceStats.value) && !franceStats.loading">
           <article class="message is-danger is-spaced">
@@ -193,7 +212,7 @@
 
 <!-- Graph Footer-->
 <div class="content" *ngIf="(data$ | loading | async) as data">
-  <ng-container *ngIf="isBrowser && !selectedDepartment && !selectedRegion">
+  <ng-container *ngIf="isBrowser && !selectedDepartment && !selectedRegion && selectedCountry.country !== 'France'">
     <h1 class="title is-spaced">L'avancée du coronavirus sur les 15 derniers jours</h1>
     <div class="columns" *ngIf="selectedCountry.country === 'Monde'">
       <ng-container *ngIf="data.value">
@@ -219,7 +238,7 @@
       <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
     </ng-container>
     <div class="columns" *ngIf="isBrowser && !selectedDepartment && !selectedRegion">
-      <div class="column" *ngIf="selectedCountry.country !== 'Monde'">
+      <div class="column" *ngIf="selectedCountry.country !== 'Monde' ">
         <ng-container *ngIf="(dataConfirmed$ | async) as dataConfirmed">
           <ng-container *ngIf="(dataRecovered$ | async) as dataRecovered">
             <ng-container *ngIf="(dataDeaths$ | async) as dataDeaths">

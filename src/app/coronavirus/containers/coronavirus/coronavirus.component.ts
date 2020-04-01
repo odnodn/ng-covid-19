@@ -8,6 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
+import { CoronavirusFranceAgeService } from '@coronavirus/services/coronavirus-france-age.service';
 @Component({
   selector: 'app-coronavirus',
   templateUrl: './coronavirus.component.html',
@@ -35,6 +36,7 @@ export class CoronavirusComponent implements OnInit {
   constructor(
     private readonly coronavirusService: CoronavirusService,
     private readonly coronavirusFranceService: CoronavirusFranceService,
+    private readonly coronavirusFranceAgeService: CoronavirusFranceAgeService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly title: Title,
@@ -183,7 +185,7 @@ export class CoronavirusComponent implements OnInit {
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
 
     /* Age */
-    this.franceStatsByAge$ = this.coronavirusFranceService.getDataByAgeFrance();
+    this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge();
   }
 
   private initCountryDatas(): void {

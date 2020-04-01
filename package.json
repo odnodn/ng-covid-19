@@ -5,15 +5,14 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build --prod",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng build --prod && ng run ng-coronavirus:server:production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run ng-coronavirus:serve-ssr",
     "serve:ssr": "node dist/ng-coronavirus/server/main.js",
     "build:ssr": "ng build --prod && ng run ng-coronavirus:server:production",
-    "prerender": "ng run ng-coronavirus:prerender",
-    "postinstall": "npm run build:ssr"
+    "prerender": "ng run ng-coronavirus:prerender"
   },
   "private": true,
   "dependencies": {

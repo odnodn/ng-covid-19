@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import * as Papa from 'papaparse';
 import { map } from 'rxjs/operators';
 import { FRANCE_DEPS } from '@coronavirus/constants/france.constants';
+import { DatePipe } from '@angular/common';
 
 /* To Rework */
 @Injectable({
@@ -13,8 +14,8 @@ import { FRANCE_DEPS } from '@coronavirus/constants/france.constants';
 export class CoronavirusFranceService {
 
   private readonly urlCSVDepartment = 'https://www.data.gouv.fr/fr/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7';
-  private readonly urlCSVAge = 'https://www.data.gouv.fr/fr/datasets/r/eceb9fb4-3ebc-4da3-828d-f5939712600a';
-  constructor(private readonly httpClient: HttpClient) { }
+
+  constructor(private readonly httpClient: HttpClient, private datePipe: DatePipe) { }
 
   getData(): Observable<any> {
     const httpOptions = {
@@ -23,66 +24,158 @@ export class CoronavirusFranceService {
     };
     return this.httpClient.get(`${this.urlCSVDepartment}`, httpOptions).pipe(
       map((csv: any) => {
-        const data = Papa.parse(csv).data;
-        const dataToday = data.filter((row) => row[2] === data[data.length - 2][2]);
-        const departmentStat: any = {
-          total: [],
-          men: [],
-          women: []
-        };
-        const mapValue = {
-          0: 'total',
-          1: 'men',
-          2: 'women'
-        };
-        const stat = {
-          hospital: 0,
-          reanimation: 0,
-          recovered: 0,
-          deaths: 0
-        };
-        const nationalStat: any = {
-          total: stat,
-          men: stat,
-          women: stat
-        };
-        dataToday.forEach((itemData) => {
-          const departementItemStat = {
-            hospital:  Number(itemData[3]),
-            reanimation: Number(itemData[4]),
-            recovered: Number(itemData[5]),
-            deaths: Number(itemData[6]),
-            code: itemData[0],
-            name: FRANCE_DEPS.find((dep) => dep.code.toString() === itemData[0]).name,
-            region: FRANCE_DEPS.find((dep) => dep.code.toString() === itemData[0]).region
-          };
-          nationalStat[mapValue[itemData[1]]] = {
-            hospital: nationalStat[mapValue[itemData[1]]].hospital + Number(itemData[3]),
-            reanimation:  nationalStat[mapValue[itemData[1]]].reanimation + Number(itemData[4]),
-            recovered:  nationalStat[mapValue[itemData[1]]].recovered + Number(itemData[5]),
-            deaths: nationalStat[mapValue[itemData[1]]].deaths + Number(itemData[6]),
-          };
-          departmentStat[mapValue[itemData[1]]].push(departementItemStat);
-        });
-        return {
-          national: nationalStat,
-          department: departmentStat,
-          region: this.getDataByRegion(departmentStat),
+        const data = Papa.parse(csv).data; // decode csv
+        const lastDate = data[data.length - 2][2]; // get last date
+        /* Department */
+        const timelineDepartmentStat = this.getTimelineDepartmentStat(data);
+        const lastDepartmentStat = this.getLastDepartmentStat(timelineDepartmentStat, lastDate);
+
+        /* Region */
+        const timelineRegionStat = this.getTimelineRegionStat(timelineDepartmentStat);
+        const lastRegionStat = this.getLastRegionStat(lastDepartmentStat);
+
+        /* National */
+        const timelineNationalStat = this.getTimelineNationalStat(timelineDepartmentStat);
+        const lastNationalStat = this.getLastNationalStat(timelineNationalStat);
+
+        const returnValue = {
+          timeline: {
+            national: timelineNationalStat,
+            department: timelineDepartmentStat.filter((item) => item.type === 'total'),
+            region: timelineRegionStat
+          },
+          national: lastNationalStat,
+          department: lastDepartmentStat,
+          region: lastRegionStat,
           lastUpdate: data[data.length - 2][2]
         };
+        return returnValue;
       }));
   }
 
-  getDataByRegion(data: any): any {
+  getLastDepartmentStat(timelineDepartmentStat: any, lastDate: string) {
+    const lastDepartmentStat = {
+      total: timelineDepartmentStat.filter((timelineItem) => timelineItem.date === lastDate && timelineItem.type === 'total'),
+      men: timelineDepartmentStat.filter((timelineItem) => timelineItem.date === lastDate && timelineItem.type === 'men'),
+      women: timelineDepartmentStat.filter((timelineItem) => timelineItem.date === lastDate && timelineItem.type === 'women')
+    };
+    return (lastDepartmentStat);
+  }
+
+  getTimelineDepartmentStat(data: any): any[] {
+    const timelineDepartmentStat = [];
+    const stat = {
+      hospital: 0,
+      reanimation: 0,
+      recovered: 0,
+      deaths: 0
+    };
+    const departmentStat = {
+      total: stat,
+      men: stat,
+      women: stat
+    };
+    const mapValue = {
+      0: 'total',
+      1: 'men',
+      2: 'women'
+    };
+    data.forEach((item) => {
+      if (mapValue[item[1]]) {
+        const department = FRANCE_DEPS.find((dep) => dep.code === item[0]);
+        departmentStat[mapValue[item[1]]] = {
+          hospital: Number(item[3]),
+          reanimation: Number(item[4]),
+          recovered: Number(item[5]),
+          deaths: Number(item[6]),
+          region: department ? department.region : null,
+          code: item[0],
+          date: item[2],
+          type: mapValue[item[1]]
+        };
+        timelineDepartmentStat.push(departmentStat[mapValue[item[1]]]);
+      }
+    });
+    return (timelineDepartmentStat);
+  }
+
+  getLastNationalStat(timelineNationalStat: any) {
+    const lastElement = timelineNationalStat.total.length - 1;
+    const beforeLastElement = timelineNationalStat.total.length - 2;
+    const nationalStat = {
+      total: {
+        hospital: timelineNationalStat.total[lastElement].hospital,
+        todayHospital: timelineNationalStat.total[lastElement].hospital - timelineNationalStat.total[beforeLastElement].hospital,
+        reanimation: timelineNationalStat.total[lastElement].reanimation,
+        todayReanimation: timelineNationalStat.total[lastElement].reanimation - timelineNationalStat.total[beforeLastElement].reanimation,
+        recovered: timelineNationalStat.total[lastElement].recovered,
+        todayRecovered: timelineNationalStat.total[lastElement].recovered - timelineNationalStat.total[beforeLastElement].recovered,
+        deaths: timelineNationalStat.total[lastElement].deaths,
+        todayDeaths: timelineNationalStat.total[lastElement].deaths - timelineNationalStat.total[beforeLastElement].deaths
+      },
+      men: {
+        hospital: timelineNationalStat.men[lastElement].hospital,
+        todayHospital: timelineNationalStat.men[lastElement].hospital - timelineNationalStat.men[beforeLastElement].hospital,
+        reanimation: timelineNationalStat.men[lastElement].reanimation,
+        todayReanimation: timelineNationalStat.men[lastElement].reanimation - timelineNationalStat.men[beforeLastElement].reanimation,
+        recovered: timelineNationalStat.men[lastElement].recovered,
+        todayRecovered: timelineNationalStat.men[lastElement].recovered - timelineNationalStat.men[beforeLastElement].recovered,
+        deaths: timelineNationalStat.men[lastElement].deaths,
+        todayDeaths: timelineNationalStat.men[lastElement].deaths - timelineNationalStat.men[beforeLastElement].deaths
+      },
+      women: {
+        hospital: timelineNationalStat.women[lastElement].hospital,
+        todayHospital: timelineNationalStat.women[lastElement].hospital - timelineNationalStat.women[beforeLastElement].hospital,
+        reanimation: timelineNationalStat.women[lastElement].reanimation,
+        todayReanimation: timelineNationalStat.women[lastElement].reanimation - timelineNationalStat.women[beforeLastElement].reanimation,
+        recovered: timelineNationalStat.women[lastElement].recovered,
+        todayRecovered: timelineNationalStat.women[lastElement].recovered - timelineNationalStat.women[beforeLastElement].recovered,
+        deaths: timelineNationalStat.women[lastElement].deaths,
+        todayDeaths: timelineNationalStat.women[lastElement].deaths - timelineNationalStat.women[beforeLastElement].deaths
+      }
+    };
+    return (nationalStat);
+  }
+
+  getTimelineNationalStat(timelineDepartmentStat: any): any {
+    const statTotal = {
+      total: [],
+      men: [],
+      women: []
+    };
+    const types: any[] = ['total', 'men', 'women'];
+    types.forEach((typeItem) => {
+      const start = new Date(timelineDepartmentStat[0].date);
+      const end = new Date(timelineDepartmentStat[timelineDepartmentStat.length - 1].date);
+      let loop = new Date(start);
+      while (loop <= end) {
+        const dataToday = timelineDepartmentStat.filter((row) => row.date ===
+          this.datePipe.transform(loop, 'yyyy-MM-dd') && row.type === typeItem);
+        const stat = {
+          date: this.datePipe.transform(loop, 'yyyy-MM-dd'),
+          hospital: dataToday.reduce((result, item) => item.hospital + result, 0),
+          reanimation: dataToday.reduce((result, item) => item.reanimation + result, 0),
+          recovered: dataToday.reduce((result, item) => item.recovered + result, 0),
+          deaths: dataToday.reduce((result, item) => item.deaths + result, 0),
+        };
+        statTotal[typeItem].push(stat);
+        const newDate = loop.setDate(loop.getDate() + 1);
+        loop = new Date(newDate);
+      }
+    });
+    return statTotal;
+  }
+
+  getLastRegionStat(lastDepartmentStat: any): any {
     const regionDatas = {
       total: [],
       men: [],
       women: []
     };
     FRANCE_REGIONS.forEach((regionItem) => {
-      const total = data.total.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
-      const men = data.men.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
-      const women = data.women.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
+      const total = lastDepartmentStat.total.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
+      const men = lastDepartmentStat.men.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
+      const women = lastDepartmentStat.women.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
       const itemTotal = {
         name: regionItem.name,
         code: regionItem.code,
@@ -114,178 +207,30 @@ export class CoronavirusFranceService {
     return (regionDatas);
   }
 
-  getYesterdayDatas(data: any): any {
-    const dataYesterday = data.filter((row) => row[2] === data[data.length - 310][2]);
-    const statsYesterday = {
-      hospital: 0,
-      reanimation: 0,
-      recovered: 0,
-      deaths: 0,
-      date: data[data.length - 310][2]
-    };
-    dataYesterday.forEach((itemData) => {
-      if (itemData[1] === '0') { // All
-        statsYesterday.hospital = statsYesterday.hospital + Number(itemData[3]);
-        statsYesterday.reanimation = statsYesterday.reanimation + Number(itemData[4]);
-        statsYesterday.recovered = statsYesterday.recovered + Number(itemData[5]);
-        statsYesterday.deaths = statsYesterday.deaths + Number(itemData[6]);
+  getTimelineRegionStat(timelineDepartmentStat: any): any[] {
+    const statTotal = [];
+    FRANCE_REGIONS.forEach((regionItem) => {
+      const start = new Date(timelineDepartmentStat[0].date);
+      const end = new Date(timelineDepartmentStat[timelineDepartmentStat.length - 1].date);
+      let loop = new Date(start);
+      while (loop <= end) {
+        const total = timelineDepartmentStat.filter((statsDepItem) =>
+          statsDepItem.region?.code === regionItem.code &&
+          statsDepItem.date === this.datePipe.transform(loop, 'yyyy-MM-dd') && statsDepItem.type === 'total');
+        const itemTotal = {
+          code: regionItem.code,
+          deaths: total.reduce((result, obj) => obj.deaths + result, 0),
+          hospital: total.reduce((result, obj) => obj.hospital + result, 0),
+          reanimation: total.reduce((result, obj) => obj.reanimation + result, 0),
+          recovered: total.reduce((result, obj) => obj.recovered + result, 0),
+          date: this.datePipe.transform(loop, 'yyyy-MM-dd')
+        };
+        statTotal.push(itemTotal);
+        const newDate = loop.setDate(loop.getDate() + 1);
+        loop = new Date(newDate);
       }
     });
-    return statsYesterday;
+    return (statTotal);
   }
 
-  getDataByAgeFrance(): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({}),
-      responseType: 'text' as 'json'
-    };
-
-    return this.httpClient.get(`${this.urlCSVAge}`, httpOptions).pipe(
-      map((csv: any) => {
-        const data = Papa.parse(csv).data;
-        const departmentStat: any = [];
-        FRANCE_DEPS.forEach((depItem) => {
-          const departmentO = data.filter((dataItem) => dataItem[0] === depItem.code && dataItem[2] === '0');
-          const departmentA = data.filter((dataItem) => dataItem[0] === depItem.code && dataItem[2] === 'A');
-          const departmentB = data.filter((dataItem) => dataItem[0] === depItem.code && dataItem[2] === 'B' );
-          const departmentC = data.filter((dataItem) => dataItem[0] === depItem.code && dataItem[2] === 'C' );
-          const departmentD = data.filter((dataItem) => dataItem[0] === depItem.code && dataItem[2] === 'D' );
-          const departmentE = data.filter((dataItem) => dataItem[0] === depItem.code && dataItem[2] === 'E' );
-          const itemTotal = {
-            name: depItem.name,
-            code: depItem.code,
-            region: depItem.region,
-            0: {
-              passage: departmentO.reduce((result, obj) => Number(obj[3]) + result, 0),
-              hospital: departmentO.reduce((result, obj) => Number(obj[5]) + result, 0),
-              medical: departmentO.reduce((result, obj) => Number(obj[12]) + result, 0),
-              ageRange: 'ALL'
-            },
-            A: {
-              passage: departmentA.reduce((result, obj) => Number(obj[3]) + result, 0),
-              hospital: departmentA.reduce((result, obj) => Number(obj[5]) + result, 0),
-              medical: departmentA.reduce((result, obj) => Number(obj[12]) + result, 0),
-              ageRange: '-15'
-            },
-            B: {
-              passage: departmentB.reduce((result, obj) => Number(obj[3]) + result, 0),
-              hospital: departmentB.reduce((result, obj) => Number(obj[5]) + result, 0),
-              medical: departmentB.reduce((result, obj) => Number(obj[12]) + result, 0),
-              ageRange: '15-44'
-            },
-            C: {
-              passage: departmentC.reduce((result, obj) => Number(obj[3]) + result, 0),
-              hospital: departmentC.reduce((result, obj) => Number(obj[5]) + result, 0),
-              medical: departmentC.reduce((result, obj) => Number(obj[12]) + result, 0),
-              ageRange: '45-64'
-            },
-            D: {
-              passage: departmentD.reduce((result, obj) => Number(obj[3]) + result, 0),
-              hospital: departmentD.reduce((result, obj) => Number(obj[5]) + result, 0),
-              medical: departmentD.reduce((result, obj) => Number(obj[12]) + result, 0),
-              ageRange: '65-74'
-            },
-            E: {
-              passage: departmentE.reduce((result, obj) => Number(obj[3]) + result, 0),
-              hospital: departmentE.reduce((result, obj) => Number(obj[5]) + result, 0),
-              medical: departmentE.reduce((result, obj) => Number(obj[12]) + result, 0),
-              ageRange: '75+'
-            }
-          };
-          departmentStat.push(itemTotal);
-        });
-        const nationalStat = {
-          0: {
-            ageRange: 'ALL',
-            passage: departmentStat.reduce((result, obj) => Number(obj['0'].passage) + result, 0),
-            hospital: departmentStat.reduce((result, obj) => Number(obj['0'].hospital) + result, 0),
-            medical: departmentStat.reduce((result, obj) => Number(obj['0'].medical) + result, 0),
-          },
-          A: {
-            ageRange: '-15',
-            passage: departmentStat.reduce((result, obj) => Number(obj.A.passage) + result, 0),
-            hospital: departmentStat.reduce((result, obj) => Number(obj.A.hospital) + result, 0),
-            medical: departmentStat.reduce((result, obj) => Number(obj.A.medical) + result, 0),
-          },
-          B: {
-            ageRange: '15-44',
-            passage: departmentStat.reduce((result, obj) => Number(obj.B.passage) + result, 0),
-            hospital: departmentStat.reduce((result, obj) => Number(obj.B.hospital) + result, 0),
-            medical: departmentStat.reduce((result, obj) => Number(obj.B.medical) + result, 0),
-          },
-          C: {
-            ageRange: '45-64',
-            passage: departmentStat.reduce((result, obj) => Number(obj.C.passage) + result, 0),
-            hospital: departmentStat.reduce((result, obj) => Number(obj.C.hospital) + result, 0),
-            medical: departmentStat.reduce((result, obj) => Number(obj.C.medical) + result, 0),
-          },
-          D: {
-            ageRange: '65-74',
-            passage: departmentStat.reduce((result, obj) => Number(obj.D.passage) + result, 0),
-            hospital: departmentStat.reduce((result, obj) => Number(obj.D.hospital) + result, 0),
-            medical: departmentStat.reduce((result, obj) => Number(obj.D.medical) + result, 0),
-          },
-          E: {
-            ageRange: '75+',
-            passage: departmentStat.reduce((result, obj) => Number(obj.E.passage) + result, 0),
-            hospital: departmentStat.reduce((result, obj) => Number(obj.E.hospital) + result, 0),
-            medical: departmentStat.reduce((result, obj) => Number(obj.E.medical) + result, 0),
-          }
-        };
-        return {
-          national: nationalStat,
-          department: departmentStat,
-          region: this.getDataByAgeRegionFrance(departmentStat)
-        };
-      }));
-  }
-
-  getDataByAgeRegionFrance(data: any): any {
-    const regionStats = [];
-    FRANCE_REGIONS.forEach((regionItem) => {
-      const departments = data.filter((dataItem) => dataItem.region.code === regionItem.code);
-      const regionStat = {
-        name: regionItem.name,
-        code: regionItem.code,
-        0: {
-          ageRange: 'ALL',
-          passage: departments.reduce((result, obj) => Number(obj['0'].passage) + result, 0),
-          hospital: departments.reduce((result, obj) => Number(obj['0'].hospital) + result, 0),
-          medical: departments.reduce((result, obj) => Number(obj['0'].medical) + result, 0),
-        },
-        A: {
-          ageRange: '-15',
-          passage: departments.reduce((result, obj) => Number(obj.A.passage) + result, 0),
-          hospital: departments.reduce((result, obj) => Number(obj.A.hospital) + result, 0),
-          medical: departments.reduce((result, obj) => Number(obj.A.medical) + result, 0),
-        },
-        B: {
-          ageRange: '15-44',
-          passage: departments.reduce((result, obj) => Number(obj.B.passage) + result, 0),
-          hospital: departments.reduce((result, obj) => Number(obj.B.hospital) + result, 0),
-          medical: departments.reduce((result, obj) => Number(obj.B.medical) + result, 0),
-        },
-        C: {
-          ageRange: '45-64',
-          passage: departments.reduce((result, obj) => Number(obj.C.passage) + result, 0),
-          hospital: departments.reduce((result, obj) => Number(obj.C.hospital) + result, 0),
-          medical: departments.reduce((result, obj) => Number(obj.C.medical) + result, 0),
-        },
-        D: {
-          ageRange: '65-74',
-          passage: departments.reduce((result, obj) => Number(obj.D.passage) + result, 0),
-          hospital: departments.reduce((result, obj) => Number(obj.D.hospital) + result, 0),
-          medical: departments.reduce((result, obj) => Number(obj.D.medical) + result, 0),
-        },
-        E: {
-          ageRange: '75+',
-          passage: departments.reduce((result, obj) => Number(obj.E.passage) + result, 0),
-          hospital: departments.reduce((result, obj) => Number(obj.E.hospital) + result, 0),
-          medical: departments.reduce((result, obj) => Number(obj.E.medical) + result, 0),
-        }
-      };
-      regionStats.push(regionStat);
-    });
-    return regionStats;
-  }
 }

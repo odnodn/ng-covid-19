@@ -13,8 +13,7 @@
     </p>
     <div class="tile is-ancestor">
       <div class="tile is-parent" *ngIf="selectedCountry">
-        <article class="tile is-child notification is-warning"
-        >
+        <article class="tile is-child notification is-warning">
           <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
             <span class="increase">
               {{mainStats.todayCases | symbolNumber }}
@@ -55,7 +54,7 @@
             <ng-container *ngIf="franceStats">
               {{franceStats.deaths | number: '' :'fr-FR'}}
             </ng-container>
-            <span class="increase">
+            <span class="increase" *ngIf="selectedCountry">
               {{mainStats.todayDeaths | symbolNumber}}
             </span>
           </p>

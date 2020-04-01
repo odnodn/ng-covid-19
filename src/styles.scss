@@ -15,6 +15,10 @@ html, body { height: 100%; }
   margin-right: auto;
 }
 
+.mat-radio-button {
+  font-family: inherit;
+}
+
 .chart-legend .legend-label {
   color: black !important;
 }
@@ -91,6 +95,9 @@ $success-invert: white;
   }
 }
 
+.mat-table {
+  font-family: inherit;
+}
 
 .reanimation {
   color: #E95D0C;

@@ -36,6 +36,7 @@ export class CoronavirusChartGenderComponent implements OnInit {
     pieSeries.alignLabels = false;
     pieSeries.labels.template.radius = am4core.percent(-40);
     pieSeries.labels.template.fill = am4core.color('white');
+    pieSeries.labels.template.fontSize = 13;
     pieSeries.ticks.template.disabled = true;
   }
 
