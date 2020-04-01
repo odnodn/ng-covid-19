@@ -117,7 +117,7 @@
               </app-coronavirus-table>
             </div>
           </div>
-          <div class="columns">
+          <div class="columns" *ngIf="isBrowser">
             <div class="column is-spaced is-half">
               <ng-container *ngIf="!selectedRegion && !selectedDepartment">
                 <app-coronavirus-graph [dataFrance]="franceStats.value.timeline.national.total"></app-coronavirus-graph>
