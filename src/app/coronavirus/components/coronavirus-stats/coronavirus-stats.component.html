@@ -50,13 +50,17 @@
           <p class="title">
             <ng-container *ngIf="!franceStats">
               {{mainStats.deaths | number: '' :'fr-FR'}}
+              <span class="increase" >
+                {{mainStats.todayDeaths | symbolNumber}}
+              </span>
             </ng-container>
             <ng-container *ngIf="franceStats">
               {{franceStats.deaths | number: '' :'fr-FR'}}
+              <span class="increase" *ngIf="selectedCountry">
+                {{franceStats.todayDeaths | symbolNumber}}
+              </span>
             </ng-container>
-            <span class="increase" *ngIf="selectedCountry">
-              {{mainStats.todayDeaths | symbolNumber}}
-            </span>
+
           </p>
           <p class="subtitle">Morts</p>
         </article>

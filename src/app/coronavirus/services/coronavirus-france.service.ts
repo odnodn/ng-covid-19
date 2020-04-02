@@ -31,7 +31,7 @@ export class CoronavirusFranceService {
         const lastDepartmentStat = this.getLastDepartmentStat(timelineDepartmentStat, lastDate);
         /* Region */
         const timelineRegionStat = this.getTimelineRegionStat(timelineDepartmentStat);
-        const lastRegionStat = this.getLastRegionStat(timelineDepartmentStat);
+        const lastRegionStat = this.getLastRegionStat(timelineDepartmentStat, lastDate);
         /* National */
         const timelineNationalStat = this.getTimelineNationalStat(timelineDepartmentStat);
         const lastNationalStat = this.getLastNationalStat(timelineNationalStat);
@@ -147,16 +147,16 @@ export class CoronavirusFranceService {
     return statTotal;
   }
 
-  getLastRegionStat(timelineDepartmentStat: any): any {
+  getLastRegionStat(timelineDepartmentStat: any, lastDate: Date): any {
     const regionDatas = {
       total: [],
       men: [],
       women: []
     };
     FRANCE_REGIONS.forEach((regionItem) => {
-      const total = timelineDepartmentStat.total.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code);
-      const men = timelineDepartmentStat.men.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code);
-      const women = timelineDepartmentStat.women.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code);
+      const total = timelineDepartmentStat.total.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code && statsDepItem.date === lastDate);
+      const men = timelineDepartmentStat.men.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code  && statsDepItem.date === lastDate);
+      const women = timelineDepartmentStat.women.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code  && statsDepItem.date === lastDate);
       const itemTotal = {
         code: regionItem.code,
         translation: regionItem.name,
