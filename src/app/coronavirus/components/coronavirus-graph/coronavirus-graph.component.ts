@@ -139,7 +139,7 @@ export class CoronavirusGraphComponent implements OnInit {
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
 
-    this.createSeries(chart, 'date', 'hospital', 'hospitalisation en cours', '#F17D07');
+    this.createSeries(chart, 'date', 'hospital', 'hospitalisations en cours', '#F17D07');
     this.createSeries(chart, 'date', 'reanimation', 'en réanimaton', '#E95D0C');
     this.createSeries(chart, 'date', 'deaths', 'décès', '#f9461c');
     this.createSeries(chart, 'date', 'recovered', 'guéris', '#43D787');

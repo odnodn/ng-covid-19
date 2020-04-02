@@ -77,20 +77,20 @@
           <ng-container *ngIf="selectedRegion">
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
               [mainStats]="detailedStats.value | countryfilter: 'FR'"
-              [franceStats]="franceStats.value.region.total | countryfilter: selectedRegion.code"
+              [franceStats]="franceStats.value.timeline.region | countryfilter: selectedRegion.code"
               [selectedRegion]="selectedRegion">
             </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="selectedDepartment">
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
               [mainStats]="detailedStats.value | countryfilter: 'FR'"
-              [franceStats]="franceStats.value.department.total | countryfilter: selectedDepartment.code"
+              [franceStats]="franceStats.value.timeline.department | countryfilter: selectedDepartment.code"
               [selectedRegion]="selectedDepartment">
             </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="!selectedRegion && !selectedDepartment">
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
-              [mainStats]="detailedStats.value | countryfilter: 'FR'" [franceStats]="franceStats.value.national.total"
+              [mainStats]="detailedStats.value | countryfilter: 'FR'" [franceStats]="franceStats.value.timeline.national"
               [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}">
             </app-coronavirus-stats>
           </ng-container>
@@ -120,7 +120,7 @@
           <div class="columns" *ngIf="isBrowser">
             <div class="column is-spaced is-half">
               <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-                <app-coronavirus-graph [dataFrance]="franceStats.value.timeline.national.total"></app-coronavirus-graph>
+                <app-coronavirus-graph [dataFrance]="franceStats.value.timeline.national"></app-coronavirus-graph>
               </ng-container>
               <ng-container *ngIf="selectedRegion">
                 <app-coronavirus-graph

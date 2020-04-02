@@ -56,7 +56,7 @@
             </ng-container>
             <ng-container *ngIf="franceStats">
               {{franceStats.deaths | number: '' :'fr-FR'}}
-              <span class="increase" *ngIf="selectedCountry">
+              <span class="increase" >
                 {{franceStats.todayDeaths | symbolNumber}}
               </span>
             </ng-container>

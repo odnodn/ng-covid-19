@@ -19,5 +19,20 @@ export class CoronavirusStatsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.franceStats) {
+      const lastElement = this.franceStats.length - 1;
+      const beforeLastElement = this.franceStats.length - 2;
+      this.franceStats = {
+        hospital: this.franceStats[lastElement].hospital,
+        todayHospital: this.franceStats[lastElement].hospital - this.franceStats[beforeLastElement].hospital,
+        reanimation: this.franceStats[lastElement].reanimation,
+        todayReanimation: this.franceStats[lastElement].reanimation - this.franceStats[beforeLastElement].reanimation,
+        recovered: this.franceStats[lastElement].recovered,
+        todayRecovered: this.franceStats[lastElement].recovered - this.franceStats[beforeLastElement].recovered,
+        deaths: this.franceStats[lastElement].deaths,
+        todayDeaths: this.franceStats[lastElement].deaths - this.franceStats[beforeLastElement].deaths
+      };
+    }
+
   }
 }

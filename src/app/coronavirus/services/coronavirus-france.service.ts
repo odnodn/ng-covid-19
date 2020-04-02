@@ -29,21 +29,23 @@ export class CoronavirusFranceService {
         /* Department */
         const timelineDepartmentStat = this.getTimelineDepartmentStat(data);
         const lastDepartmentStat = this.getLastDepartmentStat(timelineDepartmentStat, lastDate);
+
         /* Region */
         const timelineRegionStat = this.getTimelineRegionStat(timelineDepartmentStat);
         const lastRegionStat = this.getLastRegionStat(timelineDepartmentStat, lastDate);
+
         /* National */
         const timelineNationalStat = this.getTimelineNationalStat(timelineDepartmentStat);
         const lastNationalStat = this.getLastNationalStat(timelineNationalStat);
         return {
           timeline: {
-            national: timelineNationalStat,
-            department: timelineDepartmentStat.total,
-            region: timelineRegionStat
+            national: timelineNationalStat.total, // Graphique
+            department: timelineDepartmentStat.total, // Graphique
+            region: timelineRegionStat // Graphique
           },
-          national: lastNationalStat,
-          department: lastDepartmentStat,
-          region: lastRegionStat,
+          national: lastNationalStat, // Gender
+          department: lastDepartmentStat, // Tableau et Gender
+          region: lastRegionStat, // Tableau et Gender
           lastUpdate: data[data.length - 2][2]
         };
       }));
@@ -90,17 +92,12 @@ export class CoronavirusFranceService {
 
   getLastNationalStat(timelineNationalStat: any) {
     const lastElement = timelineNationalStat.total.length - 1;
-    const beforeLastElement = timelineNationalStat.total.length - 2;
     const nationalStat = {
       total: {
         hospital: timelineNationalStat.total[lastElement].hospital,
-        todayHospital: timelineNationalStat.total[lastElement].hospital - timelineNationalStat.total[beforeLastElement].hospital,
         reanimation: timelineNationalStat.total[lastElement].reanimation,
-        todayReanimation: timelineNationalStat.total[lastElement].reanimation - timelineNationalStat.total[beforeLastElement].reanimation,
         recovered: timelineNationalStat.total[lastElement].recovered,
-        todayRecovered: timelineNationalStat.total[lastElement].recovered - timelineNationalStat.total[beforeLastElement].recovered,
         deaths: timelineNationalStat.total[lastElement].deaths,
-        todayDeaths: timelineNationalStat.total[lastElement].deaths - timelineNationalStat.total[beforeLastElement].deaths
       },
       men: {
         hospital: timelineNationalStat.men[lastElement].hospital,
