@@ -55,10 +55,12 @@ export class CoronavirusComponent implements OnInit {
       }
       this.selectedCountry = COUNTRIES.find((country) => country.slug === params.country);
       if (this.selectedCountry.country === 'Monde') {
-   
+
         this.initWorldDatas();
         this.initMetaTagWorld();
-      } else if (this.selectedCountry.country === 'France') {
+        return;
+      }
+      if (this.selectedCountry.country === 'France') {
 
         this.initFranceDatas();
         this.initMetaTagCountry();
@@ -71,10 +73,9 @@ export class CoronavirusComponent implements OnInit {
           this.selectedDepartment = FRANCE_DEPS.find((department) => department.slug === params.department);
           this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'le département');
         }
-      } else {
-        this.initCountryDatas();
-        this.initMetaTagCountry();
       }
+      this.initCountryDatas();
+      this.initMetaTagCountry();
     });
   }
 
@@ -194,6 +195,10 @@ export class CoronavirusComponent implements OnInit {
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
 
     /* Table page country */
+    if (this.selectedCountry.country === 'US') {
+      this.tableStatsByCountry$ = this.coronavirusService.getUsaDatas();
+      return;
+    }
     this.tableStatsByCountry$ = this.coronavirusService.getDetailedStatsByCountries(this.selectedCountry.code);
   }
 

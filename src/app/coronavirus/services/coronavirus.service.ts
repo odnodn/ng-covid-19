@@ -67,4 +67,17 @@ export class CoronavirusService {
     );
   }
 
+  getUsaDatas(): Observable<any> {
+    return this.httpClient.get(`${this.url2}/states`).pipe(
+      map((list: any) =>
+        list.map(item =>
+          ({
+            ...item,
+            translation: item.state,
+            deathRate: ((item.deaths / item.cases) * 100).toFixed(1),
+            recovered: ''
+          })))
+    );
+  }
+
 }
