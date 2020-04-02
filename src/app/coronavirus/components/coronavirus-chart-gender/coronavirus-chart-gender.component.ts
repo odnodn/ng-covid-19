@@ -48,11 +48,11 @@ export class CoronavirusChartGenderComponent implements OnInit, OnDestroy {
     if (this.dataType === 'hospital') {
       this.menValue = this.dataGender.men.hospital;
       this.womenValue = this.dataGender.women.hospital;
-      this.labelText = 'Répartition des cas en hospitalisation selon le genre';
+      this.labelText = 'Répartition des hospitalisations en cours selon le genre';
     } else if (this.dataType === 'reanimation') {
       this.menValue = this.dataGender.men.reanimation;
       this.womenValue = this.dataGender.women.reanimation;
-      this.labelText = 'Répartition des cas en réanimation selon le genre';
+      this.labelText = 'Répartition des réanimations en cours selon le genre';
     } else if (this.dataType === 'deaths') {
       this.menValue = this.dataGender.men.deaths;
       this.womenValue = this.dataGender.women.reanimation;

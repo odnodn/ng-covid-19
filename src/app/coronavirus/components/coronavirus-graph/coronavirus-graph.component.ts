@@ -157,10 +157,10 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
 
-    this.createSeries('date', 'hospital', 'hospitalisations en cours', '#F17D07');
-    this.createSeries('date', 'reanimation', 'en réanimaton', '#E95D0C');
-    this.createSeries('date', 'deaths', 'décès', '#f9461c');
-    this.createSeries('date', 'recovered', 'guéris', '#43D787');
+    this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
+    this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
+    this.createSeries('date', 'deaths', 'Décès', '#f9461c');
+    this.createSeries('date', 'recovered', 'Guéris', '#43D787');
 
     // Add cursor
     this.chart.cursor = new am4charts.XYCursor();

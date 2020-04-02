@@ -1,6 +1,8 @@
 
-import { Component, OnInit, OnDestroy, OnChanges,
-  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, OnChanges,
+  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy
+} from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
@@ -8,6 +10,7 @@ import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4geodata_franceHigh from '@amcharts/amcharts4-geodata/franceHigh';
 import am4geodata_franceDepartmentsHigh from '@amcharts/amcharts4-geodata/franceDepartmentsHigh';
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
+import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
 am4core.useTheme(am4themes_animated);
 
 export interface ThemeColor {
@@ -32,8 +35,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   polygonTemplate: am4maps.MapPolygon;
   chart: am4maps.MapChart;
   series: am4maps.MapPolygonSeries;
+  imageSeries: am4maps.MapImageSeries;
   title: am4core.Label;
-  hs: any;
+  circle: am4core.Circle;
   isInitialized = false;
   availableMaps = ['cases', 'deaths', 'recovered'];
 
@@ -58,7 +62,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       },
       title: 'Carte des cas guéris',
       datas: [],
-      label: 'cas guéris'
+      label: 'guéris'
     },
     deaths: {
       colors: {
@@ -78,9 +82,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#fff8f0',
         max: '#F17D07'
       },
-      title: 'Carte des cas en hospitalisation',
+      title: 'Carte des hospitalisations en cours',
       datas: [],
-      label: 'en hospitalisation'
+      label: 'hospitalisations en cours'
     },
     reanimation: {
       colors: {
@@ -89,9 +93,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         min: '#fff1e9',
         max: '#E95D0C'
       },
-      title: 'Carte des cas en réanimation',
+      title: 'Carte des réanimations en cours',
       datas: [],
-      label: 'en réanimation'
+      label: 'réanimations en cours'
     }
   };
 
@@ -148,58 +152,68 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.maps.reanimation.datas = [];
     this.detailedStats.forEach((stat) => {
       id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
-      this.maps.cases.datas = [{
-        id,
-        value: stat.cases
-      }, ...this.maps.cases.datas];
-      this.maps.deaths.datas = [{
-        id,
-        value: stat.deaths
-      }, ...this.maps.deaths.datas];
-      this.maps.recovered.datas = [{
-        id,
-        value: stat.deaths
-      }, ...this.maps.recovered.datas];
-      if (this.selectedCountry.country === 'France') {
-        this.maps.hospital.datas = [{
+      if (stat.code !== 'GP' && stat.code !== 'MQ' && stat.code !== 'GF' && stat.code !== 'RE' && stat.code !== 'YT') {
+        this.maps.cases.datas = [{
           id,
-          value: stat.hospital
-        }, ...this.maps.hospital.datas];
-        this.maps.reanimation.datas = [{
+          name: stat.translation,
+          value: stat.cases,
+          color: this.maps.cases.colors.max
+        }, ...this.maps.cases.datas];
+        this.maps.deaths.datas = [{
           id,
-          value: stat.hospital
-        }, ...this.maps.reanimation.datas];
+          name: stat.translation,
+          value: stat.deaths,
+          color: this.maps.deaths.colors.max
+        }, ...this.maps.deaths.datas];
+        this.maps.recovered.datas = [{
+          id,
+          name: stat.translation,
+          value: stat.recovered,
+          color: this.maps.recovered.colors.max
+        }, ...this.maps.recovered.datas];
+        if (this.selectedCountry.country === 'France') {
+          this.maps.hospital.datas = [{
+            id,
+            name: stat.translation,
+            value: stat.hospital,
+            color: this.maps.hospital.colors.max
+          }, ...this.maps.hospital.datas];
+          this.maps.reanimation.datas = [{
+            id,
+            name: stat.translation,
+            value: stat.reanimation,
+            color: this.maps.reanimation.colors.max
+          }, ...this.maps.reanimation.datas];
+        }
       }
+    
     });
   }
 
   private updateMap(): void { // A chq ngOnChanges
-    this.polygonTemplate.fill = am4core.color(this.maps[this.selectedTypeMap].colors.fill);
-    this.series.data = this.maps[this.selectedTypeMap].datas;
-    this.series.heatRules.push({
-      property: 'fill',
-      target: this.series.mapPolygons.template,
-      min: am4core.color(this.maps[this.selectedTypeMap].colors.min),
-      max: am4core.color(this.maps[this.selectedTypeMap].colors.max)
-    });
-    this.polygonTemplate.tooltipText = '{name} {value} ' + this.maps[this.selectedTypeMap].label;
+    this.imageSeries.data = this.maps[this.selectedTypeMap].datas;
     this.title.text = this.maps[this.selectedTypeMap].title;
-    this.hs.properties.fill = this.maps[this.selectedTypeMap].colors.hover;
+    this.imageSeries.tooltip.background.fill = am4core.color(this.maps[this.selectedTypeMap].colors.max);
+    this.circle.tooltipText = "{name} [bold]\n{value}[\] " + this.maps[this.selectedTypeMap].label;
+
   }
 
   private initMainMap(): void {
     this.chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
+    this.chart.language.locale = am4lang_fr_FR;
     this.chart.geodata = this.divisionMap[this.selectedDivisionMap]; // En fonction monde, region, departement
     this.chart.geodataNames = am4geodata_lang_FR;
     this.chart.projection = new am4maps.projections.Miller();
     this.series = this.chart.series.push(new am4maps.MapPolygonSeries());
+    var polygonTemplate = this.series.mapPolygons.template;
+    polygonTemplate.fill = am4core.color("#eeeeee");
     this.series.useGeodata = true;
+    this.series.nonScalingStroke = true;
     this.series.dataFields.zoomLevel = 'zoomLevel';
     this.series.dataFields.zoomGeoPoint = 'zoomGeoPoint';
-    this.polygonTemplate = this.series.mapPolygons.template;
+    this.series.strokeWidth = 0.5;
+    this.series.calculateVisualCenter = true;
     this.title = this.chart.chartContainer.createChild(am4core.Label);
-    this.hs = this.polygonTemplate.states.create('hover');
-
     this.title.fontSize = 20;
     this.title.fontFamily = 'inherit';
     this.title.paddingTop = 8;
@@ -214,6 +228,44 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     }
     // remove antarctique
     this.series.exclude = ['AQ'];
+    this.imageSeries = this.chart.series.push(new am4maps.MapImageSeries());
+    this.imageSeries.dataFields.value = "value";
+    const imageTemplate = this.imageSeries.mapImages.template;
+
+    imageTemplate.nonScaling = true
+    imageTemplate.adapter.add("latitude", (latitude: any, target: any) => {
+      const polygon = this.series.getPolygonById(target.dataItem.dataContext.id);
+      if (polygon) {
+        return polygon.visualLatitude;
+      }
+      return latitude;
+    })
+
+    imageTemplate.adapter.add("longitude", (longitude: any, target: any) => {
+      var polygon = this.series.getPolygonById(target.dataItem.dataContext.id);
+      if (polygon) {
+        return polygon.visualLongitude;
+      }
+      return longitude;
+    });
+    this.circle = imageTemplate.createChild(am4core.Circle);
+    this.circle.fillOpacity = 0.7;
+    this.circle.propertyFields.fill = "color";
+    this.imageSeries.tooltip.getFillFromObject = false;
+    this.imageSeries.tooltip.background.cornerRadius = 0;
+    this.imageSeries.tooltip.background.strokeOpacity = 0;
+    this.imageSeries.tooltip.label.textAlign = 'middle';
+    this.imageSeries.tooltip.label.textValign = 'middle';
+    this.imageSeries.tooltip.label.fontSize = 14;
+
+
+    this.imageSeries.heatRules.push({
+      target: this.circle,
+      property: "radius",
+      min: 4,
+      max: 40,
+      dataField: "value"
+    })
   }
 
   private countryNotZoom(): boolean {

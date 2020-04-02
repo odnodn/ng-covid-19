@@ -51,7 +51,7 @@
 
     <!-- Hospital Column -->
     <ng-container matColumnDef="hospital">
-      <th id="hospital" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisés</th>
+      <th id="hospital" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations en cours</th>
       <td mat-cell *matCellDef="let element" class="hospital">
         {{element.hospital | number: '' :'fr-FR'}}
       </td>
@@ -59,7 +59,7 @@
 
     <!-- Reanimation Column -->
     <ng-container matColumnDef="reanimation">
-      <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>En réanimation</th>
+      <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>Réanimations en cours</th>
       <td mat-cell *matCellDef="let element" class="reanimation">
         {{element.reanimation | number: '' :'fr-FR'}}
       </td>
