@@ -11,7 +11,8 @@ export const routes: Routes = [
     loadChildren: () => import('./info/info.module')
       .then(m => m.InfoModule),
     path: 'infos'
-  }
+  },
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({
