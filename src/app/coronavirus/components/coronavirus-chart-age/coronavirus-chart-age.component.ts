@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
@@ -8,7 +8,7 @@ import * as am4charts from '@amcharts/amcharts4/charts';
   styleUrls: ['./coronavirus-chart-age.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusChartAgeComponent implements OnInit {
+export class CoronavirusChartAgeComponent implements OnInit, OnDestroy {
 
   @Input() dataAge;
   dataType = 'passage';
@@ -107,6 +107,13 @@ export class CoronavirusChartAgeComponent implements OnInit {
     labelBullet.fontSize = 12;
     labelBullet.locationY = 0.5;
     labelBullet.label.fill = am4core.color('#fff');
+  }
+
+  ngOnDestroy(): void {
+    if (!this.chart) {
+      return;
+    }
+    this.chart.dispose();
   }
 
 }

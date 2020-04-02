@@ -10,4 +10,11 @@
     Évolution des patients du Coronavirus COVID-19
   </h2>
   <div #chartElement id="chart-line"></div>
+  <div class="radio-buttons">
+    <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
+      <mat-radio-button value="total">Total</mat-radio-button>
+      <mat-radio-button value="men">Homme</mat-radio-button>
+      <mat-radio-button value="women">Femme</mat-radio-button>
+    </mat-radio-group>
+  </div>
 </div>

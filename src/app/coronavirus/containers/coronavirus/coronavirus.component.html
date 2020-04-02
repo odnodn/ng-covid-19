@@ -77,20 +77,20 @@
           <ng-container *ngIf="selectedRegion">
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
               [mainStats]="detailedStats.value | countryfilter: 'FR'"
-              [franceStats]="franceStats.value.timeline.region | countryfilter: selectedRegion.code"
+              [franceStats]="franceStats.value.timeline.region.total | countryfilter: selectedRegion.code"
               [selectedRegion]="selectedRegion">
             </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="selectedDepartment">
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
               [mainStats]="detailedStats.value | countryfilter: 'FR'"
-              [franceStats]="franceStats.value.timeline.department | countryfilter: selectedDepartment.code"
-              [selectedRegion]="selectedDepartment">
+              [franceStats]="franceStats.value.timeline.department.total | countryfilter: selectedDepartment.code"
+              [selectedDepartment]="selectedDepartment">
             </app-coronavirus-stats>
           </ng-container>
           <ng-container *ngIf="!selectedRegion && !selectedDepartment">
             <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
-              [mainStats]="detailedStats.value | countryfilter: 'FR'" [franceStats]="franceStats.value.timeline.national"
+              [mainStats]="detailedStats.value | countryfilter: 'FR'" [franceStats]="franceStats.value.timeline.national.total"
               [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}">
             </app-coronavirus-stats>
           </ng-container>
@@ -124,12 +124,14 @@
               </ng-container>
               <ng-container *ngIf="selectedRegion">
                 <app-coronavirus-graph
-                  [dataFrance]="franceStats.value.timeline.region | countryfilter: selectedRegion.code">
+                  [selectedZone]="selectedRegion"
+                  [dataFrance]="franceStats.value.timeline.region">
                 </app-coronavirus-graph>
               </ng-container>
               <ng-container *ngIf="selectedDepartment">
                 <app-coronavirus-graph
-                  [dataFrance]="franceStats.value.timeline.department | countryfilter: selectedDepartment.code">
+                  [selectedZone]="selectedDepartment"
+                  [dataFrance]="franceStats.value.timeline.department">
                 </app-coronavirus-graph>
               </ng-container>
             </div>

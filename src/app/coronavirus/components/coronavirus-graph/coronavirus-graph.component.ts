@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -9,13 +9,15 @@ import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
   styleUrls: ['./coronavirus-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusGraphComponent implements OnInit {
+export class CoronavirusGraphComponent implements OnInit, OnDestroy {
 
   @Input() data;
   @Input() dataFrance;
   @Input() dataDeaths;
   @Input() dataRecovered;
   @Input() dataConfirmed;
+  @Input() selectedZone;
+  chart: am4charts.XYChart;
   totalConfirmed: any[] = [];
   totalRecovered: any[] = [];
   totalDeaths: any[] = [];
@@ -25,6 +27,7 @@ export class CoronavirusGraphComponent implements OnInit {
     domain: ['#ffbb00', '#f9461c', '#43D787']
   };
   referenceLines: any[] = [];
+  dataType: string = 'total';
   @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
   constructor(private readonly datePipe: DatePipe) { }
 
@@ -48,6 +51,21 @@ export class CoronavirusGraphComponent implements OnInit {
         series: this.totalRecovered
       }
     ];
+  }
+
+  ngOnDestroy(): void {
+    if (!this.chart) {
+      return;
+    }
+    this.chart.dispose();
+  }
+
+  onSelectTypeChange(): void {
+    this.chart.data = this.dataFrance[this.dataType];
+    if (this.selectedZone) {
+      this.chart.data = this.dataFrance[this.dataType].filter((item) => item.code === this.selectedZone.code);
+    }
+  
   }
 
   private initDatasWorld(): void {
@@ -121,37 +139,37 @@ export class CoronavirusGraphComponent implements OnInit {
 
   private initChart(): void {
     // Create chart instance
-    const chart = am4core.create(this.chartElement.nativeElement, am4charts.XYChart);
-    chart.language.locale = am4lang_fr_FR;
-    chart.dateFormatter.dateFormat = 'dd MMMM';
+    this.chart = am4core.create(this.chartElement.nativeElement, am4charts.XYChart);
+    this.chart.language.locale = am4lang_fr_FR;
+    this.chart.dateFormatter.dateFormat = 'dd MMMM';
     // Add data
-    chart.data = this.dataFrance;
+    this.onSelectTypeChange();
 
     // Date axis
-    const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
     dateAxis.renderer.minGridDistance = 60;
     dateAxis.cursorTooltipEnabled = false;
     dateAxis.fontSize = 13;
     // Value axis
-    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    const valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.renderer.minGridDistance = 20;
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
 
-    this.createSeries(chart, 'date', 'hospital', 'hospitalisations en cours', '#F17D07');
-    this.createSeries(chart, 'date', 'reanimation', 'en réanimaton', '#E95D0C');
-    this.createSeries(chart, 'date', 'deaths', 'décès', '#f9461c');
-    this.createSeries(chart, 'date', 'recovered', 'guéris', '#43D787');
+    this.createSeries('date', 'hospital', 'hospitalisations en cours', '#F17D07');
+    this.createSeries('date', 'reanimation', 'en réanimaton', '#E95D0C');
+    this.createSeries('date', 'deaths', 'décès', '#f9461c');
+    this.createSeries('date', 'recovered', 'guéris', '#43D787');
 
     // Add cursor
-    chart.cursor = new am4charts.XYCursor();
+    this.chart.cursor = new am4charts.XYCursor();
     // Add legend
-    chart.legend = new am4charts.Legend();
+    this.chart.legend = new am4charts.Legend();
   }
 
-  private createSeries(chart: am4charts.XYChart, valueX: string, valueY: string, name: string, color: string): void {
-    const series = chart.series.push(new am4charts.LineSeries());
+  private createSeries(valueX: string, valueY: string, name: string, color: string): void {
+    const series = this.chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = valueY;
     series.dataFields.dateX = valueX;
     series.name = name;
@@ -179,4 +197,5 @@ export class CoronavirusGraphComponent implements OnInit {
     bullethover.properties.scale = 1.3;
 
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
@@ -8,7 +8,7 @@ import * as am4charts from '@amcharts/amcharts4/charts';
   styleUrls: ['./coronavirus-chart-gender.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusChartGenderComponent implements OnInit {
+export class CoronavirusChartGenderComponent implements OnInit, OnDestroy {
 
   @Input() dataGender;
   dataType = 'hospital';
@@ -71,6 +71,13 @@ export class CoronavirusChartGenderComponent implements OnInit {
       },
 
     ];
+  }
+
+  ngOnDestroy(): void {
+    if (!this.chart) {
+      return;
+    }
+    this.chart.dispose();
   }
 
 }

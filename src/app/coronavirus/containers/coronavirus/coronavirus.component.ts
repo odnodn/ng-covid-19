@@ -169,10 +169,6 @@ export class CoronavirusComponent implements OnInit {
 
   private initFranceDatas(): void {
 
-    /* Graph page footer */
-    this.dataRecovered$ = this.coronavirusService.getDailyDatasByCountry('France', 'recovered');
-    this.dataDeaths$ = this.coronavirusService.getDailyDatasByCountry('France', 'deaths');
-    this.dataConfirmed$ = this.coronavirusService.getDailyDatasByCountry('France', 'confirmed');
 
     /* For map and table */
     this.franceStats$ = this.coronavirusFranceService.getData();
