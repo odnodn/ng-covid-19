@@ -5,7 +5,6 @@
       <mat-select role="listbox" [class.small]="selectedCountry.country !== 'France'" [(ngModel)]="selectedCountry" (ngModelChange)="selectCountry()"
         [compareWith]="compareFn">
         <mat-select-trigger>
-          <img alt="selectedCountry.translation" [height]="32" [width]="32" [src]="selectedCountry.flag" />
           {{selectedCountry.translation}}
         </mat-select-trigger>
         <mat-option role="option">

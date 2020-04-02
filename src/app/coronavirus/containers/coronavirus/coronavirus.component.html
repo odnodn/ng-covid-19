@@ -41,6 +41,7 @@
             </app-coronavirus-map>
           </ng-container>
         </div>
+        
         <div class="column" *ngIf="selectedCountry.country === 'Monde'">
           <app-coronavirus-table [detailedStats]="detailedStats.value | countryfilter: ''"
             [selectedCountry]="selectedCountry">
@@ -69,6 +70,8 @@
         </div>
       </div>
     </ng-container>
+
+    
 
     <!-- France Container -->
     <ng-container *ngIf="selectedCountry.country === 'France'">
@@ -205,6 +208,7 @@
     <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
   </ng-container>
 </ng-container>
+
 
 <!-- Graph Footer-->
 <ng-container *ngIf="!selectedDepartment && !selectedRegion && selectedCountry.country !== 'France'">

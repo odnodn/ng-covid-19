@@ -80,7 +80,8 @@ $success-invert: white;
   width: 100%;
   border: none;
   font-size: 1em;
-  color: black;
+  color: $info;
+  font-weight: bold;
 }
 
 .mat-select {
@@ -88,10 +89,9 @@ $success-invert: white;
 }
 
 .radio-buttons {
-  margin-top: 1em;
   text-align: center;
   .mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
+    margin-left: 1em;
   }
 }
 
@@ -112,7 +112,6 @@ $success-invert: white;
 .input {
   border: 2px solid lightgrey !important;
   border-radius: 0px !important;
-  padding: 1.5em !important;
 }
 
 /* Utilities */
@@ -144,14 +143,18 @@ $success-invert: white;
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
-  border-color: grey;
+  border-color: #3273dc;
 }
 
 .mat-radio-button.mat-accent .mat-radio-inner-circle{
-  color: grey;
-  background-color: grey;
+  background-color: #3273dc;
+  color: #3273dc;
 }
 
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color: grey;
+  background-color: #3273dc;
+}
+
+.content h2 {
+  font-size: 1.5em; 
 }
