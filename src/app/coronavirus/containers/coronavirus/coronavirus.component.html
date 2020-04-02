@@ -133,7 +133,7 @@
                 </app-coronavirus-graph>
               </ng-container>
             </div>
-            <div class="column is-spaced" *ngIf="isBrowser">
+            <div class="column is-spaced">
               <ng-container *ngIf="selectedRegion">
                 <app-coronavirus-chart-gender
                   [dataGender]="{men: (franceStats.value.region.men | countryfilter: selectedRegion.code), women: (franceStats.value.region.women | countryfilter: selectedRegion.code)}">
@@ -149,7 +149,7 @@
                 </app-coronavirus-chart-gender>
               </ng-container>
             </div>
-            <div class="column is-spaced" *ngIf="isBrowser">
+            <div class="column is-spaced">
               <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
                 <ng-container *ngIf="franceStatsByAge.value">
                   <ng-container *ngIf="selectedRegion">
@@ -207,43 +207,42 @@
 <!-- Graph Footer-->
 <ng-container *ngIf="!selectedDepartment && !selectedRegion && selectedCountry.country !== 'France'">
   <div class="content" *ngIf="(data$ | loading | async) as data">
-    <ng-container *ngIf="isBrowser">
-      <h1 class="title is-spaced">L'avancée du coronavirus sur les 15 derniers jours</h1>
-      <div class="columns" *ngIf="selectedCountry.country === 'Monde'">
-        <ng-container *ngIf="data.value">
-          <div class="column">
-            <app-coronavirus-graph [data]="data.value"></app-coronavirus-graph>
-          </div>
-          <div class="column">
-            <app-coronavirus-column [data]="data.value"></app-coronavirus-column>
-          </div>
-        </ng-container>
-      </div>
-      <ng-container *ngIf="!data.value && !data.loading">
-        <article class="message is-danger is-spaced">
-          <div class="message-header">
-            <p>Données indisponibles</p>
-          </div>
-          <div class="message-body">
-            Nous n'avons pas trouvé de données.
-          </div>
-        </article>
+
+    <h1 class="title is-spaced">L'avancée du coronavirus sur les 15 derniers jours</h1>
+    <div class="columns" *ngIf="selectedCountry.country === 'Monde'">
+      <ng-container *ngIf="data.value">
+        <div class="column" *ngIf="isBrowser">
+          <app-coronavirus-graph [data]="data.value"></app-coronavirus-graph>
+        </div>
+        <div class="column" *ngIf="isBrowser">
+          <app-coronavirus-column [data]="data.value"></app-coronavirus-column>
+        </div>
       </ng-container>
-      <ng-container *ngIf="data.loading">
-        <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
-      </ng-container>
-      <div class="columns" *ngIf="isBrowser && !selectedDepartment && !selectedRegion">
-        <div class="column" *ngIf="selectedCountry.country !== 'Monde' ">
-          <ng-container *ngIf="(dataConfirmed$ | async) as dataConfirmed">
-            <ng-container *ngIf="(dataRecovered$ | async) as dataRecovered">
-              <ng-container *ngIf="(dataDeaths$ | async) as dataDeaths">
-                <app-coronavirus-graph [dataConfirmed]="dataConfirmed" [dataRecovered]="dataRecovered"
-                  [dataDeaths]="dataDeaths"></app-coronavirus-graph>
-              </ng-container>
+    </div>
+    <ng-container *ngIf="!data.value && !data.loading">
+      <article class="message is-danger is-spaced">
+        <div class="message-header">
+          <p>Données indisponibles</p>
+        </div>
+        <div class="message-body">
+          Nous n'avons pas trouvé de données.
+        </div>
+      </article>
+    </ng-container>
+    <ng-container *ngIf="data.loading">
+      <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+    </ng-container>
+    <div class="columns" *ngIf="isBrowser && !selectedDepartment && !selectedRegion">
+      <div class="column" *ngIf="selectedCountry.country !== 'Monde' ">
+        <ng-container *ngIf="(dataConfirmed$ | async) as dataConfirmed">
+          <ng-container *ngIf="(dataRecovered$ | async) as dataRecovered">
+            <ng-container *ngIf="(dataDeaths$ | async) as dataDeaths">
+              <app-coronavirus-graph [dataConfirmed]="dataConfirmed" [dataRecovered]="dataRecovered"
+                [dataDeaths]="dataDeaths"></app-coronavirus-graph>
             </ng-container>
           </ng-container>
-        </div>
+        </ng-container>
       </div>
-    </ng-container>
+    </div>
   </div>
 </ng-container>

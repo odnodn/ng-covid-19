@@ -14,9 +14,9 @@
     <div class="tile is-ancestor">
       <div class="tile is-parent" *ngIf="selectedCountry">
         <article class="tile is-child notification is-warning">
-          <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
+          <p class="title">{{mainStats?.cases | number: '' :'fr-FR'}}
             <span class="increase">
-              {{mainStats.todayCases | symbolNumber }}
+              {{mainStats?.todayCases | symbolNumber }}
             </span>
           </p>
           <p class="subtitle">Confirmés</p>

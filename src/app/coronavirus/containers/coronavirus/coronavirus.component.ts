@@ -48,15 +48,14 @@ export class CoronavirusComponent implements OnInit {
   ngOnInit(): void {
     this.data$ = this.coronavirusService.getDailyDatas();
     this.route.params.subscribe(params => {
-
       if (!params.country) {
         this.initFranceDatas();
         this.initMetaTagCountry();
         return;
       }
-
       this.selectedCountry = COUNTRIES.find((country) => country.slug === params.country);
       if (this.selectedCountry.country === 'Monde') {
+   
         this.initWorldDatas();
         this.initMetaTagWorld();
       } else if (this.selectedCountry.country === 'France') {
@@ -165,10 +164,6 @@ export class CoronavirusComponent implements OnInit {
 
     /* For stats and map */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();
-  }
-
-  private initRegionDatas(): void {
-
   }
 
   private initFranceDatas(): void {

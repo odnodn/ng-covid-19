@@ -29,19 +29,16 @@ export class CoronavirusFranceService {
         /* Department */
         const timelineDepartmentStat = this.getTimelineDepartmentStat(data);
         const lastDepartmentStat = this.getLastDepartmentStat(timelineDepartmentStat, lastDate);
-
         /* Region */
         const timelineRegionStat = this.getTimelineRegionStat(timelineDepartmentStat);
-        const lastRegionStat = this.getLastRegionStat(lastDepartmentStat);
-
+        const lastRegionStat = this.getLastRegionStat(timelineDepartmentStat);
         /* National */
         const timelineNationalStat = this.getTimelineNationalStat(timelineDepartmentStat);
         const lastNationalStat = this.getLastNationalStat(timelineNationalStat);
-
-        const returnValue = {
+        return {
           timeline: {
             national: timelineNationalStat,
-            department: timelineDepartmentStat.filter((item) => item.type === 'total'),
+            department: timelineDepartmentStat.total,
             region: timelineRegionStat
           },
           national: lastNationalStat,
@@ -49,31 +46,23 @@ export class CoronavirusFranceService {
           region: lastRegionStat,
           lastUpdate: data[data.length - 2][2]
         };
-        return returnValue;
       }));
   }
 
   getLastDepartmentStat(timelineDepartmentStat: any, lastDate: string) {
     const lastDepartmentStat = {
-      total: timelineDepartmentStat.filter((timelineItem) => timelineItem.date === lastDate && timelineItem.type === 'total'),
-      men: timelineDepartmentStat.filter((timelineItem) => timelineItem.date === lastDate && timelineItem.type === 'men'),
-      women: timelineDepartmentStat.filter((timelineItem) => timelineItem.date === lastDate && timelineItem.type === 'women')
+      total: timelineDepartmentStat.total.filter((timelineItem) => timelineItem.date === lastDate),
+      men: timelineDepartmentStat.men.filter((timelineItem) => timelineItem.date === lastDate),
+      women: timelineDepartmentStat.women.filter((timelineItem) => timelineItem.date === lastDate)
     };
     return (lastDepartmentStat);
   }
 
-  getTimelineDepartmentStat(data: any): any[] {
-    const timelineDepartmentStat = [];
-    const stat = {
-      hospital: 0,
-      reanimation: 0,
-      recovered: 0,
-      deaths: 0
-    };
-    const departmentStat = {
-      total: stat,
-      men: stat,
-      women: stat
+  getTimelineDepartmentStat(data: any): any {
+    const timelineDepartmentStat = {
+      total: [],
+      men: [],
+      women: []
     };
     const mapValue = {
       0: 'total',
@@ -83,17 +72,17 @@ export class CoronavirusFranceService {
     data.forEach((item) => {
       if (mapValue[item[1]]) {
         const department = FRANCE_DEPS.find((dep) => dep.code === item[0]);
-        departmentStat[mapValue[item[1]]] = {
+        const departmentStat = {
           hospital: Number(item[3]),
           reanimation: Number(item[4]),
           recovered: Number(item[5]),
           deaths: Number(item[6]),
           region: department ? department.region : null,
+          translation: department ? department.name : null,
           code: item[0],
-          date: item[2],
-          type: mapValue[item[1]]
+          date: item[2]
         };
-        timelineDepartmentStat.push(departmentStat[mapValue[item[1]]]);
+        timelineDepartmentStat[mapValue[item[1]]].push(departmentStat);
       }
     });
     return (timelineDepartmentStat);
@@ -115,23 +104,15 @@ export class CoronavirusFranceService {
       },
       men: {
         hospital: timelineNationalStat.men[lastElement].hospital,
-        todayHospital: timelineNationalStat.men[lastElement].hospital - timelineNationalStat.men[beforeLastElement].hospital,
         reanimation: timelineNationalStat.men[lastElement].reanimation,
-        todayReanimation: timelineNationalStat.men[lastElement].reanimation - timelineNationalStat.men[beforeLastElement].reanimation,
         recovered: timelineNationalStat.men[lastElement].recovered,
-        todayRecovered: timelineNationalStat.men[lastElement].recovered - timelineNationalStat.men[beforeLastElement].recovered,
-        deaths: timelineNationalStat.men[lastElement].deaths,
-        todayDeaths: timelineNationalStat.men[lastElement].deaths - timelineNationalStat.men[beforeLastElement].deaths
+        deaths: timelineNationalStat.men[lastElement].deaths
       },
       women: {
         hospital: timelineNationalStat.women[lastElement].hospital,
-        todayHospital: timelineNationalStat.women[lastElement].hospital - timelineNationalStat.women[beforeLastElement].hospital,
         reanimation: timelineNationalStat.women[lastElement].reanimation,
-        todayReanimation: timelineNationalStat.women[lastElement].reanimation - timelineNationalStat.women[beforeLastElement].reanimation,
         recovered: timelineNationalStat.women[lastElement].recovered,
-        todayRecovered: timelineNationalStat.women[lastElement].recovered - timelineNationalStat.women[beforeLastElement].recovered,
         deaths: timelineNationalStat.women[lastElement].deaths,
-        todayDeaths: timelineNationalStat.women[lastElement].deaths - timelineNationalStat.women[beforeLastElement].deaths
       }
     };
     return (nationalStat);
@@ -145,12 +126,12 @@ export class CoronavirusFranceService {
     };
     const types: any[] = ['total', 'men', 'women'];
     types.forEach((typeItem) => {
-      const start = new Date(timelineDepartmentStat[0].date);
-      const end = new Date(timelineDepartmentStat[timelineDepartmentStat.length - 1].date);
+      const start = new Date(timelineDepartmentStat.total[0].date);
+      const end = new Date(timelineDepartmentStat.total[timelineDepartmentStat.total.length - 1].date);
       let loop = new Date(start);
       while (loop <= end) {
-        const dataToday = timelineDepartmentStat.filter((row) => row.date ===
-          this.datePipe.transform(loop, 'yyyy-MM-dd') && row.type === typeItem);
+        const dataToday = timelineDepartmentStat[typeItem].filter((row) => row.date ===
+          this.datePipe.transform(loop, 'yyyy-MM-dd'));
         const stat = {
           date: this.datePipe.transform(loop, 'yyyy-MM-dd'),
           hospital: dataToday.reduce((result, item) => item.hospital + result, 0),
@@ -166,35 +147,35 @@ export class CoronavirusFranceService {
     return statTotal;
   }
 
-  getLastRegionStat(lastDepartmentStat: any): any {
+  getLastRegionStat(timelineDepartmentStat: any): any {
     const regionDatas = {
       total: [],
       men: [],
       women: []
     };
     FRANCE_REGIONS.forEach((regionItem) => {
-      const total = lastDepartmentStat.total.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
-      const men = lastDepartmentStat.men.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
-      const women = lastDepartmentStat.women.filter((statsDepItem) => statsDepItem.region.code === regionItem.code);
+      const total = timelineDepartmentStat.total.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code);
+      const men = timelineDepartmentStat.men.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code);
+      const women = timelineDepartmentStat.women.filter((statsDepItem) => statsDepItem.region?.code === regionItem.code);
       const itemTotal = {
-        name: regionItem.name,
         code: regionItem.code,
+        translation: regionItem.name,
         deaths: total.reduce((result, obj) => obj.deaths + result, 0),
         hospital: total.reduce((result, obj) => obj.hospital + result, 0),
         reanimation: total.reduce((result, obj) => obj.reanimation + result, 0),
         recovered: total.reduce((result, obj) => obj.recovered + result, 0)
       };
       const itemMen = {
-        name: regionItem.name,
         code: regionItem.code,
+        translation: regionItem.name,
         deaths: men.reduce((result, obj) => obj.deaths + result, 0),
         hospital: men.reduce((result, obj) => obj.hospital + result, 0),
         reanimation: men.reduce((result, obj) => obj.reanimation + result, 0),
         recovered: men.reduce((result, obj) => obj.recovered + result, 0)
       };
       const itemWomen = {
-        name: regionItem.name,
         code: regionItem.code,
+        translation: regionItem.name,
         deaths: women.reduce((result, obj) => obj.deaths + result, 0),
         hospital: women.reduce((result, obj) => obj.hospital + result, 0),
         reanimation: women.reduce((result, obj) => obj.reanimation + result, 0),
@@ -210,13 +191,13 @@ export class CoronavirusFranceService {
   getTimelineRegionStat(timelineDepartmentStat: any): any[] {
     const statTotal = [];
     FRANCE_REGIONS.forEach((regionItem) => {
-      const start = new Date(timelineDepartmentStat[0].date);
-      const end = new Date(timelineDepartmentStat[timelineDepartmentStat.length - 1].date);
+      const start = new Date(timelineDepartmentStat.total[0].date);
+      const end = new Date(timelineDepartmentStat.total[timelineDepartmentStat.total.length - 1].date);
       let loop = new Date(start);
       while (loop <= end) {
-        const total = timelineDepartmentStat.filter((statsDepItem) =>
+        const total = timelineDepartmentStat.total.filter((statsDepItem) =>
           statsDepItem.region?.code === regionItem.code &&
-          statsDepItem.date === this.datePipe.transform(loop, 'yyyy-MM-dd') && statsDepItem.type === 'total');
+          statsDepItem.date === this.datePipe.transform(loop, 'yyyy-MM-dd'));
         const itemTotal = {
           code: regionItem.code,
           deaths: total.reduce((result, obj) => obj.deaths + result, 0),
