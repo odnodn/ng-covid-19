@@ -12,7 +12,7 @@ export class CoronavirusService {
 
   private readonly url = 'https://covid19.mathdro.id/api';
   private readonly url2 = 'https://api-novel-coronavirus.herokuapp.com';
-  private readonly urlCovidApi = 'https://api.covid19api.com';
+
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -52,19 +52,29 @@ export class CoronavirusService {
   }
 
   getDailyDatas(): Observable<any> {
-    return this.httpClient.get(`${this.url}/daily`);
-  }
-
-  getDailyDatasByCountry(country: string, status: string): Observable<any> {
-    return this.httpClient.get(`${this.urlCovidApi}/total/country/${country}/status/${status}`).pipe(
-      map((list: any) =>
-        list.map(item =>
+    return this.httpClient.get(`${this.url}/daily`).pipe(
+      map((list: any) => {
+        const newList = list.slice(Math.max(list.length - 30, 1));
+        return newList.map(item =>
           ({
             ...item,
-            date: item.Date,
-            totalCases: item.Cases,
-          })))
+            date: item.reportDate,
+            cases: item.totalConfirmed,
+            deaths: item.deaths.total,
+            recovered: item.totalRecovered
+          }))
+      }
+
+      )
     );
+  }
+
+  getDailyDatasByCountry(country: string): Observable<any> {
+    return this.httpClient.get(`${this.url2}/v2/historical/${country}`).pipe(
+      map((list: any) => {
+        const newList = list.timeline.slice(Math.max(list.timeline.length - 30, 1));
+        return newList;
+      }));
   }
 
   getUsaDatas(): Observable<any> {

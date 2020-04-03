@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+$green: #43D787;
+$info: #0069cc;
+$yellow: 	#ffbb00;
+
+$warning-invert: white;
+$red: 	#f9461c;
+$success-invert: white;
+
 html, body { height: 100%; }
 
 .is-spaced {
@@ -7,7 +15,7 @@ html, body { height: 100%; }
 }
 
 .mat-progress-spinner circle {
-  stroke: #0069cc;
+  stroke: $info;
 }
 
 .mat-progress-spinner {
@@ -43,31 +51,25 @@ html, body { height: 100%; }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f2f2f2;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: $info;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: grey;
+  background: #035aac;
 }
 
-$green: #43D787;
-$info: #0069cc;
-$yellow: 	#ffbb00;
 
-$warning-invert: white;
-$red: 	#f9461c;
-$success-invert: white;
 
 /* Material Table */
 
@@ -143,18 +145,18 @@ $success-invert: white;
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
-  border-color: #3273dc;
+  border-color: $info;
 }
 
 .mat-radio-button.mat-accent .mat-radio-inner-circle{
-  background-color: #3273dc;
-  color: #3273dc;
+  background-color: $info;
+  color: $info;
 }
 
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color: #3273dc;
+  background-color: $info;
 }
 
 .content h2 {
-  font-size: 1.5em; 
+  font-size: 1.5em;
 }

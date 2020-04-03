@@ -18,9 +18,7 @@ import { CoronavirusFranceAgeService } from '@coronavirus/services/coronavirus-f
 export class CoronavirusComponent implements OnInit {
 
   data$: Observable<any>;
-  dataRecovered$: Observable<any>;
-  dataDeaths$: Observable<any>;
-  dataConfirmed$: Observable<any>;
+  dailyDatasByCountry$: Observable<any>;
   tableStatsByCountry$: Observable<DetailedStat>;
   detailedStats$: Observable<DetailedStat>;
 
@@ -183,9 +181,7 @@ export class CoronavirusComponent implements OnInit {
   private initCountryDatas(): void {
 
     /* Graph page footer */
-    this.dataRecovered$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.slug, 'recovered');
-    this.dataDeaths$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.slug, 'deaths');
-    this.dataConfirmed$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.slug, 'confirmed');
+    this.dailyDatasByCountry$ = this.coronavirusService.getDailyDatasByCountry(this.selectedCountry.code);
 
     /* For stats and map */
     this.detailedStats$ = this.coronavirusService.getWorldDetailedStats();

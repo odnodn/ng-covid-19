@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
@@ -62,12 +62,12 @@ export class CoronavirusChartGenderComponent implements OnInit, OnDestroy {
       {
         gender: `Femme `,
         value: this.womenValue,
-        color: am4core.color('#f9461c')
+        color: am4core.color('#fd5260')
       },
       {
         gender: `Homme `,
         value: this.menValue,
-        color: am4core.color('#0069cc')
+        color: am4core.color('#4a8cfd')
       },
 
     ];

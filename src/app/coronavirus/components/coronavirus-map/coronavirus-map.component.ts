@@ -186,7 +186,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
           }, ...this.maps.reanimation.datas];
         }
       }
-    
+
     });
   }
 
@@ -220,12 +220,6 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.title.paddingLeft = 8;
     this.title.align = 'left';
     this.title.zIndex = 100;
-    if (this.countryNotZoom()) {
-      this.chart.events.on('ready', () => {
-        const target = this.series.getPolygonById(this.selectedCountry.code);
-        this.chart.zoomToMapObject(target);
-      });
-    }
     // remove antarctique
     this.series.exclude = ['AQ'];
     this.imageSeries = this.chart.series.push(new am4maps.MapImageSeries());

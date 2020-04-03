@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
+
 @Component({
   selector: 'app-coronavirus-graph',
   templateUrl: './coronavirus-graph.component.html',
@@ -13,44 +13,17 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
 
   @Input() data;
   @Input() dataFrance;
-  @Input() dataDeaths;
-  @Input() dataRecovered;
-  @Input() dataConfirmed;
+  @Input() dailyDatasByCountry;
   @Input() selectedZone;
   chart: am4charts.XYChart;
-  totalConfirmed: any[] = [];
-  totalRecovered: any[] = [];
-  totalDeaths: any[] = [];
-  dates: string[] = [];
   chartDatas: any[];
-  colorScheme = {
-    domain: ['#ffbb00', '#f9461c', '#43D787']
-  };
-  referenceLines: any[] = [];
   dataType: string = 'total';
   @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
-  constructor(private readonly datePipe: DatePipe) { }
+
+  constructor() { }
 
   ngOnInit(): void {
-    if (this.dataFrance) {
-      this.initChart();
-      return;
-    }
-    this.initDatas();
-    this.chartDatas = [
-      {
-        name: 'Recensés',
-        series: this.totalConfirmed
-      },
-      {
-        name: 'Morts',
-        series: this.totalDeaths
-      },
-      {
-        name: 'Guéris',
-        series: this.totalRecovered
-      }
-    ];
+    this.initChart();
   }
 
   ngOnDestroy(): void {
@@ -61,79 +34,13 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
   }
 
   onSelectTypeChange(): void {
-    this.chart.data = this.dataFrance[this.dataType];
     if (this.selectedZone) {
       this.chart.data = this.dataFrance[this.dataType].filter((item) => item.code === this.selectedZone.code);
+      return;
     }
-  
-  }
-
-  private initDatasWorld(): void {
-    this.data.forEach((element, index) => {
-      if (this.data.length - index < 15) {
-        if (element.confirmed && element.confirmed.total) {
-          const caseItem = {
-            name: this.datePipe.transform(element.reportDate, 'dd/MM'),
-            value: element.confirmed.total
-          };
-          this.totalConfirmed.push(caseItem);
-        }
-
-        if (element.recovered && element.recovered.total) {
-          const recoveredItem = {
-            name: this.datePipe.transform(element.reportDate, 'dd/MM'),
-            value: element.recovered.total
-          };
-          this.totalRecovered.push(recoveredItem);
-        }
-        if (element.deaths && element.deaths.total) {
-          const deathItem = {
-            name: this.datePipe.transform(element.reportDate, 'dd/MM'),
-            value: element.deaths.total
-          };
-
-          this.totalDeaths.push(deathItem);
-        }
-
-      }
-    });
-  }
-
-  private initDatasCountry(): void {
-    this.dataDeaths.forEach((element, index) => {
-      if (this.dataDeaths.length - index < 15) {
-        const deathItem = {
-          name: this.datePipe.transform(element.date, 'dd/MM'),
-          value: element.totalCases
-        };
-        this.totalDeaths.push(deathItem);
-      }
-    });
-    this.dataConfirmed.forEach((element, index) => {
-      if (this.dataConfirmed.length - index < 15) {
-        const caseItem = {
-          name: this.datePipe.transform(element.date, 'dd/MM'),
-          value: element.totalCases
-        };
-        this.totalConfirmed.push(caseItem);
-      }
-    });
-    this.dataRecovered.forEach((element, index) => {
-      if (this.dataRecovered.length - index < 15) {
-        const caseItem = {
-          name: this.datePipe.transform(element.date, 'dd/MM'),
-          value: element.totalCases
-        };
-        this.totalRecovered.push(caseItem);
-      }
-    });
-  }
-
-  private initDatas(): void {
-    if (this.data) {
-      this.initDatasWorld();
-    } else {
-      this.initDatasCountry();
+    if (this.dataFrance) {
+      this.chart.data = this.dataFrance[this.dataType];
+      return;
     }
   }
 
@@ -142,8 +49,6 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     this.chart = am4core.create(this.chartElement.nativeElement, am4charts.XYChart);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
-    // Add data
-    this.onSelectTypeChange();
 
     // Date axis
     const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
@@ -156,12 +61,20 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     valueAxis.renderer.minGridDistance = 20;
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
-
-    this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
-    this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
+    if (this.dataFrance) {
+      this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
+      this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
+      this.createSeries('date', 'recovered', 'Guéris', '#43D787');
+      this.onSelectTypeChange();
+    } else if (this.dailyDatasByCountry) {
+      this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
+      this.createSeries('date', 'recovered', 'Guéris', '#43D787');
+      this.chart.data = this.dailyDatasByCountry;
+    } else {
+      this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
+      this.chart.data = this.data;
+    }
     this.createSeries('date', 'deaths', 'Décès', '#f9461c');
-    this.createSeries('date', 'recovered', 'Guéris', '#43D787');
-
     // Add cursor
     this.chart.cursor = new am4charts.XYCursor();
     // Add legend

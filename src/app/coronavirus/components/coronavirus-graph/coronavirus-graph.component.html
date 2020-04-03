@@ -1,16 +1,12 @@
-<div class="chart-wrapper" *ngIf="!dataFrance">
-  <ngx-charts-line-chart [legendPosition]="'below'" [scheme]="colorScheme" [legend]="true"
-    [legendTitle]="'Cas de coronavirus'" [xAxis]="true" [yAxis]="true" [results]="chartDatas" [showRefLines]="true"
-    [xAxisLabel]="true" [yAxisLabel]="true">
-  </ngx-charts-line-chart>
-</div>
-
-<div class="content" [style.display]="!dataFrance ? 'none' : 'block'">
-  <h2 class="title">
-    Évolution des patients
+<div class="content">
+  <h2 class="title" *ngIf="dataFrance">
+    Évolution des patients atteints de Coronavirus COVID-19
+  </h2>
+  <h2 class="title" *ngIf="!dataFrance">
+    Évolution de l'épidémie de Coronavirus COVID-19
   </h2>
   <div #chartElement id="chart-line"></div>
-  <div class="radio-buttons">
+  <div class="radio-buttons" *ngIf="dataFrance">
     <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
       <mat-radio-button value="total">Total</mat-radio-button>
       <mat-radio-button value="men">Homme</mat-radio-button>

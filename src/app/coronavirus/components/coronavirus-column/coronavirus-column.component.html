@@ -1,6 +1,9 @@
-<div class="chart-wrapper" *ngIf="this.chartDatas">
-  <ngx-charts-bar-vertical-2d [scheme]="colorScheme" [results]="chartDatas" [xAxis]="true" [yAxis]="true"
-    [legend]="true" [legendPosition]="'below'" [legendTitle]="'Cas de coronavirus entre la Chine et le reste du monde'"
-    [barPadding]="1">
-  </ngx-charts-bar-vertical-2d>
+<div class="content">
+  <h2 class="title">Evolution du nombre de cas entre la Chine et le reste du monde</h2>
+  <div class="chart-wrapper" *ngIf="this.chartDatas">
+    <ngx-charts-bar-vertical-2d [scheme]="colorScheme" [results]="chartDatas" [xAxis]="true" [yAxis]="true"
+      [legend]="true" [legendPosition]="'below'" [legendTitle]="'Cas de coronavirus entre la Chine et le reste du monde'"
+      [barPadding]="1">
+    </ngx-charts-bar-vertical-2d>
+  </div>
 </div>
