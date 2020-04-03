@@ -7,10 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class CoronavirusFranceAgeService {
 
-  private readonly urlCSVAge = 'https://api-novel-coronavirus.herokuapp.com/france-datas-age/';
+  private readonly urlCSVAge = 'http://localhost:3000/france-datas-age';
   constructor(private readonly httpClient: HttpClient) { }
 
-  getFranceDataByAge(): Observable<any> {
-    return this.httpClient.get(this.urlCSVAge);
+  getFranceDataByAge(type: string, code?: string): Observable<any> {
+    if (code) {
+      return this.httpClient.get(`${this.urlCSVAge}/${type}?code=${code}`);
+    }
+    return this.httpClient.get(`${this.urlCSVAge}/${type}`);
   }
 }

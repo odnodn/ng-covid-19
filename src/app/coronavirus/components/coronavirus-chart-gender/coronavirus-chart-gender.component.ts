@@ -38,6 +38,8 @@ export class CoronavirusChartGenderComponent implements OnInit, OnDestroy {
     pieSeries.labels.template.fill = am4core.color('white');
     pieSeries.labels.template.fontSize = 13;
     pieSeries.ticks.template.disabled = true;
+    pieSeries.tooltip.autoTextColor = false;
+    pieSeries.tooltip.label.fill = am4core.color('#FFFFFF');
   }
 
 

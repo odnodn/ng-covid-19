@@ -13,15 +13,18 @@ export class DiseaseComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Coronavirus COVID-19 : informations, symptômes, conseils');
     const tags = [
+      // tslint:disable-next-line:max-line-length
       { name: 'description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
       { name: 'og:type', content: 'website' },
       { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { name: 'og:url', content: 'https://www.cascoronavirus.fr/infos/maladie-coronavirus' },
       { name: 'og:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
+      // tslint:disable-next-line:max-line-length
       { name: 'og:description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
       { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
+      // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
       { name: 'twitter:site', content: '@SouryvathN' },

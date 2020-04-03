@@ -1,0 +1,8 @@
+[Info  - 21:27:31] Angular language server process ID: 11497
+[Info  - 21:27:31] Using typescript v3.8.3 from /home/souryvath/.vscode/extensions/angular.ng-template-0.901.0/node_modules/typescript/lib/tsserverlibrary.js
+[Info  - 21:27:31] Using @angular/language-service v9.1.0 from /home/souryvath/.vscode/extensions/angular.ng-template-0.901.0/server/node_modules/@angular/language-service/bundles/language-service.umd.js
+[Info  - 21:27:31] Log file: /home/souryvath/workspace/covid/ng-covid-19/~/.vscode-root/logs/20200403T212638/exthost1/Angular.ng-template/nglangsvc.log
+[Error - 21:30:50] No config file for /snap/code/28/usr/share/code/resources/app/extensions/node_modules/typescript/lib/lib.es5.d.ts
+[Error - 21:42:49] No config file for /home/souryvath/.cache/typescript/3.8/node_modules/@types/dateformat/index.d.ts
+[Error - 21:43:52] No config file for /home/souryvath/.cache/typescript/3.8/node_modules/@types/dateformat/index.d.ts
+[Error - 21:43:52] No config file for /home/souryvath/.cache/typescript/3.8/node_modules/@types/dateformat/index.d.ts

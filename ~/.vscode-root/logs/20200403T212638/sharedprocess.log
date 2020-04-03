@@ -1,0 +1,14 @@
+[2020-04-03 21:26:41.819] [sharedprocess] [info] main {"machineId":"8d81e1a28ade415c471f2a7b8ccdb4e5b9d37a441767bb4564902716268377e9","windowId":2}
+[2020-04-03 21:27:21.829] [sharedprocess] [info] Starting to clean up unused language packs.
+[2020-04-03 22:49:13.486] [sharedprocess] [info] Installing extension: ms-vscode.vscode-typescript-tslint-plugin
+[2020-04-03 22:49:13.765] [sharedprocess] [info] Downloaded extension: ms-vscode.vscode-typescript-tslint-plugin /tmp/4661d749-cb9e-4882-840f-6a41c238fdd3
+[2020-04-03 22:49:13.970] [sharedprocess] [info] Extracted extension to /home/souryvath/.vscode/extensions/.ms-vscode.vscode-typescript-tslint-plugin-1.2.3: ms-vscode.vscode-typescript-tslint-plugin
+[2020-04-03 22:49:13.970] [sharedprocess] [info] Renamed to /home/souryvath/.vscode/extensions/ms-vscode.vscode-typescript-tslint-plugin-1.2.3
+[2020-04-03 22:49:13.972] [sharedprocess] [info] Installation completed. ms-vscode.vscode-typescript-tslint-plugin
+[2020-04-03 22:49:14.051] [sharedprocess] [info] Extensions installed successfully: ms-vscode.vscode-typescript-tslint-plugin
+[2020-04-03 22:49:20.313] [sharedprocess] [info] Installing extension: eg2.tslint
+[2020-04-03 22:49:20.611] [sharedprocess] [info] Downloaded extension: eg2.tslint /tmp/71b47197-91cb-4ba7-8039-d58257ca1a38
+[2020-04-03 22:49:20.882] [sharedprocess] [info] Extracted extension to /home/souryvath/.vscode/extensions/.eg2.tslint-1.0.44: eg2.tslint
+[2020-04-03 22:49:20.882] [sharedprocess] [info] Renamed to /home/souryvath/.vscode/extensions/eg2.tslint-1.0.44
+[2020-04-03 22:49:20.883] [sharedprocess] [info] Installation completed. eg2.tslint
+[2020-04-03 22:49:20.953] [sharedprocess] [info] Extensions installed successfully: eg2.tslint

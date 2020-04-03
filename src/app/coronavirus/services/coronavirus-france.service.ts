@@ -7,12 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class CoronavirusFranceService {
 
-  private readonly urlCSVDepartment = 'https://api-novel-coronavirus.herokuapp.com/france-datas/';
+  private readonly urlCSV = 'http://localhost:3000/france-datas';
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  getData(): Observable<any> {
-    return this.httpClient.get(this.urlCSVDepartment);
+  getData(type: string, code?: string): Observable<any> {
+    if (code) {
+      return this.httpClient.get(`${this.urlCSV}/${type}?code=${code}`);
+    }
+    return this.httpClient.get(`${this.urlCSV}/${type}`);
   }
 
 }

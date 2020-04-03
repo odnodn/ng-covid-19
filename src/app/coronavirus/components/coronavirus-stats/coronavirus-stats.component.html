@@ -1,86 +1,66 @@
 <h2 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19
   {{selectedCountry?.translation}}
-  {{selectedRegion?.name}}
-  {{selectedDepartment?.name}}
+  {{selectedZone?.name}}
 </h2>
-<ng-container *ngIf="mainStats">
-  <div class="content">
-    <p *ngIf="mainStats.lastUpdate">
-      Mis à jour le <strong>{{mainStats.lastUpdate | date: 'dd/MM/yyyy à HH:MM'}}</strong>
-    </p>
-    <p *ngIf="lastUpdate">
-      Mis à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique
-    </p>
-    <div class="tile is-ancestor">
-      <div class="tile is-parent" *ngIf="selectedCountry">
-        <article class="tile is-child notification is-warning">
-          <p class="title">{{mainStats?.cases | number: '' :'fr-FR'}}
-            <span class="increase">
-              {{mainStats?.todayCases | symbolNumber }}
-            </span>
-          </p>
-          <p class="subtitle">Confirmés</p>
-        </article>
-      </div>
-      <div class="tile is-parent" *ngIf="franceStats?.hospital">
-        <article class="tile is-child notification hospital">
-          <p class="title">{{franceStats?.hospital | number: '' :'fr-FR'}}
-            <span class="increase">
-              {{franceStats?.todayHospital | symbolNumber }}
-            </span>
-          </p>
-
-          <p class="subtitle">Hospitalisations en cours</p>
-        </article>
-      </div>
-      <div class="tile is-parent" *ngIf="franceStats?.reanimation">
-        <article class="tile is-child notification reanimation"
->
-          <p class="title">{{franceStats.reanimation | number: '' :'fr-FR'}}
-            <span class="increase">
-              {{franceStats?.todayReanimation | symbolNumber }}
-            </span>
-          </p>
-
-          <p class="subtitle">Réanimations en cours</p>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-danger ">
-          <p class="title">
-            <ng-container *ngIf="!franceStats">
-              {{mainStats.deaths | number: '' :'fr-FR'}}
-              <span class="increase" >
-                {{mainStats.todayDeaths | symbolNumber}}
-              </span>
-            </ng-container>
-            <ng-container *ngIf="franceStats">
-              {{franceStats.deaths | number: '' :'fr-FR'}}
-              <span class="increase" >
-                {{franceStats.todayDeaths | symbolNumber}}
-              </span>
-            </ng-container>
-
-          </p>
-          <p class="subtitle">Morts</p>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-success active-map">
-          <p class="title">
-            <ng-container *ngIf="franceStats">
-              {{franceStats.recovered | number: '' :'fr-FR'}}
-              <span class="increase">
-                {{franceStats.todayRecovered | symbolNumber }}
-              </span>
-            </ng-container>
-            <ng-container *ngIf="!franceStats">
-              {{mainStats.recovered | number: '' :'fr-FR'}}
-            </ng-container>
-          </p>
-          <p class="subtitle">Guéris</p>
-        </article>
-      </div>
+<div class="content">
+  <p *ngIf="mainStats?.lastUpdate">
+    Mis à jour le <strong>{{mainStats?.lastUpdate | date: 'dd/MM/yyyy à HH:MM'}}</strong>
+  </p>
+  <p *ngIf="lastUpdate">
+    Mis à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique
+  </p>
+  <div class="tile is-ancestor">
+    <div class="tile is-parent" *ngIf="mainStats.cases">
+      <article class="tile is-child notification is-warning">
+        <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
+          <span class="increase">
+            {{mainStats?.todayCases | symbolNumber }}
+          </span>
+        </p>
+        <p class="subtitle">Confirmés</p>
+      </article>
+    </div>
+    <div class="tile is-parent" *ngIf="mainStats.hospital">
+      <article class="tile is-child notification hospital">
+        <p class="title">{{mainStats.hospital | number: '' :'fr-FR'}}
+          <span class="increase">
+            {{mainStats.todayHospital | symbolNumber }}
+          </span>
+        </p>
+        <p class="subtitle">Hospitalisations en cours</p>
+      </article>
+    </div>
+    <div class="tile is-parent" *ngIf="mainStats.reanimation">
+      <article class="tile is-child notification reanimation">
+        <p class="title">{{mainStats.reanimation | number: '' :'fr-FR'}}
+          <span class="increase">
+            {{mainStats.todayReanimation | symbolNumber }}
+          </span>
+        </p>
+        <p class="subtitle">Réanimations en cours</p>
+      </article>
+    </div>
+    <div class="tile is-parent" *ngIf="mainStats.deaths">
+      <article class="tile is-child notification is-danger ">
+        <p class="title">
+          {{mainStats.deaths | number: '' :'fr-FR'}}
+          <span class="increase">
+            {{mainStats.todayDeaths | symbolNumber}}
+          </span>
+        </p>
+        <p class="subtitle">Morts</p>
+      </article>
+    </div>
+    <div class="tile is-parent" *ngIf="mainStats.recovered">
+      <article class="tile is-child notification is-success active-map">
+        <p class="title">
+          {{mainStats.recovered | number: '' :'fr-FR'}}
+          <span class="increase">
+            {{mainStats.todayRecovered | symbolNumber }}
+          </span>
+        </p>
+        <p class="subtitle">Guéris</p>
+      </article>
     </div>
   </div>
-</ng-container>
+</div>

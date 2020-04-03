@@ -17,9 +17,7 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = [];
   dataSource: any;
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.initDataTable();
@@ -32,9 +30,7 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
       const dataStr = Object.keys(data).reduce((currentTerm: string, key: string) => {
         return (currentTerm + (data as { [key: string]: any })[key] + '◬');
       }, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-
       const transformedFilter = filter.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-
       return dataStr.indexOf(transformedFilter) !== -1;
     };
   }

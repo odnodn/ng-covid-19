@@ -22,6 +22,7 @@ export class DiseaseTestComponent implements OnInit {
       { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Faites un test de symptômes du Coronavirus COVID-19' },
+      // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Faites un test pour savoir si vous avez les symptômes et la maladie du Coronavirus COVID-19' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
       { name: 'twitter:site', content: '@SouryvathN' },

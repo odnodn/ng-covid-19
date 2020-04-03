@@ -86,7 +86,8 @@ export class CoronavirusChartAgeComponent implements OnInit, OnDestroy {
     this.series.numberFormatter.numberFormat = '#.0';
 
     /* Tooltip text */
-    this.series.columns.template.tooltipText = "[bold]{name}[/]\n{categoryX} : [bold]{valueY.percent}%[/] ({valueY.formatNumber('#')} personnes)";
+    // tslint:disable-next-line:max-line-length
+    this.series.columns.template.tooltipText = '[bold]{name}[/]\n{categoryX} : [bold]{valueY.percent}%[/] ({valueY.formatNumber(\'#\')} personnes)';
 
     /* Opacity */
     this.series.columns.template.strokeOpacity = 0;

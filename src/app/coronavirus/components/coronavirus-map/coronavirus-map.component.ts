@@ -194,7 +194,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.imageSeries.data = this.maps[this.selectedTypeMap].datas;
     this.title.text = this.maps[this.selectedTypeMap].title;
     this.imageSeries.tooltip.background.fill = am4core.color(this.maps[this.selectedTypeMap].colors.max);
-    this.circle.tooltipText = "{name} [bold]\n{value}[\] " + this.maps[this.selectedTypeMap].label;
+    this.circle.tooltipText = '{name} [bold]\n{value}[\] ' + this.maps[this.selectedTypeMap].label;
 
   }
 
@@ -205,8 +205,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.chart.geodataNames = am4geodata_lang_FR;
     this.chart.projection = new am4maps.projections.Miller();
     this.series = this.chart.series.push(new am4maps.MapPolygonSeries());
-    var polygonTemplate = this.series.mapPolygons.template;
-    polygonTemplate.fill = am4core.color("#eeeeee");
+    const polygonTemplate = this.series.mapPolygons.template;
+    polygonTemplate.fill = am4core.color('#eeeeee');
     this.series.useGeodata = true;
     this.series.nonScalingStroke = true;
     this.series.dataFields.zoomLevel = 'zoomLevel';
@@ -223,20 +223,20 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     // remove antarctique
     this.series.exclude = ['AQ'];
     this.imageSeries = this.chart.series.push(new am4maps.MapImageSeries());
-    this.imageSeries.dataFields.value = "value";
+    this.imageSeries.dataFields.value = 'value';
     const imageTemplate = this.imageSeries.mapImages.template;
 
-    imageTemplate.nonScaling = true
-    imageTemplate.adapter.add("latitude", (latitude: any, target: any) => {
+    imageTemplate.nonScaling = true;
+    imageTemplate.adapter.add('latitude', (latitude: any, target: any) => {
       const polygon = this.series.getPolygonById(target.dataItem.dataContext.id);
       if (polygon) {
         return polygon.visualLatitude;
       }
       return latitude;
-    })
+    });
 
-    imageTemplate.adapter.add("longitude", (longitude: any, target: any) => {
-      var polygon = this.series.getPolygonById(target.dataItem.dataContext.id);
+    imageTemplate.adapter.add('longitude', (longitude: any, target: any) => {
+      const polygon = this.series.getPolygonById(target.dataItem.dataContext.id);
       if (polygon) {
         return polygon.visualLongitude;
       }
@@ -244,22 +244,21 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     });
     this.circle = imageTemplate.createChild(am4core.Circle);
     this.circle.fillOpacity = 0.7;
-    this.circle.propertyFields.fill = "color";
+    this.circle.propertyFields.fill = 'color';
     this.imageSeries.tooltip.getFillFromObject = false;
     this.imageSeries.tooltip.background.cornerRadius = 0;
     this.imageSeries.tooltip.background.strokeOpacity = 0;
     this.imageSeries.tooltip.label.textAlign = 'middle';
-    this.imageSeries.tooltip.label.textValign = 'middle';
     this.imageSeries.tooltip.label.fontSize = 14;
 
 
     this.imageSeries.heatRules.push({
       target: this.circle,
-      property: "radius",
+      property: 'radius',
       min: 4,
       max: 40,
-      dataField: "value"
-    })
+      dataField: 'value'
+    });
   }
 
   private countryNotZoom(): boolean {

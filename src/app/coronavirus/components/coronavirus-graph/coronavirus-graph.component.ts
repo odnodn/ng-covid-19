@@ -14,10 +14,9 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
   @Input() data;
   @Input() dataFrance;
   @Input() dailyDatasByCountry;
-  @Input() selectedZone;
   chart: am4charts.XYChart;
   chartDatas: any[];
-  dataType: string = 'total';
+  dataType = 'total';
   @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
 
   constructor() { }
@@ -34,14 +33,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
   }
 
   onSelectTypeChange(): void {
-    if (this.selectedZone) {
-      this.chart.data = this.dataFrance[this.dataType].filter((item) => item.code === this.selectedZone.code);
-      return;
-    }
-    if (this.dataFrance) {
-      this.chart.data = this.dataFrance[this.dataType];
-      return;
-    }
+    this.chart.data = this.dataFrance[this.dataType];
   }
 
   private initChart(): void {
@@ -62,10 +54,13 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
     if (this.dataFrance) {
+      this.onSelectTypeChange();
+      if (!this.dataFrance.total[0].code && this.dataType === 'total') {
+        this.createSeries('date', 'cases', 'Confirmés', '#ffbb00');
+      }
       this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
       this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
-      this.onSelectTypeChange();
     } else if (this.dailyDatasByCountry) {
       this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
@@ -98,7 +93,6 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     series.tooltip.getFillFromObject = false;
     series.tooltip.background.fill = am4core.color(color);
     series.tooltip.label.textAlign = 'middle';
-    series.tooltip.label.textValign = 'middle';
     series.tooltip.label.fontSize = 13;
 
     /* Bullet */

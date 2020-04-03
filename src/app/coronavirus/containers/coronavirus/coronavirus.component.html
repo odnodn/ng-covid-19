@@ -13,22 +13,24 @@
   </p>
   <p class="description" *ngIf="selectedCountry.country !== 'Monde' && selectedCountry.country !== 'France'">
     Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
-    de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des graphiques détaillés.
+    de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
+    graphiques détaillés.
   </p>
   <p class="description" *ngIf="selectedCountry.country === 'France'">
     Suivez en direct l'épidémie en <strong>
       {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
-    </strong> du <strong>Coronavirus COVID-19</strong> avec les données hospitalières quotidiennes relatives à l'épidémie du COVID-19 par région, département, genre du patient et tranche d’âge des patients.
+    </strong> du <strong>Coronavirus COVID-19</strong> avec les données hospitalières quotidiennes relatives à
+    l'épidémie du COVID-19 par région, département, genre du patient et tranche d’âge des patients.
   </p>
-  </div>
+</div>
 
-<!-- Graph Content -->
+<!-- World Container -->
 <ng-container *ngIf="(detailedStats$ | loading | async) as detailedStats">
   <ng-container *ngIf="detailedStats.value && detailedStats.value.length > 0">
 
     <ng-container *ngIf="selectedCountry.country !== 'France'">
       <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: selectedCountry.code"
-      [selectedCountry]="selectedCountry"></app-coronavirus-stats>
+        [selectedCountry]="selectedCountry"></app-coronavirus-stats>
 
       <!-- World container -->
       <ng-container *ngIf="selectedCountry.country === 'Monde'">
@@ -70,7 +72,6 @@
           </ng-container>
         </div>
       </ng-container>
-
       <!-- Country container -->
       <ng-container *ngIf="selectedCountry.country !== 'Monde'">
         <div class="columns">
@@ -118,126 +119,6 @@
         </div>
       </ng-container>
     </ng-container>
-
-    <!-- France Container -->
-    <ng-container *ngIf="selectedCountry.country === 'France'">
-      <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
-        <ng-container *ngIf="franceStats.value">
-          <ng-container *ngIf="selectedRegion">
-            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
-              [mainStats]="detailedStats.value | countryfilter: 'FR'"
-              [franceStats]="franceStats.value.timeline.region.total | countryfilter: selectedRegion.code"
-              [selectedRegion]="selectedRegion">
-            </app-coronavirus-stats>
-          </ng-container>
-          <ng-container *ngIf="selectedDepartment">
-            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
-              [mainStats]="detailedStats.value | countryfilter: 'FR'"
-              [franceStats]="franceStats.value.timeline.department.total | countryfilter: selectedDepartment.code"
-              [selectedDepartment]="selectedDepartment">
-            </app-coronavirus-stats>
-          </ng-container>
-          <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-            <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate"
-              [mainStats]="detailedStats.value | countryfilter: 'FR'" [franceStats]="franceStats.value.timeline.national.total"
-              [selectedCountry]="{country: 'France', slug: 'france', translation: 'France', code: 'FR'}">
-            </app-coronavirus-stats>
-          </ng-container>
-          <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
-            <div class="column is-spaced" *ngIf="isBrowser">
-
-              <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
-              <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
-                <mat-option role="option" [value]="'regionFrance'">
-                  Par région
-                </mat-option>
-                <mat-option role="option" [value]="'departmentFrance'">
-                  Par département
-                </mat-option>
-              </mat-select>
-
-              <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
-                [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-              franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
-            </div>
-            <div class="column is-spaced">
-              <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-              franceStats.value.region.total : franceStats.value.department.total" [selectedCountry]="selectedCountry">
-              </app-coronavirus-table>
-            </div>
-          </div>
-          <div class="columns" *ngIf="isBrowser">
-            <div class="column is-spaced is-half">
-              <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-                <app-coronavirus-graph [dataFrance]="franceStats.value.timeline.national"></app-coronavirus-graph>
-              </ng-container>
-              <ng-container *ngIf="selectedRegion">
-                <app-coronavirus-graph
-                  [selectedZone]="selectedRegion"
-                  [dataFrance]="franceStats.value.timeline.region">
-                </app-coronavirus-graph>
-              </ng-container>
-              <ng-container *ngIf="selectedDepartment">
-                <app-coronavirus-graph
-                  [selectedZone]="selectedDepartment"
-                  [dataFrance]="franceStats.value.timeline.department">
-                </app-coronavirus-graph>
-              </ng-container>
-            </div>
-            <div class="column is-spaced">
-              <ng-container *ngIf="selectedRegion">
-                <app-coronavirus-chart-gender
-                  [dataGender]="{men: (franceStats.value.region.men | countryfilter: selectedRegion.code), women: (franceStats.value.region.women | countryfilter: selectedRegion.code)}">
-                </app-coronavirus-chart-gender>
-              </ng-container>
-              <ng-container *ngIf="selectedDepartment">
-                <app-coronavirus-chart-gender
-                  [dataGender]="{men: (franceStats.value.department.men | countryfilter: selectedDepartment.code), women: (franceStats.value.department.women | countryfilter: selectedDepartment.code)}">
-                </app-coronavirus-chart-gender>
-              </ng-container>
-              <ng-container *ngIf="!selectedRegion && !selectedDepartment && selectedCountry.country === 'France'">
-                <app-coronavirus-chart-gender [dataGender]="franceStats.value.national">
-                </app-coronavirus-chart-gender>
-              </ng-container>
-            </div>
-            <div class="column is-spaced">
-              <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
-                <ng-container *ngIf="franceStatsByAge.value">
-                  <ng-container *ngIf="selectedRegion">
-                    <app-coronavirus-chart-age
-                      [dataAge]="(franceStatsByAge.value.region | countryfilter: selectedRegion.code)">
-                    </app-coronavirus-chart-age>
-                  </ng-container>
-                  <ng-container *ngIf="selectedDepartment">
-                    <app-coronavirus-chart-age
-                      [dataAge]="(franceStatsByAge.value.department | countryfilter: selectedDepartment.code)">
-                    </app-coronavirus-chart-age>
-                  </ng-container>
-                  <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-                    <app-coronavirus-chart-age [dataAge]="franceStatsByAge.value.national"></app-coronavirus-chart-age>
-                  </ng-container>
-                </ng-container>
-              </ng-container>
-            </div>
-          </div>
-
-        </ng-container>
-        <ng-container *ngIf="!(franceStats.value) && !franceStats.loading">
-          <article class="message is-danger is-spaced">
-            <div class="message-header">
-              <p>Données indisponibles</p>
-            </div>
-            <div class="message-body">
-              Nous n'avons pas trouvé de données.
-            </div>
-          </article>
-        </ng-container>
-        <ng-container *ngIf="franceStats.loading">
-          <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
-        </ng-container>
-      </ng-container>
-
-    </ng-container>
   </ng-container>
   <ng-container *ngIf="detailedStats.loading">
     <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
@@ -251,5 +132,68 @@
         Nous n'avons pas trouvé de données.
       </div>
     </article>
+  </ng-container>
+</ng-container>
+
+<!-- France Container -->
+<ng-container *ngIf="selectedCountry.country === 'France'">
+  <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
+    <ng-container *ngIf="franceStats.value">
+      <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="franceStats.value.total"
+        [selectedZone]="selectedRegion ? selectedRegion : selectedDepartment">
+      </app-coronavirus-stats>
+      <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
+        <div class="column is-spaced" *ngIf="isBrowser">
+          <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
+          <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
+            <mat-option role="option" [value]="'regionFrance'">
+              Par région
+            </mat-option>
+            <mat-option role="option" [value]="'departmentFrance'">
+              Par département
+            </mat-option>
+          </mat-select>
+          <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
+            [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+              franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
+        </div>
+        <div class="column is-spaced">
+          <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+              franceStats.value.region.total : franceStats.value.department.total" [selectedCountry]="selectedCountry">
+          </app-coronavirus-table>
+        </div>
+      </div>
+      <div class="columns" *ngIf="isBrowser">
+        <div class="column is-spaced is-half">
+          <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
+          </app-coronavirus-graph>
+        </div>
+        <div class="column is-spaced">
+          <app-coronavirus-chart-gender [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
+          </app-coronavirus-chart-gender>
+        </div>
+        <div class="column is-spaced">
+          <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
+            <ng-container *ngIf="franceStatsByAge.value">
+              <app-coronavirus-chart-age [dataAge]="franceStatsByAge.value">
+              </app-coronavirus-chart-age>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="franceStats.loading">
+      <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+    </ng-container>
+    <ng-container *ngIf="(franceStats.value && franceStats.value.length === 0) && !franceStats.loading">
+      <article class="message is-danger is-spaced">
+        <div class="message-header">
+          <p>Données indisponibles</p>
+        </div>
+        <div class="message-body">
+          Nous n'avons pas trouvé de données.
+        </div>
+      </article>
+    </ng-container>
   </ng-container>
 </ng-container>

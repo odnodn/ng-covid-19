@@ -62,7 +62,7 @@ export class CoronavirusService {
             cases: item.totalConfirmed,
             deaths: item.deaths.total,
             recovered: item.totalRecovered
-          }))
+          }));
       }
 
       )

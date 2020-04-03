@@ -1,0 +1,33 @@
+[Info  - 22:49:21] Linter is running.
+[Warn  - 22:49:22] 
+Failed to load the TSLint library for the document /home/souryvath/workspace/covid/API/routes/api_france.js
+
+To use TSLint in this workspace please install tslint using 'npm install tslint' or globally using 'npm install -g tslint'.
+TSLint has a peer dependency on `typescript`, make sure that `typescript` is installed as well.
+You need to reopen the workspace after installing tslint.
+[Warn  - 22:49:22] 
+Failed to load the TSLint library for the document /home/souryvath/workspace/covid/API/routes/api_historical.js
+
+To use TSLint in this workspace please install tslint using 'npm install tslint' or globally using 'npm install -g tslint'.
+TSLint has a peer dependency on `typescript`, make sure that `typescript` is installed as well.
+You need to reopen the workspace after installing tslint.
+Warning: The 'deprecation' rule requires type information.
+[Warn  - 22:49:23] Warning: The 'deprecation' rule requires type information.
+[Warn  - 22:49:23] 
+Failed to load the TSLint library for the document /home/souryvath/workspace/covid/API/server.js
+
+To use TSLint in this workspace please install tslint using 'npm install tslint' or globally using 'npm install -g tslint'.
+TSLint has a peer dependency on `typescript`, make sure that `typescript` is installed as well.
+You need to reopen the workspace after installing tslint.
+[Warn  - 22:49:23] 
+Failed to load the TSLint library for the document /home/souryvath/workspace/covid/API/funcs/franceStatsTest.js
+
+To use TSLint in this workspace please install tslint using 'npm install tslint' or globally using 'npm install -g tslint'.
+TSLint has a peer dependency on `typescript`, make sure that `typescript` is installed as well.
+You need to reopen the workspace after installing tslint.
+[Warn  - 22:49:25] 
+Failed to load the TSLint library for the document /home/souryvath/workspace/covid/API/funcs/getCountries.js
+
+To use TSLint in this workspace please install tslint using 'npm install tslint' or globally using 'npm install -g tslint'.
+TSLint has a peer dependency on `typescript`, make sure that `typescript` is installed as well.
+You need to reopen the workspace after installing tslint.
