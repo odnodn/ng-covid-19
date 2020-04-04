@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class CoronavirusFranceAgeService {
 
   private readonly urlCSVAge = 'http://localhost:3000/france-datas-age';
+  private readonly urlTest = 'http://localhost:3000/france-datas-test';
   constructor(private readonly httpClient: HttpClient) { }
 
   getFranceDataByAge(type: string, code?: string): Observable<any> {
@@ -16,4 +17,6 @@ export class CoronavirusFranceAgeService {
     }
     return this.httpClient.get(`${this.urlCSVAge}/${type}`);
   }
+
+
 }

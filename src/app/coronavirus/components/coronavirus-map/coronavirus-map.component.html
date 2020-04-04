@@ -1,7 +1,7 @@
 <div class="content is-spaced">
   <div #chartElement id="chart-map" style="width: 100%; height: 60vh"></div>
 </div>
-<div class="radio-buttons">
+<div class="radio-buttons" *ngIf="selectedTypeData !== 'test'">
   <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">
     <mat-radio-button value="cases" *ngIf="selectedCountry.country !== 'France'">Confirmés</mat-radio-button>
     <mat-radio-button value="hospital" *ngIf="selectedCountry.country === 'France'">Hospitalisations en cours</mat-radio-button>
@@ -10,3 +10,14 @@
     <mat-radio-button value="recovered">Guéris</mat-radio-button>
   </mat-radio-group>
 </div>
+<div class="radio-buttons" *ngIf="selectedTypeData === 'test'">
+  <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">
+    <mat-radio-button value="ageAll">Tous</mat-radio-button>
+    <mat-radio-button value="ageA">Moins de 15 ans</mat-radio-button>
+    <mat-radio-button value="ageB" >Chez les 15-44 ans</mat-radio-button>
+    <mat-radio-button value="ageC" >Chez les 45-64 ans</mat-radio-button>
+    <mat-radio-button value="ageD" >Chez les 65-74 ans</mat-radio-button>
+    <mat-radio-button value="ageE" >Chez les plus de 75 ans</mat-radio-button>
+  </mat-radio-group>
+</div>
+

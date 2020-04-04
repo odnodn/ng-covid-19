@@ -1,0 +1,59 @@
+<p class="is-spaced">
+  Suivez en direct l'épidémie en France du Coronavirus COVID-19 avec les données hospitalières quotidiennes relatives à
+  l'épidémie du COVID-19 par région, département, genre du patient et tranche d’âge des patients.
+</p>
+<h1 class="title is-spaced" id="tableDescription">Statistiques de tests de dépistage COVID-19
+  {{selectedDepartment?.name}}
+  {{selectedRegion?.name}}
+</h1>
+<ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
+  <ng-container *ngIf="dataTest?.value">
+    <div class="content">
+      <div class="columns">
+        <div class="column" *ngIf="!selectedDepartment && !selectedRegion">
+          <h2>Cartographie des tests de dépistage selon l'âge</h2>
+          <p>
+            Cette carte permet de voir les différents tests effectués selon le département, la region, l'âge et le sexe
+            en France.
+          </p>
+          <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
+          <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
+            <mat-option role="option" [value]="'regionFrance'">
+              Par région
+            </mat-option>
+            <mat-option role="option" [value]="'departmentFrance'">
+              Par département
+            </mat-option>
+          </mat-select>
+          <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'test'" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+          dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry">
+          </app-coronavirus-map>
+        </div>
+        <div class="column two-thirds">
+          <h2>Nombre de tests de dépistage effectués depuis le 10 mars</h2>
+          <p>
+            Ce diagramme montre le nombre de tests de dépistage pour le diagnostic du Covid-19 par jour avec le nombre de
+            tests positifs et négatifs.
+          </p>
+          <app-coronavirus-chart-test-column [data]="dataTest?.value"></app-coronavirus-chart-test-column>
+        </div>
+        <div class="column">
+          <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]"></app-coronavirus-chart-pie>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="dataTest?.loading">
+    <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+  </ng-container>
+  <ng-container *ngIf="(dataTest?.value && dataTest?.value.length === 0) && !dataTest.loading">
+    <article class="message is-danger is-spaced">
+      <div class="message-header">
+        <p>Données indisponibles</p>
+      </div>
+      <div class="message-body">
+        Nous n'avons pas trouvé de données.
+      </div>
+    </article>
+  </ng-container>
+</ng-container>

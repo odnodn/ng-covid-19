@@ -1,3 +1,4 @@
+import { CoronavirusSheetTestComponent } from './containers/coronavirus-sheet-test/coronavirus-sheet-test.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
@@ -10,11 +11,13 @@ import { CoronavirusTableComponent } from './components/coronavirus-table/corona
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CoronavirusLinksComponent } from './containers/coronavirus-links/coronavirus-links.component';
 import { CoronavirusMapComponent } from './components/coronavirus-map/coronavirus-map.component';
-import { CoronavirusGraphCountryComponent } from './components/coronavirus-graph-country/coronavirus-graph-country.component';
-import { CoronavirusChartGenderComponent } from './components/coronavirus-chart-gender/coronavirus-chart-gender.component';
 import { CoronavirusChartAgeComponent } from './components/coronavirus-chart-age/coronavirus-chart-age.component';
 import { CoronavirusSelectComponent } from './components/coronavirus-select/coronavirus-select.component';
 import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-france/coronavirus-links-france.component';
+import { CoronavirusSheetComponent } from './containers/coronavirus-sheet/coronavirus-sheet.component';
+import { CoronavirusChartTestColumnComponent } from './components/coronavirus-chart-test-column/coronavirus-chart-test-column.component';
+import { CoronavirusChartPieComponent } from './components/coronavirus-chart-pie/coronavirus-chart-pie.component';
+
 @NgModule({
   declarations: [
     CoronavirusComponent,
@@ -24,11 +27,13 @@ import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-
     CoronavirusTableComponent,
     CoronavirusLinksComponent,
     CoronavirusMapComponent,
-    CoronavirusGraphCountryComponent,
-    CoronavirusChartGenderComponent,
+    CoronavirusChartPieComponent,
     CoronavirusChartAgeComponent,
     CoronavirusSelectComponent,
-    CoronavirusLinksFranceComponent
+    CoronavirusLinksFranceComponent,
+    CoronavirusSheetTestComponent,
+    CoronavirusSheetComponent,
+    CoronavirusChartTestColumnComponent
   ],
   imports: [
     CommonModule,

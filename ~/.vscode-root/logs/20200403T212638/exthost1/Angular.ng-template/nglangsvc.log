@@ -2188,3 +2188,80 @@ Info 2072 [22:55:18.722] Finishing updateGraphWorker: Project: /home/souryvath/w
 Info 2073 [22:55:18.722] Different program with same set of files:: oldProgram.structureIsReused:: 2
 Info 2074 [22:55:18.722] Structure before ensureProjectForOpenFiles:
 Info 2075 [22:55:18.722] Structure after ensureProjectForOpenFiles:
+Info 2076 [22:55:59.252] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2077 [22:55:59.253] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2078 [22:55:59.524] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2079 [22:55:59.562] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 412 structureChanged: false Elapsed: 38ms
+Info 2080 [22:55:59.562] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2081 [22:55:59.562] Structure before ensureProjectForOpenFiles:
+Info 2082 [22:55:59.562] Structure after ensureProjectForOpenFiles:
+Info 2083 [22:56:35.57] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2084 [22:56:35.57] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2085 [22:56:35.331] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2086 [22:56:35.359] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 413 structureChanged: false Elapsed: 28ms
+Info 2087 [22:56:35.360] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2088 [22:56:35.360] Structure before ensureProjectForOpenFiles:
+Info 2089 [22:56:35.360] Structure after ensureProjectForOpenFiles:
+Info 2090 [22:57:21.999] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2091 [22:57:21.999] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2092 [22:57:22.271] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2093 [22:57:22.300] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 414 structureChanged: false Elapsed: 29ms
+Info 2094 [22:57:22.300] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2095 [22:57:22.300] Structure before ensureProjectForOpenFiles:
+Info 2096 [22:57:22.300] Structure after ensureProjectForOpenFiles:
+Info 2097 [22:57:47.537] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2098 [22:57:47.537] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2099 [22:57:47.810] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2100 [22:57:47.840] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 415 structureChanged: false Elapsed: 30ms
+Info 2101 [22:57:47.840] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2102 [22:57:47.840] Structure before ensureProjectForOpenFiles:
+Info 2103 [22:57:47.840] Structure after ensureProjectForOpenFiles:
+Info 2104 [22:58:53.603] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2105 [22:58:53.603] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2106 [22:58:53.882] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2107 [22:58:53.912] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 416 structureChanged: false Elapsed: 30ms
+Info 2108 [22:58:53.912] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2109 [22:58:53.912] Structure before ensureProjectForOpenFiles:
+Info 2110 [22:58:53.912] Structure after ensureProjectForOpenFiles:
+Info 2111 [22:58:57.127] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2112 [22:58:57.127] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2113 [22:58:57.396] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2114 [22:58:57.421] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 417 structureChanged: false Elapsed: 25ms
+Info 2115 [22:58:57.421] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2116 [22:58:57.421] Structure before ensureProjectForOpenFiles:
+Info 2117 [22:58:57.421] Structure after ensureProjectForOpenFiles:
+Info 2118 [22:58:59.404] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2119 [22:58:59.404] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2120 [22:58:59.675] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2121 [22:58:59.698] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 418 structureChanged: false Elapsed: 23ms
+Info 2122 [22:58:59.698] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2123 [22:58:59.698] Structure before ensureProjectForOpenFiles:
+Info 2124 [22:58:59.698] Structure after ensureProjectForOpenFiles:
+Info 2125 [22:59:6.650] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2126 [22:59:6.650] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2127 [22:59:6.924] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2128 [22:59:6.950] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 419 structureChanged: false Elapsed: 26ms
+Info 2129 [22:59:6.950] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2130 [22:59:6.950] Structure before ensureProjectForOpenFiles:
+Info 2131 [22:59:6.950] Structure after ensureProjectForOpenFiles:
+Info 2132 [22:59:15.59] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2133 [22:59:15.59] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2134 [22:59:15.332] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2135 [22:59:15.362] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 420 structureChanged: false Elapsed: 30ms
+Info 2136 [22:59:15.362] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2137 [22:59:15.362] Structure before ensureProjectForOpenFiles:
+Info 2138 [22:59:15.362] Structure after ensureProjectForOpenFiles:
+Info 2139 [22:59:19.269] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2140 [22:59:19.269] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2141 [22:59:19.540] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2142 [22:59:19.563] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 421 structureChanged: false Elapsed: 23ms
+Info 2143 [22:59:19.563] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2144 [22:59:19.563] Structure before ensureProjectForOpenFiles:
+Info 2145 [22:59:19.563] Structure after ensureProjectForOpenFiles:
+Info 2146 [22:59:30.268] DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2147 [22:59:30.268] Elapsed:: 0ms DirectoryWatcher:: Triggered with /home/souryvath/workspace/covid/ng-covid-19 :: WatchInfo: /home/souryvath/workspace/covid/ng-covid-19 1 undefined Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json WatchType: Wild card directory
+Info 2148 [22:59:30.539] Starting updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json
+Info 2149 [22:59:30.570] Finishing updateGraphWorker: Project: /home/souryvath/workspace/covid/ng-covid-19/tsconfig.json Version: 422 structureChanged: false Elapsed: 31ms
+Info 2150 [22:59:30.570] Different program with same set of files:: oldProgram.structureIsReused:: 2
+Info 2151 [22:59:30.570] Structure before ensureProjectForOpenFiles:
+Info 2152 [22:59:30.570] Structure after ensureProjectForOpenFiles:

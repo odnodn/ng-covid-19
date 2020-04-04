@@ -31,6 +31,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() detailedStats;
   @Input() selectedDivisionMap;
   @Input() selectedCountry;
+  @Input() selectedTypeData;
   @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
   polygonTemplate: am4maps.MapPolygon;
   chart: am4maps.MapChart;
@@ -44,58 +45,114 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   maps = {
     cases: {
       colors: {
-        fill: '#fff2ce',
-        hover: '#FF8811',
-        min: '#fff2ce',
         max: '#ffbb00'
       },
       title: 'Carte des cas confirmés',
       datas: [],
-      label: 'cas confirmés'
+      label: 'cas confirmés',
+      tooltipText: '{name} [bold]\n{value}[\] cas confirmés'
     },
     recovered: {
       colors: {
-        fill: '#bbd9c5',
-        hover: '#48c774',
-        min: '#e2fdef',
         max: '#43D787'
       },
       title: 'Carte des cas guéris',
       datas: [],
-      label: 'guéris'
+      label: 'guéris',
+      tooltipText: '{name} [bold]\n{value}[\] guéris'
     },
     deaths: {
       colors: {
-        fill: '#ffdfe1',
-        hover: '#E83D49',
-        min: '#fff1ee',
         max: '#f9461c'
       },
       title: 'Carte des décès',
       datas: [],
-      label: 'décès'
+      label: 'décès',
+      tooltipText: '{name} [bold]\n{value}[\] décès'
     },
     hospital: {
       colors: {
-        fill: '#ffffff',
-        hover: '#F17D07',
-        min: '#fff8f0',
         max: '#F17D07'
       },
       title: 'Carte des hospitalisations en cours',
       datas: [],
-      label: 'hospitalisations en cours'
+      label: 'hospitalisations en cours',
+      tooltipText: '{name} [bold]\n{value}[\] hospitalisations en cours'
     },
     reanimation: {
       colors: {
-        fill: '#ffe8da',
-        hover: '#E95D0C',
-        min: '#fff1e9',
         max: '#E95D0C'
       },
       title: 'Carte des réanimations en cours',
       datas: [],
-      label: 'réanimations en cours'
+      label: 'réanimations en cours',
+      tooltipText: '{name} [bold]\n{value}[\] réanimations en cours'
+    },
+    ageAll: {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Cartographie des tests de dépistages',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
+    },
+    ageA: {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Cartographie des tests de dépistages chez les - de 15 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
+    },
+    ageB: {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Cartographie des tests de dépistages chez les 15-14 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
+    },
+    ageC: {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Cartographie des tests de dépistages chez les 45-64 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
+    },
+    ageD: {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Cartographie des tests de dépistages chez les 65-74 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
+    },
+    ageE: {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Carte des tests de dépistages chez les + de 75 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     }
   };
 
@@ -111,6 +168,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     if (this.selectedCountry.country === 'France') {
       this.selectedTypeMap = 'hospital';
+    }
+    if (this.selectedTypeData === 'test') {
+      this.selectedTypeMap = 'ageAll';
     }
     this.isInitialized = true;
     this.initMainMap();
@@ -150,52 +210,86 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.maps.recovered.datas = [];
     this.maps.hospital.datas = [];
     this.maps.reanimation.datas = [];
+    const age = {
+      tous: 'ageAll',
+      '-15': 'ageA',
+      '15-44': 'ageB',
+      '45-64': 'ageC',
+      '65-74': 'ageD',
+      '75+': 'ageE'
+    };
+    Object.keys(age).forEach((key) => {
+      this.maps[age[key]].datas = [];
+    });
     this.detailedStats.forEach((stat) => {
       id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
-      if (stat.code !== 'GP' && stat.code !== 'MQ' && stat.code !== 'GF' && stat.code !== 'RE' && stat.code !== 'YT') {
-        this.maps.cases.datas = [{
-          id,
-          name: stat.translation,
-          value: stat.cases,
-          color: this.maps.cases.colors.max
-        }, ...this.maps.cases.datas];
-        this.maps.deaths.datas = [{
-          id,
-          name: stat.translation,
-          value: stat.deaths,
-          color: this.maps.deaths.colors.max
-        }, ...this.maps.deaths.datas];
-        this.maps.recovered.datas = [{
-          id,
-          name: stat.translation,
-          value: stat.recovered,
-          color: this.maps.recovered.colors.max
-        }, ...this.maps.recovered.datas];
-        if (this.selectedCountry.country === 'France') {
-          this.maps.hospital.datas = [{
-            id,
-            name: stat.translation,
-            value: stat.hospital,
-            color: this.maps.hospital.colors.max
-          }, ...this.maps.hospital.datas];
-          this.maps.reanimation.datas = [{
-            id,
-            name: stat.translation,
-            value: stat.reanimation,
-            color: this.maps.reanimation.colors.max
-          }, ...this.maps.reanimation.datas];
-        }
+      if (this.selectedTypeData === 'test') {
+        this.initDataTest(id, stat, age);
+      } else {
+        this.iniDataGlobal(stat, id);
       }
-
     });
+  }
+
+  private iniDataGlobal(stat: any, id: string): void  {
+    if (stat.code !== 'GP' && stat.code !== 'MQ' && stat.code !== 'GF' && stat.code !== 'RE' && stat.code !== 'YT') {
+      this.maps.cases.datas = [{
+        id,
+        name: stat.translation,
+        value: stat.cases,
+        color: this.maps.cases.colors.max
+      }, ...this.maps.cases.datas];
+      this.maps.deaths.datas = [{
+        id,
+        name: stat.translation,
+        value: stat.deaths,
+        color: this.maps.deaths.colors.max
+      }, ...this.maps.deaths.datas];
+      this.maps.recovered.datas = [{
+        id,
+        name: stat.translation,
+        value: stat.recovered,
+        color: this.maps.recovered.colors.max
+      }, ...this.maps.recovered.datas];
+      if (this.selectedCountry.country === 'France') {
+        this.maps.hospital.datas = [{
+          id,
+          name: stat.translation,
+          value: stat.hospital,
+          color: this.maps.hospital.colors.max
+        }, ...this.maps.hospital.datas];
+        this.maps.reanimation.datas = [{
+          id,
+          name: stat.translation,
+          value: stat.reanimation,
+          color: this.maps.reanimation.colors.max
+        }, ...this.maps.reanimation.datas];
+
+      }
+    }
+
+  }
+
+  private initDataTest(id: string, stat: any, age: any): void {
+    this.maps[age[stat.age]].datas = [{
+      id,
+      name: stat.translation,
+      value: stat.testTotal,
+      testTotalPositive: stat.testTotalPositive,
+      testMen: stat.testMen,
+      testMenPositive: stat.testMenPositive,
+      testWomen: stat.testWomen,
+      testWomenPositive: stat.testWomenPositive,
+      color: this.maps[age[stat.age]].colors.max
+    }, ...this.maps[age[stat.age]].datas];
+
   }
 
   private updateMap(): void { // A chq ngOnChanges
     this.imageSeries.data = this.maps[this.selectedTypeMap].datas;
     this.title.text = this.maps[this.selectedTypeMap].title;
     this.imageSeries.tooltip.background.fill = am4core.color(this.maps[this.selectedTypeMap].colors.max);
-    this.circle.tooltipText = '{name} [bold]\n{value}[\] ' + this.maps[this.selectedTypeMap].label;
-
+    this.circle.tooltipText = this.maps[this.selectedTypeMap].tooltipText;
   }
 
   private initMainMap(): void {
@@ -259,10 +353,6 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       max: 40,
       dataField: 'value'
     });
-  }
-
-  private countryNotZoom(): boolean {
-    return this.selectedCountry.country !== 'Monde' && this.selectedCountry.country !== 'France';
   }
 
 }

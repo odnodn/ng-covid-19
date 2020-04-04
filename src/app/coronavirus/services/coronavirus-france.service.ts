@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CoronavirusFranceService {
 
   private readonly urlCSV = 'http://localhost:3000/france-datas';
-
+  private readonly urlTest = 'http://localhost:3000/france-datas-test';
   constructor(private readonly httpClient: HttpClient) { }
 
   getData(type: string, code?: string): Observable<any> {
@@ -16,6 +16,13 @@ export class CoronavirusFranceService {
       return this.httpClient.get(`${this.urlCSV}/${type}?code=${code}`);
     }
     return this.httpClient.get(`${this.urlCSV}/${type}`);
+  }
+
+  getFranceDataTest(type: string, code?: string): Observable<any> {
+    if (code) {
+      return this.httpClient.get(`${this.urlTest}/${type}?code=${code}`);
+    }
+    return this.httpClient.get(`${this.urlTest}/${type}`);
   }
 
 }

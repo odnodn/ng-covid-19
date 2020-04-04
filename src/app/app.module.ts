@@ -1,6 +1,6 @@
 import localeFr from '@angular/common/locales/fr';
 import { LayoutModule } from './layout/layout.module';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

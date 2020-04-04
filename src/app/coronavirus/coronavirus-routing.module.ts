@@ -1,3 +1,5 @@
+import { CoronavirusSheetTestComponent } from './containers/coronavirus-sheet-test/coronavirus-sheet-test.component';
+import { CoronavirusSheetComponent } from './containers/coronavirus-sheet/coronavirus-sheet.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoronavirusComponent } from './containers/coronavirus/coronavirus.component';
@@ -6,20 +8,38 @@ import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-
 
 export const coronavirusRoutes: Routes = [
   {
-    component: CoronavirusComponent,
     path: '',
-  },
-  {
     component: CoronavirusComponent,
-    path: 'stats/:country',
-  },
-  {
-    component: CoronavirusComponent,
-    path: 'stats/:country/region/:region',
-  },
-  {
-    component: CoronavirusComponent,
-    path: 'stats/:country/departement/:department',
+    children: [
+      {
+        path: '',
+        component: CoronavirusSheetComponent
+      },
+      {
+        path: 'stats/:country',
+        component: CoronavirusSheetComponent
+      },
+      {
+        path: 'stats/:country/region/:region',
+        component: CoronavirusSheetComponent
+      },
+      {
+        path: 'stats/:country/departement/:department',
+        component: CoronavirusSheetComponent
+      },
+      {
+        path: 'test/:country',
+        component: CoronavirusSheetTestComponent
+      },
+      {
+        path: 'test/:country/region/:region',
+        component: CoronavirusSheetTestComponent
+      },
+      {
+        path: 'test/:country/departement/:department',
+        component: CoronavirusSheetTestComponent
+      }
+    ]
   },
   {
     component: CoronavirusLinksComponent,
@@ -28,7 +48,8 @@ export const coronavirusRoutes: Routes = [
   {
     component: CoronavirusLinksFranceComponent,
     path: 'stats/liens/france',
-  }
+  },
+
 ];
 
 @NgModule({

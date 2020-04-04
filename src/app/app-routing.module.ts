@@ -11,12 +11,11 @@ export const routes: Routes = [
     loadChildren: () => import('./info/info.module')
       .then(m => m.InfoModule),
     path: 'infos'
-  },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  }
 ];
 
 @NgModule({
   exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', initialNavigation: 'enabled' })]
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })]
 })
 export class AppRoutingModule { }
