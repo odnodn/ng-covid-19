@@ -7,7 +7,8 @@
     Mis à jour le <strong>{{mainStats?.lastUpdate | date: 'dd/MM/yyyy à HH:MM'}}</strong>
   </p>
   <p *ngIf="lastUpdate">
-    Les donnés hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique.<br>
+    Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique.<br>
+    Les données Worldometer sont mises à jours très régulièrement.
   </p>
   <div class="tile is-ancestor">
     <div class="tile is-parent" *ngIf="mainStats.cases">
@@ -55,7 +56,7 @@
           <p class="title">
             {{mainStats.deathsJHU | number: '' :'fr-FR'}}
           </p>
-          <p class="subtitle">décès
+          <p class="subtitle">Décès
             <span class="note">
               dont {{mainStats.deaths | number: '' :'fr-FR'}} ({{mainStats.todayDeaths | symbolNumber }}) en milieu hospitalier
 
