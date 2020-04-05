@@ -3,12 +3,16 @@
   {{selectedZone?.name}}
 </h1>
 <div class="content">
-  <p *ngIf="mainStats?.lastUpdate">
-    Mis à jour le <strong>{{mainStats?.lastUpdate | date: 'dd/MM/yyyy à HH:MM'}}</strong>
+  <p>
+    <ng-container *ngIf="mainStats.updated">
+      Les données Worldometer ont été mises à jour le <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:MM':'fr-FR'}}</strong>.<br>
+    </ng-container>
+    <ng-container *ngIf="lastUpdate">
+      Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</strong> par Santé publique.<br>
+    </ng-container>
   </p>
   <p *ngIf="lastUpdate">
-    Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique.<br>
-    Les données Worldometer sont mises à jours très régulièrement.
+
   </p>
   <div class="tile is-ancestor">
     <div class="tile is-parent" *ngIf="mainStats.cases">
