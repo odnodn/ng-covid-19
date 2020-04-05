@@ -62,7 +62,7 @@ export class CoronavirusChartAgeComponent implements OnInit, OnDestroy {
     this.chart = am4core.create('chart-age', am4charts.XYChart);
     this.chart.responsive.enabled = true;
 
-    /* Cateory */
+    /* Category */
     const categoryAxis = this.chart.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = 'category';
     categoryAxis.renderer.grid.template.location = 0;

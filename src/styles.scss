@@ -132,6 +132,8 @@ body {
   border-radius: 0px !important;
 }
 
+
+
 /* Utilities */
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 
@@ -162,6 +164,17 @@ body {
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+@include mobile {
+  .tabs ul {
+    flex-direction: column;
+
+    li {
+      width: 100%;
+    }
+  }
+}
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
   border-color: $info;

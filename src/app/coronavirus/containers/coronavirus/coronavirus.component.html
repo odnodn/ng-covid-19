@@ -3,17 +3,17 @@
   [selectedDepartment]="selectedDepartment" (selectCountryEvent)="onSelectCountry($event)"
   (selectRegionEvent)="onSelectRegion($event)" (selectDepartmentEvent)="onSelectDepartment($event)">
 </app-coronavirus-select>
-<!-- <div class="tabs is-medium is-spaced" *ngIf="selectedCountry.country === 'France'">
+<div class="tabs is-spaced" *ngIf="selectedCountry.country === 'France'">
   <ul>
     <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
       <a *ngIf="!selectedRegion && ! selectedDepartment" [routerLink]="['/stats/', selectedCountry.slug]">
-        Statistiques globales
+        Statistiques principales
       </a>
       <a *ngIf="selectedRegion" [routerLink]="['/stats/france/region/', selectedRegion.slug]">
-        Statistiques globales
+        Statistiques principales
       </a>
       <a *ngIf="selectedDepartment" [routerLink]="['/stats/france/departement/', selectedDepartment.slug]">
-        Statistiques globales
+        Statistiques principales
       </a>
     </li>
     <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
@@ -28,6 +28,5 @@
       </a>
     </li>
   </ul>
-</div> -->
-<a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})" class="button is-info is-spaced" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques globales de la France</a>
-<router-outlet  (activate)='onActivate($event)'></router-outlet>
+</div>
+<router-outlet (activate)='onActivate($event)'></router-outlet>

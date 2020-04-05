@@ -31,12 +31,15 @@ export class CoronavirusComponent implements OnInit {
     this.selectedDepartment = $event.selectedDepartment;
   }
 
+
   onSelectCountry(country: any): void {
     this.selectedCountry = country;
     this.selectedRegion = undefined;
     this.selectedDepartment = undefined;
     this.router.navigate(['stats', this.selectedCountry.slug]);
   }
+
+
 
   onSelectRegion(region: any): void {
     this.selectedRegion = region;

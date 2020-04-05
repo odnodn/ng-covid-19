@@ -57,6 +57,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
     this.chart.legend = new am4charts.Legend();
+
   }
 
   private initChartAgeTest(fieldPositive: string, fieldNegative: string): void {
@@ -65,7 +66,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.createXSeries('age');
     this.createYSeries();
     this.createSeries(fieldPositive, 'Tests positifs', '#f9461c', 'age');
-    this.createSeries(fieldNegative, 'Tests négatifs', '#43D787', 'age');
+    this.createSeries(fieldNegative, 'Tests négatifs', 'whitesmoke', 'age');
     this.createTotalLabel();
   }
 
@@ -75,15 +76,16 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.createXSeries('date');
     this.createYSeries();
     this.createSeries(fieldPositive, 'Tests positifs', '#f9461c', 'date');
-    this.createSeries(fieldNegative, 'Tests négatifs', '#43D787', 'date');
+    this.createSeries(fieldNegative, 'Tests négatifs', 'whitesmoke', 'date');
   }
 
   private createTotalLabel(): void {
     const totalBullet = this.series.bullets.push(new am4charts.LabelBullet());
     totalBullet.dy = -20;
-    totalBullet.label.text = 'Total : {valueY.total}';
+    totalBullet.label.text = '{valueY.total}';
     totalBullet.label.hideOversized = true;
-    totalBullet.label.fontSize = 15;
+    totalBullet.label.fontSize = 13;
+    totalBullet.label.padding(5, 10, 5, 10);
   }
 
   private createXSeries(type: string): void {
@@ -92,10 +94,13 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       categoryAxis.dataFields.category = 'age';
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.fontSize = 13;
+      categoryAxis.renderer.minGridDistance = 20;
+      categoryAxis.renderer.labels.template.dy = 5;
     } else {
       const categoryAxis = this.chart.xAxes.push(new am4charts.DateAxis());
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.fontSize = 13;
+      categoryAxis.renderer.labels.template.dy = 5;
     }
 
   }
@@ -105,9 +110,11 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     valueAxis.fontSize = 13;
     valueAxis.title.text = 'Tests réalisés';
     valueAxis.calculateTotals = true;
+    valueAxis.extraMax = 0.1;
   }
 
   private createSeries(field: string, name: string, color: string, xAxis: string): void {
+
     this.series = this.chart.series.push(new am4charts.ColumnSeries());
     this.series.columns.template.strokeOpacity = 0;
     this.series.columns.template.fill = am4core.color(color);
@@ -115,6 +122,11 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.columns.template.tooltipText =
       '{dateX} \n {valueY} {name} sur {valueY.total}';
     this.series.name = name;
+    /* Opacity */
+    this.series.columns.template.strokeOpacity = 0;
+
+    /* Bar width */
+    this.series.columns.template.width = am4core.percent(90);
     if (xAxis === 'age') {
       this.series.dataFields.categoryX = xAxis;
       const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
@@ -124,6 +136,11 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       labelBullet.label.fill = am4core.color('black');
     } else {
       this.series.dataFields.dateX = xAxis;
+      const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
+      labelBullet.label.text = '{valueY}';
+      labelBullet.fontSize = 12;
+      labelBullet.locationY = 0.5;
+      labelBullet.label.fill = am4core.color('black');
     }
     this.series.dataFields.valueY = field;
     this.series.tooltip.label.textAlign = 'middle';

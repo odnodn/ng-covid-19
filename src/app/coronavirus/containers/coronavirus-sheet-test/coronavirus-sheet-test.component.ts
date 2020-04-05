@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Observable } from 'rxjs';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FRANCE_REGIONS, FRANCE_DEPS } from '@coronavirus/constants/france.constants';
 
 @Component({
@@ -23,6 +23,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly route: ActivatedRoute,
     private readonly ref: ChangeDetectorRef,
+    private readonly router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +42,13 @@ export class CoronavirusSheetTestComponent implements OnInit {
       }
       this.ref.detectChanges();
     });
+  }
 
+  onSelectCountry(country: any): void {
+    this.selectedCountry = country;
+    this.selectedRegion = undefined;
+    this.selectedDepartment = undefined;
+    this.router.navigate(['test', this.selectedCountry.slug]);
   }
 
 }

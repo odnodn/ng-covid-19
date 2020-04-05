@@ -6,7 +6,7 @@ import { CoronavirusService } from '@coronavirus/services/coronavirus.service';
 import { DetailedStat } from '@coronavirus/models/coronavirus.models';
 import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { CoronavirusFranceAgeService } from '@coronavirus/services/coronavirus-france-age.service';
 
@@ -36,6 +36,7 @@ export class CoronavirusSheetComponent implements OnInit {
     private readonly coronavirusService: CoronavirusService,
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly coronavirusFranceAgeService: CoronavirusFranceAgeService,
+    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly title: Title,
     private readonly meta: Meta,
@@ -64,6 +65,13 @@ export class CoronavirusSheetComponent implements OnInit {
       }
       this.ref.detectChanges();
     });
+  }
+
+  onSelectCountry(country: any): void {
+    this.selectedCountry = country;
+    this.selectedRegion = undefined;
+    this.selectedDepartment = undefined;
+    this.router.navigate(['stats', this.selectedCountry.slug]);
   }
 
   private updateFranceDatas(params: any): void {

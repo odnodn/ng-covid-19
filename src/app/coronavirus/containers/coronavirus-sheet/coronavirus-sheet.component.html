@@ -1,6 +1,8 @@
 
 
+
 <!-- Description -->
+<a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})" class="button is-info" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques nationales</a>
 <div class="content is-spaced">
   <p class="description" *ngIf="selectedCountry.country === 'Monde'">
     Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
