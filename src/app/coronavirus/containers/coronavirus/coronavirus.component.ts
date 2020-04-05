@@ -17,7 +17,6 @@ export class CoronavirusComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute,
     private readonly ref: ChangeDetectorRef
   ) {
   }

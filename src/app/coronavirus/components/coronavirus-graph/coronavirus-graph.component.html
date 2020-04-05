@@ -1,10 +1,13 @@
 <div class="content">
   <h2 class="title" *ngIf="dataFrance">
-    Évolution des patients atteints de Coronavirus COVID-19
+    Évolution des cas atteints de Coronavirus COVID-19
   </h2>
   <h2 class="title" *ngIf="!dataFrance">
     Évolution de l'épidémie de Coronavirus COVID-19
   </h2>
+  <p *ngIf="dataFrance">
+    Les données d'évolution de cas confirmés proviennent de <strong>Johns Hopkins CSSE</strong>. Les données d'hospitalisations en cours, de réanimations en cours, de cas guéris, de décès sont celles remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+  </p>
   <div #chartElement id="chart-line"></div>
   <div class="radio-buttons" *ngIf="dataFrance">
     <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">

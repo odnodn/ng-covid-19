@@ -8,12 +8,41 @@
 </h1>
 <ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
   <ng-container *ngIf="dataTest?.value">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-warning">
+          <p class="title">{{dataTest?.value.total[0].testTotal}}</p>
+          <p class="subtitle">Tests effectués</p>
+          <div class="legend">
+            Source : Santé publique
+          </div>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-danger">
+          <p class="title">{{dataTest?.value.total[0].testTotalPositive}}</p>
+          <p class="subtitle">Tests positifs</p>
+          <div class="legend">
+            Source : Santé publique
+          </div>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+          <p class="title">{{dataTest?.value.total[0].testTotalNegative}}</p>
+          <p class="subtitle">Tests négatifs</p>
+          <div class="legend">
+            Source : Santé publique
+          </div>
+        </article>
+      </div>
+    </div>
     <div class="content">
       <div class="columns">
-        <div class="column" *ngIf="!selectedDepartment && !selectedRegion">
+        <div class="column two-thirds" *ngIf="!selectedDepartment && !selectedRegion">
           <h2>Cartographie des tests de dépistage selon l'âge</h2>
           <p>
-            Cette carte permet de voir les différents tests effectués selon le département, la region, l'âge et le sexe
+            Cette carte permet de voir les tests de dépistage pour le diagnostic du Covid-19 effectués selon le département, la region, l'âge et le sexe
             en France.
           </p>
           <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
@@ -29,16 +58,31 @@
           dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry">
           </app-coronavirus-map>
         </div>
-        <div class="column two-thirds">
-          <h2>Nombre de tests de dépistage effectués depuis le 10 mars</h2>
-          <p>
-            Ce diagramme montre le nombre de tests de dépistage pour le diagnostic du Covid-19 par jour avec le nombre de
-            tests positifs et négatifs.
-          </p>
-          <app-coronavirus-chart-test-column [data]="dataTest?.value"></app-coronavirus-chart-test-column>
-        </div>
         <div class="column">
           <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]"></app-coronavirus-chart-pie>
+        </div>
+        <div class="column">
+          <h2>
+            Répartition des tests positifs et négatifs en fonction de l'âge
+          </h2>
+          <p>
+            Ce diagramme montre le nombre de tests de dépistage pour le diagnostic du Covid-19 en fonction de l'âge.
+          </p>
+          <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
+          </app-coronavirus-chart-test-column>
+        </div>
+
+      </div>
+      <div class="columns">
+        <div class="column">
+          <h2>Nombre de tests de dépistage effectués depuis le 10 mars</h2>
+          <p>
+            Ce diagramme montre le nombre de tests de dépistage pour le diagnostic du Covid-19 par jour avec le nombre
+            de
+            tests positifs et négatifs.
+          </p>
+          <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
+          </app-coronavirus-chart-test-column>
         </div>
       </div>
     </div>

@@ -42,13 +42,13 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     pieSeries.slices.template.propertyFields.fill = 'color';
     pieSeries.alignLabels = false;
     pieSeries.labels.template.radius = am4core.percent(-40);
-    pieSeries.labels.template.fill = am4core.color('black');
+    pieSeries.labels.template.fill = am4core.color('white');
     if (this.dataGender) {
       pieSeries.labels.template.fill = am4core.color('white');
     }
     pieSeries.labels.template.fontSize = 13;
     pieSeries.ticks.template.disabled = true;
-    pieSeries.labels.template.text = "{category} \n {value} soit {value.percent.formatNumber('#.0')}%";
+    pieSeries.labels.template.text = '{category} \n {value} soit {value.percent.formatNumber(\'#.0\')}%';
     pieSeries.tooltip.autoTextColor = false;
     pieSeries.tooltip.label.fill = am4core.color('#FFFFFF');
   }
@@ -81,14 +81,14 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     }
     this.chart.data = [
       {
-        category: `Femme`,
+        category: `Homme`,
         value: menValue,
-        color: am4core.color('#fd5260')
+        color: am4core.color('#4a8cfd')
       },
       {
-        category: `Homme`,
+        category: `Femme`,
         value: womenValue,
-        color: am4core.color('#4a8cfd')
+        color: am4core.color('#fd5260')
       },
     ];
   }
@@ -105,7 +105,7 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
       positive = this.dataTest.testTotalPositive;
       negative = this.dataTest.testTotalNegative;
       this.labelText = `Répartition des tests positifs et négatifs pour dépistage du COVID-19
-      sur les ${this.dataTest.testTotal} effectués au total`;
+      sur les ${this.dataTest.testTotal} effectués chez l'homme et la femme`;
     } else if (this.dataType === 'men') {
       positive = this.dataTest.testMenPositive;
       negative = this.dataTest.testMenNegative;
@@ -114,15 +114,14 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     } else if (this.dataType === 'women') {
       positive = this.dataTest.testWomenPositive;
       negative = this.dataTest.testWomenNegative;
-      this.labelText = `Répartition des tests positifs et négatifs pour dépistage
-      du COVID-19 sur les ${this.dataTest.testWomen} effectués chez la femme`;
+      this.labelText = `Répartition des tests positifs et négatifs sur les ${this.dataTest.testWomen} effectués chez la femme`;
     }
 
     this.chart.data = [
       {
         category: `Tests négatifs`,
         value: negative,
-        color: am4core.color('#f2f2f2')
+        color: am4core.color('#43D787')
       },
       {
         category: `Tests positifs`,
