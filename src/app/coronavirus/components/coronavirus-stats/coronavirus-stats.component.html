@@ -7,7 +7,7 @@
     Mis à jour le <strong>{{mainStats?.lastUpdate | date: 'dd/MM/yyyy à HH:MM'}}</strong>
   </p>
   <p *ngIf="lastUpdate">
-    Les donnés hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique.
+    Les donnés hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique.<br>
   </p>
   <div class="tile is-ancestor">
     <div class="tile is-parent" *ngIf="mainStats.cases">
@@ -19,7 +19,7 @@
         </p>
         <p class="subtitle">Confirmés</p>
         <div class="legend">
-          Source : WorldofMeter
+          Source : Worldometer
         </div>
       </article>
     </div>
@@ -62,7 +62,7 @@
             </span>
           </p>
           <p class="legend">
-            Source : WorldOfMeter et données remontées par les centres hospitaliers participants à SI-VIC
+            Source : Worldometer et données remontées par les centres hospitaliers participants à SI-VIC et signalement liés au COVID-19 dans les ESMS
           </p>
         </ng-container>
         <ng-container *ngIf="mainStats.deaths && !mainStats.deathsJHU">
@@ -77,7 +77,7 @@
             Source : Données remontées par les centres hospitaliers participants à SI-VIC
           </p>
           <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
-            Source : WorldOfMeter
+            Source : Worldometer
           </p>
         </ng-container>
       </article>
@@ -95,7 +95,7 @@
           Source : Données remontées par les centres hospitaliers participants à SI-VIC
         </p>
         <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
-          Source : WorldOfMeter
+          Source : Worldometer
         </p>
       </article>
     </div>
