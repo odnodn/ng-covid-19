@@ -42,7 +42,7 @@
 
     <!-- Deaths Column -->
     <ng-container matColumnDef="deaths">
-      <th id="deaths" mat-header-cell *matHeaderCellDef mat-sort-header>Morts</th>
+      <th id="deaths" mat-header-cell *matHeaderCellDef mat-sort-header>Décès</th>
       <td mat-cell *matCellDef="let element" class="has-text-danger">
         {{element.deaths}}<br>
         <span class="rate" *ngIf="element.deathRate">({{element.deathRate}} %)</span>

@@ -227,12 +227,11 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         this.initDataTest(id, stat, age);
       } else {
         this.iniDataGlobal(stat, id);
-      }
+    }
     });
   }
 
   private iniDataGlobal(stat: any, id: string): void  {
-    if (stat.code !== 'GP' && stat.code !== 'MQ' && stat.code !== 'GF' && stat.code !== 'RE' && stat.code !== 'YT') {
       this.maps.cases.datas = [{
         id,
         name: stat.translation,
@@ -266,7 +265,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         }, ...this.maps.reanimation.datas];
 
       }
-    }
+
 
   }
 
@@ -326,6 +325,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       if (polygon) {
         return polygon.visualLatitude;
       }
+      if (!latitude) {
+        return 0;
+      }
       return latitude;
     });
 
@@ -333,6 +335,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       const polygon = this.series.getPolygonById(target.dataItem.dataContext.id);
       if (polygon) {
         return polygon.visualLongitude;
+      }
+      if (!longitude) {
+        return 0;
       }
       return longitude;
     });

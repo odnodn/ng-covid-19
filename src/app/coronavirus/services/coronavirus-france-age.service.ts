@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CoronavirusFranceAgeService {
 
-  private readonly urlCSVAge = 'http://localhost:3000/france-datas-age';
-  private readonly urlTest = 'http://localhost:3000/france-datas-test';
+  private readonly urlCSVAge = 'https://api-novel-coronavirus.herokuapp.com/france-datas-age';
   constructor(private readonly httpClient: HttpClient) { }
 
   getFranceDataByAge(type: string, code?: string): Observable<any> {

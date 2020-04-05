@@ -7,7 +7,7 @@
     Mis à jour le <strong>{{mainStats?.lastUpdate | date: 'dd/MM/yyyy à HH:MM'}}</strong>
   </p>
   <p *ngIf="lastUpdate">
-    Mis à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique
+    Les donnés hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'dd/MM/yyyy'}}</strong> par Santé publique.
   </p>
   <div class="tile is-ancestor">
     <div class="tile is-parent" *ngIf="mainStats.cases">
@@ -18,6 +18,9 @@
           </span>
         </p>
         <p class="subtitle">Confirmés</p>
+        <div class="legend">
+          Source : WorldofMeter
+        </div>
       </article>
     </div>
     <div class="tile is-parent" *ngIf="mainStats.hospital">
@@ -28,6 +31,9 @@
           </span>
         </p>
         <p class="subtitle">Hospitalisations en cours</p>
+        <p class="legend">
+          Source : Données remontées par les centres hospitaliers participants à SI-VIC
+        </p>
       </article>
     </div>
     <div class="tile is-parent" *ngIf="mainStats.reanimation">
@@ -38,17 +44,42 @@
           </span>
         </p>
         <p class="subtitle">Réanimations en cours</p>
+        <p class="legend">
+          Source : Données remontées par les centres hospitaliers participants à SI-VIC
+        </p>
       </article>
     </div>
     <div class="tile is-parent" *ngIf="mainStats.deaths">
       <article class="tile is-child notification is-danger ">
-        <p class="title">
-          {{mainStats.deaths | number: '' :'fr-FR'}}
-          <span class="increase">
-            {{mainStats.todayDeaths | symbolNumber}}
-          </span>
-        </p>
-        <p class="subtitle">Morts</p>
+        <ng-container *ngIf="mainStats.deathsJHU">
+          <p class="title">
+            {{mainStats.deathsJHU | number: '' :'fr-FR'}}
+          </p>
+          <p class="subtitle">décès
+            <span class="note">
+              dont {{mainStats.deaths | number: '' :'fr-FR'}} ({{mainStats.todayDeaths | symbolNumber }}) chez les hôpitaux
+
+            </span>
+          </p>
+          <p class="legend">
+            Source : WorldOfMeter et données remontées par les centres hospitaliers participants à SI-VIC
+          </p>
+        </ng-container>
+        <ng-container *ngIf="mainStats.deaths && !mainStats.deathsJHU">
+          <p class="title">
+            {{mainStats.deaths | number: '' :'fr-FR'}}
+            <span class="increase">
+              {{mainStats.todayDeaths | symbolNumber }}
+            </span>
+          </p>
+          <p class="subtitle">décès</p>
+          <p class="legend" *ngIf="selectedZone">
+            Source : Données remontées par les centres hospitaliers participants à SI-VIC
+          </p>
+          <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
+            Source : WorldOfMeter
+          </p>
+        </ng-container>
       </article>
     </div>
     <div class="tile is-parent" *ngIf="mainStats.recovered">
@@ -60,6 +91,12 @@
           </span>
         </p>
         <p class="subtitle">Guéris</p>
+        <p class="legend" *ngIf="selectedCountry?.country === 'France'">
+          Source : Données remontées par les centres hospitaliers participants à SI-VIC
+        </p>
+        <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
+          Source : WorldOfMeter
+        </p>
       </article>
     </div>
   </div>

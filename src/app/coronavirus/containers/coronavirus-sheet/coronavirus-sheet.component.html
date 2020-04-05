@@ -135,7 +135,7 @@
 <ng-container *ngIf="selectedCountry.country === 'France'">
   <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
     <ng-container *ngIf="franceStats.value">
-      <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [mainStats]="franceStats.value.total"
+      <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [selectedCountry]="selectedCountry" [mainStats]="franceStats.value.total"
         [selectedZone]="selectedRegion ? selectedRegion : selectedDepartment">
       </app-coronavirus-stats>
       <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">

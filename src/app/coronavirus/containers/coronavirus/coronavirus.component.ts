@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy  } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-coronavirus',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./coronavirus.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusComponent  {
+export class CoronavirusComponent implements OnInit {
 
   selectedCountry: any = COUNTRIES[1];
   selectedDivisionMap = 'regionFrance';
@@ -17,7 +17,19 @@ export class CoronavirusComponent  {
 
   constructor(
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly ref: ChangeDetectorRef
   ) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  onActivate($event): void {
+    this.ref.detectChanges();
+    this.selectedCountry = $event.selectedCountry;
+    this.selectedRegion = $event.selectedRegion;
+    this.selectedDepartment = $event.selectedDepartment;
   }
 
   onSelectCountry(country: any): void {
