@@ -21,7 +21,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
   selectedRegion: any;
   selectedTypeMap = 'ageAll';
   selectedDivisionMapTable = 'regionFrance';
-  labelTableAge: string = 'à tous les âges';
+  labelTableAge = 'à tous les âges';
 
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,

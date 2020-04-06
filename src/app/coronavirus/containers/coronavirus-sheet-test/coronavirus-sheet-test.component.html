@@ -7,7 +7,7 @@
   contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests
   réalisés.
 </p>
-<h1 class="title is-spaced" id="tableDescription">Statistiques de tests de dépistage COVID-19
+<h1 class="title is-spaced" id="tableDescription">Statistiques de tests de dépistage du Coronavirus COVID-19
   {{selectedDepartment?.name}}
   {{selectedRegion?.name}}
   <ng-container *ngIf="!selectedDepartment && !selectedRegion">
@@ -18,7 +18,7 @@
   <ng-container *ngIf="dataTest?.value">
     <div class="content">
       <p>
-        Les données de tests de dépistage pour le diagnostic du Covid-19 ont été mises à jour le
+        Les données de tests de tests de dépistage du Coronavirus COVID-19 ont été mises à jour le
         <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.
 
       </p>
@@ -66,7 +66,7 @@
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
           <h2>Cartographie des tests de dépistage selon l'âge</h2>
           <p>
-            Cette carte permet de voir les tests de dépistage pour le diagnostic du Covid-19 effectués selon le
+            Cette carte permet de voir les tests de dépistage du Coronavirus COVID-19 effectués selon le
             département, la région, l'âge et le sexe
             en France.
           </p>
@@ -86,7 +86,7 @@
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
           <h2>Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
           <p>
-            Ce tableau récapitule les tests de dépistage pour diagnostic de COVID-19 par région et par département chez
+            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département chez
             l'homme et la femme
           </p>
           <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
@@ -99,7 +99,7 @@
         <div class="column is-spaced">
           <h2>Nombre de tests de dépistage effectués depuis le 10 mars</h2>
           <p>
-            Ce diagramme montre le nombre de tests de dépistage pour le diagnostic du Covid-19 par jour avec le nombre
+            Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 par jour avec le nombre
             de
             tests positifs et négatifs.
           </p>
@@ -116,17 +116,17 @@
             Répartition des tests de dépistage positifs et négatifs en fonction de l'âge
           </h2>
           <p>
-            Ce diagramme montre le nombre de tests de dépistage pour le diagnostic du Covid-19 avec la répartion de
+            Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 avec la répartition de
             tests positifs et négatifs en fonction de l'âge.
           </p>
           <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
           </app-coronavirus-chart-test-column>
         </div>
         <div class="column is-spaced">
-          <h2>Comparaison du nombre de tests de dépistage effectués en fonction de l'âge et le sexe</h2>
+          <h2>Comparaison du nombre de tests de dépistage effectués en fonction de l'âge et du sexe</h2>
           <p>
-            Ce diagramme compare le nombre de tests de dépistage pour le diagnostic du Covid-19 en fonction de l'âge et
-            le sexe.
+            Ce diagramme compare le nombre de tests de dépistage du Coronavirus COVID-19 en fonction de l'âge et
+            du sexe.
           </p>
           <app-coronavirus-chart-pyramid [data]="dataTest?.value?.total"></app-coronavirus-chart-pyramid>
         </div>
