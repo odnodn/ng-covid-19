@@ -1207,7 +1207,7 @@ export const COUNTRIES = [
   {
     country: 'Ireland',
     slug: 'ireland',
-    translation: 'Ireland',
+    translation: 'Irlande',
     provinces: [
       ''
     ],

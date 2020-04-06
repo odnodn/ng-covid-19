@@ -90,7 +90,7 @@ export const COUNTRIES_DICTIONARY = {
   ID: 'Indonésie',
   IR: 'Iran',
   IQ: 'Iraq',
-  IE: 'Ireland',
+  IE: 'Irlande',
   IS: 'Islande',
   IL: 'Israël',
   IT: 'Italie',

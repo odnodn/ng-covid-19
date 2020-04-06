@@ -69,7 +69,7 @@
             Source : Worldometer et données remontées par les centres hospitaliers participants à SI-VIC et signalement liés au COVID-19 dans les ESMS
           </p>
         </ng-container>
-        <ng-container *ngIf="mainStats.deaths && !mainStats.deathsJHU">
+        <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsJHU">
           <p class="title">
             {{mainStats.deaths | number: '' :'fr-FR'}}
             <span class="increase">
