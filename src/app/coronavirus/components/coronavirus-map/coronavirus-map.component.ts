@@ -1,7 +1,7 @@
 
 import {
   Component, OnInit, OnDestroy, OnChanges,
-  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy
+  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy, Output, EventEmitter
 } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
@@ -41,6 +41,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   circle: am4core.Circle;
   isInitialized = false;
   availableMaps = ['cases', 'deaths', 'recovered'];
+  @Output() readonly selectTypeMapEvent: EventEmitter<string> = new EventEmitter<string>(true);
 
   maps = {
     cases: {
@@ -103,7 +104,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistage chez les - de 15 ans',
+      title: 'Cartographie des tests de dépistage chez les moins de 15 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -114,7 +115,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistage chez les 15-14 ans',
+      title: 'Cartographie des tests de dépistage chez les 15-44 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -147,7 +148,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Carte des tests de dépistage chez les + de 75 ans',
+      title: 'Carte des tests de dépistage chez les plus de 75 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -198,6 +199,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
 
   onSelectTypeMap(): void {
     this.updateMap();
+    this.selectTypeMapEvent.emit(this.selectedTypeMap);
   }
 
   private initDatas(): any {

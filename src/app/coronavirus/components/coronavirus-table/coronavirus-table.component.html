@@ -19,12 +19,23 @@
         <span *ngIf="!selectedDivisionMap">
           {{element.translation}} {{element.provinceState}}
         </span>
-        <a *ngIf="selectedDivisionMap === 'regionFrance'" href="stats/france/region/{{element.slug}}">
-          {{element.translation}} {{element.provinceState}}
-        </a>
-        <a *ngIf="selectedDivisionMap === 'departmentFrance'" href="stats/france/departement/{{element.slug}}">
-          {{element.translation}} {{element.provinceState}}
-        </a>
+        <ng-container *ngIf="dataType !== 'test'">
+          <a *ngIf="selectedDivisionMap === 'regionFrance'" [routerLink]="['/stats/france/region/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+          <a *ngIf="selectedDivisionMap === 'departmentFrance'" [routerLink]="['/stats/france/departement/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+        </ng-container>
+        <ng-container *ngIf="dataType === 'test'">
+          <a *ngIf="selectedDivisionMap === 'regionFrance'" [routerLink]="['/test-depistage/france/region/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+          <a *ngIf="selectedDivisionMap === 'departmentFrance'" [routerLink]="['/test-depistage/france/departement/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+        </ng-container>
+
       </td>
     </ng-container>
 
@@ -79,6 +90,51 @@
       <td mat-cell *matCellDef="let element" class="has-text-success">
         {{element.recovered | number: '' :'fr-FR'}}<br>
         <span class="rate" *ngIf="element.recoveredRate">({{element.recoveredRate}} %)</span>
+      </td>
+    </ng-container>
+
+
+
+    <!-- Recovered Column -->
+    <ng-container matColumnDef="testTotal">
+      <th id="testTotal" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Total</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.testTotal | number: '' :'fr-FR'}}<br>
+      </td>
+    </ng-container>
+    <!-- Recovered Column -->
+    <ng-container matColumnDef="testTotalPositive">
+      <th id="testTotalPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Total positifs  </th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger">
+        {{element.testTotalPositive | number: '' :'fr-FR'}}<br>
+      </td>
+    </ng-container>
+    <!-- Recovered Column -->
+    <ng-container matColumnDef="testMen">
+      <th id="testMen" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Homme</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.testMen | number: '' :'fr-FR'}}<br>
+      </td>
+    </ng-container>
+    <!-- Recovered Column -->
+    <ng-container matColumnDef="testMenPositive">
+      <th id="testMenPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Homme positifs </th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger">
+        {{element.testMenPositive | number: '' :'fr-FR'}}<br>
+      </td>
+    </ng-container>
+    <!-- Recovered Column -->
+    <ng-container matColumnDef="testWomen">
+      <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Femme</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.testWomen | number: '' :'fr-FR'}}<br>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="testWomenPositive">
+      <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Femme positifs  </th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger">
+        {{element.testWomenPositive | number: '' :'fr-FR'}}<br>
       </td>
     </ng-container>
 

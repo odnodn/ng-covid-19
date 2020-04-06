@@ -4,7 +4,8 @@
   Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
     {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
   </strong>. Il
-  contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests réalisés.
+  contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests
+  réalisés.
 </p>
 <h1 class="title is-spaced" id="tableDescription">Statistiques de tests de dépistage COVID-19
   {{selectedDepartment?.name}}
@@ -33,7 +34,12 @@
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-danger">
-            <p class="title">{{dataTest?.value.total[0].testTotalPositive | number: '' :'fr-FR'}}</p>
+            <p class="title">{{dataTest?.value.total[0].testTotalPositive | number: '' :'fr-FR'}}
+              <span class="increase">
+                ({{ dataTest?.value.total[0].testTotalPositive | percentage : dataTest?.value.total[0].testTotal  }})
+              </span>
+            </p>
+
             <p class="subtitle">Tests positifs</p>
             <div class="legend">
               Source : Santé publique
@@ -42,7 +48,11 @@
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification">
-            <p class="title">{{dataTest?.value.total[0].testTotalNegative | number: '' :'fr-FR'}}</p>
+            <p class="title">{{dataTest?.value.total[0].testTotalNegative | number: '' :'fr-FR'}}
+              <span class="increase">
+                ({{ dataTest?.value.total[0].testTotalNegative | percentage : dataTest?.value.total[0].testTotal  }})
+              </span>
+            </p>
             <p class="subtitle">Tests négatifs</p>
             <div class="legend">
               Source : Santé publique
@@ -53,7 +63,7 @@
 
 
       <div class="columns">
-        <div class="column is-spaced is-two-fifths" *ngIf="!selectedDepartment && !selectedRegion">
+        <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
           <h2>Cartographie des tests de dépistage selon l'âge</h2>
           <p>
             Cette carte permet de voir les tests de dépistage pour le diagnostic du Covid-19 effectués selon le
@@ -70,9 +80,22 @@
             </mat-option>
           </mat-select>
           <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'test'" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-          dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry">
+          dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry" (selectTypeMapEvent)="onSelectTypeMap($event)">
           </app-coronavirus-map>
         </div>
+        <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
+          <h2>Tableau récapitulatif des tests de dépistage en France chez {{labelTableAge}} </h2>
+          <p>
+            Ce tableau récapitule les tests de dépistage pour diagnostic de COVID-19 par région et par département chez
+            l'homme et la femme
+          </p>
+          <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+          (dataTest.value.region | ageFilter : selectedTypeMap) : (dataTest.value.department | ageFilter : selectedTypeMap)" [selectedTypeMap]="selectedTypeMap" [selectedCountry]="selectedCountry">
+          </app-coronavirus-table>
+        </div>
+      </div>
+      <div class="columns">
+
         <div class="column is-spaced">
           <h2>Nombre de tests de dépistage effectués depuis le 10 mars</h2>
           <p>
@@ -83,11 +106,11 @@
           <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
           </app-coronavirus-chart-test-column>
         </div>
-      </div>
-      <div class="columns">
         <div class="column is-spaced is-one-quarter">
           <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]"></app-coronavirus-chart-pie>
         </div>
+      </div>
+      <div class="columns">
         <div class="column is-spaced">
           <h2>
             Répartition des tests de dépistage positifs et négatifs en fonction de l'âge
@@ -102,7 +125,8 @@
         <div class="column is-spaced">
           <h2>Comparaison du nombre de tests de dépistage effectués en fonction de l'âge et le sexe</h2>
           <p>
-            Ce diagramme compare le nombre de tests de dépistage pour le diagnostic du Covid-19 en fonction de l'âge et le sexe.
+            Ce diagramme compare le nombre de tests de dépistage pour le diagnostic du Covid-19 en fonction de l'âge et
+            le sexe.
           </p>
           <app-coronavirus-chart-pyramid [data]="dataTest?.value?.total"></app-coronavirus-chart-pyramid>
         </div>

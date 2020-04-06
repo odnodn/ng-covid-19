@@ -91,9 +91,8 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     const totalBullet = this.series.bullets.push(new am4charts.LabelBullet());
     totalBullet.dy = -20;
     totalBullet.label.text = '{valueY.total}';
-    totalBullet.label.hideOversized = true;
+    totalBullet.label.hideOversized = false;
     totalBullet.label.fontSize = 13;
-    totalBullet.label.padding(5, 10, 5, 10);
   }
 
   private createXSeries(type: string): void {

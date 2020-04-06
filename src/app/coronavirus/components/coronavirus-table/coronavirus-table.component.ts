@@ -13,6 +13,8 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   @Input() detailedStats;
   @Input() selectedCountry;
   @Input() selectedDivisionMap;
+  @Input() dataType;
+  @Input() selectedTypeMap;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = [];
   dataSource: any;
@@ -20,10 +22,10 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(): void {
-    this.initDataTable();
   }
 
   ngOnChanges(): void {
+    this.initDataTable();
     this.dataSource = new MatTableDataSource(this.detailedStats);
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
@@ -41,6 +43,11 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   }
 
   private initDataTable(): void {
+    if (this.selectedTypeMap) {
+      this.displayedColumns = ['translation', 'testTotal', 'testTotalPositive',
+      'testMen', 'testMenPositive', 'testWomen', 'testWomenPositive'];
+      return ;
+    }
     if (this.selectedCountry.country === 'Monde') {
       this.displayedColumns = ['translation', 'cases', 'todayCases', 'deaths', 'todayDeaths', 'recovered'];
     } else if (this.selectedCountry.country === 'France') {

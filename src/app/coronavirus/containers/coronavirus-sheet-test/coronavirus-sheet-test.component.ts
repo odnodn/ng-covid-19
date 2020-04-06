@@ -19,6 +19,9 @@ export class CoronavirusSheetTestComponent implements OnInit {
   selectedCountry: any = COUNTRIES[1];
   selectedDepartment: any;
   selectedRegion: any;
+  selectedTypeMap = 'ageAll';
+  selectedDivisionMapTable = 'regionFrance';
+  labelTableAge: string;
 
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
@@ -52,9 +55,23 @@ export class CoronavirusSheetTestComponent implements OnInit {
         this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
       } else {
         this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('national');
+        this.initMetaTagFrance();
       }
       this.ref.detectChanges();
     });
+  }
+
+  onSelectTypeMap(type: string): void {
+    const age = {
+      ageAll: 'tous',
+      ageA: 'les moins de 15 ans',
+      ageB: 'les 15-44 ans',
+      ageC: 'les 45-64 ans',
+      ageD: 'les 65-74 ans',
+      ageE: 'les plus de 75 ans',
+    };
+    this.selectedTypeMap = type;
+    this.labelTableAge = age[type];
   }
 
   onSelectCountry(country: any): void {
@@ -63,6 +80,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
     this.selectedDepartment = undefined;
     this.router.navigate(['test-depistage', this.selectedCountry.slug]);
   }
+
 
 
   private initMetaTagRegionAndDepartment(region: any, type: string): void {
