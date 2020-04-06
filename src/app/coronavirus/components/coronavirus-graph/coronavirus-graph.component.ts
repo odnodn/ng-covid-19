@@ -57,19 +57,24 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
       this.onSelectTypeChange();
       if (!this.dataFrance.total[0].code && this.dataType === 'total') {
         this.createSeries('date', 'cases', 'Confirmés', '#ffbb00');
+        this.createSeries('date', 'deathsJHU', 'Décès', '#f9461c');
+      } else {
+        this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       }
       this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
       this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
     } else if (this.dailyDatasByCountry) {
+      this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
       this.chart.data = this.dailyDatasByCountry;
     } else {
+      this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
       this.chart.data = this.data;
     }
-    this.createSeries('date', 'deaths', 'Décès', '#f9461c');
+
     // Add cursor
     this.chart.cursor = new am4charts.XYCursor();
     // Add legend

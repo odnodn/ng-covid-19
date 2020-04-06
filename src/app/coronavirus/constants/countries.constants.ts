@@ -410,16 +410,6 @@ export const COUNTRIES = [
     flag: 'https://www.countryflags.io/CV/flat/32.png'
   },
   {
-    country: 'Cape Verde',
-    slug: 'cape-verde',
-    translation: 'Cap Vert',
-    provinces: [
-      ''
-    ],
-    code: 'CV',
-    flag: 'https://www.countryflags.io/CV/flat/32.png'
-  },
-  {
     country: 'Central African Republic',
     slug: 'central-african-republic',
     translation: 'Centre Afrique',
@@ -1092,7 +1082,7 @@ export const COUNTRIES = [
   {
     country: 'Guyana',
     slug: 'guyana',
-    translation: 'Guyane',
+    translation: 'Guyana',
     provinces: [
       ''
     ],

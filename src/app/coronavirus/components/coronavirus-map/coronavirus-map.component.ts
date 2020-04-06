@@ -47,7 +47,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#ffbb00'
       },
-      title: 'Carte des cas confirmés',
+      title: 'Cartographie des cas confirmés',
       datas: [],
       label: 'cas confirmés',
       tooltipText: '{name} [bold]\n{value}[\] cas confirmés'
@@ -56,7 +56,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#43D787'
       },
-      title: 'Carte des cas guéris',
+      title: 'Cartographie des cas guéris',
       datas: [],
       label: 'guéris',
       tooltipText: '{name} [bold]\n{value}[\] guéris'
@@ -65,7 +65,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Carte des décès',
+      title: 'Cartographie des décès',
       datas: [],
       label: 'décès',
       tooltipText: '{name} [bold]\n{value}[\] décès'
@@ -74,7 +74,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#F17D07'
       },
-      title: 'Carte des hospitalisations en cours',
+      title: 'Cartographie des hospitalisations en cours',
       datas: [],
       label: 'hospitalisations en cours',
       tooltipText: '{name} [bold]\n{value}[\] hospitalisations en cours'
@@ -83,7 +83,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#E95D0C'
       },
-      title: 'Carte des réanimations en cours',
+      title: 'Cartographie des réanimations en cours',
       datas: [],
       label: 'réanimations en cours',
       tooltipText: '{name} [bold]\n{value}[\] réanimations en cours'
@@ -92,7 +92,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistages',
+      title: 'Cartographie des tests de dépistage',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -103,7 +103,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistages chez les - de 15 ans',
+      title: 'Cartographie des tests de dépistage chez les - de 15 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -114,7 +114,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistages chez les 15-14 ans',
+      title: 'Cartographie des tests de dépistage chez les 15-14 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -125,7 +125,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistages chez les 45-64 ans',
+      title: 'Cartographie des tests de dépistage chez les 45-64 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -136,7 +136,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistages chez les 65-74 ans',
+      title: 'Cartographie des tests de dépistage chez les 65-74 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
@@ -147,7 +147,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       colors: {
         max: '#f9461c'
       },
-      title: 'Carte des tests de dépistages chez les + de 75 ans',
+      title: 'Carte des tests de dépistage chez les + de 75 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'

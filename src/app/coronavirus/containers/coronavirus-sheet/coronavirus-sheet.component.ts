@@ -53,6 +53,10 @@ export class CoronavirusSheetComponent implements OnInit {
       }
       if (params.country) {
         this.selectedCountry = COUNTRIES.find((country) => country.slug === params.country);
+        if (!this.selectedCountry) {
+          this.router.navigateByUrl('/');
+          return;
+        }
         if (this.selectedCountry.country === 'Monde') {
           this.initWorldDatas();
           this.initMetaTagWorld();
@@ -92,6 +96,10 @@ export class CoronavirusSheetComponent implements OnInit {
 
   private updateFranceRegionDatas(params: any): void {
     this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
+    if (!this.selectedRegion) {
+      this.router.navigateByUrl('/');
+      return;
+    }
     this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
     this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('region', this.selectedRegion.code);
     this.franceStats$ = this.coronavirusFranceService.getData('region', this.selectedRegion.code);
@@ -99,6 +107,10 @@ export class CoronavirusSheetComponent implements OnInit {
 
   private updateFranceDepartmentDatas(params: any): void {
     this.selectedDepartment = FRANCE_DEPS.find((department) => department.slug === params.department);
+    if (!this.selectedDepartment) {
+      this.router.navigateByUrl('/');
+      return;
+    }
     this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'le département');
     this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('department', this.selectedDepartment.code);
     this.franceStats$ = this.coronavirusFranceService.getData('department', this.selectedDepartment.code);

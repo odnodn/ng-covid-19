@@ -10,7 +10,7 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
-  <div id="menu" class="navbar-menu" [class.is-active]="isActive">
+  <div id="menu" class="navbar-menu" [class.is-active]="isActive" (click)="expand()">
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -22,6 +22,9 @@
           </a>
           <a class="navbar-item" routerLink="/stats/liens/monde" (click)="expand()">
             Monde et par pays
+          </a>
+          <a class="navbar-item" routerLink="/stats/liens/test-depistage/france" (click)="expand()">
+            Tests de dépistage
           </a>
         </div>
       </div>
@@ -49,6 +52,11 @@
           Télécharger les attestations
         </a>
         <div class="navbar-dropdown">
+          <a class="navbar-item"
+          href="https://media.interieur.gouv.fr/deplacement-covid-19/"
+          target="_blank" rel="noopener noreferrer" (click)="expand()">
+          Attestation numérique
+        </a>
           <a class="navbar-item"
             href="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2020/03/attestation_de_deplacement_derogatoire.pdf"
             target="_blank" rel="noopener noreferrer" (click)="expand()">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, AfterViewInit, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
@@ -9,7 +9,7 @@ import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
   styleUrls: ['./coronavirus-chart-test-column.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewInit {
+export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewInit, OnDestroy {
 
   chart: am4charts.XYChart;
   choices: any[];
@@ -30,6 +30,13 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   ngAfterViewInit(): void {
     this.onSelectTypeChange();
+  }
+
+  ngOnDestroy(): void {
+    if (!this.chart) {
+      return;
+    }
+    this.chart.dispose();
   }
 
   onSelectTypeChange(): void {
@@ -77,6 +84,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.createYSeries();
     this.createSeries(fieldPositive, 'Tests positifs', '#f9461c', 'date');
     this.createSeries(fieldNegative, 'Tests négatifs', 'whitesmoke', 'date');
+    this.createTotalLabel();
   }
 
   private createTotalLabel(): void {

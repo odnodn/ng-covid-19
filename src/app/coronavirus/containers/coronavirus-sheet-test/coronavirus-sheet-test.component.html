@@ -1,9 +1,10 @@
 <a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})" class="button is-info"
   *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques nationales</a>
 <p class="is-spaced">
-  Ce dashboard renseigne sur le nombre de tests de dépistage du COVID-19 réalisés par les laboratoires de villes. Il
-  contient uniquement les tests réalisés par les laboratoires de ville. Il ne recense pas l’ensemble des tests réalisés
-  en France.
+  Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
+    {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
+  </strong>. Il
+  contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests réalisés.
 </p>
 <h1 class="title is-spaced" id="tableDescription">Statistiques de tests de dépistage COVID-19
   {{selectedDepartment?.name}}
@@ -23,7 +24,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child notification is-warning">
-            <p class="title">{{dataTest?.value.total[0].testTotal}}</p>
+            <p class="title">{{dataTest?.value.total[0].testTotal | number: '' :'fr-FR'}}</p>
             <p class="subtitle">Tests effectués</p>
             <div class="legend">
               Source : Santé publique
@@ -32,7 +33,7 @@
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-danger">
-            <p class="title">{{dataTest?.value.total[0].testTotalPositive}}</p>
+            <p class="title">{{dataTest?.value.total[0].testTotalPositive | number: '' :'fr-FR'}}</p>
             <p class="subtitle">Tests positifs</p>
             <div class="legend">
               Source : Santé publique
@@ -41,7 +42,7 @@
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification">
-            <p class="title">{{dataTest?.value.total[0].testTotalNegative}}</p>
+            <p class="title">{{dataTest?.value.total[0].testTotalNegative | number: '' :'fr-FR'}}</p>
             <p class="subtitle">Tests négatifs</p>
             <div class="legend">
               Source : Santé publique

@@ -16,7 +16,7 @@ export class CoronavirusComponent implements OnInit {
   selectedDepartment: any;
 
   constructor(
-    private readonly router: Router,
+    public readonly router: Router,
     private readonly ref: ChangeDetectorRef
   ) {
   }
@@ -29,6 +29,9 @@ export class CoronavirusComponent implements OnInit {
     this.selectedCountry = $event.selectedCountry;
     this.selectedRegion = $event.selectedRegion;
     this.selectedDepartment = $event.selectedDepartment;
+    if (!this.selectedCountry && !this.selectedDepartment && !this.selectedRegion) {
+      this.router.navigate(['/']);
+    }
   }
 
 
@@ -38,8 +41,6 @@ export class CoronavirusComponent implements OnInit {
     this.selectedDepartment = undefined;
     this.router.navigate(['stats', this.selectedCountry.slug]);
   }
-
-
 
   onSelectRegion(region: any): void {
     this.selectedRegion = region;

@@ -18,6 +18,7 @@ import { CoronavirusSheetComponent } from './containers/coronavirus-sheet/corona
 import { CoronavirusChartTestColumnComponent } from './components/coronavirus-chart-test-column/coronavirus-chart-test-column.component';
 import { CoronavirusChartPieComponent } from './components/coronavirus-chart-pie/coronavirus-chart-pie.component';
 import { CoronavirusChartPyramidComponent } from './components/coronavirus-chart-pyramid/coronavirus-chart-pyramid.component';
+import { CoronavirusLinksFranceTestComponent } from './containers/coronavirus-links-france-test/coronavirus-links-france-test.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CoronavirusChartPyramidComponent } from './components/coronavirus-chart
     CoronavirusSheetTestComponent,
     CoronavirusSheetComponent,
     CoronavirusChartTestColumnComponent,
-    CoronavirusChartPyramidComponent
+    CoronavirusChartPyramidComponent,
+    CoronavirusLinksFranceTestComponent
   ],
   imports: [
     CommonModule,

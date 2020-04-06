@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CoronavirusFranceService {
 
   private readonly urlCSV = 'https://api-novel-coronavirus.herokuapp.com/france-datas';
-  private readonly urlTest = 'http://localhost:3000/france-datas-test';
+  private readonly urlTest = 'https://api-novel-coronavirus.herokuapp.com/france-datas-test';
 
   constructor(private readonly httpClient: HttpClient) { }
 

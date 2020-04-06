@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CoronavirusComponent } from './containers/coronavirus/coronavirus.component';
 import { CoronavirusLinksComponent } from './containers/coronavirus-links/coronavirus-links.component';
 import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-france/coronavirus-links-france.component';
+import { CoronavirusLinksFranceTestComponent } from './containers/coronavirus-links-france-test/coronavirus-links-france-test.component';
 
 export const coronavirusRoutes: Routes = [
   {
@@ -28,15 +29,15 @@ export const coronavirusRoutes: Routes = [
         component: CoronavirusSheetComponent
       },
       {
-        path: 'test/:country',
+        path: 'test-depistage/:country',
         component: CoronavirusSheetTestComponent
       },
       {
-        path: 'test/:country/region/:region',
+        path: 'test-depistage/:country/region/:region',
         component: CoronavirusSheetTestComponent
       },
       {
-        path: 'test/:country/departement/:department',
+        path: 'test-depistage/:country/departement/:department',
         component: CoronavirusSheetTestComponent
       }
     ]
@@ -49,7 +50,10 @@ export const coronavirusRoutes: Routes = [
     component: CoronavirusLinksFranceComponent,
     path: 'stats/liens/france',
   },
-
+  {
+    component: CoronavirusLinksFranceTestComponent,
+    path: 'stats/liens/test-depistage/france',
+  },
 ];
 
 @NgModule({

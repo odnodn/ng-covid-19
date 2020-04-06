@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
@@ -9,13 +9,15 @@ import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
   styleUrls: ['./coronavirus-chart-pyramid.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusChartPyramidComponent implements OnInit {
+export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
 
   chart: am4charts.XYChart;
   series: am4charts.ColumnSeries;
   typeValueMen: string;
   typeValueWomen: string;
   dataType = 'total';
+  max: number;
+  dataChart: any[];
   choices: any[];
   @Input() data;
   constructor() { }
@@ -25,16 +27,23 @@ export class CoronavirusChartPyramidComponent implements OnInit {
       { label: 'Tests réalisés', value: 'total' },
       { label: 'Tests positifs', value: 'positif' }
     ];
-
+    this.dataChart = this.data.filter((data) => data.age !== 'tous');
     this.onSelectTypeChange();
-
   }
+
+  ngOnDestroy(): void {
+    if (!this.chart) {
+      return;
+    }
+    this.chart.dispose();
+  }
+
 
   initChart(): void {
     this.chart = am4core.create('chart-pyramid', am4charts.XYChart);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
-    this.chart.data = this.data.filter((data) => data.age !== 'tous');
+    this.chart.data = this.dataChart;
     this.chart.legend = new am4charts.Legend();
     this.createYaxis();
     this.createMenPyramid();
@@ -45,7 +54,9 @@ export class CoronavirusChartPyramidComponent implements OnInit {
   onSelectTypeChange(): void {
     this.typeValueMen = 'testMenPositive';
     this.typeValueWomen = 'testWomenPositive';
+    this.max = Math.max.apply(Math, this.dataChart.map((o) => o.testTotalPositive));
     if (this.dataType === 'total') {
+      this.max = Math.max.apply(Math, this.dataChart.map((o) => o.testTotal));
       this.typeValueMen = 'testMen';
       this.typeValueWomen = 'testWomen';
     }
@@ -58,6 +69,7 @@ export class CoronavirusChartPyramidComponent implements OnInit {
     pyramidYAxis.renderer.minGridDistance = 10;
     pyramidYAxis.renderer.grid.template.location = 0;
     pyramidYAxis.title.text = 'Age';
+    pyramidYAxis.fontSize = 13;
 
   }
 
@@ -67,6 +79,9 @@ export class CoronavirusChartPyramidComponent implements OnInit {
     const pyramidSeriesMale = this.chart.series.push(new am4charts.ColumnSeries());
     pyramidSeriesMale.dataFields.categoryY = 'age';
     pyramidSeriesMale.dataFields.valueX = this.typeValueMen;
+    pyramidXAxisMale.min = 0;
+    pyramidXAxisMale.max = this.max;
+    pyramidXAxisMale.fontSize = 13;
 
     const menLabel = pyramidSeriesMale.bullets.push(new am4charts.LabelBullet());
     menLabel.label.text = '{valueX}';
@@ -74,6 +89,7 @@ export class CoronavirusChartPyramidComponent implements OnInit {
     menLabel.label.truncate = false;
     menLabel.label.horizontalCenter = 'left';
     menLabel.label.dx = 10;
+    menLabel.label.fontSize = 13;
 
     pyramidSeriesMale.name = 'Homme';
     pyramidSeriesMale.xAxis = pyramidXAxisMale;
@@ -86,6 +102,9 @@ export class CoronavirusChartPyramidComponent implements OnInit {
     const pyramidXAxisFemale = this.chart.xAxes.push(new am4charts.ValueAxis());
     pyramidXAxisFemale.renderer.inversed = true;
     pyramidXAxisFemale.extraMax = 0.1;
+    pyramidXAxisFemale.min = 0;
+    pyramidXAxisFemale.max = this.max;
+    pyramidXAxisFemale.fontSize = 13;
 
     const pyramidSeriesFemale = this.chart.series.push(new am4charts.ColumnSeries());
     pyramidSeriesFemale.dataFields.categoryY = 'age';
@@ -96,6 +115,7 @@ export class CoronavirusChartPyramidComponent implements OnInit {
     womenLabel.label.hideOversized = false;
     womenLabel.label.truncate = false;
     womenLabel.label.horizontalCenter = 'right';
+    womenLabel.label.fontSize = 13;
     womenLabel.label.dx = -10;
     pyramidSeriesFemale.name = 'Femme';
     pyramidSeriesFemale.xAxis = pyramidXAxisFemale;

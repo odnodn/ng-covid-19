@@ -12,7 +12,7 @@
     </ng-container>
   </p>
   <div class="tile is-ancestor">
-    <div class="tile is-parent" *ngIf="mainStats.cases">
+    <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
       <article class="tile is-child notification is-warning">
         <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
           <span class="increase">
@@ -25,7 +25,7 @@
         </div>
       </article>
     </div>
-    <div class="tile is-parent" *ngIf="mainStats.hospital">
+    <div class="tile is-parent" *ngIf="mainStats.hospital !== undefined">
       <article class="tile is-child notification hospital">
         <p class="title">{{mainStats.hospital | number: '' :'fr-FR'}}
           <span class="increase">
@@ -38,7 +38,7 @@
         </p>
       </article>
     </div>
-    <div class="tile is-parent" *ngIf="mainStats.reanimation">
+    <div class="tile is-parent" *ngIf="mainStats.reanimation !== undefined">
       <article class="tile is-child notification reanimation">
         <p class="title">{{mainStats.reanimation | number: '' :'fr-FR'}}
           <span class="increase">
@@ -51,16 +51,18 @@
         </p>
       </article>
     </div>
-    <div class="tile is-parent" *ngIf="mainStats.deaths">
+    <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
       <article class="tile is-child notification is-danger ">
         <ng-container *ngIf="mainStats.deathsJHU">
           <p class="title">
             {{mainStats.deathsJHU | number: '' :'fr-FR'}}
+            <span class="increase">
+              {{mainStats.todayDeaths | symbolNumber }}
+            </span>
           </p>
           <p class="subtitle">Décès
             <span class="note">
               dont {{mainStats.deaths | number: '' :'fr-FR'}} ({{mainStats.todayDeaths | symbolNumber }}) en milieu hospitalier
-
             </span>
           </p>
           <p class="legend">
@@ -74,7 +76,7 @@
               {{mainStats.todayDeaths | symbolNumber }}
             </span>
           </p>
-          <p class="subtitle">décès</p>
+          <p class="subtitle">Décès</p>
           <p class="legend" *ngIf="selectedZone">
             Source : Données remontées par les centres hospitaliers participants à SI-VIC
           </p>
@@ -84,7 +86,7 @@
         </ng-container>
       </article>
     </div>
-    <div class="tile is-parent" *ngIf="mainStats.recovered">
+    <div class="tile is-parent" *ngIf="mainStats.recovered !== undefined">
       <article class="tile is-child notification is-success active-map">
         <p class="title">
           {{mainStats.recovered | number: '' :'fr-FR'}}
