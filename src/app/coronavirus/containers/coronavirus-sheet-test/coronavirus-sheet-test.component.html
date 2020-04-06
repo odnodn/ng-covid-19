@@ -7,7 +7,7 @@
   contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests
   réalisés.
 </p>
-<h1 class="title is-spaced" id="tableDescription">Statistiques de tests de dépistage du Coronavirus COVID-19
+<h1 class="title is-spaced" id="tableDescription">Statistiques des tests de dépistage du Coronavirus COVID-19
   {{selectedDepartment?.name}}
   {{selectedRegion?.name}}
   <ng-container *ngIf="!selectedDepartment && !selectedRegion">
@@ -18,7 +18,7 @@
   <ng-container *ngIf="dataTest?.value">
     <div class="content">
       <p>
-        Les données de tests de tests de dépistage du Coronavirus COVID-19 ont été mises à jour le
+        Les données des tests de dépistage du Coronavirus COVID-19 ont été mises à jour le
         <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.
 
       </p>
@@ -87,7 +87,7 @@
           <h2>Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
           <p>
             Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département chez
-            l'homme et la femme
+            l'homme et la femme.
           </p>
           <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
           (dataTest.value.region | ageFilter : selectedTypeMap) : (dataTest.value.department | ageFilter : selectedTypeMap)" [selectedTypeMap]="selectedTypeMap" [selectedCountry]="selectedCountry">
