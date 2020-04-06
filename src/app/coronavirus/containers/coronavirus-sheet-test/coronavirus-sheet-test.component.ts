@@ -21,7 +21,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
   selectedRegion: any;
   selectedTypeMap = 'ageAll';
   selectedDivisionMapTable = 'regionFrance';
-  labelTableAge: string;
+  labelTableAge: string = 'à tous les âges';
 
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
@@ -63,12 +63,12 @@ export class CoronavirusSheetTestComponent implements OnInit {
 
   onSelectTypeMap(type: string): void {
     const age = {
-      ageAll: 'tous',
-      ageA: 'les moins de 15 ans',
-      ageB: 'les 15-44 ans',
-      ageC: 'les 45-64 ans',
-      ageD: 'les 65-74 ans',
-      ageE: 'les plus de 75 ans',
+      ageAll: 'à tous les âges',
+      ageA: 'chez les moins de 15 ans',
+      ageB: 'chez les 15-44 ans',
+      ageC: 'chez les 45-64 ans',
+      ageD: 'chez les 65-74 ans',
+      ageE: 'chez les plus de 75 ans',
     };
     this.selectedTypeMap = type;
     this.labelTableAge = age[type];

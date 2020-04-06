@@ -19,7 +19,7 @@
         <span *ngIf="!selectedDivisionMap">
           {{element.translation}} {{element.provinceState}}
         </span>
-        <ng-container *ngIf="dataType !== 'test'">
+        <ng-container *ngIf="!selectedTypeMap">
           <a *ngIf="selectedDivisionMap === 'regionFrance'" [routerLink]="['/stats/france/region/', element.slug]">
             {{element.translation}} {{element.provinceState}}
           </a>
@@ -27,7 +27,7 @@
             {{element.translation}} {{element.provinceState}}
           </a>
         </ng-container>
-        <ng-container *ngIf="dataType === 'test'">
+        <ng-container *ngIf="selectedTypeMap">
           <a *ngIf="selectedDivisionMap === 'regionFrance'" [routerLink]="['/test-depistage/france/region/', element.slug]">
             {{element.translation}} {{element.provinceState}}
           </a>

@@ -13,7 +13,6 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   @Input() detailedStats;
   @Input() selectedCountry;
   @Input() selectedDivisionMap;
-  @Input() dataType;
   @Input() selectedTypeMap;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = [];
