@@ -47,13 +47,6 @@ export class CoronavirusSelectComponent implements OnInit {
       .indexOf(search) > -1);
   }
 
-  compareFn(optionOne, optionTwo): boolean {
-    if (optionOne && optionTwo) {
-      return optionOne.slug === optionTwo.slug;
-    }
-    return optionOne.slug === 'monde';
-  }
-
   selectRegion(): void {
     this.selectRegionEvent.emit(this.selectedRegion);
   }
@@ -88,20 +81,8 @@ export class CoronavirusSelectComponent implements OnInit {
       .indexOf(search) > -1);
   }
 
-  // compareFnDepartment(optionOne, optionTwo): boolean {
-  //   if (optionOne && optionTwo) {
-  //     return optionOne.slug === optionTwo.slug;
-  //   }
-  //   return optionOne.slug === this.selectedDepartment.slug;
-  // }
-
   trackByFn(index): void {
     return index;
   }
-
-
-
-
-
 
 }

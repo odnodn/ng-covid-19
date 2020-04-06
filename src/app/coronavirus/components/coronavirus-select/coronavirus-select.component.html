@@ -2,11 +2,7 @@
   <div class="columns">
     <div class="column">
       <mat-label class="label" for="country-select">Sélectionner un pays</mat-label>
-      <mat-select role="listbox" [class.small]="selectedCountry.country !== 'France'" [(ngModel)]="selectedCountry" (ngModelChange)="selectCountry()"
-        [compareWith]="compareFn">
-        <mat-select-trigger>
-          {{selectedCountry.translation}}
-        </mat-select-trigger>
+      <mat-select role="listbox" placeholder="Choisir un pays..." [class.small]="selectedCountry.country !== 'France'" [(ngModel)]="selectedCountry" (ngModelChange)="selectCountry()">
         <mat-option role="option">
           <ngx-mat-select-search ngModel placeholderLabel="Rechercher un pays..." noEntriesFoundLabel="Pays inconnu"
             clearSearchInput="true" (ngModelChange)="filterCountries($event)">
@@ -19,7 +15,7 @@
       </mat-select>
     </div>
     <div class="column" *ngIf="selectedCountry.country === 'France'">
-      <mat-label class="label" for="country-select">Sélectionner une région</mat-label>
+      <mat-label class="label" for="region-select">Sélectionner une région</mat-label>
       <mat-select role="listbox"  placeholder="Choisir une région..." [(ngModel)]="selectedRegion" (ngModelChange)="selectRegion()" >
         <mat-option role="option">
           <ngx-mat-select-search ngModel placeholderLabel="Rechercher une région..." noEntriesFoundLabel="Région inconnue"
@@ -32,7 +28,7 @@
       </mat-select>
     </div>
     <div class="column" *ngIf="selectedCountry.country === 'France'">
-      <mat-label class="label" for="country-select">Sélectionner un département</mat-label>
+      <mat-label class="label" for="department-select">Sélectionner un département</mat-label>
       <mat-select role="listbox" placeholder="Choisir un département..." [(ngModel)]="selectedDepartment" (ngModelChange)="selectDepartment()" >
         <mat-option role="option">
           <ngx-mat-select-search ngModel placeholderLabel="Rechercher un département..." noEntriesFoundLabel="Département inconnu"
