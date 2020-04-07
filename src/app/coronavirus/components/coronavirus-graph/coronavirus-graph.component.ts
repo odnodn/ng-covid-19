@@ -34,6 +34,18 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
 
   onSelectTypeChange(): void {
     this.chart.data = this.dataFrance[this.dataType];
+    if (!this.dataFrance.total[0].code) { // is national data page
+      if (this.dataType === 'men' || this.dataType === 'women') {
+        this.chart.series.removeIndex(
+          this.chart.series.indexOf(this.chart.map.getKey('Confirmés'))
+        ).dispose();
+        this.chart.map.getKey('Décès').dataFields.valueY = 'deaths';
+      } else {
+        this.createSeries('date', 'cases', 'Confirmés', '#ffbb00');
+        this.chart.map.getKey('Décès').dataFields.valueY = 'deathsJHU';
+      }
+    }
+
   }
 
   private initChart(): void {
@@ -54,8 +66,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
     if (this.dataFrance) {
-      this.onSelectTypeChange();
-      if (!this.dataFrance.total[0].code && this.dataType === 'total') {
+      if (!this.dataFrance.total[0].code) {
         this.createSeries('date', 'cases', 'Confirmés', '#ffbb00');
         this.createSeries('date', 'deathsJHU', 'Décès', '#f9461c');
       } else {
@@ -64,6 +75,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
       this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
       this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
+      this.chart.data = this.dataFrance[this.dataType];
     } else if (this.dailyDatasByCountry) {
       this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
@@ -86,6 +98,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     series.dataFields.valueY = valueY;
     series.dataFields.dateX = valueX;
     series.name = name;
+    series.id = name;
     series.strokeWidth = 2;
     series.stroke = am4core.color(color); // red
     series.fill = am4core.color(color);
