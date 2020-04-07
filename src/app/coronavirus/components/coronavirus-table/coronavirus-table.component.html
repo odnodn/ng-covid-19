@@ -1,4 +1,4 @@
-<div class="field">
+<div class="field" *ngIf="dataSource.data.length > 10">
   <mat-label for="country-select" class="label">Faire une recherche</mat-label>
   <div class="control">
     <input class="input" (keyup)="applyFilter($event)" type="text" placeholder="Rechercher dans le tableau...">

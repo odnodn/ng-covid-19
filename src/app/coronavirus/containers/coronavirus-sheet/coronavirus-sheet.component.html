@@ -42,6 +42,12 @@
         </div>
         <div class="content">
           <div class="columns" *ngIf="selectedCountry.country === 'Monde'">
+            <div class="column" *ngIf="selectedCountry.country === 'Monde'">
+              <h2>Tableau récapitulatif de l'épidémie dans le monde</h2>
+              <app-coronavirus-table [detailedStats]="detailedStats.value | countryfilter: ''"
+                [selectedCountry]="selectedCountry">
+              </app-coronavirus-table>
+            </div>
             <ng-container *ngIf="(data$ | loading | async) as data">
               <ng-container *ngIf="data.value">
                 <div class="column" *ngIf="isBrowser">
@@ -62,60 +68,61 @@
                 <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
               </ng-container>
             </ng-container>
-            <div class="column" *ngIf="selectedCountry.country === 'Monde'">
-              <h2>Tableau récapitulatif de l'épidémie dans le monde</h2>
-              <app-coronavirus-table [detailedStats]="detailedStats.value | countryfilter: ''"
-                [selectedCountry]="selectedCountry">
-              </app-coronavirus-table>
-            </div>
+
           </div>
         </div>
       </ng-container>
       <!-- Country container -->
       <ng-container *ngIf="selectedCountry.country !== 'Monde'">
-        <div class="columns">
-          <div class="column is-spaced is-two-thirds">
-            <ng-container *ngIf="(dailyDatasByCountry$ | loading | async) as dailyDatasByCountry">
-              <ng-container *ngIf="dailyDatasByCountry.value && dailyDatasByCountry.value.length > 0">
-                <app-coronavirus-graph [dailyDatasByCountry]="dailyDatasByCountry.value"></app-coronavirus-graph>
+        <div class="content">
+          <div class="columns">
+            <div class="column is-spaced">
+              <ng-container *ngIf="(tableStatsByCountry$ | loading | async) as tableStatsByCountry">
+                <ng-container *ngIf="tableStatsByCountry.value && tableStatsByCountry.value.length > 0">
+                  <h2>Tableau récapitulatif de l'épidémie dans le pays</h2>
+                  <app-coronavirus-table [detailedStats]="tableStatsByCountry.value" [selectedCountry]="selectedCountry">
+                  </app-coronavirus-table>
+                </ng-container>
+                <ng-container *ngIf="!tableStatsByCountry.value && !tableStatsByCountry.loading">
+                  <article class="message is-danger is-spaced">
+                    <div class="message-header">
+                      <p>Données indisponibles</p>
+                    </div>
+                    <div class="message-body">
+                      Nous n'avons pas trouvé de données.
+                    </div>
+                  </article>
+                </ng-container>
+                <ng-container *ngIf="tableStatsByCountry.loading">
+                  <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+                </ng-container>
               </ng-container>
-              <ng-container *ngIf="!dailyDatasByCountry.value && !dailyDatasByCountry.loading">
-                <article class="message is-danger is-spaced">
-                  <div class="message-header">
-                    <p>Données indisponibles</p>
-                  </div>
-                  <div class="message-body">
-                    Nous n'avons pas trouvé de données.
-                  </div>
-                </article>
+            </div>
+            <div class="column is-spaced is-two-thirds">
+              <ng-container *ngIf="(dailyDatasByCountry$ | loading | async) as dailyDatasByCountry">
+                <ng-container *ngIf="dailyDatasByCountry.value && dailyDatasByCountry.value.length > 0">
+                  <app-coronavirus-graph [dailyDatasByCountry]="dailyDatasByCountry.value"></app-coronavirus-graph>
+                </ng-container>
+                <ng-container *ngIf="!dailyDatasByCountry.value && !dailyDatasByCountry.loading">
+                  <article class="message is-danger is-spaced">
+                    <div class="message-header">
+                      <p>Données indisponibles</p>
+                    </div>
+                    <div class="message-body">
+                      Nous n'avons pas trouvé de données.
+                    </div>
+                  </article>
+                </ng-container>
+                <ng-container *ngIf="dailyDatasByCountry.loading">
+                  <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+                </ng-container>
               </ng-container>
-              <ng-container *ngIf="dailyDatasByCountry.loading">
-                <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
-              </ng-container>
-            </ng-container>
-          </div>
-          <div class="column is-spaced">
-            <ng-container *ngIf="(tableStatsByCountry$ | loading | async) as tableStatsByCountry">
-              <ng-container *ngIf="tableStatsByCountry.value && tableStatsByCountry.value.length > 0">
-                <app-coronavirus-table [detailedStats]="tableStatsByCountry.value" [selectedCountry]="selectedCountry">
-                </app-coronavirus-table>
-              </ng-container>
-              <ng-container *ngIf="!tableStatsByCountry.value && !tableStatsByCountry.loading">
-                <article class="message is-danger is-spaced">
-                  <div class="message-header">
-                    <p>Données indisponibles</p>
-                  </div>
-                  <div class="message-body">
-                    Nous n'avons pas trouvé de données.
-                  </div>
-                </article>
-              </ng-container>
-              <ng-container *ngIf="tableStatsByCountry.loading">
-                <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
-              </ng-container>
-            </ng-container>
+            </div>
+
           </div>
         </div>
+
+
       </ng-container>
     </ng-container>
   </ng-container>
