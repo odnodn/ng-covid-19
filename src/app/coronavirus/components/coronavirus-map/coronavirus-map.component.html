@@ -1,5 +1,5 @@
 <div class="content is-spaced">
-  <div #chartElement id="chart-map" [class.map-france]="selectedCountry.country === 'France'" [class.map-world]="selectedCountry.country === 'Monde'"></div>
+  <div #chartElement [id]="selectedCountry.country !== 'France' ? 'map-world' : 'map-france'"></div>
 </div>
 <div class="radio-buttons" *ngIf="selectedTypeData !== 'test'">
   <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">

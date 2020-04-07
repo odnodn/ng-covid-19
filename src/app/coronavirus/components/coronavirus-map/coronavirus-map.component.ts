@@ -1,7 +1,7 @@
 
 import {
   Component, OnInit, OnDestroy, OnChanges,
-  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy, Output, EventEmitter
+  ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy, Output, EventEmitter, AfterViewInit
 } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
@@ -26,7 +26,7 @@ export interface ThemeColor {
   styleUrls: ['./coronavirus-map.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
+export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
   @Input() detailedStats;
   @Input() selectedDivisionMap;
@@ -183,6 +183,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       this.selectedTypeMap = 'ageAll';
     }
     this.isInitialized = true;
+  }
+
+  ngAfterViewInit(): void {
     this.initMainMap();
     this.initDatas();
     this.updateMap();
@@ -310,7 +313,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private initMainMap(): void {
-    this.chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
+    const mapId = this.selectedCountry.country === 'France' ? 'map-france' : 'map-world';
+    this.chart = am4core.create(mapId, am4maps.MapChart);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.geodata = this.divisionMap[this.selectedDivisionMap]; // En fonction monde, region, departement
     this.chart.geodataNames = am4geodata_lang_FR;
@@ -320,10 +324,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     polygonTemplate.fill = am4core.color('#eeeeee');
     this.series.useGeodata = true;
     this.series.nonScalingStroke = true;
-    this.series.dataFields.zoomLevel = 'zoomLevel';
-    this.series.dataFields.zoomGeoPoint = 'zoomGeoPoint';
     this.series.strokeWidth = 0.5;
-    this.series.calculateVisualCenter = true;
     this.title = this.chart.chartContainer.createChild(am4core.Label);
     this.title.fontSize = 20;
     this.title.fontFamily = 'inherit';
@@ -367,8 +368,6 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     this.imageSeries.tooltip.background.strokeOpacity = 0;
     this.imageSeries.tooltip.label.textAlign = 'middle';
     this.imageSeries.tooltip.label.fontSize = 14;
-
-
     this.imageSeries.heatRules.push({
       target: this.circle,
       property: 'radius',

@@ -28,7 +28,7 @@
     </ng-container>
 
   </p>
-  <div #chartElement id="chart-line"></div>
+  <div #chartElement id="chart-line" [class.graph-france]="dataFrance" [class.graph-world]="!dataFrance"></div>
   <div class="radio-buttons" *ngIf="dataFrance">
     <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
       <mat-radio-button value="total">Total</mat-radio-button>
