@@ -26,12 +26,12 @@ export class GouvComponent implements OnInit {
       { name: 'og:title', content: 'Infos et attestations Coronavirus COVID-19 du gouvernement' },
       // tslint:disable-next-line:max-line-length
       { name: 'og:description', content: 'Retrouver les informations et les attestations de sortie du Gouvernement à cause du Coronavirus COVID-19' },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Infos et attestations Coronavirus COVID-19 du gouvernement' },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Retrouver les informations et les attestations de sortie du Gouvernement à cause du Coronavirus COVID-19' },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {

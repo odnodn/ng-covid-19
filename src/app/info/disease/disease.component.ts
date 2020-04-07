@@ -21,12 +21,12 @@ export class DiseaseComponent implements OnInit {
       { name: 'og:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
       // tslint:disable-next-line:max-line-length
       { name: 'og:description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {

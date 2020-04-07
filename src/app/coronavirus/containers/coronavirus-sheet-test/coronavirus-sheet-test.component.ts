@@ -94,12 +94,12 @@ export class CoronavirusSheetTestComponent implements OnInit {
       { name: 'og:title', content: `Tests de dépistage Coronavirus COVID-19 ${region.name}` },
       // tslint:disable-next-line:max-line-length
       { name: 'og:description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: `Tests de dépistage Coronavirus COVID-19 ${region.name}` },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {
@@ -119,13 +119,13 @@ export class CoronavirusSheetTestComponent implements OnInit {
       { name: 'og:title', content: `Tests de dépistage Coronavirus COVID-19 France` },
       // tslint:disable-next-line:max-line-length
       { name: 'og:description', content: `Tests de dépistage Coronavirus COVID-19 France - Suivez les tests de dépistage pour diagnostic de COVID-19 en France par région et département` },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:title', content: `Tests de dépistage Coronavirus COVID-19 France` },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Tests de dépistage Coronavirus COVID-19 France - Suivez les tests de dépistage pour diagnostic de COVID-19 en France par région et département` },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {
