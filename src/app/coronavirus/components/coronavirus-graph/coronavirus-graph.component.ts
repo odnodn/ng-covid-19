@@ -77,13 +77,13 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
       this.chart.data = this.dataFrance[this.dataType];
     } else if (this.dailyDatasByCountry) {
-      this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
+      this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
       this.chart.data = this.dailyDatasByCountry;
     } else {
-      this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'cases', 'Confirmés', '#F17D07');
+      this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.chart.data = this.data;
     }
 

@@ -105,16 +105,16 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
       positive = this.dataTest.testTotalPositive;
       negative = this.dataTest.testTotalNegative;
       this.labelText = `Répartition des tests positifs et négatifs
-      sur les ${this.dataTest.testTotal} effectués chez l'homme et la femme`;
+      sur les ${this.dataTest.testTotal} réalisés chez l'homme et la femme`;
     } else if (this.dataType === 'men') {
       positive = this.dataTest.testMenPositive;
       negative = this.dataTest.testMenNegative;
       this.labelText = `Répartition des tests positifs et négatifs les
-      ${this.dataTest.testMen} effectués chez l\'homme`;
+      ${this.dataTest.testMen} réalisés chez l\'homme`;
     } else if (this.dataType === 'women') {
       positive = this.dataTest.testWomenPositive;
       negative = this.dataTest.testWomenNegative;
-      this.labelText = `Répartition des tests positifs et négatifs sur les ${this.dataTest.testWomen} effectués chez la femme`;
+      this.labelText = `Répartition des tests positifs et négatifs sur les ${this.dataTest.testWomen} réalisés chez la femme`;
     }
     this.chart.data = [
       {

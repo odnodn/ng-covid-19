@@ -26,7 +26,7 @@
         <div class="tile is-parent">
           <article class="tile is-child notification is-warning">
             <p class="title">{{dataTest?.value.total[0].testTotal | number: '' :'fr-FR'}}</p>
-            <p class="subtitle">Tests effectués</p>
+            <p class="subtitle">Tests réalisés</p>
             <div class="legend">
               Source : Santé publique
             </div>
@@ -66,7 +66,7 @@
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
           <h2>Cartographie des tests de dépistage selon l'âge</h2>
           <p>
-            Cette carte permet de voir les tests de dépistage du Coronavirus COVID-19 effectués selon le
+            Cette carte permet de voir les tests de dépistage du Coronavirus COVID-19 réalisés selon le
             département, la région, l'âge et le sexe
             en France.
           </p>
@@ -97,7 +97,7 @@
       <div class="columns">
 
         <div class="column is-spaced">
-          <h2>Nombre de tests de dépistage effectués depuis le 10 mars</h2>
+          <h2>Nombre de tests de dépistage réalisés depuis le 10 mars</h2>
           <p>
             Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 par jour avec le nombre
             de
@@ -123,7 +123,7 @@
           </app-coronavirus-chart-test-column>
         </div>
         <div class="column is-spaced">
-          <h2>Comparaison du nombre de tests de dépistage effectués en fonction de l'âge et du sexe</h2>
+          <h2>Comparaison du nombre de tests de dépistage réalisés en fonction de l'âge et du sexe</h2>
           <p>
             Ce diagramme compare le nombre de tests de dépistage du Coronavirus COVID-19 en fonction de l'âge et
             du sexe.
