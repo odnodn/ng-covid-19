@@ -121,19 +121,19 @@ export class CoronavirusSheetComponent implements OnInit {
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées et une carte en temps réel' },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:url', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:title', content: 'Cas Coronavirus - suivez le COVID-19 en France et dans le monde' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:title', content: 'Cas Coronavirus - suivez le COVID-19 en France et dans le monde' },
       // tslint:disable-next-line:max-line-length
-      { name: 'og:description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées et une carte en temps réel' },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: 'Cas de Coronavirus : suivez les cas du COVID-19 en France et dans le monde' },
+      { property: 'og:description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées et une carte en temps réel' },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { property: 'twitter:card', content: 'summary' },
+      { property: 'twitter:title', content: 'Cas de Coronavirus : suivez les cas du COVID-19 en France et dans le monde' },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées et une carte en temps réel' },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { property: 'twitter:description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées et une carte en temps réel' },
+      { property: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { property: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -145,21 +145,21 @@ export class CoronavirusSheetComponent implements OnInit {
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: `Cas de Coronavirus COVID-19 ${this.selectedCountry.translation} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel` },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:url', content: `https://www.cascoronavirus.fr/stats/${this.selectedCountry.slug}` },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${this.selectedCountry.slug}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'og:title', content: `Cas Coronavirus ${this.selectedCountry.translation} - suivez le COVID-19 en ${this.selectedCountry.translation}` },
+      { property: 'og:title', content: `Cas Coronavirus ${this.selectedCountry.translation} - suivez le COVID-19 en ${this.selectedCountry.translation}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'og:description', content: `Suivez les cas et morts du Coronavirus COVID-19 en ${this.selectedCountry.translation} avec des graphs et statistiques détaillées` },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
-      { name: 'twitter:card', content: 'summary' },
+      { property: 'og:description', content: `Suivez les cas et morts du Coronavirus COVID-19 en ${this.selectedCountry.translation} avec des graphs et statistiques détaillées` },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { property: 'twitter:card', content: 'summary' },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:title', content: `Cas Coronavirus ${this.selectedCountry.translation} - suivez le COVID-19 en ${this.selectedCountry.translation}` },
+      { property: 'twitter:title', content: `Cas Coronavirus ${this.selectedCountry.translation} - suivez le COVID-19 en ${this.selectedCountry.translation}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: `Suivez les cas et morts du Coronavirus COVID-19 en ${this.selectedCountry.translation} avec des graphs et statistiques détaillées` },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { property: 'twitter:description', content: `Suivez les cas et morts du Coronavirus COVID-19 en ${this.selectedCountry.translation} avec des graphs et statistiques détaillées` },
+      { property: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { property: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -171,19 +171,19 @@ export class CoronavirusSheetComponent implements OnInit {
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:url', content: `https://www.cascoronavirus.fr/stats/${region.slug}` },
-      { name: 'og:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${region.slug}` },
+      { property: 'og:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'og:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
+      { property: 'og:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { property: 'twitter:card', content: 'summary' },
+      { property: 'twitter:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { property: 'twitter:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { property: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og.png' },
+      { property: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
