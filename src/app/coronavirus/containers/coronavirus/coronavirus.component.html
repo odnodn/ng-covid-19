@@ -18,13 +18,13 @@
     </li>
     <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
       <a *ngIf="!selectedRegion && ! selectedDepartment" [routerLink]="['/test-depistage/', selectedCountry.slug]">
-        Statistiques de tests de dépistage
+        Statistiques des tests de dépistage
       </a>
       <a *ngIf="selectedRegion" [routerLink]="['/test-depistage/france/region/', selectedRegion.slug]">
-        Statistiques de tests de dépistage
+        Statistiques des tests de dépistage
       </a>
       <a *ngIf="selectedDepartment" [routerLink]="['/test-depistage/france/departement/', selectedDepartment.slug]">
-        Statistiques de tests de dépistage
+        Statistiques des tests de dépistage
       </a>
     </li>
   </ul>
