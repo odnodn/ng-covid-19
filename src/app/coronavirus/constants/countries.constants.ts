@@ -1,15 +1,5 @@
 export const COUNTRIES = [
   {
-    country: 'Monde',
-    slug: 'monde',
-    translation: 'Monde',
-    provinces: [
-      ''
-    ],
-    code: 'WL',
-    flag: '/assets/images/flag_world.png'
-  },
-  {
     country: 'France',
     slug: 'france',
     translation: 'France',
@@ -18,6 +8,16 @@ export const COUNTRIES = [
     ],
     code: 'FR',
     flag: 'https://www.countryflags.io/FR/flat/32.png'
+  },
+  {
+    country: 'Monde',
+    slug: 'monde',
+    translation: 'Monde',
+    provinces: [
+      ''
+    ],
+    code: 'WL',
+    flag: '/assets/images/flag_world.png'
   },
   {
     country: 'Italy',

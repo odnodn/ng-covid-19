@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CoronavirusComponent implements OnInit {
 
-  selectedCountry: any = COUNTRIES[1];
+  selectedCountry: any = COUNTRIES[0];
   selectedDivisionMap = 'regionFrance';
   selectedRegion: any;
   selectedDepartment: any;

@@ -29,7 +29,11 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   }
 
   ngAfterViewInit(): void {
-    this.onSelectTypeChange();
+    if (this.nameChart !== 'chart-test-age') {
+      this.initChartTimeline('testTotalPositive', 'testTotalNegative');
+    } else {
+      this.initChartAgeTest('testTotalPositive', 'testTotalNegative');
+    }
   }
 
   ngOnDestroy(): void {
@@ -40,22 +44,19 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   }
 
   onSelectTypeChange(): void {
+    this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
     if (this.nameChart !== 'chart-test-age') {
-      if (this.dataType === 'total') {
-        this.initChartTimeline('testTotalPositive', 'testTotalNegative');
-      } else if (this.dataType === 'men') {
-        this.initChartTimeline('testMenPositive', 'testMenNegative');
-      } else if (this.dataType === 'women') {
-        this.initChartTimeline('testWomenPositive', 'testWomenNegative');
-      }
-    } else {
-      if (this.dataType === 'total') {
-        this.initChartAgeTest('testTotalPositive', 'testTotalNegative');
-      } else if (this.dataType === 'men') {
-        this.initChartAgeTest('testMenPositive', 'testMenNegative');
-      } else if (this.dataType === 'women') {
-        this.initChartAgeTest('testWomenPositive', 'testWomenNegative');
-      }
+      this.chart.data = this.data.timeline.filter((item) => item.age === 'tous');
+    }
+    if (this.dataType === 'total') {
+      this.chart.map.getKey('Tests positifs').dataFields.valueY = 'testTotalPositive';
+      this.chart.map.getKey('Tests négatifs').dataFields.valueY = 'testTotalNegative';
+    } else if (this.dataType === 'men') {
+      this.chart.map.getKey('Tests positifs').dataFields.valueY = 'testMenPositive';
+      this.chart.map.getKey('Tests négatifs').dataFields.valueY = 'testMenNegative';
+    } else if (this.dataType === 'women') {
+      this.chart.map.getKey('Tests positifs').dataFields.valueY = 'testWomenPositive';
+      this.chart.map.getKey('Tests négatifs').dataFields.valueY = 'testWomenNegative';
     }
   }
 
@@ -121,14 +122,15 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   }
 
   private createSeries(field: string, name: string, color: string, xAxis: string): void {
-
     this.series = this.chart.series.push(new am4charts.ColumnSeries());
     this.series.columns.template.strokeOpacity = 0;
     this.series.columns.template.fill = am4core.color(color);
     this.series.columns.template.width = am4core.percent(75);
     this.series.columns.template.tooltipText =
       '{dateX} \n {valueY} {name} sur {valueY.total}';
+    this.series.dataFields.valueY = field;
     this.series.name = name;
+    this.series.id = name;
     /* Opacity */
     this.series.columns.template.strokeOpacity = 0;
 
@@ -149,7 +151,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       labelBullet.locationY = 0.5;
       labelBullet.label.fill = am4core.color('black');
     }
-    this.series.dataFields.valueY = field;
+
     this.series.tooltip.label.textAlign = 'middle';
     this.series.stacked = true;
   }

@@ -26,7 +26,7 @@ export class CoronavirusSheetComponent implements OnInit {
   franceStats$: Observable<any>;
   franceStatsByAge$: Observable<any>;
 
-  selectedCountry: any = COUNTRIES[1];
+  selectedCountry: any = COUNTRIES[0];
   selectedDivisionMap = 'regionFrance';
   selectedRegion: any;
   selectedDepartment: any;

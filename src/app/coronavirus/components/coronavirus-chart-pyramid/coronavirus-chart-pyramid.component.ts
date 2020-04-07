@@ -13,8 +13,6 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
 
   chart: am4charts.XYChart;
   series: am4charts.ColumnSeries;
-  typeValueMen: string;
-  typeValueWomen: string;
   dataType = 'total';
   max: number;
   dataChart: any[];
@@ -28,7 +26,7 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
       { label: 'Tests positifs', value: 'positif' }
     ];
     this.dataChart = this.data.filter((data) => data.age !== 'tous');
-    this.onSelectTypeChange();
+    this.initChart();
   }
 
   ngOnDestroy(): void {
@@ -45,22 +43,28 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
     this.chart.data = this.dataChart;
     this.chart.legend = new am4charts.Legend();
+    this.chart.legend.reverseOrder = true;
+    this.max = Math.max.apply(Math, this.dataChart.map((o) => o.testTotal));
     this.createYaxis();
-    this.createMenPyramid();
     this.createWomenPyramid();
+    this.createMenPyramid();
     this.chart.bottomAxesContainer.layout = 'horizontal';
+    this.chart.legend.valueLabels.template.align = 'left';
+    this.chart.legend.valueLabels.template.textAlign = 'end';
   }
 
   onSelectTypeChange(): void {
-    this.typeValueMen = 'testMenPositive';
-    this.typeValueWomen = 'testWomenPositive';
+    this.chart.data = this.dataChart;
+    this.chart.map.getKey('Homme').dataFields.valueX = 'testMenPositive';
+    this.chart.map.getKey('Femme').dataFields.valueX = 'testWomenPositive';
     this.max = Math.max.apply(Math, this.dataChart.map((o) => o.testTotalPositive));
     if (this.dataType === 'total') {
       this.max = Math.max.apply(Math, this.dataChart.map((o) => o.testTotal));
-      this.typeValueMen = 'testMen';
-      this.typeValueWomen = 'testWomen';
+      this.chart.map.getKey('Homme').dataFields.valueX = 'testMen';
+      this.chart.map.getKey('Femme').dataFields.valueX = 'testWomen';
     }
-    this.initChart();
+    this.chart.map.getKey('HommeAxis').max = this.max;
+    this.chart.map.getKey('FemmeAxis').max = this.max;
   }
 
   createYaxis(): void {
@@ -75,20 +79,24 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
 
   createMenPyramid(): void {
     const pyramidXAxisMale = this.chart.xAxes.push(new am4charts.ValueAxis());
-    pyramidXAxisMale.extraMax = 0.1;
-    const pyramidSeriesMale = this.chart.series.push(new am4charts.ColumnSeries());
-    pyramidSeriesMale.dataFields.categoryY = 'age';
-    pyramidSeriesMale.dataFields.valueX = this.typeValueMen;
     pyramidXAxisMale.min = 0;
     pyramidXAxisMale.max = this.max;
     pyramidXAxisMale.fontSize = 13;
+    pyramidXAxisMale.id = 'HommeAxis';
+    pyramidXAxisMale.renderer.inversed = true;
+
+    const pyramidSeriesMale = this.chart.series.push(new am4charts.ColumnSeries());
+    pyramidSeriesMale.dataFields.categoryY = 'age';
+    pyramidSeriesMale.dataFields.valueX = 'testMen';
+    pyramidSeriesMale.id = 'Homme';
+
 
     const menLabel = pyramidSeriesMale.bullets.push(new am4charts.LabelBullet());
     menLabel.label.text = '{valueX}';
     menLabel.label.hideOversized = false;
     menLabel.label.truncate = false;
     menLabel.label.horizontalCenter = 'left';
-    menLabel.label.dx = 10;
+    menLabel.label.dx = -45;
     menLabel.label.fontSize = 13;
 
     pyramidSeriesMale.name = 'Homme';
@@ -96,19 +104,19 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
     pyramidSeriesMale.clustered = false;
     pyramidSeriesMale.columns.template.fill = am4core.color('#4a8cfd');
     pyramidSeriesMale.columns.template.strokeOpacity = 0;
+
   }
 
   createWomenPyramid(): void {
     const pyramidXAxisFemale = this.chart.xAxes.push(new am4charts.ValueAxis());
-    pyramidXAxisFemale.renderer.inversed = true;
-    pyramidXAxisFemale.extraMax = 0.1;
     pyramidXAxisFemale.min = 0;
     pyramidXAxisFemale.max = this.max;
     pyramidXAxisFemale.fontSize = 13;
-
+    pyramidXAxisFemale.id = 'FemmeAxis';
     const pyramidSeriesFemale = this.chart.series.push(new am4charts.ColumnSeries());
     pyramidSeriesFemale.dataFields.categoryY = 'age';
-    pyramidSeriesFemale.dataFields.valueX = this.typeValueWomen;
+    pyramidSeriesFemale.dataFields.valueX = 'testWomen';
+    pyramidSeriesFemale.id = 'Femme';
 
     const womenLabel = pyramidSeriesFemale.bullets.push(new am4charts.LabelBullet());
     womenLabel.label.text = '{valueX}';
@@ -116,7 +124,8 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
     womenLabel.label.truncate = false;
     womenLabel.label.horizontalCenter = 'right';
     womenLabel.label.fontSize = 13;
-    womenLabel.label.dx = -10;
+    womenLabel.label.dx = 45;
+
     pyramidSeriesFemale.name = 'Femme';
     pyramidSeriesFemale.xAxis = pyramidXAxisFemale;
     pyramidSeriesFemale.clustered = false;

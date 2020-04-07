@@ -16,7 +16,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
 
   dataTest$: Observable<any>;
   selectedDivisionMap = 'regionFrance';
-  selectedCountry: any = COUNTRIES[1];
+  selectedCountry: any = COUNTRIES[0];
   selectedDepartment: any;
   selectedRegion: any;
   selectedTypeMap = 'ageAll';

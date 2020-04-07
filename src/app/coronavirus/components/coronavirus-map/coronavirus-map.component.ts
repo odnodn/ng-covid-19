@@ -53,6 +53,15 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
       label: 'cas confirmés',
       tooltipText: '{name} [bold]\n{value}[\] cas confirmés'
     },
+    active: {
+      colors: {
+        max: '#F17D07'
+      },
+      title: 'Cartographie des cas actifs',
+      datas: [],
+      label: 'cas actifs',
+      tooltipText: '{name} [bold]\n{value}[\] cas actifs'
+    },
     recovered: {
       colors: {
         max: '#43D787'
@@ -208,6 +217,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
     }
     let id = '';
     this.maps.cases.datas = [];
+    this.maps.active.datas = [];
     this.maps.deaths.datas = [];
     this.maps.recovered.datas = [];
     this.maps.hospital.datas = [];
@@ -240,6 +250,12 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges {
         value: stat.cases,
         color: this.maps.cases.colors.max
       }, ...this.maps.cases.datas];
+      this.maps.active.datas = [{
+        id,
+        name: stat.translation,
+        value: stat.active,
+        color: this.maps.active.colors.max
+      }, ...this.maps.active.datas];
       this.maps.deaths.datas = [{
         id,
         name: stat.translation,
