@@ -1,107 +1,112 @@
 <h1 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19
-  {{selectedCountry?.translation}}
+  <ng-container *ngIf="!selectedZone">
+    {{selectedCountry?.translation}}
+  </ng-container>
+
   {{selectedZone?.name}}
 </h1>
-<div class="content">
-  <p>
-    <ng-container *ngIf="mainStats.updated">
-      Les données Worldometer ont été mises à jour le <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:MM':'fr-FR'}}</strong>.<br>
-    </ng-container>
-    <ng-container *ngIf="lastUpdate">
-      Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à 19:00</strong> par Santé publique.<br>
-    </ng-container>
-  </p>
-  <div class="tile is-ancestor">
-    <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
-      <article class="tile is-child notification is-warning">
-        <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
-          <span class="increase">
-            {{mainStats?.todayCases | symbolNumber }}
-          </span>
-        </p>
-        <p class="subtitle">Confirmés</p>
-        <div class="legend">
-          Source : Worldometer
-        </div>
-      </article>
-    </div>
-    <div class="tile is-parent" *ngIf="mainStats.hospital !== undefined">
-      <article class="tile is-child notification hospital">
-        <p class="title">{{mainStats.hospital | number: '' :'fr-FR'}}
-          <span class="increase">
-            {{mainStats.todayHospital | symbolNumber }}
-          </span>
-        </p>
-        <p class="subtitle">Hospitalisations en cours</p>
-        <p class="legend">
-          Source : Données remontées par les centres hospitaliers participants à SI-VIC
-        </p>
-      </article>
-    </div>
-    <div class="tile is-parent" *ngIf="mainStats.reanimation !== undefined">
-      <article class="tile is-child notification reanimation">
-        <p class="title">{{mainStats.reanimation | number: '' :'fr-FR'}}
-          <span class="increase">
-            {{mainStats.todayReanimation | symbolNumber }}
-          </span>
-        </p>
-        <p class="subtitle">Réanimations en cours</p>
-        <p class="legend">
-          Source : Données remontées par les centres hospitaliers participants à SI-VIC
-        </p>
-      </article>
-    </div>
-    <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
-      <article class="tile is-child notification is-danger ">
-        <ng-container *ngIf="mainStats.deathsJHU">
-          <p class="title">
-            {{mainStats.deathsJHU | number: '' :'fr-FR'}}
-            <span class="increase">
-              {{mainStats.todayDeathsJHU | symbolNumber }}
-            </span>
-          </p>
-          <p class="subtitle">Décès
-            <span class="note">
-              dont {{mainStats.deaths | number: '' :'fr-FR'}} ({{mainStats.todayDeaths | symbolNumber }}) en milieu hospitalier
-            </span>
-          </p>
-          <p class="legend">
-            Source : Worldometer et données remontées par les centres hospitaliers participants à SI-VIC et signalement liés au COVID-19 dans les ESMS
-          </p>
-        </ng-container>
-        <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsJHU">
-          <p class="title">
-            {{mainStats.deaths | number: '' :'fr-FR'}}
-            <span class="increase">
-              {{mainStats.todayDeaths | symbolNumber }}
-            </span>
-          </p>
-          <p class="subtitle">Décès</p>
-          <p class="legend" *ngIf="selectedZone">
-            Source : Données remontées par les centres hospitaliers participants à SI-VIC
-          </p>
-          <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
-            Source : Worldometer
-          </p>
-        </ng-container>
-      </article>
-    </div>
-    <div class="tile is-parent" *ngIf="mainStats.recovered !== undefined">
-      <article class="tile is-child notification is-success active-map">
+<p>
+  <ng-container *ngIf="mainStats.updated">
+    Les données Worldometer ont été mises à jour le
+    <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:MM':'fr-FR'}}</strong>.<br>
+  </ng-container>
+  <ng-container *ngIf="lastUpdate">
+    Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à
+      19:00</strong> par Santé publique.<br>
+  </ng-container>
+</p>
+<div class="tile is-ancestor">
+  <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
+    <article class="tile is-child notification is-warning">
+      <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
+        <span class="increase">
+          {{mainStats?.todayCases | symbolNumber }}
+        </span>
+      </p>
+      <p class="subtitle">Confirmés</p>
+      <div class="legend">
+        Source : Worldometer
+      </div>
+    </article>
+  </div>
+  <div class="tile is-parent" *ngIf="mainStats.hospital !== undefined">
+    <article class="tile is-child notification hospital">
+      <p class="title">{{mainStats.hospital | number: '' :'fr-FR'}}
+        <span class="increase">
+          {{mainStats.todayHospital | symbolNumber }}
+        </span>
+      </p>
+      <p class="subtitle">Hospitalisations en cours</p>
+      <p class="legend">
+        Source : Données remontées par les centres hospitaliers participants à SI-VIC
+      </p>
+    </article>
+  </div>
+  <div class="tile is-parent" *ngIf="mainStats.reanimation !== undefined">
+    <article class="tile is-child notification reanimation">
+      <p class="title">{{mainStats.reanimation | number: '' :'fr-FR'}}
+        <span class="increase">
+          {{mainStats.todayReanimation | symbolNumber }}
+        </span>
+      </p>
+      <p class="subtitle">Réanimations en cours</p>
+      <p class="legend">
+        Source : Données remontées par les centres hospitaliers participants à SI-VIC
+      </p>
+    </article>
+  </div>
+  <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
+    <article class="tile is-child notification is-danger ">
+      <ng-container *ngIf="mainStats.deathsJHU">
         <p class="title">
-          {{mainStats.recovered | number: '' :'fr-FR'}}
+          {{mainStats.deathsJHU | number: '' :'fr-FR'}}
           <span class="increase">
-            {{mainStats.todayRecovered | symbolNumber }}
+            {{mainStats.todayDeathsJHU | symbolNumber }}
           </span>
         </p>
-        <p class="subtitle">Guéris</p>
-        <p class="legend" *ngIf="selectedCountry?.country === 'France'">
+        <p class="subtitle">Décès
+          <span class="note">
+            dont {{mainStats.deaths | number: '' :'fr-FR'}} ({{mainStats.todayDeaths | symbolNumber }}) en milieu
+            hospitalier
+          </span>
+        </p>
+        <p class="legend">
+          Source : Worldometer et données remontées par les centres hospitaliers participants à SI-VIC et signalement
+          liés au COVID-19 dans les ESMS
+        </p>
+      </ng-container>
+      <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsJHU">
+        <p class="title">
+          {{mainStats.deaths | number: '' :'fr-FR'}}
+          <span class="increase">
+            {{mainStats.todayDeaths | symbolNumber }}
+          </span>
+        </p>
+        <p class="subtitle">Décès</p>
+        <p class="legend" *ngIf="selectedZone">
           Source : Données remontées par les centres hospitaliers participants à SI-VIC
         </p>
         <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
           Source : Worldometer
         </p>
-      </article>
-    </div>
+      </ng-container>
+    </article>
+  </div>
+  <div class="tile is-parent" *ngIf="mainStats.recovered !== undefined">
+    <article class="tile is-child notification is-success active-map">
+      <p class="title">
+        {{mainStats.recovered | number: '' :'fr-FR'}}
+        <span class="increase">
+          {{mainStats.todayRecovered | symbolNumber }}
+        </span>
+      </p>
+      <p class="subtitle">Guéris</p>
+      <p class="legend" *ngIf="selectedCountry?.country === 'France'">
+        Source : Données remontées par les centres hospitaliers participants à SI-VIC
+      </p>
+      <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
+        Source : Worldometer
+      </p>
+    </article>
   </div>
 </div>

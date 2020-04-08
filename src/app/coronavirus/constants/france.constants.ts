@@ -36,6 +36,18 @@ export const FRANCE_REGIONS = [
     id: 44
   },
   {
+    name: 'Guadeloupe',
+    slug: 'guadeloupe',
+    code: 'GP',
+    id: '01'
+  },
+  {
+    name: 'Guyane',
+    slug: 'guyane',
+    code: 'GF',
+    id: '03'
+  },
+  {
     name: 'Hauts-de-France',
     slug: 'hauts-de-france',
     code: 'HDF',
@@ -45,7 +57,25 @@ export const FRANCE_REGIONS = [
     name: 'Île-de-France',
     slug: 'ile-de-france',
     code: 'IDF',
-    id: 11,
+    id: 11
+  },
+  {
+    name: 'La Réunion',
+    slug: 'la-reunion',
+    code: 'RE',
+    id: '04'
+  },
+  {
+    name: 'Martinique',
+    slug: 'martinique',
+    code: 'MQ',
+    id: '02'
+  },
+  {
+    name: 'Mayotte',
+    slug: 'mayotte',
+    code: 'YT',
+    id: '06'
   },
   {
     name: 'Normandie',
@@ -76,36 +106,6 @@ export const FRANCE_REGIONS = [
     slug: 'provence-alpes-cote-azur',
     code: 'PAC',
     id: 93
-  },
-  {
-    name: 'Guadeloupe',
-    slug: 'guadeloupe',
-    code: 'GP',
-    id: '01'
-  },
-  {
-    name: 'Martinique',
-    slug: 'martinique',
-    code: 'MQ',
-    id: '02'
-  },
-  {
-    name: 'Guyane',
-    slug: 'guyane',
-    code: 'GF',
-    id: '03'
-  },
-  {
-    name: 'La Réunion',
-    slug: 'la-reunion',
-    code: 'RE',
-    id: '04'
-  },
-  {
-    name: 'Mayotte',
-    slug: 'mayotte',
-    code: 'YT',
-    id: '06'
   }
 ];
 

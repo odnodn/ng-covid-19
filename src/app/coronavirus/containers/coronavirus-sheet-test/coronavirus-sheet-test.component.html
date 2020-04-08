@@ -1,26 +1,26 @@
-<a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})" class="button is-info button-back"
-  *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques nationales</a>
-<p class="is-spaced">
-  Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
-    {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
-  </strong>. Il
-  contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests
-  réalisés.
-</p>
-<h1 class="title is-spaced" id="tableDescription">Statistiques des tests de dépistage du Coronavirus COVID-19
-  {{selectedDepartment?.name}}
-  {{selectedRegion?.name}}
-  <ng-container *ngIf="!selectedDepartment && !selectedRegion">
-    France
-  </ng-container>
-</h1>
-<ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
-  <ng-container *ngIf="dataTest?.value">
-    <div class="content">
+<div class="content">
+  <a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})"
+    class="button is-info button-back" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques
+    nationales</a>
+  <p class="is-spaced">
+    Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
+      {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
+    </strong>. Il
+    contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests
+    réalisés.
+  </p>
+  <h1 class="title is-spaced" id="tableDescription">Statistiques des tests de dépistage du Coronavirus COVID-19
+    {{selectedDepartment?.name}}
+    {{selectedRegion?.name}}
+    <ng-container *ngIf="!selectedDepartment && !selectedRegion">
+      France
+    </ng-container>
+  </h1>
+  <ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
+    <ng-container *ngIf="dataTest?.value">
       <p>
         Les données des tests de dépistage du Coronavirus COVID-19 ont été mises à jour le
         <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.
-
       </p>
       <div class="tile is-ancestor">
         <div class="tile is-parent">
@@ -60,11 +60,9 @@
           </article>
         </div>
       </div>
-
-
       <div class="columns">
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
-          <h2>Cartographie des tests de dépistage selon l'âge</h2>
+          <h2 class="title">Cartographie des tests de dépistage selon l'âge</h2>
           <p>
             Cette carte permet de voir les tests de dépistage du Coronavirus COVID-19 réalisés selon le
             département, la région, l'âge et le sexe
@@ -80,24 +78,25 @@
             </mat-option>
           </mat-select>
           <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'test'" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-          dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry" (selectTypeMapEvent)="onSelectTypeMap($event)">
+          dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry"
+            (selectTypeMapEvent)="onSelectTypeMap($event)">
           </app-coronavirus-map>
         </div>
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
-          <h2>Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
+          <h2 class="title">Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
           <p>
-            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département chez
-            l'homme et la femme.
+            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département, ainsi qu'en fonction du sexe et de l'âge.
           </p>
-          <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-          (dataTest.value.region | ageFilter : selectedTypeMap) : (dataTest.value.department | ageFilter : selectedTypeMap)" [selectedTypeMap]="selectedTypeMap" [selectedCountry]="selectedCountry">
+          <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap"
+            [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+          (dataTest.value.region | ageFilter : selectedTypeMap) : (dataTest.value.department | ageFilter : selectedTypeMap)" [selectedTypeMap]="selectedTypeMap"
+            [selectedCountry]="selectedCountry">
           </app-coronavirus-table>
         </div>
       </div>
       <div class="columns">
-
-        <div class="column is-spaced">
-          <h2>Nombre de tests de dépistage réalisés depuis le 10 mars</h2>
+        <div class="column is-spaced" [class.is-three-fifths]="selectedRegion" [class.is-three-quarters]="!selectedRegion">
+          <h2 class="title">Nombre de tests de dépistage réalisés depuis le 10 mars</h2>
           <p>
             Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 par jour avec le nombre
             de
@@ -106,24 +105,44 @@
           <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
           </app-coronavirus-chart-test-column>
         </div>
-        <div class="column is-spaced is-one-quarter">
+        <div class="column is-spaced" *ngIf="selectedRegion">
+          <h2 class="title">Tableau récapitulatif des tests de dépistage de la région {{labelTableAge}} </h2>
+          <p>
+            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 en fonction du sexe avec un filtre par tranche d'âge.
+          </p>
+          <app-coronavirus-table [selectedDivisionMap]="'departmentFrance'"
+            [detailedStats]="(dataTest?.value.details | ageFilter : selectedTypeMap)"
+            [selectedTypeMap]="selectedTypeMap" [selectedCountry]="selectedCountry">
+          </app-coronavirus-table>
+          <div class="radio-buttons">
+            <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap($event.value)">
+              <mat-radio-button value="ageAll">Tous</mat-radio-button>
+              <mat-radio-button value="ageA">Moins de 15 ans</mat-radio-button>
+              <mat-radio-button value="ageB">15-44 ans</mat-radio-button>
+              <mat-radio-button value="ageC">45-64 ans</mat-radio-button>
+              <mat-radio-button value="ageD">65-74 ans</mat-radio-button>
+              <mat-radio-button value="ageE">Plus de 75 ans</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="column is-spaced" *ngIf="!selectedRegion">
           <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]"></app-coronavirus-chart-pie>
         </div>
       </div>
       <div class="columns">
+
         <div class="column is-spaced">
-          <h2>
+          <h2 class="title">
             Répartition des tests de dépistage positifs et négatifs en fonction de l'âge
           </h2>
           <p>
-            Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 avec la répartition de
-            tests positifs et négatifs en fonction de l'âge.
+            Ce diagramme montre la répartition de tests positifs et négatifs du Coronavirus COVID-19 en fonction de l'âge avec un filtre par sexe.
           </p>
           <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
           </app-coronavirus-chart-test-column>
         </div>
         <div class="column is-spaced">
-          <h2>Comparaison du nombre de tests de dépistage réalisés en fonction de l'âge et du sexe</h2>
+          <h2 class="title">Comparaison du nombre de tests de dépistage réalisés en fonction de l'âge et du sexe</h2>
           <p>
             Ce diagramme compare le nombre de tests de dépistage du Coronavirus COVID-19 en fonction de l'âge et
             du sexe.
@@ -131,19 +150,19 @@
           <app-coronavirus-chart-pyramid [data]="dataTest?.value?.total"></app-coronavirus-chart-pyramid>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="dataTest?.loading">
+      <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+    </ng-container>
+    <ng-container *ngIf="(dataTest?.value && dataTest?.value.length === 0) && !dataTest.loading">
+      <article class="message is-danger is-spaced">
+        <div class="message-header">
+          <p>Données indisponibles</p>
+        </div>
+        <div class="message-body">
+          Nous n'avons pas trouvé de données.
+        </div>
+      </article>
+    </ng-container>
   </ng-container>
-  <ng-container *ngIf="dataTest?.loading">
-    <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
-  </ng-container>
-  <ng-container *ngIf="(dataTest?.value && dataTest?.value.length === 0) && !dataTest.loading">
-    <article class="message is-danger is-spaced">
-      <div class="message-header">
-        <p>Données indisponibles</p>
-      </div>
-      <div class="message-body">
-        Nous n'avons pas trouvé de données.
-      </div>
-    </article>
-  </ng-container>
-</ng-container>
+</div>

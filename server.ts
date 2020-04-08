@@ -49,6 +49,30 @@ export function app() {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
+  server.use((req, res, next) => {
+    if (req.url === '/index.html') {
+      res.redirect(301, 'https://' + req.hostname);
+    }
+
+    if (req.headers['x-forwarded-proto'] !== 'https' && req.hostname !== 'localhost') {
+      if (req.url === '/robots.txt') {
+        next();
+        return;
+      }
+      res.redirect(301, 'https://www.' + req.hostname + req.url);
+    }
+
+    if (!req.hostname.startsWith('www.') && req.hostname !== 'localhost' ) {
+      res.redirect(301, 'https://www.' + req.hostname + req.url);
+    }
+
+    if (req.hostname.startsWith('www.') && req.hostname !== 'localhost' ) {
+      const host = req.hostname.slice(4, req.hostname.length);
+      res.redirect(301, 'https://www.' + host + req.url);
+    }
+
+  });
+
   return server;
 }
 

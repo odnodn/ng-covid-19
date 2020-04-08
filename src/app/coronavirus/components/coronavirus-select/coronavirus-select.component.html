@@ -1,44 +1,45 @@
-<div class="content">
-  <div class="columns">
-    <div class="column">
-      <mat-label class="label" for="country-select">Sélectionner un pays</mat-label>
-      <mat-select role="listbox" placeholder="Choisir un pays..." [class.small]="selectedCountry.country !== 'France'" [(ngModel)]="selectedCountry" (ngModelChange)="selectCountry()">
-        <mat-option role="option">
-          <ngx-mat-select-search ngModel placeholderLabel="Rechercher un pays..." noEntriesFoundLabel="Pays inconnu"
-            clearSearchInput="true" (ngModelChange)="filterCountries($event)">
-          </ngx-mat-select-search>
-        </mat-option>
-        <mat-option role="option" *ngFor="let country of filteredCountries; trackByFn" [value]="country">
-          <img alt="country.translation" [height]="32" [width]="32" [src]="country.flag" />
-          {{country.translation}}
-        </mat-option>
-      </mat-select>
-    </div>
-    <div class="column" *ngIf="selectedCountry.country === 'France'">
-      <mat-label class="label" for="region-select">Sélectionner une région</mat-label>
-      <mat-select role="listbox"  placeholder="Choisir une région..." [(ngModel)]="selectedRegion" (ngModelChange)="selectRegion()" >
-        <mat-option role="option">
-          <ngx-mat-select-search ngModel placeholderLabel="Rechercher une région..." noEntriesFoundLabel="Région inconnue"
-            clearSearchInput="true" (ngModelChange)="filterRegions($event)">
-          </ngx-mat-select-search>
-        </mat-option>
-        <mat-option role="option" *ngFor="let region of filteredRegions; trackByFn" [value]="region">
-          {{region.name}}
-        </mat-option>
-      </mat-select>
-    </div>
-    <div class="column" *ngIf="selectedCountry.country === 'France'">
-      <mat-label class="label" for="department-select">Sélectionner un département</mat-label>
-      <mat-select role="listbox" placeholder="Choisir un département..." [(ngModel)]="selectedDepartment" (ngModelChange)="selectDepartment()" >
-        <mat-option role="option">
-          <ngx-mat-select-search ngModel placeholderLabel="Rechercher un département..." noEntriesFoundLabel="Département inconnu"
-            clearSearchInput="true" (ngModelChange)="filterDepartments($event)">
-          </ngx-mat-select-search>
-        </mat-option>
-        <mat-option role="option" *ngFor="let department of filteredDepartments; trackByFn" [value]="department">
-          {{department.name}}
-        </mat-option>
-      </mat-select>
-    </div>
+<div class="columns">
+  <div class="column">
+    <mat-label class="label" for="country-select">Sélectionner un pays</mat-label>
+    <mat-select role="listbox" placeholder="Choisir un pays..." [class.small]="selectedCountry.country !== 'France'"
+      [(ngModel)]="selectedCountry" (ngModelChange)="selectCountry()">
+      <mat-option role="option">
+        <ngx-mat-select-search ngModel placeholderLabel="Rechercher un pays..." noEntriesFoundLabel="Pays inconnu"
+          clearSearchInput="true" (ngModelChange)="filterCountries($event)">
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option role="option" *ngFor="let country of filteredCountries; trackByFn" [value]="country">
+        <img alt="country.translation" [height]="32" [width]="32" [src]="country.flag" />
+        {{country.translation}}
+      </mat-option>
+    </mat-select>
+  </div>
+  <div class="column" *ngIf="selectedCountry.country === 'France'">
+    <mat-label class="label" for="region-select">Sélectionner une région</mat-label>
+    <mat-select role="listbox" placeholder="Choisir une région..." [(ngModel)]="selectedRegion"
+      (ngModelChange)="selectRegion()">
+      <mat-option role="option">
+        <ngx-mat-select-search ngModel placeholderLabel="Rechercher une région..." noEntriesFoundLabel="Région inconnue"
+          clearSearchInput="true" (ngModelChange)="filterRegions($event)">
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option role="option" *ngFor="let region of filteredRegions; trackByFn" [value]="region">
+        {{region.name}}
+      </mat-option>
+    </mat-select>
+  </div>
+  <div class="column" *ngIf="selectedCountry.country === 'France'">
+    <mat-label class="label" for="department-select">Sélectionner un département</mat-label>
+    <mat-select role="listbox" placeholder="Choisir un département..." [(ngModel)]="selectedDepartment"
+      (ngModelChange)="selectDepartment()">
+      <mat-option role="option">
+        <ngx-mat-select-search ngModel placeholderLabel="Rechercher un département..."
+          noEntriesFoundLabel="Département inconnu" clearSearchInput="true" (ngModelChange)="filterDepartments($event)">
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option role="option" *ngFor="let department of filteredDepartments; trackByFn" [value]="department">
+        {{department.name}}
+      </mat-option>
+    </mat-select>
   </div>
 </div>

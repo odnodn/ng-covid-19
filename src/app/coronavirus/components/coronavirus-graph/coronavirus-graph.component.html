@@ -1,39 +1,37 @@
-<div class="content">
-  <h2 class="title" *ngIf="dataFrance">
-    Évolution des cas atteints de Coronavirus COVID-19
-  </h2>
-  <h2 class="title" *ngIf="!dataFrance">
-    Évolution de l'épidémie de Coronavirus COVID-19
-  </h2>
-  <p *ngIf="dataFrance">
-    <ng-container *ngIf="!dataFrance.total[0].code">
-      <ng-container *ngIf="dataType !== 'total'">
-        Les données d'hospitalisations en cours,
-        de réanimations en cours, de cas guéris et de décès sont remontées par
-        les <strong>centres hospitaliers</strong> participants à SI-VIC.
-      </ng-container>
-      <ng-container *ngIf="dataType === 'total'">
-        Les données d'évolution de cas confirmés et de décès proviennent de <strong>
-          Johns Hopkins CSSE</strong>.
-        Les données d'hospitalisations en cours,
-        de réanimations en cours, de cas guéris, sont remontées par
-        les <strong>centres hospitaliers</strong> participants à SI-VIC.
-      </ng-container>
-
-    </ng-container>
-    <ng-container *ngIf="dataFrance.total[0].code">
+<h2 class="title" *ngIf="dataFrance">
+  Évolution des cas atteints de Coronavirus COVID-19
+</h2>
+<h2 class="title" *ngIf="!dataFrance">
+  Évolution de l'épidémie de Coronavirus COVID-19
+</h2>
+<p *ngIf="dataFrance">
+  <ng-container *ngIf="!dataFrance.total[0].code">
+    <ng-container *ngIf="dataType !== 'total'">
       Les données d'hospitalisations en cours,
       de réanimations en cours, de cas guéris et de décès sont remontées par
       les <strong>centres hospitaliers</strong> participants à SI-VIC.
     </ng-container>
+    <ng-container *ngIf="dataType === 'total'">
+      Les données d'évolution de cas confirmés et de décès proviennent de <strong>
+        Johns Hopkins CSSE</strong>.
+      Les données d'hospitalisations en cours,
+      de réanimations en cours, de cas guéris, sont remontées par
+      les <strong>centres hospitaliers</strong> participants à SI-VIC.
+    </ng-container>
 
-  </p>
-  <div #chartElement id="chart-line" [class.graph-france]="dataFrance" [class.graph-world]="!dataFrance"></div>
-  <div class="radio-buttons" *ngIf="dataFrance">
-    <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
-      <mat-radio-button value="total">Total</mat-radio-button>
-      <mat-radio-button value="men">Homme</mat-radio-button>
-      <mat-radio-button value="women">Femme</mat-radio-button>
-    </mat-radio-group>
-  </div>
+  </ng-container>
+  <ng-container *ngIf="dataFrance.total[0].code">
+    Les données d'hospitalisations en cours,
+    de réanimations en cours, de cas guéris et de décès sont remontées par
+    les <strong>centres hospitaliers</strong> participants à SI-VIC.
+  </ng-container>
+
+</p>
+<div #chartElement id="chart-line" [class.graph-france]="dataFrance" [class.graph-world]="!dataFrance"></div>
+<div class="radio-buttons" *ngIf="dataFrance">
+  <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
+    <mat-radio-button value="total">Total</mat-radio-button>
+    <mat-radio-button value="men">Homme</mat-radio-button>
+    <mat-radio-button value="women">Femme</mat-radio-button>
+  </mat-radio-group>
 </div>

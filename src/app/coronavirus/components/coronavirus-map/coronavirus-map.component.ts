@@ -62,6 +62,15 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       label: 'cas actifs',
       tooltipText: '{name} [bold]\n{value}[\] cas actifs'
     },
+    critical: {
+      colors: {
+        max: '#E95D0C'
+      },
+      title: 'Cartographie des cas critiques',
+      datas: [],
+      label: 'cas critiques',
+      tooltipText: '{name} [bold]\n{value}[\] cas critiques'
+    },
     recovered: {
       colors: {
         max: '#43D787'
@@ -106,7 +115,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
     ageA: {
@@ -117,7 +126,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
     ageB: {
@@ -128,7 +137,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
     ageC: {
@@ -139,7 +148,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
     ageD: {
@@ -150,7 +159,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
     ageE: {
@@ -161,7 +170,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-       + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
+        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     }
   };
@@ -197,6 +206,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
     }
     if (changes.selectedDivisionMap && changes.selectedDivisionMap.previousValue !== changes.selectedDivisionMap.currentValue) {
       this.chart.geodata = this.divisionMap[this.selectedDivisionMap];
+      this.resetDatas();
       this.initDatas();
     }
     this.updateMap();
@@ -218,13 +228,39 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
     if (!this.detailedStats.length) { // One country
       this.detailedStats = [this.detailedStats];
     }
-    let id = '';
-    this.maps.cases.datas = [];
-    this.maps.active.datas = [];
-    this.maps.deaths.datas = [];
-    this.maps.recovered.datas = [];
-    this.maps.hospital.datas = [];
-    this.maps.reanimation.datas = [];
+
+    this.detailedStats.forEach((stat) => {
+      const id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
+      if (this.selectedTypeData === 'test') {
+        this.initDataTest(id, stat);
+      } else {
+        this.iniDataGlobal(stat, id);
+      }
+    });
+  }
+
+  private resetDatas(): void {
+    for (const key in this.maps) {
+      if (this.maps[key].datas.length > 0) {
+        this.maps[key].datas = [];
+      }
+    }
+  }
+
+  private iniDataGlobal(stat: any, id: string): void {
+    for (const key in this.maps) {
+      if (stat[key]) {
+        this.maps[key].datas = [{
+          id,
+          name: stat.translation,
+          value: stat[key],
+          color: this.maps[key].colors.max
+        }, ...this.maps[key].datas];
+      }
+    }
+  }
+
+  private initDataTest(id: string, stat: any): void {
     const age = {
       tous: 'ageAll',
       '-15': 'ageA',
@@ -233,64 +269,6 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       '65-74': 'ageD',
       '75+': 'ageE'
     };
-    Object.keys(age).forEach((key) => {
-      this.maps[age[key]].datas = [];
-    });
-    this.detailedStats.forEach((stat) => {
-      id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
-      if (this.selectedTypeData === 'test') {
-        this.initDataTest(id, stat, age);
-      } else {
-        this.iniDataGlobal(stat, id);
-    }
-    });
-  }
-
-  private iniDataGlobal(stat: any, id: string): void  {
-      this.maps.cases.datas = [{
-        id,
-        name: stat.translation,
-        value: stat.cases,
-        color: this.maps.cases.colors.max
-      }, ...this.maps.cases.datas];
-      this.maps.active.datas = [{
-        id,
-        name: stat.translation,
-        value: stat.active,
-        color: this.maps.active.colors.max
-      }, ...this.maps.active.datas];
-      this.maps.deaths.datas = [{
-        id,
-        name: stat.translation,
-        value: stat.deaths,
-        color: this.maps.deaths.colors.max
-      }, ...this.maps.deaths.datas];
-      this.maps.recovered.datas = [{
-        id,
-        name: stat.translation,
-        value: stat.recovered,
-        color: this.maps.recovered.colors.max
-      }, ...this.maps.recovered.datas];
-      if (this.selectedCountry.country === 'France') {
-        this.maps.hospital.datas = [{
-          id,
-          name: stat.translation,
-          value: stat.hospital,
-          color: this.maps.hospital.colors.max
-        }, ...this.maps.hospital.datas];
-        this.maps.reanimation.datas = [{
-          id,
-          name: stat.translation,
-          value: stat.reanimation,
-          color: this.maps.reanimation.colors.max
-        }, ...this.maps.reanimation.datas];
-
-      }
-
-
-  }
-
-  private initDataTest(id: string, stat: any, age: any): void {
     this.maps[age[stat.age]].datas = [{
       id,
       name: stat.translation,

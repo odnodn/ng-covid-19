@@ -69,15 +69,15 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
       { label: 'Décès', value: 'deaths' },
       { label: 'Guéris', value: 'recovered' }
     ];
-    this.labelText = 'Répartition des cas guéris selon le genre';
+    this.labelText = 'Répartition des cas guéris en fonction du sexe';
     const menValue = this.dataGender.men[this.dataType];
     const womenValue = this.dataGender.women[this.dataType];
     if (this.dataType === 'hospital') {
-      this.labelText = 'Répartition des hospitalisations en cours selon le genre';
+      this.labelText = 'Répartition des hospitalisation en fonction du sexe';
     } else if (this.dataType === 'reanimation') {
-      this.labelText = 'Répartition des réanimations en cours selon le genre';
+      this.labelText = 'Répartition des réanimations en fonction du sexe';
     } else if (this.dataType === 'deaths') {
-      this.labelText = 'Répartition des décès selon le genre';
+      this.labelText = 'Répartition des décès en fonction du sexe';
     }
     this.chart.data = [
       {

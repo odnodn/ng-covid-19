@@ -70,6 +70,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
       ageD: 'chez les 65-74 ans',
       ageE: 'chez les plus de 75 ans',
     };
+    console.log(type);
     this.selectedTypeMap = type;
     this.labelTableAge = age[type];
   }
@@ -80,8 +81,6 @@ export class CoronavirusSheetTestComponent implements OnInit {
     this.selectedDepartment = undefined;
     this.router.navigate(['test-depistage', this.selectedCountry.slug]);
   }
-
-
 
   private initMetaTagRegionAndDepartment(region: any, type: string): void {
     this.title.setTitle(`Tests de dépistage Coronavirus COVID-19 ${region.name}`);

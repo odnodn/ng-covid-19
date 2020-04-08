@@ -1,10 +1,12 @@
-<div class="content">
-  <h2 class="title">{{labelText}}</h2>
-  <p *ngIf="dataTest">
-    Ce diagramme circulaire montre la répartition des tests positifs et négatifs de dépistage du COVID-19 en fonction du sexe.
-  </p>
-  <div id="chartdiv"></div>
-</div>
+<h2 class="title">{{labelText}}</h2>
+<p *ngIf="dataTest">
+  Ce diagramme circulaire montre la répartition des tests positifs et négatifs de dépistage du COVID-19 en fonction du
+  sexe.
+</p>
+<p *ngIf="dataGender">
+  Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+</p>
+<div id="chartdiv"></div>
 <div class="radio-buttons">
   <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
     <mat-radio-button *ngFor="let choice of choices" [value]="choice.value">{{choice.label}}</mat-radio-button>

@@ -167,10 +167,32 @@
           </div>
         </div>
         <div class="columns" *ngIf="isBrowser">
-          <div class="column is-spaced is-half">
+          <div class="column is-spaced" [class.is-half]="!selectedRegion" [class.is-three-fifths]="selectedRegion">
             <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
             </app-coronavirus-graph>
           </div>
+          <div class="column is-spaced" *ngIf="selectedRegion">
+            <h2 class="title">Tableau récapitulatif de l'épidémie dans la région</h2>
+            <p>
+              Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+            </p>
+            <app-coronavirus-table [selectedDivisionMap]="'departmentFrance'" [detailedStats]="franceStats.value.details" [selectedCountry]="selectedCountry">
+          </app-coronavirus-table>
+          </div>
+          <div class="column is-spaced" *ngIf="!selectedRegion">
+            <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
+            </app-coronavirus-chart-pie>
+          </div>
+          <div class="column is-spaced" *ngIf="!selectedRegion">
+            <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
+              <ng-container *ngIf="franceStatsByAge.value">
+                <app-coronavirus-chart-age [dataAge]="franceStatsByAge.value">
+                </app-coronavirus-chart-age>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <div class="columns" *ngIf="selectedRegion">
           <div class="column is-spaced">
             <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
             </app-coronavirus-chart-pie>

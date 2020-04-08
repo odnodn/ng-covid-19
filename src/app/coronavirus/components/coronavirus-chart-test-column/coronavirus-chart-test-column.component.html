@@ -1,9 +1,6 @@
-<div class="content">
-  <div #chartElement id="{{nameChart}}" class="chart"></div>
-  <div class="radio-buttons">
-    <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
-      <mat-radio-button *ngFor="let choice of choices" [value]="choice.value">{{choice.label}}</mat-radio-button>
-    </mat-radio-group>
-  </div>
+<div #chartElement id="{{nameChart}}" class="chart"></div>
+<div class="radio-buttons">
+  <mat-radio-group aria-label="Sélectionner" [(ngModel)]="dataType" (change)="onSelectTypeChange()">
+    <mat-radio-button *ngFor="let choice of choices" [value]="choice.value">{{choice.label}}</mat-radio-button>
+  </mat-radio-group>
 </div>
-
