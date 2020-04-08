@@ -1,7 +1,7 @@
 {
   "name": "Cas Coronavirus COVID-19",
   "short_name": "Cas Coronavirus COVID-19",
-  "theme_color": "#1976d2",
+  "theme_color": "#0069cc",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",

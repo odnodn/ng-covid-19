@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' })
+    BrowserModule.withServerTransition({ appId: 'ng-coronavirus' })
   ],
   bootstrap: [AppComponent],
 })

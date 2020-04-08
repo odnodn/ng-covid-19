@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 @NgModule({
   imports: [
     AppModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'ng-coronavirus' }),
     BrowserTransferStateModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
