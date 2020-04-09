@@ -67,7 +67,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.legend = new am4charts.Legend();
     this.chart.legend.fontSize = 14;
     this.chart.padding(10, 0, 0, 0);
-    this.chart.cursor = new am4charts.XYCursor();
+
   }
 
   private initChartAgeTest(fieldPositive: string, fieldNegative: string): void {
@@ -88,6 +88,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.createSeries(fieldPositive, 'Tests positifs', '#f9461c', 'date');
     this.createSeries(fieldNegative, 'Tests négatifs', 'whitesmoke', 'date');
     this.createTotalLabel();
+    this.chart.cursor = new am4charts.XYCursor();
   }
 
   private createTotalLabel(): void {
