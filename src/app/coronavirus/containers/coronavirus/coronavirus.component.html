@@ -5,7 +5,7 @@
 </app-coronavirus-select>
 <div class="tabs is-spaced" *ngIf="selectedCountry.country === 'France'">
   <ul>
-    <li [class.is-active]="router.url === '/'" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+    <li [class.is-active]="(router.url === '/') || (router.url | include : 'stats')">
       <a *ngIf="!selectedRegion && ! selectedDepartment" [routerLink]="['/stats/', selectedCountry.slug]">
         Statistiques principales
       </a>
@@ -16,7 +16,7 @@
         Statistiques principales
       </a>
     </li>
-    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">
+    <li [class.is-active]="router.url | include : 'test-depistage'">
       <a *ngIf="!selectedRegion && ! selectedDepartment" [routerLink]="['/test-depistage/', selectedCountry.slug]">
         Statistiques des tests de dépistage
       </a>

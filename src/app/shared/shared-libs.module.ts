@@ -8,6 +8,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { AgeFilterPipe } from './pipes/age-filter.pipe';
 import { CountryFilterPipe } from './pipes/country-filter.pipe';
 import { PercentagePipe } from './pipes/percentage.pipe';
+import { IncludePipe } from './pipes/include.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PercentagePipe } from './pipes/percentage.pipe';
     CountryTranslationPipe,
     CountryFilterPipe,
     AgeFilterPipe,
-    PercentagePipe
+    PercentagePipe,
+    IncludePipe
   ],
   exports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { PercentagePipe } from './pipes/percentage.pipe';
     CountryFilterPipe,
     AgeFilterPipe,
     PercentagePipe,
+    IncludePipe,
     NgxMatSelectSearchModule
   ],
   imports: [

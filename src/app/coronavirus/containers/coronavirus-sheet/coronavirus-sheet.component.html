@@ -147,6 +147,10 @@
         </app-coronavirus-stats>
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
           <div class="column is-spaced" *ngIf="isBrowser">
+            <h2 class="title">Cartographie de l'épidémie en France</h2>
+            <p>
+              Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+            </p>
             <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
             <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
               <mat-option role="option" [value]="'departmentFrance'">
@@ -161,12 +165,17 @@
               franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
           </div>
           <div class="column is-spaced">
+            <h2 class="title">Tableau récapitulatif de l'épidémie en France</h2>
+            <p>
+              Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+            </p>
             <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total" [selectedCountry]="selectedCountry">
             </app-coronavirus-table>
           </div>
         </div>
         <div class="columns" *ngIf="isBrowser">
+
           <div class="column is-spaced" [class.is-half]="!selectedRegion" [class.is-three-fifths]="selectedRegion">
             <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
             </app-coronavirus-graph>
