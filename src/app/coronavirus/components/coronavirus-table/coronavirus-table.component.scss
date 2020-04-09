@@ -14,12 +14,16 @@ table th {
   font-weight: bold;
 }
 
-.container-table-region {
+.container {
+  overflow: auto;
+}
+
+.table-region {
   overflow: auto;
   height: 550px;
 }
 
-.container-table {
+.table {
   height: calc(60vh + 50px);
   overflow: auto;
 }

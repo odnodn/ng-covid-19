@@ -39,10 +39,12 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
 
   initChart(): void {
     this.chart = am4core.create('chart-pyramid', am4charts.XYChart);
+    this.chart.padding(10, 0, 0, 0);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
     this.chart.data = this.dataChart;
     this.chart.legend = new am4charts.Legend();
+    this.chart.legend.fontSize = 14;
     this.chart.legend.reverseOrder = true;
     this.max = Math.max.apply(Math, this.dataChart.map((o) => o.testTotal));
     this.createYaxis();

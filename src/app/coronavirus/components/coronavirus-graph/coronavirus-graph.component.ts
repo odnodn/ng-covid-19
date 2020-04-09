@@ -53,7 +53,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     this.chart = am4core.create(this.chartElement.nativeElement, am4charts.XYChart);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
-
+    this.chart.padding(10, 0, 0, 0);
     // Date axis
     const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
@@ -68,12 +68,14 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     if (this.dataFrance) {
       if (!this.dataFrance.total[0].code) {
         this.createSeries('date', 'cases', 'Confirmés', '#ffbb00');
+      }
+      this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
+      this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
+      if (!this.dataFrance.total[0].code) {
         this.createSeries('date', 'deathsJHU', 'Décès', '#f9461c');
       } else {
         this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       }
-      this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
-      this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
       this.chart.data = this.dataFrance[this.dataType];
     } else if (this.dailyDatasByCountry) {
@@ -91,6 +93,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     this.chart.cursor = new am4charts.XYCursor();
     // Add legend
     this.chart.legend = new am4charts.Legend();
+    this.chart.legend.fontSize = 14;
   }
 
   private createSeries(valueX: string, valueY: string, name: string, color: string): void {

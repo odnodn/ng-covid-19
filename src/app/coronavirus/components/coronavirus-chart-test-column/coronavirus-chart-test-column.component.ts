@@ -65,7 +65,9 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
     this.chart.legend = new am4charts.Legend();
-
+    this.chart.legend.fontSize = 14;
+    this.chart.padding(10, 0, 0, 0);
+    this.chart.cursor = new am4charts.XYCursor();
   }
 
   private initChartAgeTest(fieldPositive: string, fieldNegative: string): void {
@@ -104,11 +106,13 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       categoryAxis.fontSize = 13;
       categoryAxis.renderer.minGridDistance = 20;
       categoryAxis.renderer.labels.template.dy = 5;
+      categoryAxis.cursorTooltipEnabled = false;
     } else {
       const categoryAxis = this.chart.xAxes.push(new am4charts.DateAxis());
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.fontSize = 13;
       categoryAxis.renderer.labels.template.dy = 5;
+      categoryAxis.cursorTooltipEnabled = false;
     }
 
   }
@@ -119,6 +123,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     valueAxis.title.text = 'Tests réalisés';
     valueAxis.calculateTotals = true;
     valueAxis.extraMax = 0.1;
+    valueAxis.cursorTooltipEnabled = false;
   }
 
   private createSeries(field: string, name: string, color: string, xAxis: string): void {
