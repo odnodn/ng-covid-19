@@ -8,7 +8,7 @@
 <p>
   <ng-container *ngIf="mainStats.updated">
     Les données Worldometer ont été mises à jour le
-    <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:MM':'fr-FR'}}</strong>.<br>
+    <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:mm':'fr-FR'}}</strong>.<br>
   </ng-container>
   <ng-container *ngIf="lastUpdate">
     Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à

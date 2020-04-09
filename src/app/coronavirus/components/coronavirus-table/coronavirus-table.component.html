@@ -10,7 +10,7 @@
     [matSortActive]="selectedCountry.country === 'France' ? 'hospital' : 'cases'" matSortDirection="desc">
 
     <!-- Country Column -->
-    <ng-container matColumnDef="translation">
+    <ng-container matColumnDef="translation" sticky>
       <th id="translation" mat-header-cell *matHeaderCellDef mat-sort-header>
         <ng-container *ngIf="selectedCountry.country !== 'France'">Pays</ng-container>
         <ng-container *ngIf="selectedCountry.country === 'France'">Lieux</ng-container>

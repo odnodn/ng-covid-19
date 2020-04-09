@@ -94,6 +94,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     // Add legend
     this.chart.legend = new am4charts.Legend();
     this.chart.legend.fontSize = 14;
+    this.chart.legend.maxHeight = 500;
   }
 
   private createSeries(valueX: string, valueY: string, name: string, color: string): void {

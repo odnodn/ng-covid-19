@@ -27,7 +27,7 @@ export class CoronavirusChartAgeComponent implements OnInit, OnDestroy {
     this.labelText = 'Nombre de passages aux urgences pour suspicion de COVID-19 par tranche d\'âge';
     this.series.columns.template.fill = am4core.color('#FABC3C');
     if (this.dataType === 'hospital') {
-      this.labelText = 'Nombre d\'hospitalisations parmi les passages aux urgences pour suspicion de COVID-19';
+      this.labelText = 'Nombre d\'hospitalisations parmi les passages aux urgences pour suspicion de COVID-19 par tranche d\'âge';
       this.series.columns.template.fill = am4core.color('#F17D07');
     } else if (this.dataType === 'medical') {
       this.labelText = 'Nombre total d’actes médicaux SOS Médecins pour suspicion de COVID-19 par tranche d\'âge';
