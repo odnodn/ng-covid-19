@@ -4,7 +4,7 @@
     <input class="input" (keyup)="applyFilter($event)" type="text" placeholder="Rechercher dans le tableau...">
   </div>
 </div>
-<div class="container" [class.table]="selectedDivisionMap !== 'departmentFrance' && dataSource.data.length > 10" [class.table-region]="selectedDivisionMap === 'departmentFrance' && dataSource.data.length > 10">
+<div class="container" [class.table]="dataSource.data.length > 15" [class.table-region]="selectedDivisionMap === 'departmentFrance' && dataSource.data.length > 10">
 
   <table aria-describedby="tableDescription" mat-table matSort [dataSource]="dataSource" [matSortDisableClear]="true"
     [matSortActive]="selectedCountry.country === 'France' ? 'hospital' : 'cases'" matSortDirection="desc">

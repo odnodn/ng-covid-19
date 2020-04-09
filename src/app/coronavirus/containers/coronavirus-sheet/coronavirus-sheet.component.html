@@ -149,11 +149,11 @@
           <div class="column is-spaced" *ngIf="isBrowser">
             <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
             <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
-              <mat-option role="option" [value]="'regionFrance'">
-                Par région
-              </mat-option>
               <mat-option role="option" [value]="'departmentFrance'">
                 Par département
+              </mat-option>
+              <mat-option role="option" [value]="'regionFrance'">
+                Par région
               </mat-option>
             </mat-select>
             <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"

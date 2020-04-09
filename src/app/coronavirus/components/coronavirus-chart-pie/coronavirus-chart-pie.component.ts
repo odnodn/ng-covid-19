@@ -73,9 +73,9 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     const menValue = this.dataGender.men[this.dataType];
     const womenValue = this.dataGender.women[this.dataType];
     if (this.dataType === 'hospital') {
-      this.labelText = 'Répartition des hospitalisation en fonction du sexe';
+      this.labelText = 'Répartition des hospitalisations en cours en fonction du sexe';
     } else if (this.dataType === 'reanimation') {
-      this.labelText = 'Répartition des réanimations en fonction du sexe';
+      this.labelText = 'Répartition des réanimations en cours fonction du sexe';
     } else if (this.dataType === 'deaths') {
       this.labelText = 'Répartition des décès en fonction du sexe';
     }

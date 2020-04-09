@@ -20,13 +20,13 @@ export class GouvComponent implements OnInit {
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: 'Retrouver les informations et les attestations de sortie du Gouvernement à cause du Coronavirus COVID-19' },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:url', content: 'https://www.cascoronavirus.fr/infos/gouvernement' },
-      { name: 'og:title', content: 'Infos et attestations Coronavirus COVID-19 du gouvernement' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: 'https://www.cascoronavirus.fr/infos/gouvernement' },
+      { property: 'og:title', content: 'Infos et attestations Coronavirus COVID-19 du gouvernement' },
       // tslint:disable-next-line:max-line-length
-      { name: 'og:description', content: 'Retrouver les informations et les attestations de sortie du Gouvernement à cause du Coronavirus COVID-19' },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { property: 'og:description', content: 'Retrouver les informations et les attestations de sortie du Gouvernement à cause du Coronavirus COVID-19' },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Infos et attestations Coronavirus COVID-19 du gouvernement' },
       // tslint:disable-next-line:max-line-length

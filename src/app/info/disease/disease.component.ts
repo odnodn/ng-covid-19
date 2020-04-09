@@ -15,13 +15,13 @@ export class DiseaseComponent implements OnInit {
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:url', content: 'https://www.cascoronavirus.fr/infos/maladie-coronavirus' },
-      { name: 'og:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: 'https://www.cascoronavirus.fr/infos/maladie-coronavirus' },
+      { property: 'og:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
       // tslint:disable-next-line:max-line-length
-      { name: 'og:description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { property: 'og:description', content: 'Retrouvez les informations du Coronavirus COVID-19 : symptômes, conseils, vaccins, confinement, transmission, maladie' },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
       // tslint:disable-next-line:max-line-length

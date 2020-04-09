@@ -14,12 +14,13 @@ export class DiseaseTestComponent implements OnInit {
     this.title.setTitle('Faites un test de symptômes du Coronavirus COVID-19');
     const tags = [
       { name: 'description', content: 'Faites un test pour savoir si vous avez les symptômes et la maladie du Coronavirus COVID-19' },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { name: 'og:url', content: 'https://www.cascoronavirus.fr/infos/maladie-test-coronavirus' },
-      { name: 'og:title', content: 'Faites un test de symptômes du Coronavirus COVID-19' },
-      { name: 'og:description', content: 'Faites un test pour savoir si vous avez les symptômes et la maladie du Coronavirus COVID-19' },
-      { name: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: 'https://www.cascoronavirus.fr/infos/maladie-test-coronavirus' },
+      { property: 'og:title', content: 'Faites un test de symptômes du Coronavirus COVID-19' },
+      // tslint:disable-next-line:max-line-length
+      { property: 'og:description', content: 'Faites un test pour savoir si vous avez les symptômes et la maladie du Coronavirus COVID-19' },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Faites un test de symptômes du Coronavirus COVID-19' },
       // tslint:disable-next-line:max-line-length
