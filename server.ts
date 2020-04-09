@@ -16,38 +16,18 @@ export function app() {
   const domino = require('domino');
   const fs = require('fs');
   const path = require('path');
-
-  server.use(compression());
-  server.use(cookieparser());
   const distFolder = join(process.cwd(), 'dist/ng-coronavirus/browser');
   const template = fs.readFileSync(path.join('.', 'dist/ng-coronavirus/browser', 'index.html')).toString();
   const window = domino.createWindow(template);
+
   // tslint:disable-next-line:no-string-literal
   global['window'] = window;
   // tslint:disable-next-line:no-string-literal
   global['document'] = window.document;
+  server.use(compression());
+  server.use(cookieparser());
 
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-
-  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-  server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
-  }));
-
-  server.set('view engine', 'html');
-  server.set('views', distFolder);
-
-  // Example Express Rest API endpoints
-  // app.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
-  server.get('*.*', express.static(distFolder, {
-    maxAge: '1y'
-  }));
-
-  // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
-  });
 
   const redirectowww = true;
   const redirectohttps = true;
@@ -76,6 +56,26 @@ export function app() {
       res.redirect(301, 'https://' + host + req.url);
     }
     next();
+  });
+
+  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
+  server.engine('html', ngExpressEngine({
+    bootstrap: AppServerModule,
+  }));
+
+  server.set('view engine', 'html');
+  server.set('views', distFolder);
+
+  // Example Express Rest API endpoints
+  // app.get('/api/**', (req, res) => { });
+  // Serve static files from /browser
+  server.get('*.*', express.static(distFolder, {
+    maxAge: '1y'
+  }));
+
+  // All regular routes use the Universal engine
+  server.get('*', (req, res) => {
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
   return server;
