@@ -24,7 +24,10 @@
         </span>
       </p>
       <p class="subtitle">Confirmés</p>
-      <div class="legend">
+      <div class="legend" *ngIf="selectedCountry.country === 'France'">
+        Source :  Worldometer avec les d3tonnées remontées par les centres hospitaliers participants à SI-VIC et signalement liés au COVID-19 dans les ESMS
+      </div>
+      <div class="legend" *ngIf="selectedCountry.country !== 'France'">
         Source : Worldometer
       </div>
     </article>
@@ -39,6 +42,26 @@
       <p class="subtitle">Hospitalisations en cours</p>
       <p class="legend">
         Source : Données remontées par les centres hospitaliers participants à SI-VIC
+      </p>
+    </article>
+  </div>
+  <div class="tile is-parent" *ngIf="mainStats.active !== undefined">
+    <article class="tile is-child notification hospital">
+      <p class="title">{{mainStats.active | number: '' :'fr-FR'}}
+      </p>
+      <p class="subtitle">Actifs</p>
+      <p class="legend">
+        Source : Worldometer
+      </p>
+    </article>
+  </div>
+  <div class="tile is-parent" *ngIf="mainStats.active !== undefined">
+    <article class="tile is-child notification reanimation">
+      <p class="title">{{mainStats.critical | number: '' :'fr-FR'}}
+      </p>
+      <p class="subtitle">Critiques</p>
+      <p class="legend">
+        Source : Worldometer
       </p>
     </article>
   </div>
@@ -71,7 +94,7 @@
           </span>
         </p>
         <p class="legend">
-          Source : Worldometer et données remontées par les centres hospitaliers participants à SI-VIC et signalement
+          Source : Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et signalement
           liés au COVID-19 dans les ESMS
         </p>
       </ng-container>
