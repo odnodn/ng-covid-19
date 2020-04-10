@@ -23,7 +23,11 @@
           {{mainStats?.todayCases | symbolNumber }}
         </span>
       </p>
-      <p class="subtitle">Confirmés</p>
+      <p class="subtitle">Confirmés
+        <span class="note">
+          dont {{mainStats.active | number: '' :'fr-FR'}} actifs
+        </span>
+      </p>
       <div class="legend" *ngIf="selectedCountry.country === 'France'">
         Source :  Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et signalement liés au COVID-19 dans les ESMS
       </div>
@@ -45,7 +49,7 @@
       </p>
     </article>
   </div>
-  <div class="tile is-parent" *ngIf="mainStats.active !== undefined">
+  <div class="tile is-parent" *ngIf="mainStats.active !== undefined && selectedCountry.country !== 'France'">
     <article class="tile is-child notification hospital">
       <p class="title">{{mainStats.active | number: '' :'fr-FR'}}
       </p>
@@ -55,7 +59,7 @@
       </p>
     </article>
   </div>
-  <div class="tile is-parent" *ngIf="mainStats.active !== undefined">
+  <div class="tile is-parent" *ngIf="mainStats.critical !== undefined ">
     <article class="tile is-child notification reanimation">
       <p class="title">{{mainStats.critical | number: '' :'fr-FR'}}
       </p>
