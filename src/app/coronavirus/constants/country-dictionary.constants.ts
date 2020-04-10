@@ -60,7 +60,7 @@ export const COUNTRIES_DICTIONARY = {
   ET: 'Ethiopie',
   FJ: 'Fidji',
   FI: 'Finlande',
-  FR: 'France Métropolitaine',
+  FR: 'France',
   GA: 'Gabon',
   GM: 'Gambie',
   GH: 'Ghana',
