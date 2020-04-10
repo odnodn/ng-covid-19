@@ -25,7 +25,7 @@
       </p>
       <p class="subtitle">Confirmés
         <span class="note">
-          dont {{mainStats.active | number: '' :'fr-FR'}} actifs
+          dont <strong>{{mainStats.active | number: '' :'fr-FR'}}</strong> actifs
         </span>
       </p>
       <div class="legend" *ngIf="selectedCountry.country === 'France'">
@@ -38,12 +38,16 @@
   </div>
   <div class="tile is-parent" *ngIf="mainStats.hospital !== undefined">
     <article class="tile is-child notification hospital">
-      <p class="title">{{mainStats.hospital | number: '' :'fr-FR'}}
+      <p class="title">{{mainStats.hospitalStart | number: '' :'fr-FR'}}
         <span class="increase">
-          {{mainStats.todayHospital | symbolNumber }}
+          {{mainStats.todayHospitalStart | symbolNumber }}
         </span>
       </p>
-      <p class="subtitle">Hospitalisations en cours</p>
+      <p class="subtitle">Hospitalisations
+        <span class="note">
+          dont <strong>{{mainStats.hospital | number: '' :'fr-FR'}}</strong> ({{mainStats.todayHospital | symbolNumber }}) en cours
+        </span>
+      </p>
       <p class="legend">
         Source : Données remontées par les centres hospitaliers participants à SI-VIC
       </p>
@@ -71,12 +75,16 @@
   </div>
   <div class="tile is-parent" *ngIf="mainStats.reanimation !== undefined">
     <article class="tile is-child notification reanimation">
-      <p class="title">{{mainStats.reanimation | number: '' :'fr-FR'}}
+      <p class="title">{{mainStats.reanimationStart | number: '' :'fr-FR'}}
         <span class="increase">
-          {{mainStats.todayReanimation | symbolNumber }}
+          {{mainStats.todayReanimationStart | symbolNumber }}
         </span>
       </p>
-      <p class="subtitle">Réanimations en cours</p>
+      <p class="subtitle">Réanimations
+        <span class="note">
+          dont <strong>{{mainStats.reanimation | number: '' :'fr-FR'}}</strong> ({{mainStats.todayReanimation | symbolNumber }}) en cours
+        </span>
+      </p>
       <p class="legend">
         Source : Données remontées par les centres hospitaliers participants à SI-VIC
       </p>
@@ -93,7 +101,7 @@
         </p>
         <p class="subtitle">Décès
           <span class="note">
-            dont {{mainStats.deaths | number: '' :'fr-FR'}} ({{mainStats.todayDeaths | symbolNumber }}) en milieu
+            dont <strong>{{mainStats.deaths | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayDeaths | symbolNumber }}) en milieu
             hospitalier
           </span>
         </p>

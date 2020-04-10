@@ -9,7 +9,6 @@ export class CoronavirusFranceService {
 
   private readonly urlCSV = 'https://api-novel-coronavirus.herokuapp.com/france-datas';
   private readonly urlTest = 'https://api-novel-coronavirus.herokuapp.com/france-datas-test';
-
   constructor(private readonly httpClient: HttpClient) { }
 
   getData(type: string, code?: string): Observable<any> {

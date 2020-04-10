@@ -31,6 +31,7 @@ export class CoronavirusSheetComponent implements OnInit {
   selectedRegion: any;
   selectedDepartment: any;
   isBrowser = isPlatformBrowser(this.platformId);
+  typeDiagram = 'evolution';
 
   constructor(
     private readonly coronavirusService: CoronavirusService,
@@ -76,6 +77,10 @@ export class CoronavirusSheetComponent implements OnInit {
     this.selectedRegion = undefined;
     this.selectedDepartment = undefined;
     this.router.navigate(['stats', this.selectedCountry.slug]);
+  }
+
+  openTab(type: string): void {
+    this.typeDiagram = type;
   }
 
   private updateFranceDatas(params: any): void {

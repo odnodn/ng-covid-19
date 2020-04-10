@@ -29,10 +29,12 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   }
 
   ngAfterViewInit(): void {
-    if (this.nameChart !== 'chart-test-age') {
-      this.initChartTimeline('testTotalPositive', 'testTotalNegative');
-    } else {
+    if (this.nameChart === 'chart-test-age') {
       this.initChartAgeTest('testTotalPositive', 'testTotalNegative');
+    } else if (this.nameChart === 'chart-timeline') {
+      this.initChartTimeline('testTotalPositive', 'testTotalNegative');
+    } else if (this.nameChart === 'chart-day') {
+      this.initChartDay();
     }
   }
 
@@ -45,7 +47,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   onSelectTypeChange(): void {
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
-    if (this.nameChart !== 'chart-test-age') {
+    if (this.nameChart === 'chart-timeline') {
       this.chart.data = this.data.timeline.filter((item) => item.age === 'tous');
     }
     if (this.dataType === 'total') {
@@ -67,7 +69,18 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.legend = new am4charts.Legend();
     this.chart.legend.fontSize = 14;
     this.chart.padding(10, 0, 0, 0);
+  }
 
+  private initChartDay(): void {
+    this.initChart();
+    this.chart.data = this.data;
+    this.createXSeries('date');
+    this.createYSeries();
+    this.createSeries('hospital', 'Hospitalisations', '#F17D07', 'date');
+    this.createSeries('reanimation', 'Réanimations', '#E95D0C', 'date');
+    this.createSeries('deaths', 'Décès', '#f9461c', 'date');
+    this.createSeries('recovered', 'Guéris', '#43D787', 'date');
+    this.chart.cursor = new am4charts.XYCursor();
   }
 
   private initChartAgeTest(fieldPositive: string, fieldNegative: string): void {
@@ -132,8 +145,14 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.columns.template.strokeOpacity = 0;
     this.series.columns.template.fill = am4core.color(color);
     this.series.columns.template.width = am4core.percent(75);
-    this.series.columns.template.tooltipText =
-      '{dateX} \n {valueY} {name} sur {valueY.total}';
+    if (this.nameChart === 'chart-day') {
+      this.series.columns.template.tooltipText =
+      '{dateX} \n {valueY} {name}';
+      this.series.tooltip.getFillFromObject = false;
+      this.series.tooltip.background.fill = am4core.color(color);
+      this.series.tooltip.label.textAlign = 'middle';
+      this.series.tooltip.label.fontSize = 13;
+    }
     this.series.dataFields.valueY = field;
     this.series.name = name;
     this.series.id = name;
@@ -156,6 +175,9 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       labelBullet.fontSize = 12;
       labelBullet.locationY = 0.5;
       labelBullet.label.fill = am4core.color('black');
+      if (this.nameChart === 'chart-day') {
+        labelBullet.label.fill = am4core.color('white');
+      }
     }
 
     this.series.tooltip.label.textAlign = 'middle';
