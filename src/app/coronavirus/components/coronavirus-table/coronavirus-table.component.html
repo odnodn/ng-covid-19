@@ -16,9 +16,9 @@
         <ng-container *ngIf="selectedCountry.country === 'France'">Lieux</ng-container>
       </th>
       <td mat-cell *matCellDef="let element">
-        <a *ngIf="!selectedDivisionMap" [routerLink]="['/stats/spain', '']">
+        <span *ngIf="!selectedDivisionMap">
           {{element.translation}} {{element.provinceState}}
-        </a>
+        </span>
         <ng-container *ngIf="!selectedTypeMap">
           <a *ngIf="selectedDivisionMap === 'regionFrance'" [routerLink]="['/stats/france/region/', element.slug]">
             {{element.translation}} {{element.provinceState}}
