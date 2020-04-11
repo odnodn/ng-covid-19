@@ -150,9 +150,14 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       '{dateX} \n {valueY} {name}';
       this.series.tooltip.getFillFromObject = false;
       this.series.tooltip.background.fill = am4core.color(color);
-      this.series.tooltip.label.textAlign = 'middle';
-      this.series.tooltip.label.fontSize = 13;
     }
+    if (this.nameChart === 'chart-timeline') {
+      this.series.columns.template.tooltipText =
+      '{dateX} \n {valueY} {name} sur {valueY.total}';
+    }
+
+    this.series.tooltip.label.textAlign = 'middle';
+    this.series.tooltip.label.fontSize = 13;
     this.series.sequencedInterpolation = true;
     this.series.dataFields.valueY = field;
     this.series.name = name;
