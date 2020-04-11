@@ -153,6 +153,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       this.series.tooltip.label.textAlign = 'middle';
       this.series.tooltip.label.fontSize = 13;
     }
+    this.series.sequencedInterpolation = true;
     this.series.dataFields.valueY = field;
     this.series.name = name;
     this.series.id = name;
@@ -167,6 +168,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       labelBullet.label.text = '{valueY}';
       labelBullet.fontSize = 12;
       labelBullet.locationY = 0.5;
+      labelBullet.label.hideOversized = true;
       labelBullet.label.fill = am4core.color('black');
     } else {
       this.series.dataFields.dateX = xAxis;
@@ -174,6 +176,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       labelBullet.label.text = '{valueY}';
       labelBullet.fontSize = 12;
       labelBullet.locationY = 0.5;
+      labelBullet.label.hideOversized = true;
       labelBullet.label.fill = am4core.color('black');
       if (this.nameChart === 'chart-day') {
         labelBullet.label.fill = am4core.color('white');
