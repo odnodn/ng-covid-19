@@ -175,7 +175,8 @@
           </div>
         </div>
         <div class="columns" *ngIf="isBrowser">
-          <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion" [class.is-three-fifths]="selectedRegion">
+          <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion"
+            [class.is-three-fifths]="selectedRegion">
             <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
             </app-coronavirus-graph>
           </div>
@@ -212,12 +213,7 @@
             </app-coronavirus-chart-pie>
           </div>
           <div class="column is-spaced">
-            <ng-container *ngIf="(franceStatsByAge$ | loading | async) as franceStatsByAge">
-              <ng-container *ngIf="franceStatsByAge.value">
-                <app-coronavirus-chart-age [dataAge]="franceStatsByAge.value">
-                </app-coronavirus-chart-age>
-              </ng-container>
-            </ng-container>
+            <app-coronavirus-chart-age [dataAge]="franceStats.value.age"></app-coronavirus-chart-age>
           </div>
         </div>
       </ng-container>

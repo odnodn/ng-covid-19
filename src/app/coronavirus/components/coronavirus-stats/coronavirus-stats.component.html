@@ -23,11 +23,15 @@
           {{mainStats?.todayCases | symbolNumber }}
         </span>
       </p>
-      <p class="subtitle">Cas
+      <p class="subtitle">Cas <ng-container *ngIf="selectedCountry.country === 'France'">
+        signalés
+      </ng-container>
+      <ng-container *ngIf="selectedCountry.country !== 'France'">
+        confirmés
+      </ng-container>
         <span class="note">
           <ng-container *ngIf="mainStats?.todayCasesHospital">
-            dont <strong>{{mainStats.casesHospital | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesHospital | symbolNumber }}) en milieu
-            hospitalier
+            dont <strong>{{mainStats.casesHospital | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesHospital | symbolNumber }}) confirmés
           </ng-container>
           <ng-container *ngIf="mainStats?.todayCasesEhpad">
             et <strong>{{mainStats.casesEhpad | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesEhpad | symbolNumber }}) en ESMS

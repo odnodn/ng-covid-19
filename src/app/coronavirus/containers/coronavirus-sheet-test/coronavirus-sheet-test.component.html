@@ -19,7 +19,7 @@
   <ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
     <ng-container *ngIf="dataTest?.value">
       <p>
-        Les données des tests de dépistage du Coronavirus COVID-19 ont été mises à jour le
+        Les données des tests de dépistage du Coronavirus COVID-19 sont datées du
         <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.
       </p>
       <div class="tile is-ancestor">
