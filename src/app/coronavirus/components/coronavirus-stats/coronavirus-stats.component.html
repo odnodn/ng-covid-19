@@ -23,9 +23,16 @@
           {{mainStats?.todayCases | symbolNumber }}
         </span>
       </p>
-      <p class="subtitle">Confirmés
+      <p class="subtitle">Cas
         <span class="note">
-          dont <strong>{{mainStats.active | number: '' :'fr-FR'}}</strong> actifs
+          <ng-container *ngIf="mainStats?.todayCasesHospital">
+            dont <strong>{{mainStats.casesHospital | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesHospital | symbolNumber }}) en milieu
+            hospitalier
+          </ng-container>
+          <ng-container *ngIf="mainStats?.todayCasesEhpad">
+            et <strong>{{mainStats.casesEhpad | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesEhpad | symbolNumber }}) en ESMS
+          </ng-container>
+
         </span>
       </p>
       <div class="legend" *ngIf="selectedCountry.country === 'France'">
@@ -92,17 +99,17 @@
   </div>
   <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
     <article class="tile is-child notification is-danger ">
-      <ng-container *ngIf="mainStats.deathsJHU">
+      <ng-container *ngIf="mainStats.deathsHospital">
         <p class="title">
-          {{mainStats.deathsJHU | number: '' :'fr-FR'}}
+          {{mainStats.deaths | number: '' :'fr-FR'}}
           <span class="increase">
-            {{mainStats.todayDeathsJHU | symbolNumber }}
+            {{mainStats.todayDeaths | symbolNumber }}
           </span>
         </p>
         <p class="subtitle">Décès
           <span class="note">
-            dont <strong>{{mainStats.deaths | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayDeaths | symbolNumber }}) en milieu
-            hospitalier
+            dont <strong>{{mainStats.deathsHospital | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayDeathsHospital | symbolNumber }}) en milieu
+            hospitalier et <strong>{{mainStats.deathsEhpad | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayDeathsEhpad | symbolNumber }}) en ESMS
           </span>
         </p>
         <p class="legend">
@@ -110,7 +117,7 @@
           liés au COVID-19 dans les ESMS
         </p>
       </ng-container>
-      <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsJHU">
+      <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsHospital">
         <p class="title">
           {{mainStats.deaths | number: '' :'fr-FR'}}
           <span class="increase">
