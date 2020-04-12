@@ -27,6 +27,17 @@
         Statistiques des tests de dépistage
       </a>
     </li>
+    <li [class.is-active]="router.url | include : 'urgences'">
+      <a *ngIf="!selectedRegion && ! selectedDepartment" [routerLink]="['/urgences/', selectedCountry.slug]">
+        Statistiques des urgences hospitalières
+      </a>
+      <a *ngIf="selectedRegion" [routerLink]="['/urgences/france/region', selectedRegion.slug]">
+        Statistiques des urgences hospitalières
+      </a>
+      <a *ngIf="selectedDepartment" [routerLink]="['/urgences/france/departement', selectedDepartment.slug]">
+        Statistiques des urgences hospitalières
+      </a>
+    </li>
   </ul>
 </div>
 <router-outlet (activate)='onActivate($event)'></router-outlet>

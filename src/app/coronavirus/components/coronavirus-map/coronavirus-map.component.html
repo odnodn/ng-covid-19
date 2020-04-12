@@ -1,7 +1,7 @@
 <div class="is-spaced">
   <div #chartElement [id]="selectedCountry.country !== 'France' ? 'map-world' : 'map-france'"></div>
 </div>
-<div class="radio-buttons" *ngIf="selectedTypeData !== 'test'">
+<div class="radio-buttons" *ngIf="selectedTypeData !== 'test' && selectedTypeData !== 'emergency'">
   <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">
     <mat-radio-button value="cases" *ngIf="selectedCountry.country !== 'France'">Confirmés</mat-radio-button>
     <mat-radio-button value="hospital" *ngIf="selectedCountry.country === 'France'">Hospitalisations en cours</mat-radio-button>
@@ -21,6 +21,13 @@
     <mat-radio-button value="ageC" >45-64 ans</mat-radio-button>
     <mat-radio-button value="ageD" >65-74 ans</mat-radio-button>
     <mat-radio-button value="ageE" >Plus de 75 ans</mat-radio-button>
+  </mat-radio-group>
+</div>
+<div class="radio-buttons" *ngIf="selectedTypeData === 'emergency'">
+  <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">
+    <mat-radio-button value="passageCorona">Passages aux urgences pour suspicion de COVID-19</mat-radio-button>
+    <mat-radio-button value="hospitalCorona">Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19</mat-radio-button>
+    <mat-radio-button value="acteCorona">Actes médicaux SOS Médecins pour suspicion de COVID-19</mat-radio-button>
   </mat-radio-group>
 </div>
 

@@ -23,8 +23,8 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.dataType = 'total';
     this.choices = [
       { label: 'Total', value: 'total' },
-      { label: 'Homme', value: 'men' },
-      { label: 'Femme', value: 'women' },
+      { label: 'Hommes', value: 'men' },
+      { label: 'Femmes', value: 'women' },
     ];
   }
 
@@ -35,6 +35,22 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       this.initChartTimeline('testTotalPositive', 'testTotalNegative');
     } else if (this.nameChart === 'chart-day') {
       this.initChartDay();
+    } else if (this.nameChart === 'chart-urgences-passage' ||
+      this.nameChart === 'chart-urgences-medical' ||
+      this.nameChart === 'chart-urgences-hospital') {
+      this.initChartEmergency();
+    } else if (this.nameChart === 'chart-urgences-passage-gender') {
+      this.initChartEmergencyGender();
+    } else if (this.nameChart === 'chart-urgences-hospital-gender') {
+      this.initChartEmergencyGenderHospital();
+    } else if (this.nameChart === 'chart-urgences-passage-age') {
+      this.initChartEmergencyAge();
+    } else if (this.nameChart === 'chart-urgences-hospital-age') {
+      this.initChartEmergencyHospitalAge();
+    } else if (this.nameChart === 'chart-urgences-medical-age') {
+      this.initChartMedicalAge();
+    } else if (this.nameChart === 'chart-urgences-medical-gender') {
+      this.initChartEmergencyGenderMedical();
     }
   }
 
@@ -47,18 +63,38 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   onSelectTypeChange(): void {
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
+
     if (this.nameChart === 'chart-timeline') {
       this.chart.data = this.data.timeline.filter((item) => item.age === 'tous');
     }
     if (this.dataType === 'total') {
-      this.chart.map.getKey('Tests positifs').dataFields.valueY = 'testTotalPositive';
-      this.chart.map.getKey('Tests négatifs').dataFields.valueY = 'testTotalNegative';
+      this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testTotalPositive';
+      this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testTotalNegative';
     } else if (this.dataType === 'men') {
-      this.chart.map.getKey('Tests positifs').dataFields.valueY = 'testMenPositive';
-      this.chart.map.getKey('Tests négatifs').dataFields.valueY = 'testMenNegative';
+      this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testMenPositive';
+      this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testMenNegative';
     } else if (this.dataType === 'women') {
-      this.chart.map.getKey('Tests positifs').dataFields.valueY = 'testWomenPositive';
-      this.chart.map.getKey('Tests négatifs').dataFields.valueY = 'testWomenNegative';
+      this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testWomenPositive';
+      this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testWomenNegative';
+    }
+  }
+
+  onSelectTypeChangeEmergency(): void {
+    if (this.nameChart === 'chart-urgences-passage') {
+      this.chart.map.getKey('passageCorona').dataFields.valueY = 'passageCorona';
+      this.chart.map.getKey('passageNoCorona').dataFields.valueY = 'passageNoCorona';
+      this.chart.map.getKey('passageCorona').name = 'Passages aux urgences pour suspicion de COVID-19';
+      this.chart.map.getKey('passageNoCorona').name = 'Passages aux urgences pour non suspicion de COVID-19';
+    } else if (this.nameChart === 'chart-urgences-hospital') {
+      this.chart.map.getKey('passageCorona').dataFields.valueY = 'hospitalCorona';
+      this.chart.map.getKey('passageNoCorona').dataFields.valueY = 'noHospitalCorona';
+      this.chart.map.getKey('passageCorona').name = 'Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19';
+      this.chart.map.getKey('passageNoCorona').name = 'Non hospitalisations parmi les passages aux urgences pour suspicion de COVID-19';
+    } else if (this.nameChart === 'chart-urgences-medical') {
+      this.chart.map.getKey('passageCorona').dataFields.valueY = 'acteCorona';
+      this.chart.map.getKey('passageNoCorona').dataFields.valueY = 'acteNoCorona';
+      this.chart.map.getKey('passageCorona').name = 'Nombres d\'actes médicaux SOS Médecins pour suspicion de COVID-19';
+      this.chart.map.getKey('passageNoCorona').name = 'Nombres d\'actes médicaux SOS Médecins pour non suspicion de COVID-19';
     }
   }
 
@@ -75,7 +111,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.initChart();
     this.chart.data = this.data;
     this.createXSeries('date');
-    this.createYSeries();
+    this.createYSeries('Nombre de patiens');
     this.createSeries('hospital', 'Hospitalisations', '#F17D07', 'date');
     this.createSeries('reanimation', 'En réanimation', '#E95D0C', 'date');
     this.createSeries('deaths', 'Décès', '#f9461c', 'date');
@@ -87,7 +123,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.initChart();
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
     this.createXSeries('age');
-    this.createYSeries();
+    this.createYSeries('Nombre de tests');
     this.createSeries(fieldPositive, 'Tests positifs', '#f9461c', 'age');
     this.createSeries(fieldNegative, 'Tests négatifs', 'whitesmoke', 'age');
     this.createTotalLabel();
@@ -97,12 +133,99 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.initChart();
     this.chart.data = this.data.timeline.filter((item) => item.age === 'tous');
     this.createXSeries('date');
-    this.createYSeries();
+    this.createYSeries('Nombre de tests');
     this.createSeries(fieldPositive, 'Tests positifs', '#f9461c', 'date');
     this.createSeries(fieldNegative, 'Tests négatifs', 'whitesmoke', 'date');
+    this.chart.cursor = new am4charts.XYCursor();
     this.createTotalLabel();
+  }
+
+  private initChartEmergency(): void {
+    this.initChart();
+    this.chart.data = this.data.timeline.filter((item) => item.age === 'tous' &&
+      new Date(item.date).getTime() >= new Date('2020-03-18').getTime());
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.chart.data.length; i++) {
+      this.chart.data[i].passageNoCorona = this.chart.data[i].passageTotal - this.chart.data[i].passageCorona;
+      this.chart.data[i].acteNoCorona = this.chart.data[i].acteTotal - this.chart.data[i].acteCorona;
+      this.chart.data[i].noHospitalCorona = this.chart.data[i].passageCorona - this.chart.data[i].hospitalCorona;
+    }
+    this.createXSeries('date');
+
+    let color = '';
+    if (this.nameChart === 'chart-urgences-hospital') {
+      color = '#ffbb00';
+      this.createYSeries('Nombre d\'hospitalisations');
+    } else if (this.nameChart === 'chart-urgences-passage') {
+      color = '#F17D07';
+      this.createYSeries('Nombre de passages aux urgences');
+    } else {
+      color = '#E95D0C';
+      this.createYSeries('Nombre d\'actes médicaux SOS médecins');
+    }
+    this.createSeries('passageCorona', 'Passages aux urgences pour suspicion de COVID-19', color, 'date');
+    this.createSeries('passageNoCorona', 'Passages aux urgences pour non suspicion de COVID-19', 'whitesmoke', 'date');
+    this.chart.cursor = new am4charts.XYCursor();
+    this.onSelectTypeChangeEmergency();
+  }
+
+  private initChartEmergencyGender(): void {
+    this.initChart();
+    this.chart.data = this.data.timeline.filter((item) => item.age === 'tous' &&
+      new Date(item.date).getTime() >= new Date('2020-03-18').getTime());
+    this.createXSeries('date');
+    this.createYSeries('Nombre de passages aux urgences');
+    this.createSeries('passageCoronaHomme', 'Hommes', '#4a8cfd', 'date');
+    this.createSeries('passageCoronaFemme', 'Femmes', '#fd5260', 'date');
     this.chart.cursor = new am4charts.XYCursor();
   }
+
+  private initChartEmergencyGenderHospital(): void {
+    this.initChart();
+    this.chart.data = this.data.timeline.filter((item) => item.age === 'tous' &&
+      new Date(item.date).getTime() >= new Date('2020-03-18').getTime());
+    this.createXSeries('date');
+    this.createYSeries('Nombre d\'hospitalisations');
+    this.createSeries('hospitalCoronaHomme', 'Hommes', '#4a8cfd', 'date');
+    this.createSeries('hospitalCoronaFemme', 'Femmes', '#fd5260', 'date');
+    this.chart.cursor = new am4charts.XYCursor();
+  }
+
+  private initChartEmergencyGenderMedical(): void {
+    this.initChart();
+    this.chart.data = this.data.timeline.filter((item) => item.age === 'tous' &&
+      new Date(item.date).getTime() >= new Date('2020-03-18').getTime());
+    this.createXSeries('date');
+    this.createYSeries('Nombre d\'actes médicaux');
+    this.createSeries('acteCoronaHomme', 'Hommes', '#4a8cfd', 'date');
+    this.createSeries('acteCoronaFemme', 'Femmes', '#fd5260', 'date');
+    this.chart.cursor = new am4charts.XYCursor();
+  }
+
+  private initChartEmergencyAge(): void {
+    this.initChart();
+    this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
+    this.createXSeries('age');
+    this.createYSeries('Nombre de passages aux urgences');
+    this.createSeries('passageCorona', 'Passages aux urgences pour suspicion de COVID-19', '#ffbb00', 'age');
+  }
+
+  private initChartEmergencyHospitalAge(): void {
+    this.initChart();
+    this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
+    this.createXSeries('age');
+    this.createYSeries('Nombre d\'hospitalisations');
+    this.createSeries('hospitalCorona', 'Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19', '#F17D07', 'age');
+  }
+
+  private initChartMedicalAge(): void {
+    this.initChart();
+    this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
+    this.createXSeries('age');
+    this.createYSeries('Nombre d\'actes médicaux');
+    this.createSeries('acteCorona', 'Actes médicaux SOS Médécins pour suspicion de COVID-19', '#E95D0C', 'age');
+  }
+
 
   private createTotalLabel(): void {
     const totalBullet = this.series.bullets.push(new am4charts.LabelBullet());
@@ -131,10 +254,10 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   }
 
-  private createYSeries(): void {
+  private createYSeries(name: string): void {
     const valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.fontSize = 13;
-    valueAxis.title.text = 'Tests réalisés';
+    valueAxis.title.text = name;
     valueAxis.calculateTotals = true;
     valueAxis.extraMax = 0.1;
     valueAxis.cursorTooltipEnabled = false;
@@ -147,21 +270,30 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.columns.template.width = am4core.percent(75);
     if (this.nameChart === 'chart-day') {
       this.series.columns.template.tooltipText =
-      '{dateX} \n {valueY} {name}';
+        '{dateX} \n {valueY} {name}';
       this.series.tooltip.getFillFromObject = false;
       this.series.tooltip.background.fill = am4core.color(color);
     }
     if (this.nameChart === 'chart-timeline') {
       this.series.columns.template.tooltipText =
-      '{dateX} \n {valueY} {name} sur {valueY.total}';
+        '{dateX} \n {valueY} {name} sur {valueY.total}';
+    }
+    if (this.nameChart.includes('chart-urgences')) {
+      if (field !== 'passageNoCorona') {
+        this.series.columns.template.tooltipText =
+          '{dateX} \n {valueY} {name} sur {valueY.total}';
+        this.series.tooltip.label.textAlign = 'middle';
+        this.series.tooltip.label.fontSize = 13;
+        this.series.tooltip.getFillFromObject = false;
+        this.series.tooltip.background.fill = am4core.color(color);
+      }
     }
 
     this.series.tooltip.label.textAlign = 'middle';
     this.series.tooltip.label.fontSize = 13;
-    this.series.sequencedInterpolation = true;
     this.series.dataFields.valueY = field;
     this.series.name = name;
-    this.series.id = name;
+    this.series.id = field;
     /* Opacity */
     this.series.columns.template.strokeOpacity = 0;
 
@@ -169,20 +301,59 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.columns.template.width = am4core.percent(90);
     if (xAxis === 'age') {
       this.series.dataFields.categoryX = xAxis;
+      this.series.calculatePercent = true;
       const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
-      labelBullet.label.text = '{valueY}';
+      // labelBullet.label.text = '{valueY}';
       labelBullet.fontSize = 12;
       labelBullet.locationY = 0.5;
       labelBullet.label.hideOversized = true;
       labelBullet.label.fill = am4core.color('black');
+      labelBullet.label.textAlign = 'middle';
+      if (this.nameChart.includes('chart-urgences')) {
+        if (field !== 'passageNoCorona') {
+          labelBullet.label.fill = am4core.color('white');
+
+          labelBullet.label.text = '[bold]{valueY} \n {valueY.percent.formatNumber(\'#.\')}%[\]';
+        }
+      }
+      if (this.nameChart === 'chart-test-age') {
+        if (field !== 'testTotalNegative') {
+          labelBullet.label.text = '[bold]{valueY}[\]';
+          labelBullet.label.fill = am4core.color('white');
+        }
+      }
+      if (this.nameChart === 'chart-timeline') {
+        if (field !== 'testTotalNegative') {
+          labelBullet.label.text = '[bold]{valueY}[\]';
+          labelBullet.label.fill = am4core.color('white');
+        }
+      }
     } else {
       this.series.dataFields.dateX = xAxis;
       const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
-      labelBullet.label.text = '{valueY}';
+      if (this.nameChart === 'chart-day') {
+        labelBullet.label.text = '{valueY}';
+      }
+      if (this.nameChart.includes('chart-urgences')) {
+        if (field !== 'passageNoCorona') {
+          labelBullet.label.text = '[bold]{valueY.totalPercent.formatNumber(\'#.\')}%[\]';
+        }
+      }
       labelBullet.fontSize = 12;
       labelBullet.locationY = 0.5;
       labelBullet.label.hideOversized = true;
       labelBullet.label.fill = am4core.color('black');
+      if (this.nameChart === 'chart-timeline') {
+        if (field !== 'testTotalNegative') {
+          labelBullet.label.text = '{valueY.totalPercent.formatNumber(\'#.\')}%';
+          labelBullet.label.fill = am4core.color('white');
+        }
+      }
+      if (this.nameChart.includes('chart-urgences')) {
+        if (field !== 'passageNoCorona') {
+          labelBullet.label.fill = am4core.color('white');
+        }
+      }
       if (this.nameChart === 'chart-day') {
         labelBullet.label.fill = am4core.color('white');
       }

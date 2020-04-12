@@ -17,6 +17,7 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = [];
   dataSource: any;
+  matSortActive: string;
 
   constructor() {}
 
@@ -42,16 +43,33 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
   }
 
   private initDataTable(): void {
-    if (this.selectedTypeMap) {
+    const age = {
+      ageAll: 'à tous les âges',
+      ageA: 'chez les moins de 15 ans',
+      ageB: 'chez les 15-44 ans',
+      ageC: 'chez les 45-64 ans',
+      ageD: 'chez les 65-74 ans',
+      ageE: 'chez les plus de 75 ans',
+    };
+    if (this.selectedTypeMap === 'passage') {
+      this.displayedColumns = ['translation', 'passageCorona', 'hospitalCorona', 'acteCorona'];
+      this.matSortActive = 'passageCorona';
+      return ;
+    }
+
+    if (age[this.selectedTypeMap]) {
       this.displayedColumns = ['translation', 'testTotal', 'testTotalPositive',
       'testMen', 'testMenPositive', 'testWomen', 'testWomenPositive'];
       return ;
     }
     if (this.selectedCountry.country === 'Monde') {
       this.displayedColumns = ['translation', 'cases', 'todayCases', 'active', 'critical', 'deaths', 'todayDeaths', 'recovered'];
+      this.matSortActive = 'cases';
     } else if (this.selectedCountry.country === 'France') {
       this.displayedColumns = ['translation', 'hospital', 'reanimation', 'deaths', 'recovered'];
+      this.matSortActive = 'deaths';
     } else {
+      this.matSortActive = 'cases';
       this.displayedColumns = ['translation', 'cases', 'active', 'deaths', 'recovered'];
     }
   }

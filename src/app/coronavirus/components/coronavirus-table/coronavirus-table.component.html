@@ -4,10 +4,11 @@
     <input class="input" (keyup)="applyFilter($event)" type="text" placeholder="Rechercher dans le tableau...">
   </div>
 </div>
-<div class="container" [class.table]="dataSource.data.length > 15" [class.table-region]="selectedDivisionMap === 'departmentFrance' && dataSource.data.length > 10">
+<div class="container" [class.table]="dataSource.data.length > 15"
+  [class.table-region]="selectedDivisionMap === 'departmentFrance' && dataSource.data.length > 10">
 
   <table aria-describedby="tableDescription" mat-table matSort [dataSource]="dataSource" [matSortDisableClear]="true"
-    [matSortActive]="selectedCountry.country === 'France' ? 'hospital' : 'cases'" matSortDirection="desc">
+    [matSortActive]="matSortActive" matSortDirection="desc">
 
     <!-- Country Column -->
     <ng-container matColumnDef="translation" sticky>
@@ -28,7 +29,7 @@
             {{element.translation}} {{element.provinceState}}
           </a>
         </ng-container>
-        <ng-container *ngIf="selectedTypeMap">
+        <ng-container *ngIf="selectedTypeMap && selectedTypeMap !== 'passage'">
           <a *ngIf="selectedDivisionMap === 'regionFrance'"
             [routerLink]="['/test-depistage/france/region/', element.slug]">
             {{element.translation}} {{element.provinceState}}
@@ -38,9 +39,45 @@
             {{element.translation}} {{element.provinceState}}
           </a>
         </ng-container>
+        <ng-container *ngIf="selectedTypeMap === 'passage'">
+          <a *ngIf="selectedDivisionMap === 'regionFrance'"
+            [routerLink]="['/urgences/france/region/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+          <a *ngIf="selectedDivisionMap === 'departmentFrance'"
+            [routerLink]="['/urgences/france/departement/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+        </ng-container>
 
       </td>
     </ng-container>
+
+    <!-- Passage Column -->
+    <ng-container matColumnDef="passageCorona">
+      <th id="passageCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Passages aux urgences</th>
+      <td mat-cell *matCellDef="let element" class="has-text-warning">{{element.passageCorona | number: '' :'fr-FR'}}
+      </td>
+    </ng-container>
+
+    <!-- Passage Column -->
+    <ng-container matColumnDef="hospitalCorona">
+      <th id="hospitalCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations parmi les passages aux urgences
+      </th>
+      <td mat-cell *matCellDef="let element" class="hospital">
+        {{element.hospitalCorona | number: '' :'fr-FR'}}
+        ({{ element.hospitalCorona | percentage : element.passageCorona  }})
+      </td>
+    </ng-container>
+
+        <!-- Passage Column -->
+        <ng-container matColumnDef="acteCorona">
+          <th id="acteCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Actes médicaux SOS médecins
+          </th>
+          <td mat-cell *matCellDef="let element" class="reanimation">
+            {{element.acteCorona | number: '' :'fr-FR'}}
+          </td>
+        </ng-container>
 
     <!-- Confirmed Column -->
     <ng-container matColumnDef="cases">
@@ -126,6 +163,7 @@
       <th id="testTotalPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Total positifs </th>
       <td mat-cell *matCellDef="let element" class="has-text-danger">
         {{element.testTotalPositive | number: '' :'fr-FR'}}<br>
+        ({{ element.testTotalPositive | percentage : element.testTotal  }})
       </td>
     </ng-container>
     <!-- Test Homme Column -->
@@ -133,6 +171,7 @@
       <th id="testMen" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Homme</th>
       <td mat-cell *matCellDef="let element">
         {{element.testMen | number: '' :'fr-FR'}}<br>
+
       </td>
     </ng-container>
     <!-- Test Homme Positif Column -->
@@ -140,6 +179,7 @@
       <th id="testMenPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Homme positifs </th>
       <td mat-cell *matCellDef="let element" class="has-text-danger">
         {{element.testMenPositive | number: '' :'fr-FR'}}<br>
+        ({{ element.testMenPositive | percentage : element.testMen  }})
       </td>
     </ng-container>
     <!-- Test Femme  Column -->
@@ -155,6 +195,7 @@
       <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Femme positifs </th>
       <td mat-cell *matCellDef="let element" class="has-text-danger">
         {{element.testWomenPositive | number: '' :'fr-FR'}}<br>
+        ({{ element.testWomenPositive | percentage : element.testWomen  }})
       </td>
     </ng-container>
 

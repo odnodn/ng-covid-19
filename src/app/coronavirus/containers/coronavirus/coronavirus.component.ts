@@ -34,7 +34,6 @@ export class CoronavirusComponent implements OnInit {
     }
   }
 
-
   onSelectCountry(country: any): void {
     this.selectedCountry = country;
     this.selectedRegion = undefined;

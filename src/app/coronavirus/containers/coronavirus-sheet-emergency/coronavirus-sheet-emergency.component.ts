@@ -1,28 +1,27 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
+import { Title, Meta } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FRANCE_REGIONS, FRANCE_DEPS } from '@coronavirus/constants/france.constants';
-import { Title, Meta } from '@angular/platform-browser';
+import { FRANCE_DEPS, FRANCE_REGIONS } from '@coronavirus/constants/france.constants';
 
 @Component({
-  selector: 'app-coronavirus-sheet-test',
-  templateUrl: './coronavirus-sheet-test.component.html',
-  styleUrls: ['./coronavirus-sheet-test.component.scss'],
+  selector: 'app-coronavirus-sheet-emergency',
+  templateUrl: './coronavirus-sheet-emergency.component.html',
+  styleUrls: ['./coronavirus-sheet-emergency.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusSheetTestComponent implements OnInit {
+export class CoronavirusSheetEmergencyComponent implements OnInit {
 
-  dataTest$: Observable<any>;
+  dataEmergency$: Observable<any>;
   selectedDivisionMap = 'departmentFrance';
   selectedCountry: any = COUNTRIES[0];
   selectedDepartment: any;
   selectedRegion: any;
-  selectedTypeMap = 'ageAll';
+  selectedTypeMap = 'passage';
   selectedDivisionMapTable = 'departmentFrance';
-  labelTableAge = 'à tous les âges';
-
+  type = 'passage';
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly route: ActivatedRoute,
@@ -43,7 +42,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
           this.router.navigateByUrl('/');
           return;
         }
-        this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('department', this.selectedDepartment.code);
+        this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('department', this.selectedDepartment.code);
         this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'le département');
       } else if (params.region) {
         this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
@@ -51,52 +50,44 @@ export class CoronavirusSheetTestComponent implements OnInit {
           this.router.navigateByUrl('/');
           return;
         }
-        this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('region', this.selectedRegion.code);
+        this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('region', this.selectedRegion.code);
         this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
       } else {
-        this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('national');
+        this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('national');
         this.initMetaTagFrance();
       }
       this.ref.detectChanges();
     });
   }
 
-  onSelectTypeMap(type: string): void {
-    const age = {
-      ageAll: 'à tous les âges',
-      ageA: 'chez les moins de 15 ans',
-      ageB: 'chez les 15-44 ans',
-      ageC: 'chez les 45-64 ans',
-      ageD: 'chez les 65-74 ans',
-      ageE: 'chez les plus de 75 ans',
-    };
-    this.selectedTypeMap = type;
-    this.labelTableAge = age[type];
-  }
-
   onSelectCountry(country: any): void {
     this.selectedCountry = country;
     this.selectedRegion = undefined;
     this.selectedDepartment = undefined;
-    this.router.navigate(['test-depistage', this.selectedCountry.slug]);
+    this.router.navigate(['urgences', this.selectedCountry.slug]);
   }
 
+  displayTab(type: string): void {
+    this.type = type;
+  }
+
+
   private initMetaTagRegionAndDepartment(region: any, type: string): void {
-    this.title.setTitle(`Tests de dépistage Coronavirus COVID-19 ${region.name}`);
+    this.title.setTitle(`Urgences Hospitalières Coronavirus COVID-19 ${region.name}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
+      { name: 'description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 ${region.name} - Suivez les urgences hospitalières et actes médicaux Coronavirus dans ${type} ${region.name}` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${region.slug}` },
-      { property: 'og:title', content: `Tests de dépistage Coronavirus COVID-19 ${region.name}` },
+      { property: 'og:title', content: `Urgences Hospitalières Coronavirus COVID-19 ${region.name}` },
       // tslint:disable-next-line:max-line-length
-      { property: 'og:description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
+      { property: 'og:description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 ${region.name} - Suivez les urgences hospitalières et actes médicaux Coronavirus dans ${type} ${region.name}` },
       { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: `Tests de dépistage Coronavirus COVID-19 ${region.name}` },
+      { name: 'twitter:title', content: `Urgences Hospitalières Coronavirus COVID-19 ${region.name}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
+      { name: 'twitter:description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 ${region.name} - Suivez les urgences hospitalières et actes médicaux Coronavirus dans ${type} ${region.name}` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
@@ -106,23 +97,23 @@ export class CoronavirusSheetTestComponent implements OnInit {
   }
 
   private initMetaTagFrance(): void {
-    this.title.setTitle(`Tests de dépistage Coronavirus COVID-19 France`);
+    this.title.setTitle(`Urgences Hospitalières Coronavirus COVID-19 en France`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Tests de dépistage Coronavirus COVID-19 France - Suivez les tests de dépistage pour diagnostic de COVID-19 en France par région et département` },
+      { name: 'description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 en France par région et département` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${this.selectedCountry.slug}` },
       // tslint:disable-next-line:max-line-length
-      { property: 'og:title', content: `Tests de dépistage Coronavirus COVID-19 France` },
+      { property: 'og:title', content: `Urgences Hospitalières Coronavirus COVID-19 en France` },
       // tslint:disable-next-line:max-line-length
-      { property: 'og:description', content: `Tests de dépistage Coronavirus COVID-19 France - Suivez les tests de dépistage pour diagnostic de COVID-19 en France par région et département` },
+      { property: 'og:description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 en France par région et département` },
       { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:title', content: `Tests de dépistage Coronavirus COVID-19 France` },
+      { name: 'twitter:title', content: `Urgences Hospitalières Coronavirus COVID-19 en France` },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: `Tests de dépistage Coronavirus COVID-19 France - Suivez les tests de dépistage pour diagnostic de COVID-19 en France par région et département` },
+      { name: 'twitter:description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 en France par région et département` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];

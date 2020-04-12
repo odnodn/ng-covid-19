@@ -1,4 +1,3 @@
-
 import {
   Component, OnInit, OnDestroy, OnChanges,
   ViewChild, ElementRef, SimpleChange, Input, ChangeDetectionStrategy, Output, EventEmitter, AfterViewInit
@@ -172,7 +171,34 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
         + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
         '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
-    }
+    },
+    passageCorona: {
+      colors: {
+        max: '#ffbb00'
+      },
+      title: 'Cartographie des passages aux urgences pour suspicion de COVID-19',
+      datas: [],
+      label: 'Passages aux urgences pour suspicion de COVID-19',
+      tooltipText: '{name} [bold]\n{value}[\] passages aux urgences pour suspicion de COVID-19'
+    },
+    hospitalCorona: {
+      colors: {
+        max: '#F17D07'
+      },
+      title: 'Cartographie des hospitalisations parmi les passages aux urgences pour suspicion de COVID-19',
+      datas: [],
+      label: 'Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19',
+      tooltipText: '{name} [bold]\n{value}[\] hopistalisations parmi les passages aux urgences pour suspicion de COVID-19'
+    },
+    acteCorona: {
+      colors: {
+        max: '#E95D0C'
+      },
+      title: 'Cartographie des actes médicaux SOS médecins pour suspicion de COVID-19',
+      datas: [],
+      label: 'Actes médicaux SOS médecins pour suspicion de COVID-19',
+      tooltipText: '{name} [bold]\n{value}[\] actes médicaux SOS médecins pour suspicion de COVID-19'
+    },
   };
 
   divisionMap = {
@@ -190,6 +216,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
     }
     if (this.selectedTypeData === 'test') {
       this.selectedTypeMap = 'ageAll';
+    }
+    if (this.selectedTypeData === 'emergency') {
+      this.selectedTypeMap = 'passageCorona';
     }
     this.isInitialized = true;
   }
@@ -233,6 +262,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       const id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
       if (this.selectedTypeData === 'test') {
         this.initDataTest(id, stat);
+      } else if (this.selectedTypeData === 'emergency') {
+        this.initDataEmergency(id, stat);
       } else {
         this.iniDataGlobal(stat, id);
       }
@@ -280,7 +311,27 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       testWomenPositive: stat.testWomenPositive,
       color: this.maps[age[stat.age]].colors.max
     }, ...this.maps[age[stat.age]].datas];
+  }
 
+  private initDataEmergency(id: string, stat: any): void {
+    this.maps.passageCorona.datas = [{
+      id,
+      name: stat.translation,
+      value: stat.passageCorona,
+      color: this.maps.passageCorona.colors.max
+    }, ...this.maps.passageCorona.datas];
+    this.maps.hospitalCorona.datas = [{
+      id,
+      name: stat.translation,
+      value: stat.hospitalCorona,
+      color: this.maps.hospitalCorona.colors.max
+    }, ...this.maps.hospitalCorona.datas];
+    this.maps.acteCorona.datas = [{
+      id,
+      name: stat.translation,
+      value: stat.acteCorona,
+      color: this.maps.acteCorona.colors.max
+    }, ...this.maps.acteCorona.datas];
   }
 
   private updateMap(): void { // A chq ngOnChanges

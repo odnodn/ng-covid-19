@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy, AfterViewInit } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
@@ -9,10 +9,12 @@ import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
   styleUrls: ['./coronavirus-chart-pie.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
+export class CoronavirusChartPieComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() dataGender;
   @Input() dataTest;
+  @Input() dataEmergency;
+  @Input() nameChart;
   dataType;
   labelText: string;
   chart: am4charts.PieChart;
@@ -26,12 +28,19 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     } else {
       this.dataType = 'total';
     }
+  }
+
+  ngAfterViewInit(): void {
     this.initChart();
     this.onSelectTypeChange();
   }
 
   initChart(): void {
-    this.chart = am4core.create('chartdiv', am4charts.PieChart);
+    if (this.nameChart) {
+      this.chart = am4core.create(this.nameChart, am4charts.PieChart);
+    } else {
+      this.chart = am4core.create('chartdiv', am4charts.PieChart);
+    }
     this.chart.responsive.enabled = true;
     this.chart.language.locale = am4lang_fr_FR;
     const pieSeries = this.chart.series.push(new am4charts.PieSeries());
@@ -42,23 +51,24 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     pieSeries.slices.template.propertyFields.fill = 'color';
     pieSeries.alignLabels = false;
     pieSeries.labels.template.radius = am4core.percent(-40);
-    if (this.dataGender) {
+    if (this.dataGender || this.dataEmergency) {
       pieSeries.labels.template.fill = am4core.color('white');
       pieSeries.tooltip.autoTextColor = false;
       pieSeries.tooltip.label.fill = am4core.color('#FFFFFF');
     }
     pieSeries.labels.template.fontSize = 13;
     pieSeries.ticks.template.disabled = true;
-    pieSeries.labels.template.text = '{category} \n {value} soit {value.percent.formatNumber(\'#.0\')}%';
+    pieSeries.labels.template.text = '[bold]{category} \n {value} soit {value.percent.formatNumber(\'#.0\')}%[\bold]';
 
   }
-
 
   onSelectTypeChange(): void {
     if (this.dataGender) {
       this.changeTypeForPieGender();
-    } else {
+    } else if (this.dataTest) {
       this.changeTypeForPieTest();
+    } else if (this.dataEmergency) {
+      this.changeTypeForPieEmergency();
     }
   }
 
@@ -81,12 +91,12 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     }
     this.chart.data = [
       {
-        category: `Homme`,
+        category: `Hommes`,
         value: menValue,
         color: am4core.color('#4a8cfd')
       },
       {
-        category: `Femme`,
+        category: `Femmes`,
         value: womenValue,
         color: am4core.color('#fd5260')
       },
@@ -96,8 +106,8 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
   changeTypeForPieTest(): void {
     this.choices = [
       { label: 'Total', value: 'total' },
-      { label: 'Homme', value: 'men' },
-      { label: 'Femme', value: 'women' },
+      { label: 'Hommes', value: 'men' },
+      { label: 'Femmes', value: 'women' },
     ];
     let positive = 0;
     let negative = 0;
@@ -109,7 +119,7 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
     } else if (this.dataType === 'men') {
       positive = this.dataTest.testMenPositive;
       negative = this.dataTest.testMenNegative;
-      this.labelText = `Répartition des tests positifs et négatifs les
+      this.labelText = `Répartition des tests positifs et négatifs sur les
       ${this.dataTest.testMen} réalisés chez l\'homme`;
     } else if (this.dataType === 'women') {
       positive = this.dataTest.testWomenPositive;
@@ -126,6 +136,34 @@ export class CoronavirusChartPieComponent implements OnInit, OnDestroy {
         category: `Tests positifs`,
         value: positive,
         color: am4core.color('#f9461c')
+      },
+    ];
+  }
+
+  changeTypeForPieEmergency(): void {
+    let valueMen;
+    let valueWomen;
+    if (this.nameChart === 'chart-pie-urgences-gender') {
+      valueMen = this.dataEmergency.passageCoronaHomme;
+      valueWomen = this.dataEmergency.passageCoronaFemme;
+    } else if (this.nameChart === 'chart-pie-urgences-hospital-gender') {
+      valueMen = this.dataEmergency.hospitalCoronaHomme;
+      valueWomen = this.dataEmergency.hospitalCoronaFemme;
+    } else {
+      valueMen = this.dataEmergency.acteCoronaHomme;
+      valueWomen = this.dataEmergency.acteCoronaFemme;
+    }
+
+    this.chart.data = [
+      {
+        category: `Hommes`,
+        value: valueMen,
+        color: am4core.color('#4a8cfd')
+      },
+      {
+        category: `Femmes`,
+        value: valueWomen,
+        color: am4core.color('#fd5260')
       },
     ];
   }
