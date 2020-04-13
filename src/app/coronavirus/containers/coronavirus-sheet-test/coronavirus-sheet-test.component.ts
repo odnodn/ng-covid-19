@@ -44,7 +44,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
           return;
         }
         this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('department', this.selectedDepartment.code);
-        this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'le département');
+        this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
       } else if (params.region) {
         this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
         if (!this.selectedRegion) {
@@ -52,7 +52,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
           return;
         }
         this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('region', this.selectedRegion.code);
-        this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
+        this.initMetaTagRegionAndDepartment(this.selectedRegion, 'region', 'la région');
       } else {
         this.dataTest$ = this.coronavirusFranceService.getFranceDataTest('national');
         this.initMetaTagFrance();
@@ -81,14 +81,14 @@ export class CoronavirusSheetTestComponent implements OnInit {
     this.router.navigate(['test-depistage', this.selectedCountry.slug]);
   }
 
-  private initMetaTagRegionAndDepartment(region: any, type: string): void {
+  private initMetaTagRegionAndDepartment(region: any, urlType: string, type: string): void {
     this.title.setTitle(`Tests de dépistage Coronavirus COVID-19 ${region.name}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
       { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${region.slug}` },
+      { property: 'og:site_name', content: `https://www.cascoronavirus.fr/` },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/test-depistage/france/${urlType}/${region.slug}` },
       { property: 'og:title', content: `Tests de dépistage Coronavirus COVID-19 ${region.name}` },
       // tslint:disable-next-line:max-line-length
       { property: 'og:description', content: `Tests de dépistage Coronavirus COVID-19 ${region.name} - Suivez les tests de dépistage pour diagnostic de COVID-19 dans ${type} ${region.name}` },
@@ -112,7 +112,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
       { name: 'description', content: `Tests de dépistage Coronavirus COVID-19 France - Suivez les tests de dépistage pour diagnostic de COVID-19 en France par région et département` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${this.selectedCountry.slug}` },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/test-depistage/${this.selectedCountry.slug}` },
       // tslint:disable-next-line:max-line-length
       { property: 'og:title', content: `Tests de dépistage Coronavirus COVID-19 France` },
       // tslint:disable-next-line:max-line-length

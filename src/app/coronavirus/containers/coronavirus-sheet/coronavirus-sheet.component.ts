@@ -105,7 +105,7 @@ export class CoronavirusSheetComponent implements OnInit {
       this.router.navigateByUrl('/');
       return;
     }
-    this.initMetaTagRegionAndDepartment(this.selectedRegion, 'la région');
+    this.initMetaTagRegionAndDepartment(this.selectedRegion, 'region', 'la région');
     this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('region', this.selectedRegion.code);
     this.franceStats$ = this.coronavirusFranceService.getData('region', this.selectedRegion.code);
   }
@@ -116,7 +116,7 @@ export class CoronavirusSheetComponent implements OnInit {
       this.router.navigateByUrl('/');
       return;
     }
-    this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'le département');
+    this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
     this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('department', this.selectedDepartment.code);
     this.franceStats$ = this.coronavirusFranceService.getData('department', this.selectedDepartment.code);
   }
@@ -171,14 +171,14 @@ export class CoronavirusSheetComponent implements OnInit {
     });
   }
 
-  private initMetaTagRegionAndDepartment(region: any, type: string): void {
+  private initMetaTagRegionAndDepartment(region: any, urlType: string, type: string): void {
     this.title.setTitle(`Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
       { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${region.slug}` },
+      { property: 'og:site_name', content: `https://www.cascoronavirus.fr/` },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/france/${urlType}/${region.slug}` },
       { property: 'og:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
       // tslint:disable-next-line:max-line-length
       { property: 'og:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
