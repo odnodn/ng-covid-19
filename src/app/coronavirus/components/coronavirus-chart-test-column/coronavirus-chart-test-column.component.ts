@@ -207,7 +207,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
     this.createXSeries('age');
     this.createYSeries('Nombre de passages aux urgences');
-    this.createSeries('passageCorona', 'Passages aux urgences pour suspicion de COVID-19', '#ffbb00', 'age');
+    this.createSeries('passageCorona', 'Passages aux urgences', '#ffbb00', 'age');
   }
 
   private initChartEmergencyHospitalAge(): void {
@@ -215,7 +215,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
     this.createXSeries('age');
     this.createYSeries('Nombre d\'hospitalisations');
-    this.createSeries('hospitalCorona', 'Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19', '#F17D07', 'age');
+    this.createSeries('hospitalCorona', 'Hospitalisations parmi les passages aux urgences', '#F17D07', 'age');
   }
 
   private initChartMedicalAge(): void {
@@ -223,7 +223,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
     this.createXSeries('age');
     this.createYSeries('Nombre d\'actes médicaux');
-    this.createSeries('acteCorona', 'Actes médicaux SOS Médécins pour suspicion de COVID-19', '#E95D0C', 'age');
+    this.createSeries('acteCorona', 'Actes médicaux SOS Médécins', '#E95D0C', 'age');
   }
 
 
@@ -270,25 +270,26 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.columns.template.width = am4core.percent(75);
     if (this.nameChart === 'chart-day') {
       this.series.columns.template.tooltipText =
-        '{dateX} \n {valueY} {name}';
+        '[bold]{dateX}[\] \n [bold] {valueY}[\] {name}';
       this.series.tooltip.getFillFromObject = false;
       this.series.tooltip.background.fill = am4core.color(color);
     }
     if (this.nameChart === 'chart-timeline') {
       this.series.columns.template.tooltipText =
-        '{dateX} \n {valueY} {name} sur {valueY.total}';
+        '[bold]{dateX}[\] \n [bold]{valueY} [\] {name} sur [bold]{valueY.total}[\]';
     }
     if (this.nameChart.includes('chart-urgences')) {
       if (field !== 'passageNoCorona') {
         this.series.columns.template.tooltipText =
-          '{dateX} \n {valueY} {name} sur {valueY.total}';
+          '[bold]{dateX}[\] \n [bold]{valueY} [\] {name}[\]';
         this.series.tooltip.label.textAlign = 'middle';
         this.series.tooltip.label.fontSize = 13;
         this.series.tooltip.getFillFromObject = false;
         this.series.tooltip.background.fill = am4core.color(color);
       }
     }
-
+    this.series.tooltip.label.wrap = true;
+    this.series.tooltip.label.width = 200;
     this.series.tooltip.label.textAlign = 'middle';
     this.series.tooltip.label.fontSize = 13;
     this.series.dataFields.valueY = field;

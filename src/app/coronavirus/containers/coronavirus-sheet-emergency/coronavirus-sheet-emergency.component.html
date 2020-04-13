@@ -120,7 +120,7 @@
         <ul>
           <li [class.is-active]="type === 'passage'">
             <a (click)="displayTab('passage')">
-              <span>Passage aux urgences</span>
+              <span>Passages aux urgences</span>
             </a>
           </li>
           <li [class.is-active]="type === 'hospital'">
@@ -128,7 +128,7 @@
               <span>Hospitalisations parmi les passages aux urgences</span>
             </a>
           </li>
-          <li [class.is-active]="type === 'medical'" *ngIf="dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].acteCorona > 0">
+          <li [class.is-active]="type === 'medical'" *ngIf="dataEmergency?.value.total[0].acteCorona > 0">
             <a (click)="displayTab('medical')">
               <span>Actes médicaux SOS médecins</span>
             </a>
