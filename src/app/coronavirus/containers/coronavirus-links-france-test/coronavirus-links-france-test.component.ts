@@ -19,6 +19,22 @@ export class CoronavirusLinksFranceTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.initMetaTag();
+    let str = '';
+    FRANCE_REGIONS.forEach((result) => {
+      str+= `<url>
+      <loc>https://www.cascoronavirus.fr/urgences/france/region/${result.slug}</loc>
+      <changefreq>daily</changefreq>
+    </url>`;
+    });
+    FRANCE_DEPS.forEach((result) => {
+      str+= `<url>
+      <loc>https://www.cascoronavirus.fr/urgences/france/departement/${result.slug}</loc>
+      <changefreq>daily</changefreq>
+    </url>`;
+    });
+
+    console.log(str);
+
   }
 
   private initMetaTag(): void {

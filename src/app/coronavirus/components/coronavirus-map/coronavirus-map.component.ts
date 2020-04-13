@@ -179,7 +179,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       title: 'Cartographie des passages aux urgences pour suspicion de COVID-19',
       datas: [],
       label: 'Passages aux urgences pour suspicion de COVID-19',
-      tooltipText: '{name} [bold]\n{value}[\] passages aux urgences pour suspicion de COVID-19'
+      tooltipText: '{name} [bold]\n{value} [\] passages aux urgences pour suspicion de COVID-19'
     },
     hospitalCorona: {
       colors: {
@@ -188,7 +188,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       title: 'Cartographie des hospitalisations parmi les passages aux urgences pour suspicion de COVID-19',
       datas: [],
       label: 'Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19',
-      tooltipText: '{name} [bold]\n{value}[\] hopistalisations parmi les passages aux urgences pour suspicion de COVID-19'
+      tooltipText: '{name} [bold]\n{value} [\] hopistalisations parmi les passages aux urgences pour suspicion de COVID-19'
     },
     acteCorona: {
       colors: {
@@ -197,7 +197,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       title: 'Cartographie des actes médicaux SOS médecins pour suspicion de COVID-19',
       datas: [],
       label: 'Actes médicaux SOS médecins pour suspicion de COVID-19',
-      tooltipText: '{name} [bold]\n{value}[\] actes médicaux SOS médecins pour suspicion de COVID-19'
+      tooltipText: '{name} [bold]\n{value} [\] actes médicaux SOS médecins pour suspicion de COVID-19'
     },
   };
 
@@ -397,6 +397,8 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
     this.imageSeries.tooltip.background.strokeOpacity = 0;
     this.imageSeries.tooltip.label.textAlign = 'middle';
     this.imageSeries.tooltip.label.fontSize = 14;
+    this.imageSeries.tooltip.label.wrap = true;
+    this.imageSeries.tooltip.label.width = 250;
     this.imageSeries.heatRules.push({
       target: this.circle,
       property: 'radius',

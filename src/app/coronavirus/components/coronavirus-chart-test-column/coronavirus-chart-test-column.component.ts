@@ -289,7 +289,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       }
     }
     this.series.tooltip.label.wrap = true;
-    this.series.tooltip.label.width = 200;
+    this.series.tooltip.label.width = 250;
     this.series.tooltip.label.textAlign = 'middle';
     this.series.tooltip.label.fontSize = 13;
     this.series.dataFields.valueY = field;
