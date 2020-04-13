@@ -56,7 +56,9 @@
       </p>
       <p class="subtitle">Hospitalisés
         <span class="note">
-          dont <strong>{{mainStats.hospital | number: '' :'fr-FR'}}</strong> ({{mainStats.todayHospital | symbolNumber }}) actuellement
+          dont <strong>{{mainStats.hospital | number: '' :'fr-FR'}}</strong>
+          <ng-container *ngIf="mainStats.todayHospital">
+            ({{mainStats.todayHospital | symbolNumber }}) </ng-container> actuellement
         </span>
       </p>
       <p class="legend">
@@ -93,7 +95,8 @@
       </p>
       <p class="subtitle">Admis en réanimation
         <span class="note">
-          dont <strong>{{mainStats.reanimation | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayReanimation | symbolNumber }}) actuellement
+          dont <strong>{{mainStats.reanimation | number: '' :'fr-FR'}}</strong>
+          <ng-container *ngIf="mainStats.todayReanimation"> ({{mainStats.todayReanimation | symbolNumber }}) </ng-container> actuellement
         </span>
       </p>
       <p class="legend">
