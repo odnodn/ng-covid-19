@@ -14,6 +14,7 @@ export class CoronavirusComponent implements OnInit {
   selectedDivisionMap = 'departmentFrance';
   selectedRegion: any;
   selectedDepartment: any;
+  isMobile: boolean;
 
   constructor(
     public readonly router: Router,
@@ -22,6 +23,7 @@ export class CoronavirusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   onActivate($event): void {

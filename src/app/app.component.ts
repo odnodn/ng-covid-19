@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,36 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  isMobile: boolean;
+  deferredPrompt: any;
+  showButton = false;
+
+  constructor(private readonly deviceService: DeviceDetectorService) {
+    this.isMobile = this.deviceService.isMobile();
+  }
+
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e) {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    this.deferredPrompt = e;
+    this.showButton = true;
+  }
+
+  addToHomeScreen(): void {
+    if (!this.deferredPrompt) {
+      return;
+    }
+    // Show the prompt
+    this.deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    this.deferredPrompt.userChoice
+      .then((choiceResult) => {
+        this.showButton = false;
+        this.deferredPrompt = null;
+      });
+  }
 
 }

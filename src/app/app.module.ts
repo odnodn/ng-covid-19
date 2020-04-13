@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe, registerLocaleData, DecimalPipe } from '@angular/common';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 registerLocaleData(localeFr, 'fr-FR');
 
 @NgModule({
@@ -24,7 +25,8 @@ registerLocaleData(localeFr, 'fr-FR');
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    LayoutModule
+    LayoutModule,
+    DeviceDetectorModule.forRoot()
   ]
 })
 export class AppModule { }
