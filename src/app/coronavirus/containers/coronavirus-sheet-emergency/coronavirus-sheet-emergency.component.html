@@ -42,7 +42,7 @@
             </p>
             <p class="subtitle">Passages aux urgences pour suspicion de COVID-19</p>
             <div class="legend">
-              Source : Santé publique
+              Les données sont enregistrées depuis le 24 février par Santé publique
             </div>
           </article>
         </div>
@@ -58,7 +58,7 @@
               Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19
             </p>
             <div class="legend">
-              Source : Santé publique
+              Les données sont enregistrées depuis le 24 février par Santé publique
             </div>
           </article>
         </div>
@@ -73,7 +73,7 @@
 
             <p class="subtitle">Actes médicaux SOS médecins pour suspicion de COVID-19</p>
             <div class="legend">
-              Source : Santé publique
+              Les données sont enregistrées depuis le 24 février par Santé publique
             </div>
           </article>
         </div>
@@ -138,38 +138,37 @@
       <ng-container *ngIf="type === 'passage'">
         <div class="columns">
           <div class="column is-spaced is-two-thirds">
-            <h2 class="title">Nombre de passages aux urgences pour suspicion de COVID-19 par jour</h2>
+            <h2 class="title">Taux de passage aux urgences pour suspicion de COVID-19 par jour</h2>
             <p>
-              Ce diagramme montre le nombre de passages aux urgences pour suspicion de COVID-19 par rapport au nombre
-              total de passages aux urgences.
+              Ce diagramme montre le taux de passage aux urgences pour suspicion de COVID-19. Ce taux correspond au nombre
+              de passages aux urgences pour suspicion de COVID-19 sur le nombre total de passages aux urgences.
             </p>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage'" [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
           <div class="column is-spaced">
-            <h2 class="title">Répartition des passages aux urgences pour suspicion de COVID-19 en fonction de l'âge</h2>
+            <h2 class="title">Répartition des passages aux urgences pour suspicion de COVID-19 selon l'âge</h2>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage-age'" [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
         </div>
         <div class="columns">
           <div class="column is-spaced is-two-thirds">
-            <h2 class="title">Nombre de passages aux urgences pour suspicion de COVID-19 par jour en fonction du sexe
+            <h2 class="title">Taux de passage aux urgences pour suspicion de COVID-19 par jour selon le sexe
             </h2>
             <p>
-              Ce diagramme montre le nombre de passages aux urgences pour suspicion de COVID-19 par jour en fonction du
-              sexe.
+              Ce diagramme montre le taux de passage aux urgences pour suspicion de COVID-19 par jour selon le sexe.
             </p>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage-gender'"
               [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
           <div class="column is-spaced">
-            <h2 class="title">Répartition des passages aux urgences pour suspicion de COVID-19 fonction du sexe
+            <h2 class="title">Répartition des passages aux urgences pour suspicion de COVID-19 selon le sexe
             </h2>
             <p>
-              Ce diagramme montre le nombre de passages aux urgences pour suspicion de COVID-19 au total depuis le début
-              de l'épidémie en fonction du sexe.
+              Ce diagramme montre le nombre de passages aux urgences pour suspicion de COVID-19 depuis le début
+              de l'épidémie selon le sexe.
             </p>
             <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-gender'" [dataEmergency]="dataEmergency?.value?.total[0]"></app-coronavirus-chart-pie>
           </div>
@@ -178,17 +177,18 @@
       <ng-container *ngIf="type === 'hospital'">
         <div class="columns">
           <div class="column is-spaced is-two-thirds">
-            <h2 class="title">Nombre d'hospitalisations parmi les passages aux urgences pour suspicion de COVID-19 par
+            <h2 class="title">Taux d'hospitalisation parmi les passages aux urgences pour suspicion de COVID-19 par
               jour</h2>
             <p>
-              Ce diagramme montre le nombre d'hospitalisations parmi les passages aux urgences pour suspicion de COVID-19.
+              Ce diagramme montre le taux d'hospitalisation parmi les passages aux urgences pour suspicion de COVID-19 par jour. Ce taux correspond au nombre
+              d'hospitalisations sur le nombre de passages aux urgences pour suspicion de COVID-19.
             </p>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital'" [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
           <div class="column is-spaced">
-            <h2 class="title">Répartition des hospitalisations parmi les passages aux urgences pour suspicion de
-              COVID-19 en fonction de l'âge</h2>
+            <h2 class="title">Taux d'hospitalisation parmi les passages aux urgences pour suspicion de
+              COVID-19 selon l'âge</h2>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-age'"
               [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
@@ -196,22 +196,22 @@
         </div>
         <div class="columns">
           <div class="column is-spaced is-two-thirds">
-            <h2 class="title">Nombre d'hospitalisations parmi les passages aux urgences pour suspicion de COVID-19 par
-              jour en fonction du sexe</h2>
+            <h2 class="title">Taux d'hospitalisation parmi les passages aux urgences pour suspicion de COVID-19 par
+              jour selon le sexe</h2>
             <p>
-              Ce diagramme montre le nombre d'hospitalisations parmi les passages aux urgences pour suspicion de
-              COVID-19 par jour en fonction du sexe.
+              Ce diagramme montre le taux d'hospitalisation parmi les passages aux urgences pour suspicion de
+              COVID-19 par jour selon le sexe.
             </p>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-gender'"
               [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
           <div class="column is-spaced">
-            <h2 class="title">Répartition des hospitalisations parmi les passages aux urgences pour suspicion de COVID-19 fonction du sexe
+            <h2 class="title">Répartition des hospitalisations parmi les passages aux urgences pour suspicion de COVID-19 selon le sexe
             </h2>
             <p>
               Ce diagramme montre le nombre d'hospitalisation parmi les passages aux urgence pour suspicion de COVID-19 au total depuis le début
-              de l'épidémie en fonction du sexe.
+              de l'épidémie selon le sexe.
             </p>
             <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-hospital-gender'" [dataEmergency]="dataEmergency?.value?.total[0]"></app-coronavirus-chart-pie>
           </div>
@@ -220,16 +220,17 @@
       <ng-container *ngIf="type === 'medical'">
         <div class="columns">
           <div class="column is-two-thirds is-spaced">
-            <h2 class="title">Nombres d'actes médicaux SOS médecins pour suspicion de COVID-19 par jour</h2>
+            <h2 class="title">Taux des actes médicaux SOS médecins pour suspicion de COVID-19 par jour</h2>
             <p>
-              Ce diagramme montre le nombre d'actes médicaux SOS médecins pour suspicion de COVID-19 par jour par rapport au nombre total d'actes médicaux SOS médecins.
+              Ce diagramme montre le taux des actes médicaux pour suspicion de COVID-19. Ce taux correspond au nombre
+              d'actes médicaux pour suspicion de COVID-19 sur le nombre total d'actes médicaux.
             </p>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical'" [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des actes médicaux SOS Médecins pour suspicion de
-              COVID-19 en fonction de l'âge</h2>
+              COVID-19 selon l'âge</h2>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical-age'"
               [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
@@ -237,19 +238,19 @@
         </div>
         <div class="columns">
           <div class="column is-two-thirds is-spaced">
-            <h2 class="title">Nombres d'actes médicaux SOS médecins pour suspicion de COVID-19 par jour en fonction du sexe</h2>
+            <h2 class="title">Taux des actes médicaux SOS médecins pour suspicion de COVID-19 par jour selon le sexe</h2>
             <p>
-              Ce diagramme montre le nombre d'actes médicaux SOS pour suspicion de COVID-19 par jour en fonction du sexe.
+              Ce diagramme montre le taux des actes médicaux SOS pour suspicion de COVID-19 par jour selon le sexe.
             </p>
             <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical-gender'" [data]="dataEmergency?.value">
             </app-coronavirus-chart-test-column>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des actes médicaux SOS Médecins pour suspicion de
-              COVID-19 en fonction du sexe</h2>
+              COVID-19 selon le sexe</h2>
               <p>
-                Ce diagramme montre d'actes médicaux au total depuis le début
-                de l'épidémie en fonction du sexe.
+                Ce diagramme montre le taux des actes médicaux au total depuis le début
+                de l'épidémie selon le sexe.
               </p>
               <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-medical-gender'"
               [dataEmergency]="dataEmergency?.value?.total[0]">

@@ -89,7 +89,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       this.chart.map.getKey('passageCorona').dataFields.valueY = 'hospitalCorona';
       this.chart.map.getKey('passageNoCorona').dataFields.valueY = 'noHospitalCorona';
       this.chart.map.getKey('passageCorona').name = 'Hospitalisations parmi les passages aux urgences pour suspicion de COVID-19';
-      this.chart.map.getKey('passageNoCorona').name = 'Non hospitalisations parmi les passages aux urgences pour suspicion de COVID-19';
+      this.chart.map.getKey('passageNoCorona').name = 'Non hospitalisation parmi les passages aux urgences pour suspicion de COVID-19';
     } else if (this.nameChart === 'chart-urgences-medical') {
       this.chart.map.getKey('passageCorona').dataFields.valueY = 'acteCorona';
       this.chart.map.getKey('passageNoCorona').dataFields.valueY = 'acteNoCorona';
@@ -207,15 +207,20 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
     this.createXSeries('age');
     this.createYSeries('Nombre de passages aux urgences');
-    this.createSeries('passageCorona', 'Passages aux urgences', '#ffbb00', 'age');
+    this.createSeries('passageCorona', 'Passages aux urgences pour suspicion de COVID-19', '#ffbb00', 'age');
   }
 
   private initChartEmergencyHospitalAge(): void {
     this.initChart();
     this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
+    for (let i = 0; i < this.chart.data.length; i++) {
+      this.chart.data[i].hospitalNoCorona = this.chart.data[i].passageCorona - this.chart.data[i].hospitalCorona;
+    }
     this.createXSeries('age');
     this.createYSeries('Nombre d\'hospitalisations');
-    this.createSeries('hospitalCorona', 'Hospitalisations parmi les passages aux urgences', '#F17D07', 'age');
+    this.createSeries('hospitalCorona', 'Hospitalisations', '#F17D07', 'age');
+    this.createSeries('hospitalNoCorona', 'Non hospitalisation', 'whitesmoke', 'age');
+
   }
 
   private initChartMedicalAge(): void {
@@ -261,6 +266,94 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     valueAxis.calculateTotals = true;
     valueAxis.extraMax = 0.1;
     valueAxis.cursorTooltipEnabled = false;
+    if (this.nameChart === 'chart-urgences-hospital-age') {
+      valueAxis.calculateTotals = true;
+    }
+  }
+
+  private customTooltip(field: string, color: string): void {
+    if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
+      return ;
+    }
+    this.series.tooltip.label.wrap = true;
+    this.series.tooltip.label.width = 250;
+    this.series.tooltip.pointerOrientation = 'vertical';
+    this.series.tooltip.label.textAlign = 'middle';
+    this.series.tooltip.label.fontSize = 13;
+    // this.series.tooltip.
+    if (this.nameChart === 'chart-day') {
+      this.series.columns.template.tooltipText =
+        '[bold]{dateX}[\] \n [bold] {valueY}[\] {name}';
+      this.series.tooltip.getFillFromObject = false;
+      this.series.tooltip.background.fill = am4core.color(color);
+    }
+    if (this.nameChart.includes('chart-urgences')) {
+      // tslint:disable-next-line:max-line-length
+      this.series.columns.template.tooltipText = '[bold]{dateX}[\] \n [bold]{valueY} [\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
+      if (this.nameChart === 'chart-urgences-medical-age' ||
+      this.nameChart === 'chart-urgences-passage-age') {
+        // tslint:disable-next-line:max-line-length
+        this.series.columns.template.tooltipText = '[bold]{valueY} [\] {name} soit [bold]{valueY.percent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
+      }
+      this.series.tooltip.getFillFromObject = false;
+      this.series.tooltip.background.fill = am4core.color(color);
+    }
+    if (this.nameChart === 'chart-test-age' || this.nameChart === 'chart-timeline') {
+      this.series.columns.template.tooltipText =
+      '[bold]{dateX}[\] \n [bold]{valueY}[\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}%[\]';
+    }
+  }
+
+  private customBulletAgeAxis(field: string): void {
+    if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
+      return ;
+    }
+    const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
+    labelBullet.fontSize = 12;
+    labelBullet.locationY = 0.5;
+    labelBullet.label.hideOversized = true;
+    labelBullet.label.fill = am4core.color('white');
+    labelBullet.label.textAlign = 'middle';
+    if (this.nameChart.includes('chart-urgences')) {
+      this.series.calculatePercent = true;
+      labelBullet.label.text = '[bold]{valueY} \n {valueY.percent.formatNumber(\'#.\')}%[\]';
+      if (field === 'hospitalCorona') {
+        labelBullet.label.text = '[bold]{valueY} \n {valueY.totalPercent.formatNumber(\'#.\')}%[\]';
+      }
+    }
+    if (this.nameChart === 'chart-test-age') {
+      labelBullet.label.text = '[bold]{valueY} \n {valueY.totalPercent.formatNumber(\'#.\')}%[\]';
+
+    }
+  }
+
+  private customBulletDateAxis(field: string) {
+    const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
+    labelBullet.fontSize = 12;
+    labelBullet.locationY = 0.5;
+    labelBullet.label.hideOversized = true;
+    labelBullet.label.fill = am4core.color('black');
+    if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
+      return ;
+    }
+    if (this.nameChart === 'chart-timeline') {
+      this.series.calculatePercent = true;
+      labelBullet.label.text = '[bold]{valueY}[\]';
+      labelBullet.label.fill = am4core.color('white');
+    }
+    if (this.nameChart === 'chart-day') {
+      labelBullet.label.text = '{valueY}';
+    }
+    if (this.nameChart.includes('chart-urgences')) {
+      labelBullet.label.text = '[bold]{valueY.totalPercent.formatNumber(\'#.\')}%[\]';
+    }
+    if (this.nameChart === 'chart-timeline') {
+      labelBullet.label.text = '{valueY.totalPercent.formatNumber(\'#.\')}%';
+      labelBullet.label.fill = am4core.color('white');
+    }
+    if (this.nameChart.includes('chart-urgences') || this.nameChart === 'chart-day') {
+      labelBullet.label.fill = am4core.color('white');
+    }
   }
 
   private createSeries(field: string, name: string, color: string, xAxis: string): void {
@@ -268,99 +361,22 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.columns.template.strokeOpacity = 0;
     this.series.columns.template.fill = am4core.color(color);
     this.series.columns.template.width = am4core.percent(75);
-    if (this.nameChart === 'chart-day') {
-      this.series.columns.template.tooltipText =
-        '[bold]{dateX}[\] \n [bold] {valueY}[\] {name}';
-      this.series.tooltip.getFillFromObject = false;
-      this.series.tooltip.background.fill = am4core.color(color);
-    }
-    if (this.nameChart === 'chart-timeline') {
-      this.series.columns.template.tooltipText =
-        '[bold]{dateX}[\] \n [bold]{valueY} [\] {name} sur [bold]{valueY.total}[\]';
-    }
-    if (this.nameChart.includes('chart-urgences')) {
-      if (field !== 'passageNoCorona') {
-        this.series.columns.template.tooltipText =
-          '[bold]{dateX}[\] \n [bold]{valueY} [\] {name}[\]';
-        this.series.tooltip.label.textAlign = 'middle';
-        this.series.tooltip.label.fontSize = 13;
-        this.series.tooltip.getFillFromObject = false;
-        this.series.tooltip.background.fill = am4core.color(color);
-      }
-    }
-    this.series.tooltip.label.wrap = true;
-    this.series.tooltip.label.width = 250;
-    this.series.tooltip.label.textAlign = 'middle';
-    this.series.tooltip.label.fontSize = 13;
     this.series.dataFields.valueY = field;
     this.series.name = name;
     this.series.id = field;
     /* Opacity */
     this.series.columns.template.strokeOpacity = 0;
 
+    this.customTooltip(field, color);
     /* Bar width */
     this.series.columns.template.width = am4core.percent(90);
     if (xAxis === 'age') {
       this.series.dataFields.categoryX = xAxis;
-      this.series.calculatePercent = true;
-      const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
-      // labelBullet.label.text = '{valueY}';
-      labelBullet.fontSize = 12;
-      labelBullet.locationY = 0.5;
-      labelBullet.label.hideOversized = true;
-      labelBullet.label.fill = am4core.color('black');
-      labelBullet.label.textAlign = 'middle';
-      if (this.nameChart.includes('chart-urgences')) {
-        if (field !== 'passageNoCorona') {
-          labelBullet.label.fill = am4core.color('white');
-
-          labelBullet.label.text = '[bold]{valueY} \n {valueY.percent.formatNumber(\'#.\')}%[\]';
-        }
-      }
-      if (this.nameChart === 'chart-test-age') {
-        if (field !== 'testTotalNegative') {
-          labelBullet.label.text = '[bold]{valueY}[\]';
-          labelBullet.label.fill = am4core.color('white');
-        }
-      }
-      if (this.nameChart === 'chart-timeline') {
-        if (field !== 'testTotalNegative') {
-          labelBullet.label.text = '[bold]{valueY}[\]';
-          labelBullet.label.fill = am4core.color('white');
-        }
-      }
+      this.customBulletAgeAxis(field);
     } else {
       this.series.dataFields.dateX = xAxis;
-      const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
-      if (this.nameChart === 'chart-day') {
-        labelBullet.label.text = '{valueY}';
-      }
-      if (this.nameChart.includes('chart-urgences')) {
-        if (field !== 'passageNoCorona') {
-          labelBullet.label.text = '[bold]{valueY.totalPercent.formatNumber(\'#.\')}%[\]';
-        }
-      }
-      labelBullet.fontSize = 12;
-      labelBullet.locationY = 0.5;
-      labelBullet.label.hideOversized = true;
-      labelBullet.label.fill = am4core.color('black');
-      if (this.nameChart === 'chart-timeline') {
-        if (field !== 'testTotalNegative') {
-          labelBullet.label.text = '{valueY.totalPercent.formatNumber(\'#.\')}%';
-          labelBullet.label.fill = am4core.color('white');
-        }
-      }
-      if (this.nameChart.includes('chart-urgences')) {
-        if (field !== 'passageNoCorona') {
-          labelBullet.label.fill = am4core.color('white');
-        }
-      }
-      if (this.nameChart === 'chart-day') {
-        labelBullet.label.fill = am4core.color('white');
-      }
+      this.customBulletDateAxis(field);
     }
-
-    this.series.tooltip.label.textAlign = 'middle';
     this.series.stacked = true;
   }
 

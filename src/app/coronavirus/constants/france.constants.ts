@@ -138,15 +138,6 @@ export const FRANCE_DEPS = [
     slug: 'allier'
   },
   {
-    code: '06',
-    name: 'Alpes-Maritimes',
-    region: {
-      name: 'Provence-Alpes-Côte d\'Azur',
-      code: 'PAC'
-    },
-    slug: 'alpes-maritimes'
-  },
-  {
     code: '04',
     name: 'Alpes-de-Haute-Provence',
     region: {
@@ -156,13 +147,13 @@ export const FRANCE_DEPS = [
     slug: 'alpes-de-haute-provence'
   },
   {
-    code: '08',
-    name: 'Ardennes',
+    code: '06',
+    name: 'Alpes-Maritimes',
     region: {
-      name: 'Grand Est',
-      code: 'GES'
+      name: 'Provence-Alpes-Côte d\'Azur',
+      code: 'PAC'
     },
-    slug: 'ardennes'
+    slug: 'alpes-maritimes'
   },
   {
     code: '07',
@@ -172,6 +163,15 @@ export const FRANCE_DEPS = [
       code: 'ARA'
     },
     slug: 'ardeche'
+  },
+  {
+    code: '08',
+    name: 'Ardennes',
+    region: {
+      name: 'Grand Est',
+      code: 'GES'
+    },
+    slug: 'ardennes'
   },
   {
     code: '09',
@@ -291,15 +291,6 @@ export const FRANCE_DEPS = [
     slug: 'corse-du-sud'
   },
   {
-    code: '23',
-    name: 'Creuse',
-    region: {
-      name: 'Nouvelle-Aquitaine',
-      code: 'NAQ'
-    },
-    slug: 'creuse'
-  },
-  {
     code: '21',
     name: 'Côte-d\'Or',
     region: {
@@ -316,6 +307,15 @@ export const FRANCE_DEPS = [
       code: 'BRE'
     },
     slug: 'cotes-d-armor'
+  },
+  {
+    code: '23',
+    name: 'Creuse',
+    region: {
+      name: 'Nouvelle-Aquitaine',
+      code: 'NAQ'
+    },
+    slug: 'creuse'
   },
   {
     code: '79',
@@ -480,15 +480,6 @@ export const FRANCE_DEPS = [
     slug: 'haute-marne'
   },
   {
-    code: '74',
-    name: 'Haute-Savoie',
-    region: {
-      name: 'Auvergne-Rhône-Alpes',
-      code: 'ARA'
-    },
-    slug: 'haute-savoie'
-  },
-  {
     code: '70',
     name: 'Haute-Saône',
     region: {
@@ -496,6 +487,15 @@ export const FRANCE_DEPS = [
       code: 'BFC'
     },
     slug: 'haute-saone'
+  },
+  {
+    code: '74',
+    name: 'Haute-Savoie',
+    region: {
+      name: 'Auvergne-Rhône-Alpes',
+      code: 'ARA'
+    },
+    slug: 'haute-savoie'
   },
   {
     code: '87',
@@ -849,6 +849,15 @@ export const FRANCE_DEPS = [
     slug: 'rhone'
   },
   {
+    code: '71',
+    name: 'Saône-et-Loire',
+    region: {
+      name: 'Bourgogne-Franche-Comté',
+      code: 'BFC'
+    },
+    slug: 'saone-et-loire'
+  },
+  {
     code: '72',
     name: 'Sarthe',
     region: {
@@ -867,13 +876,13 @@ export const FRANCE_DEPS = [
     slug: 'savoie'
   },
   {
-    code: '71',
-    name: 'Saône-et-Loire',
+    code: '77',
+    name: 'Seine-et-Marne',
     region: {
-      name: 'Bourgogne-Franche-Comté',
-      code: 'BFC'
+      name: 'Île-de-France',
+      code: 'IDF'
     },
-    slug: 'saone-et-loire'
+    slug: 'seine-et-marne'
   },
   {
     code: '76',
@@ -892,15 +901,6 @@ export const FRANCE_DEPS = [
       code: 'IDF'
     },
     slug: 'seine-saint-denis'
-  },
-  {
-    code: '77',
-    name: 'Seine-et-Marne',
-    region: {
-      name: 'Île-de-France',
-      code: 'IDF'
-    },
-    slug: 'seine-et-marne'
   },
   {
     code: '80',

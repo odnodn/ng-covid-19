@@ -164,10 +164,12 @@
               [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
           </div>
-          <div class="column is-spaced">
+          <div class="column is-spaced is-half">
             <h2 class="title">Tableau récapitulatif de l'épidémie en France</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+              Le <strong>taux de décès</strong> correspond au nombre de décès survenus suite à une hospitalisation sur le nombre total d'hospitalisations.
+              Le <strong>taux de guéris</strong> correspond au nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
             </p>
             <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total" [selectedCountry]="selectedCountry">
@@ -175,8 +177,7 @@
           </div>
         </div>
         <div class="columns" *ngIf="isBrowser">
-          <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion"
-            [class.is-three-fifths]="selectedRegion">
+          <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion">
             <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
             </app-coronavirus-graph>
           </div>
@@ -184,10 +185,12 @@
             <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
             </app-coronavirus-chart-pie>
           </div>
-          <div class="column is-spaced" *ngIf="selectedRegion">
+          <div class="column is-spaced is-half" *ngIf="selectedRegion">
             <h2 class="title">Tableau récapitulatif de l'épidémie dans la région</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+              Le <strong>taux de décès</strong> correspond au nombre de décès survenus suite à une hospitalisation sur le nombre total d'hospitalisations.
+              Le <strong>taux de guéris</strong> correspond au nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
             </p>
             <app-coronavirus-table [selectedDivisionMap]="'departmentFrance'"
               [detailedStats]="franceStats.value.details" [selectedCountry]="selectedCountry">

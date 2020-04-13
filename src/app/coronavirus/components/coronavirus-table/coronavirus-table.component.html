@@ -40,8 +40,7 @@
           </a>
         </ng-container>
         <ng-container *ngIf="selectedTypeMap === 'passage'">
-          <a *ngIf="selectedDivisionMap === 'regionFrance'"
-            [routerLink]="['/urgences/france/region/', element.slug]">
+          <a *ngIf="selectedDivisionMap === 'regionFrance'" [routerLink]="['/urgences/france/region/', element.slug]">
             {{element.translation}} {{element.provinceState}}
           </a>
           <a *ngIf="selectedDivisionMap === 'departmentFrance'"
@@ -62,7 +61,8 @@
 
     <!-- Passage Column -->
     <ng-container matColumnDef="hospitalCorona">
-      <th id="hospitalCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations parmi les passages aux urgences
+      <th id="hospitalCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations parmi les passages aux
+        urgences
       </th>
       <td mat-cell *matCellDef="let element" class="hospital">
         {{element.hospitalCorona | number: '' :'fr-FR'}}
@@ -70,14 +70,14 @@
       </td>
     </ng-container>
 
-        <!-- Passage Column -->
-        <ng-container matColumnDef="acteCorona">
-          <th id="acteCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Actes médicaux SOS médecins
-          </th>
-          <td mat-cell *matCellDef="let element" class="reanimation">
-            {{element.acteCorona | number: '' :'fr-FR'}}
-          </td>
-        </ng-container>
+    <!-- Passage Column -->
+    <ng-container matColumnDef="acteCorona">
+      <th id="acteCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Actes médicaux SOS médecins
+      </th>
+      <td mat-cell *matCellDef="let element" class="reanimation">
+        {{element.acteCorona | number: '' :'fr-FR'}}
+      </td>
+    </ng-container>
 
     <!-- Confirmed Column -->
     <ng-container matColumnDef="cases">
@@ -110,9 +110,17 @@
     <!-- Deaths Column -->
     <ng-container matColumnDef="deaths">
       <th id="deaths" mat-header-cell *matHeaderCellDef mat-sort-header>Décès</th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger">
+      <td mat-cell *matCellDef="let element" class="has-text-danger" [class.important]="selectedCountry.country !== 'France'">
         {{element.deaths}}<br>
-        <span class="rate" *ngIf="element.deathRate">({{element.deathRate}} %)</span>
+        <span class="rate" *ngIf="element.deathRate && selectedCountry.country !== 'France'">({{element.deathRate}} %)</span>
+      </td>
+    </ng-container>
+
+    <!-- Deaths Column -->
+    <ng-container matColumnDef="deathRate">
+      <th id="deathRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de décès</th>
+      <td mat-cell *matCellDef="let element" class="death-rate important">
+        <strong>{{element.deathRate.toFixed(1)}}%</strong>
       </td>
     </ng-container>
 
@@ -133,6 +141,15 @@
       </td>
     </ng-container>
 
+    <!-- Hospital Start Column -->
+    <ng-container matColumnDef="hospitalStart">
+      <th id="hospital" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations cumulées</th>
+      <td mat-cell *matCellDef="let element" class="hospital">
+        {{element.hospitalStart | number: '' :'fr-FR'}}
+      </td>
+    </ng-container>
+
+
     <!-- Reanimation Column -->
     <ng-container matColumnDef="reanimation">
       <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>Réanimations en cours</th>
@@ -141,18 +158,34 @@
       </td>
     </ng-container>
 
+    <!-- Reanimation Start Column -->
+    <ng-container matColumnDef="reanimationStart">
+      <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>Réanimations cumulées</th>
+      <td mat-cell *matCellDef="let element" class="reanimation">
+        {{element.reanimationStart | number: '' :'fr-FR'}}
+      </td>
+    </ng-container>
+
     <!-- Recovered Column -->
     <ng-container matColumnDef="recovered">
       <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Guéris</th>
       <td mat-cell *matCellDef="let element" class="has-text-success">
         {{element.recovered | number: '' :'fr-FR'}}<br>
-        <span class="rate" *ngIf="element.recoveredRate">({{element.recoveredRate}} %)</span>
+        <span class="rate" *ngIf="element.recoveredRate && selectedCountry.country !== 'France'">({{element.recoveredRate}} %)</span>
+      </td>
+    </ng-container>
+
+    <!-- Recovered Rate Column -->
+    <ng-container matColumnDef="recoveredRate">
+      <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header> Taux de guéris</th>
+      <td mat-cell *matCellDef="let element" class="recovered-rate has-text-success">
+       <strong>{{element.recoveredRate.toFixed(1)}} %</strong>
       </td>
     </ng-container>
 
     <!-- Test Total Column -->
     <ng-container matColumnDef="testTotal">
-      <th id="testTotal" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Total</th>
+      <th id="testTotal" mat-header-cell *matHeaderCellDef mat-sort-header>Tests total</th>
       <td mat-cell *matCellDef="let element">
         {{element.testTotal | number: '' :'fr-FR'}}<br>
       </td>
@@ -160,44 +193,36 @@
 
     <!-- Test Total Positive Column -->
     <ng-container matColumnDef="testTotalPositive">
-      <th id="testTotalPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Total positifs </th>
+      <th id="testTotalPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests total positifs </th>
       <td mat-cell *matCellDef="let element" class="has-text-danger">
-        {{element.testTotalPositive | number: '' :'fr-FR'}}<br>
-        ({{ element.testTotalPositive | percentage : element.testTotal  }})
-      </td>
-    </ng-container>
-    <!-- Test Homme Column -->
-    <ng-container matColumnDef="testMen">
-      <th id="testMen" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Homme</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.testMen | number: '' :'fr-FR'}}<br>
-
-      </td>
-    </ng-container>
-    <!-- Test Homme Positif Column -->
-    <ng-container matColumnDef="testMenPositive">
-      <th id="testMenPositive" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Homme positifs </th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger">
-        {{element.testMenPositive | number: '' :'fr-FR'}}<br>
-        ({{ element.testMenPositive | percentage : element.testMen  }})
-      </td>
-    </ng-container>
-    <!-- Test Femme  Column -->
-    <ng-container matColumnDef="testWomen">
-      <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Femme</th>
-      <td mat-cell *matCellDef="let element">
-        {{element.testWomen | number: '' :'fr-FR'}}<br>
+        {{element.testTotalPositive | number: '' :'fr-FR'}}
       </td>
     </ng-container>
 
-    <!-- Test Femme Positif Column -->
-    <ng-container matColumnDef="testWomenPositive">
-      <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header>Tests Femme positifs </th>
+        <!-- Test Total Positive Column -->
+        <ng-container matColumnDef="testTotalPositiveRate">
+          <th id="testTotalPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité total</th>
+          <td mat-cell *matCellDef="let element" class="has-text-danger important">
+            <strong>{{element.testTotalPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %</strong>
+          </td>
+        </ng-container>
+
+
+    <!-- Test Homme Positif Taux Column -->
+    <ng-container matColumnDef="testMenPositiveRate">
+      <th id="testMenPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivé homme </th>
       <td mat-cell *matCellDef="let element" class="has-text-danger">
-        {{element.testWomenPositive | number: '' :'fr-FR'}}<br>
-        ({{ element.testWomenPositive | percentage : element.testWomen  }})
+        {{element.testMenPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %
       </td>
     </ng-container>
+
+        <!-- Test Femme Positif Taux Column -->
+        <ng-container matColumnDef="testWomenPositiveRate">
+          <th id="testWomenPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité femme </th>
+          <td mat-cell *matCellDef="let element" class="has-text-danger">
+            {{element.testWomenPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %
+          </td>
+        </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
