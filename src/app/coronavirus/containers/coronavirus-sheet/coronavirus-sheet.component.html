@@ -1,8 +1,37 @@
+<a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})"
+  class="button button-back is-info" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques
+  nationales</a>
 <!-- Description -->
 <div class="content">
-  <a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})"
-    class="button button-back is-info" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques
-    nationales</a>
+  <h1 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19
+    <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+      {{selectedCountry?.country}}
+    </ng-container>
+
+    {{selectedRegion?.name}}
+    {{selectedDepartment?.name}}
+  </h1>
+  <p class="description" *ngIf="selectedCountry?.country === 'Monde'">
+    Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
+    de morts et de cas guéris en <strong>France</strong> et dans le monde entier: <strong>Italie, Espagne,
+      Chine</strong> à travers un dashboard et des graphiques détaillés.
+  </p>
+  <p class="description" *ngIf="selectedCountry?.country !== 'Monde' && selectedCountry?.country !== 'France'">
+    Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
+    de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
+    graphiques détaillés.
+  </p>
+  <p class="description" *ngIf="selectedCountry?.country === 'France'">
+    Suivez en direct l'épidémie en <strong>
+      <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+        {{selectedCountry?.country}}
+      </ng-container>
+      {{selectedRegion?.name}}
+      {{selectedDepartment?.name}}
+    </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
+    quotidiennes relatives à l'épidémie du COVID-19.
+  </p>
+
 
   <!-- World and Country Container -->
   <ng-container *ngIf="(detailedStats$ | loading | async) as detailedStats">
@@ -152,8 +181,10 @@
             <h2 class="title">Tableau récapitulatif de l'épidémie en France</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
-              Le <strong>taux de décès</strong> correspond au nombre de décès survenus suite à une hospitalisation sur le nombre total d'hospitalisations.
-              Le <strong>taux de guéris</strong> correspond au nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
+              Le <strong>taux de décès</strong> correspond au nombre de décès survenus suite à une hospitalisation sur
+              le nombre total d'hospitalisations.
+              Le <strong>taux de guéris</strong> correspond au nombre de guéris suite à une hospitalisation sur le
+              nombre total d'hospitalisations.
             </p>
             <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total" [selectedCountry]="selectedCountry">
@@ -173,8 +204,10 @@
             <h2 class="title">Tableau récapitulatif de l'épidémie dans la région</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
-              Le <strong>taux de décès</strong> correspond au nombre de décès survenus suite à une hospitalisation sur le nombre total d'hospitalisations.
-              Le <strong>taux de guéris</strong> correspond au nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
+              Le <strong>taux de décès</strong> correspond au nombre de décès survenus suite à une hospitalisation sur
+              le nombre total d'hospitalisations.
+              Le <strong>taux de guéris</strong> correspond au nombre de guéris suite à une hospitalisation sur le
+              nombre total d'hospitalisations.
             </p>
             <app-coronavirus-table [selectedDivisionMap]="'departmentFrance'"
               [detailedStats]="franceStats.value.details" [selectedCountry]="selectedCountry">

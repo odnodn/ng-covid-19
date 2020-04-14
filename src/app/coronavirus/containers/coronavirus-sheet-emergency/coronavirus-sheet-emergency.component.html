@@ -12,7 +12,10 @@
   </h1>
   <p>
     Suivez les urgences hospitalières et actes médicaux <strong>Coronavirus COVID-19</strong> en <strong>
-      {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
+      <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+        {{selectedCountry?.country}}
+      </ng-container>
+       {{selectedRegion?.name}} {{selectedDepartment?.name}}
     </strong> avec les données quotidiennes de SOS médecins et des urgences hospitalières par département, sexe et
     tranche d’âge des patients.
   </p>

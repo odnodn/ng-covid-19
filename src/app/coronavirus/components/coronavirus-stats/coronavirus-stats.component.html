@@ -1,28 +1,3 @@
-<h1 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19 {{mainStats?.translation}}
-  <ng-container *ngIf="!selectedZone">
-    {{selectedCountry.country}}
-  </ng-container>
-</h1>
-<p class="description" *ngIf="selectedCountry?.country === 'Monde'">
-  Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
-  de morts et de cas guéris en <strong>France</strong> et dans le monde entier: <strong>Italie, Espagne,
-    Chine</strong> à travers un dashboard et des graphiques détaillés.
-</p>
-<p class="description" *ngIf="selectedCountry?.country !== 'Monde' && selectedCountry?.country !== 'France'">
-  Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
-  de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
-  graphiques détaillés.
-</p>
-<p class="description" *ngIf="selectedCountry?.country === 'France'">
-  Suivez en direct l'épidémie en <strong>
-    {{mainStats.translation}}
-    <ng-container *ngIf="!selectedZone">
-      {{selectedCountry.country}}
-    </ng-container>
-  </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
-  quotidiennes relatives à l'épidémie du COVID-19.
-</p>
-
 <p>
   <ng-container *ngIf="mainStats.updated">
     Les données Worldometer ont été mises à jour le
@@ -165,9 +140,10 @@
             ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }} en 24h)
           </span><br>
         </p>
-        <p class="subtitle">Décès, <span class="rate">soit un taux de décès de <strong
+        <p class="subtitle" *ngIf="selectedCountry.country === 'France'">Décès, <span class="rate">soit un taux de décès de <strong
               class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
         </p>
+        <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Décès</p>
         <p class="legend" *ngIf="selectedZone">
           Source : Données remontées par les centres hospitaliers participants à SI-VIC
         </p>
@@ -181,17 +157,18 @@
     <article class="tile is-child notification is-success active-map">
       <p class="title">
         {{mainStats.recovered | number: '' :'fr-FR'}}
-        <span class="increase">
+        <span class="increase" *ngIf="selectedCountry?.country === 'France'">
           ({{mainStats.todayRecovered | symbolNumber: 'mainStats' }} en 24h)
         </span>
       </p>
-      <p class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">, soit un taux de guérison de
-          <strong class="number">{{mainStats.recoveredRate.toFixed(1)}} %</strong> après hospitalisation</span>
+      <p *ngIf="selectedCountry.country === 'France'" class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">, soit un taux de guérison de
+          <strong class="number" *ngIf="selectedCountry.country === 'France'">{{mainStats.recoveredRate.toFixed(1)}} %</strong> après hospitalisation</span>
         <span class="rate" *ngIf="!selectedZone">, soit un taux de guérison de
           <strong class="number">{{ mainStats.recovered | percentage : mainStats.hospitalStart  }}</strong> après
           hospitalisation
         </span>
       </p>
+      <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Décès</p>
       <p class="legend" *ngIf="selectedCountry?.country === 'France'">
         Source : Données remontées par les centres hospitaliers participants à SI-VIC
       </p>
