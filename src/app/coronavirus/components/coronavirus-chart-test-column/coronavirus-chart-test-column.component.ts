@@ -154,10 +154,10 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
     let color = '';
     if (this.nameChart === 'chart-urgences-hospital') {
-      color = '#ffbb00';
+      color = '#F17D07';
       this.createYSeries('Nombre d\'hospitalisations');
     } else if (this.nameChart === 'chart-urgences-passage') {
-      color = '#F17D07';
+      color = '#ffbb00';
       this.createYSeries('Nombre de passages aux urgences');
     } else {
       color = '#E95D0C';
@@ -289,7 +289,11 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     }
     if (this.nameChart.includes('chart-urgences')) {
       // tslint:disable-next-line:max-line-length
-      this.series.columns.template.tooltipText = '[bold]{dateX}[\] \n [bold]{valueY} [\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
+      this.series.columns.template.tooltipText = '[bold]{dateX}[\] \n [bold]{valueY} [\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}% [\]';
+      if (this.nameChart === 'chart-urgences-hospital-age') {
+        // tslint:disable-next-line:max-line-length
+        this.series.columns.template.tooltipText = '[bold]{valueY} [\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
+      }
       if (this.nameChart === 'chart-urgences-medical-age' ||
       this.nameChart === 'chart-urgences-passage-age') {
         // tslint:disable-next-line:max-line-length
