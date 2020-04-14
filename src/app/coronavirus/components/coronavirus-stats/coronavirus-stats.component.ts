@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-coronavirus-stats',
@@ -12,5 +12,4 @@ export class CoronavirusStatsComponent {
   @Input() selectedCountry;
   @Input() selectedZone;
   @Input() lastUpdate;
-
 }

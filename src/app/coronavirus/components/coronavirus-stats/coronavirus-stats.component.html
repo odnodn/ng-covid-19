@@ -1,4 +1,7 @@
 <h1 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19 {{mainStats?.translation}}
+  <ng-container *ngIf="!selectedZone">
+    {{selectedCountry.country}}
+  </ng-container>
 </h1>
 <p class="description" *ngIf="selectedCountry?.country === 'Monde'">
   Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
@@ -12,10 +15,14 @@
 </p>
 <p class="description" *ngIf="selectedCountry?.country === 'France'">
   Suivez en direct l'épidémie en <strong>
-    {{mainStats.name}}
+    {{mainStats.translation}}
+    <ng-container *ngIf="!selectedZone">
+      {{selectedCountry.country}}
+    </ng-container>
   </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
   quotidiennes relatives à l'épidémie du COVID-19.
 </p>
+
 <p>
   <ng-container *ngIf="mainStats.updated">
     Les données Worldometer ont été mises à jour le
