@@ -5,6 +5,7 @@ table {
 table td {
   vertical-align: middle;
   text-align: center;
+  padding: 0.2em;
 }
 
 
@@ -12,6 +13,7 @@ table td {
 table th {
   vertical-align: middle;
   font-weight: bold;
+  padding: 0.2em;
 }
 
 .container {
@@ -36,6 +38,14 @@ td.mat-cell:first-of-type {
   padding-left: 0;
 }
 
+td.mat-cell:last-of-type {
+  padding-right: 0;
+}
+
+th.mat-cell:last-of-type {
+  padding-right: 0;
+}
+
 .rate {
   font-size: 0.9em;
 }
@@ -44,8 +54,20 @@ td.mat-cell:first-of-type {
   width: 100%;
 }
 
-.important {
+.death-rate {
   color: white !important;
   background-color: #f9461c;
+  font-weight: bold;
+}
+
+.recovered-rate {
+  color: white !important;
+  background-color: #43D787;
+  font-weight: bold;
+}
+
+.hospital-rate {
+  color: white !important;
+  background-color: #F17D07;
   font-weight: bold;
 }

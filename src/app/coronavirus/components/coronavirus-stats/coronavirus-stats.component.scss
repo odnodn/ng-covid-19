@@ -18,10 +18,21 @@
   font-size: 0.7em;
 }
 
-// .note {
-//   font-size: 0.85em;
-// }
+.note {
+  font-size: 0.85em;
+}
 
 .type {
   font-size: 0.6em;
+}
+
+.important-stat {
+  font-size: 1.3em;
+}
+
+.rate {
+  font-size: 0.8em;
+  .number {
+    font-size: 1.1em;
+  }
 }

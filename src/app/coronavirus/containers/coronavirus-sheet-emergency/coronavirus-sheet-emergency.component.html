@@ -37,7 +37,7 @@
             <p class="title">
               {{ dataEmergency?.value.total[0].passageCorona | number: '' :'fr-FR' }}
               <span class="increase">
-                {{dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].passageCorona  | symbolNumber }}
+                ({{dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].passageCorona  | symbolNumber: 'mainStats' }}  en 24h)
               </span>
             </p>
             <p class="subtitle">Passages aux urgences pour suspicion de COVID-19</p>
@@ -51,7 +51,7 @@
             <p class="title">
               {{ dataEmergency?.value.total[0].hospitalCorona | number: '' :'fr-FR' }}
               <span class="increase">
-                {{dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].hospitalCorona | symbolNumber}}
+                ({{dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].hospitalCorona | symbolNumber: 'mainStats'}} en 24h)
               </span>
             </p>
             <p class="subtitle">
@@ -67,7 +67,7 @@
             <p class="title">
               {{ dataEmergency?.value.total[0].acteCorona | number: '' :'fr-FR' }}
               <span class="increase">
-                {{dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].acteCorona | symbolNumber }}
+                ({{dataEmergency?.value.timeline[dataEmergency?.value.timeline.length - 1].acteCorona | symbolNumber: 'mainStats' }} en 24h)
               </span>
             </p>
 
@@ -81,7 +81,7 @@
 
 
       <div class="columns">
-        <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
+        <div class="column is-spaced is-half" *ngIf="!selectedDepartment && !selectedRegion">
           <h2 class="title">Cartographie des urgences hospitalières et d'actes médicaux de SOS médecins pour suspicion
             de COVID-19 depuis le début de l'épidémie</h2>
           <p>
@@ -102,7 +102,7 @@
             dataEmergency.value.region : dataEmergency.value.department" [selectedCountry]="selectedCountry">
           </app-coronavirus-map>
         </div>
-        <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
+        <div class="column is-spaced is-half" *ngIf="!selectedDepartment && !selectedRegion">
           <h2 class="title">Tableau récapitulatif des urgences hospitalières et d'actes médicaux de SOS médecins pour
             suspicion de COVID-19 depuis le début de l'épidémie
           </h2>

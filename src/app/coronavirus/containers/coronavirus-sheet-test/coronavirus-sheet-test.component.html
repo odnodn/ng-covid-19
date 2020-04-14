@@ -4,9 +4,8 @@
     nationales</a>
   <p class="is-spaced">
     Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
-      {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}</strong>. Il
-    contient uniquement les tests réalisés par les laboratoires de villes. Il ne recense pas l’ensemble des tests
-    réalisés.
+      {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}</strong> réalisés par les
+    laboratoires de villes.
   </p>
   <h1 class="title is-spaced" id="tableDescription">Statistiques des tests de dépistage du Coronavirus COVID-19
     {{selectedDepartment?.name}}
@@ -19,7 +18,10 @@
     <ng-container *ngIf="dataTest?.value">
       <p>
         Les données des tests de dépistage du Coronavirus COVID-19 sont datées du
-        <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.
+        <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.<br>
+        <strong class="important">Les données contiennent uniquement les tests réalisés par les laboratoires de villes et ne recensent pas
+          l’ensemble des tests
+          réalisés.</strong>
       </p>
       <div class="tile is-ancestor">
         <div class="tile is-parent">
@@ -84,7 +86,8 @@
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
           <h2 class="title">Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
           <p>
-            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département, ainsi qu'en fonction du sexe et de l'âge.
+            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département, ainsi
+            qu'en fonction du sexe et de l'âge.
           </p>
           <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap"
             [detailedStats]="selectedDivisionMap === 'regionFrance' ?
@@ -94,8 +97,9 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column is-spaced" [class.is-three-fifths]="selectedRegion" [class.is-three-quarters]="!selectedRegion">
-          <h2 class="title">Nombre de tests de dépistage réalisés depuis le 10 mars</h2>
+        <div class="column is-spaced" [class.is-three-fifths]="selectedRegion"
+          [class.is-three-quarters]="!selectedRegion">
+          <h2 class="title">Nombre de tests réalisés, nombre de tests positifs et taux de positivité depuis le 10 mars</h2>
           <p>
             Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 par jour avec le nombre
             de
@@ -107,14 +111,16 @@
         <div class="column is-spaced" *ngIf="selectedRegion">
           <h2 class="title">Tableau récapitulatif des tests de dépistage de la région {{labelTableAge}} </h2>
           <p>
-            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 en fonction du sexe avec un filtre par tranche d'âge.
+            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 en fonction du sexe avec un filtre par
+            tranche d'âge.
           </p>
           <app-coronavirus-table [selectedDivisionMap]="'departmentFrance'"
             [detailedStats]="(dataTest?.value.details | ageFilter : selectedTypeMap)"
             [selectedTypeMap]="selectedTypeMap" [selectedCountry]="selectedCountry">
           </app-coronavirus-table>
           <div class="radio-buttons">
-            <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap($event.value)">
+            <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap"
+              (change)="onSelectTypeMap($event.value)">
               <mat-radio-button value="ageAll">Tous</mat-radio-button>
               <mat-radio-button value="ageA">Moins de 15 ans</mat-radio-button>
               <mat-radio-button value="ageB">15-44 ans</mat-radio-button>
@@ -135,7 +141,8 @@
             Répartition des tests de dépistage positifs et négatifs en fonction de l'âge
           </h2>
           <p>
-            Ce diagramme montre la répartition de tests positifs et négatifs du Coronavirus COVID-19 en fonction de l'âge avec un filtre par sexe.
+            Ce diagramme montre la répartition de tests positifs et négatifs du Coronavirus COVID-19 en fonction de
+            l'âge avec un filtre par sexe.
           </p>
           <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
           </app-coronavirus-chart-test-column>

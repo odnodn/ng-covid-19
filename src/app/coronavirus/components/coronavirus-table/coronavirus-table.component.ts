@@ -52,13 +52,15 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
       ageE: 'chez les plus de 75 ans',
     };
     if (this.selectedTypeMap === 'passage') {
-      this.displayedColumns = ['translation', 'passageCorona', 'hospitalCorona', 'acteCorona'];
-      this.matSortActive = 'passageCorona';
+      this.displayedColumns = ['translation', 'passageCorona', 'hospitalCorona', 'hospitalCoronaRate', 'acteCorona'];
+      this.matSortActive = 'hospitalCorona';
       return ;
     }
 
     if (age[this.selectedTypeMap]) {
-      this.displayedColumns = ['translation', 'testTotal', 'testTotalPositive', 'testTotalPositiveRate', 'testMenPositiveRate', 'testWomenPositiveRate'];
+      this.displayedColumns = ['translation', 'testTotal',
+      'testTotalPositive', 'testTotalPositiveRate',
+      'testMenPositiveRate', 'testWomenPositiveRate'];
       this.matSortActive = 'testTotalPositive';
       return ;
     }
@@ -66,8 +68,8 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
       this.displayedColumns = ['translation', 'cases', 'todayCases', 'active', 'critical', 'deaths', 'todayDeaths', 'recovered'];
       this.matSortActive = 'cases';
     } else if (this.selectedCountry.country === 'France') {
-      this.displayedColumns = ['translation', 'hospital', 'hospitalStart',
-       'reanimation', 'reanimationStart', 'deaths', 'deathRate', 'recovered', 'recoveredRate'];
+      this.displayedColumns = ['translation', 'deaths', 'deathRate', 'recovered', 'recoveredRate', 'hospital', 'hospitalStart',
+       'reanimation', 'reanimationStart'];
       this.matSortActive = 'deathRate';
     } else {
       this.matSortActive = 'cases';

@@ -32,6 +32,7 @@ export class CoronavirusSheetComponent implements OnInit {
   selectedDepartment: any;
   isBrowser = isPlatformBrowser(this.platformId);
   typeDiagram = 'evolution';
+  selectedZone = undefined;
 
   constructor(
     private readonly coronavirusService: CoronavirusService,
@@ -95,12 +96,14 @@ export class CoronavirusSheetComponent implements OnInit {
 
   private updateFranceNationalDatas(): void {
     this.initMetaTagCountry();
+    this.selectedZone = undefined;
     this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('national');
     this.franceStats$ = this.coronavirusFranceService.getData('national');
   }
 
   private updateFranceRegionDatas(params: any): void {
     this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
+    this.selectedZone = 'la région';
     if (!this.selectedRegion) {
       this.router.navigateByUrl('/');
       return;
@@ -112,6 +115,7 @@ export class CoronavirusSheetComponent implements OnInit {
 
   private updateFranceDepartmentDatas(params: any): void {
     this.selectedDepartment = FRANCE_DEPS.find((department) => department.slug === params.department);
+    this.selectedZone = 'le département';
     if (!this.selectedDepartment) {
       this.router.navigateByUrl('/');
       return;

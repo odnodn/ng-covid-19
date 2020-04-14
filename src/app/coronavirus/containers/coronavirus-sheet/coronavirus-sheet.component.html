@@ -14,12 +14,11 @@
       de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
       graphiques détaillés.
     </p>
-    <p class="description" *ngIf="selectedCountry?.country === 'France'">
+    <p class="description" *ngIf="selectedCountry?.country === 'France' && !selectedDepartment && !selectedRegion">
       Suivez en direct l'épidémie en <strong>
         {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
       </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
-      quotidiennes relatives à
-      l'épidémie du COVID-19 par région, département, genre du patient et tranche d’âge des patients.
+      quotidiennes relatives à l'épidémie du COVID-19.
     </p>
   </div>
 
@@ -143,13 +142,16 @@
     <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
       <ng-container *ngIf="franceStats.value">
         <app-coronavirus-stats [lastUpdate]="franceStats.value.lastUpdate" [selectedCountry]="selectedCountry"
-          [mainStats]="franceStats.value.total" [selectedZone]="selectedRegion ? selectedRegion : selectedDepartment">
+          [mainStats]="franceStats.value.total" [selectedZone]="selectedZone">
         </app-coronavirus-stats>
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
           <div class="column is-spaced" *ngIf="isBrowser">
             <h2 class="title">Cartographie de l'épidémie en France</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
+              Cette carte permet de recenser le nombre d'hospitalisations en cours,
+              le nombre de réanimations en cours, le nombre de décès et le nombre
+              de guéris par région et par département en France.
             </p>
             <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
             <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
@@ -200,7 +202,9 @@
         <div class="columns">
           <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion" [class.is-half]="selectedRegion">
             <ng-container>
-              <h2 class="title">Évolution quotidienne des patients atteints de Coronavirus COVID-19</h2>
+              <h2 class="title">Nombre journalier
+                de nouvelles hospitalisations, de nouvelles admissions
+                en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier</h2>
               <p>
                 Les données remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC sont : le
                 nombre quotidien de personnes nouvellement hospitalisées, le nombre
