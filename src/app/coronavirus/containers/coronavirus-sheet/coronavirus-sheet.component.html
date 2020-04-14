@@ -3,24 +3,6 @@
   <a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})"
     class="button button-back is-info" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques
     nationales</a>
-  <div class="is-spaced">
-    <p class="description" *ngIf="selectedCountry?.country === 'Monde'">
-      Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
-      de morts et de cas guéris en <strong>France</strong> et dans le monde entier: <strong>Italie, Espagne,
-        Chine</strong> à travers un dashboard et des graphiques détaillés.
-    </p>
-    <p class="description" *ngIf="selectedCountry?.country !== 'Monde' && selectedCountry?.country !== 'France'">
-      Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
-      de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
-      graphiques détaillés.
-    </p>
-    <p class="description" *ngIf="selectedCountry?.country === 'France' && !selectedDepartment && !selectedRegion">
-      Suivez en direct l'épidémie en <strong>
-        {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}
-      </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
-      quotidiennes relatives à l'épidémie du COVID-19.
-    </p>
-  </div>
 
   <!-- World and Country Container -->
   <ng-container *ngIf="(detailedStats$ | loading | async) as detailedStats">

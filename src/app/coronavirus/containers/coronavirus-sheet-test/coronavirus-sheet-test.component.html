@@ -2,18 +2,18 @@
   <a (click)="onSelectCountry({country: 'France', slug: 'france', translation: 'France'})"
     class="button is-info button-back" *ngIf="selectedDepartment || selectedRegion">Retourner aux statistiques
     nationales</a>
-  <p class="is-spaced">
-    Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
-      {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}</strong> réalisés par les
-    laboratoires de villes.
-  </p>
-  <h1 class="title is-spaced" id="tableDescription">Statistiques des tests de dépistage du Coronavirus COVID-19
+  <h1 class="title" id="tableDescription">Statistiques des tests de dépistage du Coronavirus COVID-19
     {{selectedDepartment?.name}}
     {{selectedRegion?.name}}
     <ng-container *ngIf="!selectedDepartment && !selectedRegion">
       France
     </ng-container>
   </h1>
+  <p>
+    Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
+      {{selectedCountry?.translation}} {{selectedRegion?.name}} {{selectedDepartment?.name}}</strong> réalisés par les
+    laboratoires de villes.
+  </p>
   <ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
     <ng-container *ngIf="dataTest?.value">
       <p>

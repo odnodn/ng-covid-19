@@ -1,10 +1,21 @@
-<h1 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19
-  <ng-container *ngIf="!selectedZone">
-    {{selectedCountry?.translation}}
-  </ng-container>
-
-  {{selectedZone?.name}}
+<h1 class="title is-spaced" id="tableDescription">Statistiques et cas Coronavirus COVID-19 {{mainStats?.translation}}
 </h1>
+<p class="description" *ngIf="selectedCountry?.country === 'Monde'">
+  Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
+  de morts et de cas guéris en <strong>France</strong> et dans le monde entier: <strong>Italie, Espagne,
+    Chine</strong> à travers un dashboard et des graphiques détaillés.
+</p>
+<p class="description" *ngIf="selectedCountry?.country !== 'Monde' && selectedCountry?.country !== 'France'">
+  Suivez en direct l'épidémie du <strong>Coronavirus COVID-19</strong> avec le nombre de cas recensés, le nombre
+  de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
+  graphiques détaillés.
+</p>
+<p class="description" *ngIf="selectedCountry?.country === 'France'">
+  Suivez en direct l'épidémie en <strong>
+    {{mainStats.name}}
+  </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
+  quotidiennes relatives à l'épidémie du COVID-19.
+</p>
 <p>
   <ng-container *ngIf="mainStats.updated">
     Les données Worldometer ont été mises à jour le
@@ -16,10 +27,14 @@
   </ng-container>
   <ng-container *ngIf="selectedZone">
     Au <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</strong>,
-    {{selectedZone}} <strong>{{mainStats.translation}}</strong> recense {{mainStats.hospitalStart | number: '' :'fr-FR'}}
-    hospitalisations dont {{mainStats.reanimationStart | number: '' :'fr-FR'}} en réanimation au total depuis le début de l'épidémie. Actuellement,
-    {{mainStats.hospital | number: '' :'fr-FR'}} patients sont hospitalisés dont {{mainStats.reanimation | number: '' :'fr-FR'}} en réanimation.
-    Au total, {{mainStats.deaths | number: '' :'fr-FR'}} patients sont décédés et {{mainStats.recovered | number: '' :'fr-FR'}} sont retournés à leur domicile.
+    {{selectedZone}} <strong>{{mainStats.translation}}</strong> recense
+    {{mainStats.hospitalStart | number: '' :'fr-FR'}}
+    hospitalisations dont {{mainStats.reanimationStart | number: '' :'fr-FR'}} en réanimation au total depuis le début
+    de l'épidémie. Actuellement,
+    {{mainStats.hospital | number: '' :'fr-FR'}} patients sont hospitalisés dont
+    {{mainStats.reanimation | number: '' :'fr-FR'}} en réanimation.
+    Au total, {{mainStats.deaths | number: '' :'fr-FR'}} patients sont décédés et
+    {{mainStats.recovered | number: '' :'fr-FR'}} sont retournés à leur domicile.
   </ng-container>
 </p>
 <div class="tile is-ancestor">
@@ -31,23 +46,26 @@
         </span>
       </p>
       <p class="subtitle">Cas <ng-container *ngIf="selectedCountry.country === 'France'">
-        signalés
-      </ng-container>
-      <ng-container *ngIf="selectedCountry.country !== 'France'">
-        confirmés
-      </ng-container>
+          signalés
+        </ng-container>
+        <ng-container *ngIf="selectedCountry.country !== 'France'">
+          confirmés
+        </ng-container>
         <span class="note">
           <ng-container *ngIf="mainStats?.todayCasesHospital">
-            dont <strong class="important-stat">{{mainStats.casesHospital | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesHospital | symbolNumber: 'mainStats' }} en 24h) confirmés
+            dont <strong class="important-stat">{{mainStats.casesHospital | number: '' :'fr-FR'}}</strong>
+            ({{mainStats?.todayCasesHospital | symbolNumber: 'mainStats' }} en 24h) confirmés
           </ng-container>
           <ng-container *ngIf="mainStats?.todayCasesEhpad">
-            et <strong class="important-stat">{{mainStats.casesEhpad | number: '' :'fr-FR'}}</strong>  ({{mainStats?.todayCasesEhpad | symbolNumber: 'mainStats' }}  en 24h) en ESMS
+            et <strong class="important-stat">{{mainStats.casesEhpad | number: '' :'fr-FR'}}</strong>
+            ({{mainStats?.todayCasesEhpad | symbolNumber: 'mainStats' }} en 24h) en ESMS
           </ng-container>
 
         </span>
       </p>
       <div class="legend" *ngIf="selectedCountry.country === 'France'">
-        Source :  Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et signalement liés au COVID-19 dans les ESMS
+        Source : Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et
+        signalement liés au COVID-19 dans les ESMS
       </div>
       <div class="legend" *ngIf="selectedCountry.country !== 'France'">
         Source : Worldometer
@@ -58,13 +76,13 @@
     <article class="tile is-child notification hospital">
       <p class="title">{{mainStats.hospitalStart | number: '' :'fr-FR'}}
         <span class="increase">
-          ({{mainStats.todayHospitalStart | symbolNumber: 'mainStats' }}  en 24h)
+          ({{mainStats.todayHospitalStart | symbolNumber: 'mainStats' }} en 24h)
         </span>
       </p>
       <p class="subtitle">Hospitalisés
         <span class="note">
           dont <strong class="important-stat">{{mainStats.hospital | number: '' :'fr-FR'}}</strong>
-            ({{mainStats.todayHospital | symbolNumber: 'mainStats' }} en 24h) actuellement
+          ({{mainStats.todayHospital | symbolNumber: 'mainStats' }} en 24h) actuellement
         </span>
       </p>
       <p class="legend">
@@ -101,7 +119,8 @@
       </p>
       <p class="subtitle">Admis en réanimation
         <span class="note">
-          dont <strong class="important-stat">{{mainStats.reanimation | number: '' :'fr-FR'}}</strong> ({{mainStats?.todayReanimation | symbolNumber: 'mainStats' }}  en 24h) actuellement
+          dont <strong class="important-stat">{{mainStats.reanimation | number: '' :'fr-FR'}}</strong>
+          ({{mainStats?.todayReanimation | symbolNumber: 'mainStats' }} en 24h) actuellement
         </span>
       </p>
       <p class="legend">
@@ -120,12 +139,15 @@
         </p>
         <p class="subtitle">Décès
           <span class="note">
-            dont <strong class="important-stat">{{mainStats.deathsHospital | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayDeathsHospital | symbolNumber: 'mainStats' }} en 24h) en milieu
-            hospitalier et <strong class="important-stat">{{mainStats.deathsEhpad | number: '' :'fr-FR'}}</strong>  ({{mainStats.todayDeathsEhpad | symbolNumber: 'mainStats'}} en 24h) en ESMS
+            dont <strong class="important-stat">{{mainStats.deathsHospital | number: '' :'fr-FR'}}</strong>
+            ({{mainStats.todayDeathsHospital | symbolNumber: 'mainStats' }} en 24h) en milieu
+            hospitalier et <strong class="important-stat">{{mainStats.deathsEhpad | number: '' :'fr-FR'}}</strong>
+            ({{mainStats.todayDeathsEhpad | symbolNumber: 'mainStats'}} en 24h) en ESMS
           </span>
         </p>
         <p class="legend">
-          Source : Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et signalement
+          Source : Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et
+          signalement
           liés au COVID-19 dans les ESMS
         </p>
       </ng-container>
@@ -136,7 +158,8 @@
             ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }} en 24h)
           </span><br>
         </p>
-        <p class="subtitle">Décès, <span class="rate">soit un taux de décès de <strong class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
+        <p class="subtitle">Décès, <span class="rate">soit un taux de décès de <strong
+              class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
         </p>
         <p class="legend" *ngIf="selectedZone">
           Source : Données remontées par les centres hospitaliers participants à SI-VIC
@@ -158,7 +181,8 @@
       <p class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">, soit un taux de guérison de
           <strong class="number">{{mainStats.recoveredRate.toFixed(1)}} %</strong> après hospitalisation</span>
         <span class="rate" *ngIf="!selectedZone">, soit un taux de guérison de
-          <strong class="number">{{ mainStats.recovered | percentage : mainStats.hospitalStart  }}</strong> après hospitalisation
+          <strong class="number">{{ mainStats.recovered | percentage : mainStats.hospitalStart  }}</strong> après
+          hospitalisation
         </span>
       </p>
       <p class="legend" *ngIf="selectedCountry?.country === 'France'">
