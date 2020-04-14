@@ -23,8 +23,11 @@
   <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
     <article class="tile is-child notification is-warning">
       <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
-        <span class="increase">
+        <span class="increase" *ngIf="selectedCountry?.country === 'France'">
           ({{mainStats?.todayCases | symbolNumber: 'mainStats' }} en 24h)
+        </span>
+        <span class="increase" *ngIf="selectedCountry?.country !== 'France' && mainStats.todayCases">
+          ({{mainStats?.todayCases | symbolNumber: 'mainStats' }})
         </span>
       </p>
       <p class="subtitle">Cas <ng-container *ngIf="selectedCountry.country === 'France'">
@@ -136,9 +139,12 @@
       <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsHospital">
         <p class="title">
           {{mainStats.deaths | number: '' :'fr-FR'}}
-          <span class="increase">
+          <span class="increase" *ngIf="selectedCountry.country === 'France'">
             ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }} en 24h)
-          </span><br>
+          </span>
+          <span class="increase" *ngIf="selectedCountry.country !== 'France' && mainStats.todayDeaths">
+            ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }})
+          </span>
         </p>
         <p class="subtitle" *ngIf="selectedCountry.country === 'France'">Décès, <span class="rate">soit un taux de décès de <strong
               class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
@@ -160,6 +166,10 @@
         <span class="increase" *ngIf="selectedCountry?.country === 'France'">
           ({{mainStats.todayRecovered | symbolNumber: 'mainStats' }} en 24h)
         </span>
+        <span class="increase" *ngIf="selectedCountry.country !== 'France' && mainStats.todayRecovered">
+          ({{mainStats.todayRecovered | symbolNumber: 'mainStats' }})
+        </span>
+
       </p>
       <p *ngIf="selectedCountry.country === 'France'" class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">, soit un taux de guérison de
           <strong class="number" *ngIf="selectedCountry.country === 'France'">{{mainStats.recoveredRate.toFixed(1)}} %</strong> après hospitalisation</span>
@@ -168,7 +178,7 @@
           hospitalisation
         </span>
       </p>
-      <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Décès</p>
+      <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Guéris</p>
       <p class="legend" *ngIf="selectedCountry?.country === 'France'">
         Source : Données remontées par les centres hospitaliers participants à SI-VIC
       </p>
