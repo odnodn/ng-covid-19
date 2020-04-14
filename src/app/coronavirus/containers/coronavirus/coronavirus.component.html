@@ -5,6 +5,26 @@
 </app-coronavirus-select>
 <div class="tabs is-spaced" *ngIf="selectedCountry.country === 'France'">
   <ul>
+    <li *ngIf="selectedRegion || selectedDepartment">
+      <a *ngIf="(router.url | include : 'urgences')" [routerLink]="['/urgences/', selectedCountry.slug]">
+        <span class="material-icons">
+          arrow_back
+          </span>
+        Statistiques nationales
+      </a>
+      <a  *ngIf="(router.url | include : 'stats')" [routerLink]="['/stats/', selectedCountry.slug]">
+        <span class="material-icons">
+          arrow_back
+          </span>
+        Statistiques nationales
+      </a>
+      <a *ngIf="(router.url | include : 'test-depistage')" [routerLink]="['/test-depistage/', selectedCountry.slug]">
+        <span class="material-icons">
+          arrow_back
+          </span>
+        Statistiques nationales
+      </a>
+    </li>
     <li [class.is-active]="(router.url === '/') || (router.url | include : 'stats')">
       <a *ngIf="!selectedRegion && ! selectedDepartment" [routerLink]="['/stats/', selectedCountry.slug]">
         Statistiques principales
