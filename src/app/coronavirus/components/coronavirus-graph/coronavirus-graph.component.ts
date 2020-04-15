@@ -67,7 +67,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     valueAxis.fontSize = 13;
     if (this.dataFrance) {
       if (!this.dataFrance.total[0].code) {
-        this.createSeries('date', 'cases', 'Cas signalés', '#ffbb00');
+        this.createSeries('date', 'cases', 'Cas confirmés', '#ffbb00');
       }
       this.createSeries('date', 'hospital', 'Hospitalisations en cours', '#F17D07');
       this.createSeries('date', 'reanimation', 'Réanimations en cours', '#E95D0C');
