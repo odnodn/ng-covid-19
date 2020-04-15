@@ -15,17 +15,28 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   choices: any[];
   dataType: string;
   series: am4charts.ColumnSeries;
+  title: string;
   @Input() nameChart: string;
   @Input() data;
   constructor() { }
 
   ngOnInit(): void {
-    this.dataType = 'total';
-    this.choices = [
-      { label: 'Total', value: 'total' },
-      { label: 'Hommes', value: 'men' },
-      { label: 'Femmes', value: 'women' },
-    ];
+    if (this.nameChart === 'chart-national-age') {
+      this.dataType = 'deaths';
+      this.choices = [
+        { label: 'Hospitalisations en cours', value: 'hospital' },
+        { label: 'Réanimations en cours', value: 'reanimation' },
+        { label: 'Décès', value: 'deaths' },
+        { label: 'Guéris', value: 'recovered' }
+      ];
+    } else if (this.nameChart === 'chart-test-age' || this.nameChart === 'chart-timeline') {
+      this.dataType = 'total';
+      this.choices = [
+        { label: 'Total', value: 'total' },
+        { label: 'Hommes', value: 'men' },
+        { label: 'Femmes', value: 'women' },
+      ];
+    }
   }
 
   ngAfterViewInit(): void {
@@ -51,6 +62,9 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       this.initChartMedicalAge();
     } else if (this.nameChart === 'chart-urgences-medical-gender') {
       this.initChartEmergencyGenderMedical();
+    } else if (this.nameChart === 'chart-national-age') {
+      this.initChartAgeNationalStat();
+
     }
   }
 
@@ -62,20 +76,50 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   }
 
   onSelectTypeChange(): void {
-    this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
-
-    if (this.nameChart === 'chart-timeline') {
-      this.chart.data = this.data.timeline.filter((item) => item.age === 'tous');
-    }
-    if (this.dataType === 'total') {
-      this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testTotalPositive';
-      this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testTotalNegative';
-    } else if (this.dataType === 'men') {
-      this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testMenPositive';
-      this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testMenNegative';
-    } else if (this.dataType === 'women') {
-      this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testWomenPositive';
-      this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testWomenNegative';
+    if (this.nameChart === 'chart-national-age') {
+      const values = {
+        hospital: {
+          name: 'Hospitalisations en cours',
+          color: '#F17D07',
+          title: `Répartition des hospitalisations en cours selon l'âge`
+        },
+        reanimation: {
+          name: 'Réanimations en cours',
+          color: '#E95D0C',
+          title: `Répartition des réanimations en cours selon l'âge`
+        },
+        recovered: {
+          name: 'Guéris',
+          color: '#43D787',
+          title: `Répartition des guéris après hospitalisation selon l'âge`
+        },
+        deaths: {
+          name: 'Décès',
+          color: '#f9461c',
+          title: `Répartition des décès après hospitalisation selon l'âge`
+        }
+      };
+      this.chart.data = this.data.filter((item) => item.age !== 'tous');
+      this.title = values[this.dataType].title;
+      this.chart.map.getKey('deaths').name = values[this.dataType].name;
+      this.chart.map.getKey('deaths').dataFields.valueY = this.dataType;
+      this.chart.map.getKey('deaths').columns.template.fill = am4core.color(values[this.dataType].color);
+      this.chart.map.getKey('deaths').tooltip.background.fill = am4core.color(values[this.dataType].color);
+    } else {
+      this.chart.data = this.data.total.filter((item) => item.age !== 'tous');
+      if (this.nameChart === 'chart-timeline') {
+        this.chart.data = this.data.timeline.filter((item) => item.age === 'tous');
+      }
+      if (this.dataType === 'total') {
+        this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testTotalPositive';
+        this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testTotalNegative';
+      } else if (this.dataType === 'men') {
+        this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testMenPositive';
+        this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testMenNegative';
+      } else if (this.dataType === 'women') {
+        this.chart.map.getKey('testTotalPositive').dataFields.valueY = 'testWomenPositive';
+        this.chart.map.getKey('testTotalNegative').dataFields.valueY = 'testWomenNegative';
+      }
     }
   }
 
@@ -102,8 +146,10 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.chart = am4core.create(this.nameChart, am4charts.XYChart);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
-    this.chart.legend = new am4charts.Legend();
-    this.chart.legend.fontSize = 14;
+    if (this.nameChart !== 'chart-national-age') {
+      this.chart.legend = new am4charts.Legend();
+      this.chart.legend.fontSize = 14;
+    }
     this.chart.padding(10, 0, 0, 0);
   }
 
@@ -111,7 +157,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.initChart();
     this.chart.data = this.data;
     this.createXSeries('date');
-    this.createYSeries('Nombre de patiens');
+    this.createYSeries('Nombre de patients');
     this.createSeries('hospital', 'Hospitalisations', '#F17D07', 'date');
     this.createSeries('reanimation', 'En réanimation', '#E95D0C', 'date');
     this.createSeries('deaths', 'Décès', '#f9461c', 'date');
@@ -220,7 +266,6 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.createYSeries('Nombre d\'hospitalisations');
     this.createSeries('hospitalCorona', 'Hospitalisations', '#F17D07', 'age');
     this.createSeries('hospitalNoCorona', 'Non hospitalisation', 'whitesmoke', 'age');
-
   }
 
   private initChartMedicalAge(): void {
@@ -229,6 +274,15 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.createXSeries('age');
     this.createYSeries('Nombre d\'actes médicaux');
     this.createSeries('acteCorona', 'Actes médicaux SOS Médécins', '#E95D0C', 'age');
+  }
+
+  private initChartAgeNationalStat(): void {
+    this.initChart();
+    this.chart.data = this.data.filter((item) => item.age !== 'tous');
+    this.createXSeries('age');
+    this.createYSeries('Nombre de patients');
+    this.createSeries('deaths', 'Décès', '#f9461c', 'age');
+    this.title = `Répartition des décès après hospitalisation selon l'âge`;
   }
 
 
@@ -273,7 +327,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   private customTooltip(field: string, color: string): void {
     if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
-      return ;
+      return;
     }
     this.series.tooltip.label.wrap = true;
     this.series.tooltip.label.width = 250;
@@ -287,6 +341,11 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       this.series.tooltip.getFillFromObject = false;
       this.series.tooltip.background.fill = am4core.color(color);
     }
+    if (this.nameChart === 'chart-national-age') {
+      this.series.columns.template.tooltipText = '[bold]{valueY} [\] {name} soit [bold]{valueY.percent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
+      this.series.tooltip.getFillFromObject = false;
+      this.series.tooltip.background.fill = am4core.color(color);
+    }
     if (this.nameChart.includes('chart-urgences')) {
       // tslint:disable-next-line:max-line-length
       this.series.columns.template.tooltipText = '[bold]{dateX}[\] \n [bold]{valueY} [\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}% [\]';
@@ -295,7 +354,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
         this.series.columns.template.tooltipText = '[bold]{valueY} [\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
       }
       if (this.nameChart === 'chart-urgences-medical-age' ||
-      this.nameChart === 'chart-urgences-passage-age') {
+        this.nameChart === 'chart-urgences-passage-age' ) {
         // tslint:disable-next-line:max-line-length
         this.series.columns.template.tooltipText = '[bold]{valueY} [\] {name} soit [bold]{valueY.percent.formatNumber(\'#.\')}% [\] chez les {categoryX} ans';
       }
@@ -304,13 +363,13 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     }
     if (this.nameChart === 'chart-test-age' || this.nameChart === 'chart-timeline') {
       this.series.columns.template.tooltipText =
-      '[bold]{dateX}[\] \n [bold]{valueY}[\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}%[\]';
+        '[bold]{dateX}[\] \n [bold]{valueY}[\] {name} soit [bold]{valueY.totalPercent.formatNumber(\'#.\')}%[\]';
     }
   }
 
   private customBulletAgeAxis(field: string): void {
     if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
-      return ;
+      return;
     }
     const labelBullet = this.series.bullets.push(new am4charts.LabelBullet());
     labelBullet.fontSize = 12;
@@ -318,7 +377,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     labelBullet.label.hideOversized = true;
     labelBullet.label.fill = am4core.color('white');
     labelBullet.label.textAlign = 'middle';
-    if (this.nameChart.includes('chart-urgences')) {
+    if (this.nameChart.includes('chart-urgences') || this.nameChart === 'chart-national-age') {
       this.series.calculatePercent = true;
       labelBullet.label.text = '[bold]{valueY} \n {valueY.percent.formatNumber(\'#.\')}%[\]';
       if (field === 'hospitalCorona') {
@@ -338,7 +397,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     labelBullet.label.hideOversized = true;
     labelBullet.label.fill = am4core.color('black');
     if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
-      return ;
+      return;
     }
     if (this.nameChart === 'chart-timeline') {
       this.series.calculatePercent = true;

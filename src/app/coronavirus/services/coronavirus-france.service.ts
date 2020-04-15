@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class CoronavirusFranceService {
 
   private readonly urlCSV = 'https://api-novel-coronavirus.herokuapp.com/france-datas';
+  private readonly urlCSVDay = 'https://api-novel-coronavirus.herokuapp.com/france-datas-day';
+  private readonly urlCSVGender = 'https://api-novel-coronavirus.herokuapp.com/france-datas-gender';
   private readonly urlTest = 'https://api-novel-coronavirus.herokuapp.com/france-datas-test';
   private readonly urlEmergency = 'https://api-novel-coronavirus.herokuapp.com/france-datas-urgences';
   constructor(private readonly httpClient: HttpClient) { }
@@ -17,6 +19,20 @@ export class CoronavirusFranceService {
       return this.httpClient.get(`${this.urlCSV}/${type}?code=${code}`);
     }
     return this.httpClient.get(`${this.urlCSV}/${type}`);
+  }
+
+  getDataDay(type: string, code?: string): Observable<any> {
+    if (code) {
+      return this.httpClient.get(`${this.urlCSVDay}/${type}?code=${code}`);
+    }
+    return this.httpClient.get(`${this.urlCSVDay}/${type}`);
+  }
+
+  getDataGender(type: string, code?: string): Observable<any> {
+    if (code) {
+      return this.httpClient.get(`${this.urlCSVGender}/${type}?code=${code}`);
+    }
+    return this.httpClient.get(`${this.urlCSVGender}/${type}`);
   }
 
   getFranceDataTest(type: string, code?: string): Observable<any> {

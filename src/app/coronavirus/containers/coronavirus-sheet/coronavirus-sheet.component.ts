@@ -25,6 +25,7 @@ export class CoronavirusSheetComponent implements OnInit {
 
   franceStats$: Observable<any>;
   franceStatsByAge$: Observable<any>;
+  franceStatsDay$: Observable<any>;
 
   selectedCountry: any = COUNTRIES[0];
   selectedDivisionMap = 'departmentFrance';
@@ -33,6 +34,8 @@ export class CoronavirusSheetComponent implements OnInit {
   isBrowser = isPlatformBrowser(this.platformId);
   typeDiagram = 'evolution';
   selectedZone = undefined;
+  tabTimelineSelected = 'timelineCumulated';
+  tabRepartionSelected = 'repartitionAge';
 
   constructor(
     private readonly coronavirusService: CoronavirusService,
@@ -50,6 +53,8 @@ export class CoronavirusSheetComponent implements OnInit {
   ngOnInit(): void {
     this.data$ = this.coronavirusService.getDailyDatas();
     this.route.params.subscribe(params => {
+      this.tabTimelineSelected = 'timelineCumulated';
+      this.tabRepartionSelected = 'repartitionAge';
       if (!params.country) { /* No param route */
         this.updateFranceNationalDatas();
       }
@@ -82,6 +87,21 @@ export class CoronavirusSheetComponent implements OnInit {
 
   openTab(type: string): void {
     this.typeDiagram = type;
+  }
+
+  selectTabTimeline(type: string): void {
+    this.tabTimelineSelected = type;
+    if (this.selectedRegion) {
+      this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('region', this.selectedRegion.code);
+    } else if (this.selectedDepartment) {
+      this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('department', this.selectedDepartment.code);
+    } else {
+      this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('national');
+    }
+  }
+
+  selectTabRepartition(type: string): void {
+    this.tabRepartionSelected = type;
   }
 
   private updateFranceDatas(params: any): void {

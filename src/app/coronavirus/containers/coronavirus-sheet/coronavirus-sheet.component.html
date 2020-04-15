@@ -114,7 +114,7 @@
                     <div class="message-header">
                       <p>Données indisponibles</p>
                     </div>
-                    <div class="message-body">
+                    <div class="message-body">initChartAgeNationalStat
                       Nous n'avons pas trouvé de données.
                     </div>
                   </article>
@@ -188,16 +188,8 @@
             </app-coronavirus-table>
           </div>
         </div>
-        <div class="columns" *ngIf="isBrowser">
-          <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion">
-            <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
-            </app-coronavirus-graph>
-          </div>
-          <div class="column is-spaced" *ngIf="!selectedRegion">
-            <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
-            </app-coronavirus-chart-pie>
-          </div>
-          <div class="column is-spaced is-half" *ngIf="selectedRegion">
+        <div class="columns" *ngIf="selectedRegion">
+          <div class="column is-three-fifths is-spaced">
             <h2 class="title">Tableau récapitulatif de l'épidémie dans la région</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
@@ -210,10 +202,40 @@
               [detailedStats]="franceStats.value.details" [selectedCountry]="selectedCountry">
             </app-coronavirus-table>
           </div>
+          <div class="column is-two-fifths" *ngIf="selectedRegion">
+            <div class="tabs">
+              <ul>
+                <li [class.is-active]="tabRepartionSelected === 'repartitionAge'"
+                  (click)="selectTabRepartition('repartitionAge')"><a>Répartition selon l'âge</a></li>
+                <li [class.is-active]="tabRepartionSelected === 'repartitionSex'"
+                  (click)="selectTabRepartition('repartitionSex')"><a>Répartition selon le sexe</a></li>
+              </ul>
+            </div>
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-national-age'" [data]="franceStats.value.age">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionSex'">
+              <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
+              </app-coronavirus-chart-pie>
+            </ng-container>
+          </div>
         </div>
-        <div class="columns">
-          <div class="column is-spaced" [class.is-two-thirds]="!selectedRegion" [class.is-half]="selectedRegion">
-            <ng-container>
+        <div class="columns" *ngIf="isBrowser">
+          <div class="column">
+            <div class="tabs">
+              <ul>
+                <li [class.is-active]="tabTimelineSelected === 'timelineCumulated'"
+                  (click)="selectTabTimeline('timelineCumulated')"><a>Évolution cumulée</a></li>
+                <li [class.is-active]="tabTimelineSelected === 'timelineDay'"
+                  (click)="selectTabTimeline('timelineDay')"><a>Nombre journalier</a></li>
+              </ul>
+            </div>
+            <ng-container *ngIf="tabTimelineSelected === 'timelineCumulated'">
+              <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
+              </app-coronavirus-graph>
+            </ng-container>
+            <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
               <h2 class="title">Nombre journalier
                 de nouvelles hospitalisations, de nouvelles admissions
                 en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier</h2>
@@ -223,16 +245,53 @@
                 quotidien de nouvelles admissions en réanimation, le nombre quotidien de personnes nouvellement
                 décédées, le nombre quotidien de nouveaux retours à domicile.
               </p>
-              <app-coronavirus-chart-test-column [nameChart]="'chart-day'" [data]="franceStats.value.timelineDay">
-              </app-coronavirus-chart-test-column>
+              <ng-container *ngIf="(franceStatsDay$ | loading | async) as franceStatsDay">
+                <ng-container *ngIf="franceStatsDay.value">
+                  <app-coronavirus-chart-test-column [nameChart]="'chart-day'" [data]="franceStatsDay.value">
+                  </app-coronavirus-chart-test-column>
+                </ng-container>
+                <ng-container *ngIf="franceStatsDay.loading">
+                  <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+                </ng-container>
+                <ng-container
+                  *ngIf="(franceStatsDay.value && franceStatsDay.value.length === 0) && !franceStatsDay.loading">
+                  <article class="message is-danger is-spaced">
+                    <div class="message-header">
+                      <p>Données indisponibles</p>
+                    </div>
+                    <div class="message-body">
+                      Nous n'avons pas trouvé de données.
+                    </div>
+                  </article>
+                </ng-container>
+              </ng-container>
+
             </ng-container>
+
           </div>
-          <div class="column is-spaced" *ngIf="selectedRegion">
-            <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
-            </app-coronavirus-chart-pie>
-          </div>
-          <div class="column is-spaced">
-            <app-coronavirus-chart-age [dataAge]="franceStats.value.age"></app-coronavirus-chart-age>
+          <div class="column is-two-fifths" *ngIf="!selectedRegion">
+            <div class="tabs">
+              <ul>
+                <li [class.is-active]="tabRepartionSelected === 'repartitionAge'"
+                  (click)="selectTabRepartition('repartitionAge')"><a>Répartition selon l'âge</a></li>
+                <li [class.is-active]="tabRepartionSelected === 'repartitionSex'"
+                  (click)="selectTabRepartition('repartitionSex')"><a>Répartition selon le sexe</a></li>
+              </ul>
+            </div>
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
+              <ng-container *ngIf="selectedDepartment">
+                <app-coronavirus-chart-age [dataAge]="franceStats.value.age"></app-coronavirus-chart-age>
+              </ng-container>
+              <ng-container *ngIf="!selectedDepartment">
+                <app-coronavirus-chart-test-column [nameChart]="'chart-national-age'" [data]="franceStats.value.age">
+                </app-coronavirus-chart-test-column>
+              </ng-container>
+
+            </ng-container>
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionSex'">
+              <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
+              </app-coronavirus-chart-pie>
+            </ng-container>
           </div>
         </div>
       </ng-container>

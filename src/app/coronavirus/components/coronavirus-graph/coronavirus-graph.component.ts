@@ -37,7 +37,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     if (!this.dataFrance.total[0].code) { // is national data page
       if (this.dataType === 'men' || this.dataType === 'women') {
         this.chart.series.removeIndex(
-          this.chart.series.indexOf(this.chart.map.getKey('Cas signalés'))
+          this.chart.series.indexOf(this.chart.map.getKey('Cas confirmés'))
         ).dispose();
         this.chart.map.getKey('Décès').dataFields.valueY = 'deaths';
       } else {
