@@ -33,6 +33,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
   }
 
   onSelectTypeChange(): void {
+    this.dataFrance[this.dataType].map((date => new Date(date)));
     this.chart.data = this.dataFrance[this.dataType];
     if (!this.dataFrance.total[0].code) { // is national data page
       if (this.dataType === 'men' || this.dataType === 'women') {
@@ -107,10 +108,10 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     series.stroke = am4core.color(color); // red
     series.fill = am4core.color(color);
     series.fontSize = 13;
-
+    series.showOnInit = false;
     /* Tooltip */
     series.tooltipText = '{dateX}\n[bold]{valueY}[/] {name}';
-    series.tooltip.background.strokeOpacity = 0;
+    series.tooltip.background.strokeOpacity = 1;
     series.tooltip.pointerOrientation = 'vertical';
     series.tooltip.getFillFromObject = false;
     series.tooltip.background.fill = am4core.color(color);
@@ -119,7 +120,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
 
     /* Bullet */
     const bullet = series.bullets.push(new am4charts.CircleBullet());
-    bullet.circle.strokeWidth = 2;
+    bullet.strokeWidth = 2;
     bullet.stroke = am4core.color(color);
     /* Hover */
     const bullethover = bullet.states.create('hover');

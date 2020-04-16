@@ -4,14 +4,13 @@ import {
 } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
-import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4geodata_franceHigh from '@amcharts/amcharts4-geodata/franceHigh';
 import am4geodata_franceDepartmentsHigh from '@amcharts/amcharts4-geodata/franceDepartmentsHigh';
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
-am4core.useTheme(am4themes_animated);
-
+am4core.options.queue = true;
+am4core.options.onlyShowOnViewport = true;
 export interface ThemeColor {
   min: string;
   max: string;
@@ -257,7 +256,6 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
     if (!this.detailedStats.length) { // One country
       this.detailedStats = [this.detailedStats];
     }
-
     this.detailedStats.forEach((stat) => {
       const id = this.selectedCountry.country === 'France' ? `FR-${stat.code}` : stat.code;
       if (this.selectedTypeData === 'test') {
@@ -390,13 +388,14 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       return longitude;
     });
     this.circle = imageTemplate.createChild(am4core.Circle);
-    this.circle.fillOpacity = 0.7;
+    this.circle.fillOpacity = 1;
     this.circle.propertyFields.fill = 'color';
     this.imageSeries.tooltip.getFillFromObject = false;
     this.imageSeries.tooltip.background.cornerRadius = 0;
-    this.imageSeries.tooltip.background.strokeOpacity = 0;
+    this.imageSeries.tooltip.background.strokeOpacity = 1;
     this.imageSeries.tooltip.label.textAlign = 'middle';
     this.imageSeries.tooltip.label.fontSize = 14;
+    this.series.showOnInit = false;
     this.imageSeries.tooltip.label.wrap = true;
     this.imageSeries.tooltip.label.width = 250;
     this.imageSeries.heatRules.push({

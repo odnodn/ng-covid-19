@@ -90,8 +90,8 @@ export class CoronavirusChartAgeComponent implements OnInit, OnDestroy {
     this.series.columns.template.tooltipText = '[bold]{name}[/]\n{categoryX} : [bold]{valueY.percent}%[/] ({valueY.formatNumber(\'#\')} personnes)';
 
     /* Opacity */
-    this.series.columns.template.strokeOpacity = 0;
-
+    this.series.columns.template.strokeOpacity = 1;
+    this.series.columns.template.strokeWidth = 0;
     /* Bar width */
     this.series.columns.template.width = am4core.percent(95);
 

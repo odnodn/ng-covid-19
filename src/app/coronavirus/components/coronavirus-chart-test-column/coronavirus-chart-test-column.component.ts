@@ -297,6 +297,9 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   private createXSeries(type: string): void {
     if (type !== 'date') {
       const categoryAxis = this.chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.renderer.labels.template.rotation = 300;
+      categoryAxis.renderer.labels.template.verticalCenter = 'middle';
+      categoryAxis.renderer.labels.template.horizontalCenter = 'middle';
       categoryAxis.dataFields.category = 'age';
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.fontSize = 13;
@@ -309,6 +312,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       categoryAxis.fontSize = 13;
       categoryAxis.renderer.labels.template.dy = 5;
       categoryAxis.cursorTooltipEnabled = false;
+
     }
 
   }
@@ -329,6 +333,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     if (field === 'testTotalNegative' || field === 'passageNoCorona' || field === 'hospitalNoCorona') {
       return;
     }
+
     this.series.tooltip.label.wrap = true;
     this.series.tooltip.label.width = 250;
     this.series.tooltip.pointerOrientation = 'vertical';
@@ -421,14 +426,15 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   private createSeries(field: string, name: string, color: string, xAxis: string): void {
     this.series = this.chart.series.push(new am4charts.ColumnSeries());
-    this.series.columns.template.strokeOpacity = 0;
+    this.series.showOnInit = false;
+    this.series.columns.template.strokeOpacity = 1;
+    this.series.columns.template.strokeWidth = 0;
     this.series.columns.template.fill = am4core.color(color);
     this.series.columns.template.width = am4core.percent(75);
     this.series.dataFields.valueY = field;
+
     this.series.name = name;
     this.series.id = field;
-    /* Opacity */
-    this.series.columns.template.strokeOpacity = 0;
 
     this.customTooltip(field, color);
     /* Bar width */

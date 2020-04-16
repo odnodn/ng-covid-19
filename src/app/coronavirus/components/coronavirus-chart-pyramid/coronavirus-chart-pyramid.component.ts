@@ -106,7 +106,7 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
     pyramidSeriesMale.clustered = false;
     pyramidSeriesMale.columns.template.fill = am4core.color('#4a8cfd');
     pyramidSeriesMale.columns.template.strokeOpacity = 0;
-
+    pyramidSeriesMale.columns.template.strokeWidth = 0;
   }
 
   createWomenPyramid(): void {
@@ -132,7 +132,8 @@ export class CoronavirusChartPyramidComponent implements OnInit, OnDestroy {
     pyramidSeriesFemale.xAxis = pyramidXAxisFemale;
     pyramidSeriesFemale.clustered = false;
     pyramidSeriesFemale.columns.template.fill = am4core.color('#fd5260');
-    pyramidSeriesFemale.columns.template.strokeOpacity = 0;
+    pyramidSeriesFemale.columns.template.strokeOpacity = 1;
+    pyramidSeriesFemale.columns.template.strokeWidth = 0;
 
   }
 

@@ -153,7 +153,7 @@
           [mainStats]="franceStats.value.total" [selectedZone]="selectedZone">
         </app-coronavirus-stats>
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
-          <div class="column is-spaced" *ngIf="isBrowser">
+          <div class="column is-spaced">
             <h2 class="title">Cartographie de l'épidémie en France</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
@@ -170,9 +170,11 @@
                 Par région
               </mat-option>
             </mat-select>
-            <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
               [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
+            </ng-container>
           </div>
           <div class="column is-spaced is-half">
             <h2 class="title">Tableau récapitulatif de l'épidémie en France</h2>
@@ -211,27 +213,27 @@
                   (click)="selectTabRepartition('repartitionSex')"><a>Répartition selon le sexe</a></li>
               </ul>
             </div>
-            <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionAge' && isBrowser">
               <app-coronavirus-chart-test-column [nameChart]="'chart-national-age'" [data]="franceStats.value.age">
               </app-coronavirus-chart-test-column>
             </ng-container>
-            <ng-container *ngIf="tabRepartionSelected === 'repartitionSex'">
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionSex' && isBrowser">
               <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
               </app-coronavirus-chart-pie>
             </ng-container>
           </div>
         </div>
-        <div class="columns" *ngIf="isBrowser">
+        <div class="columns">
           <div class="column">
             <div class="tabs">
               <ul>
                 <li [class.is-active]="tabTimelineSelected === 'timelineCumulated'"
-                  (click)="selectTabTimeline('timelineCumulated')"><a>Évolution cumulée</a></li>
+                  (click)="selectTabTimeline('timelineCumulated')"><a>Évolution</a></li>
                 <li [class.is-active]="tabTimelineSelected === 'timelineDay'"
                   (click)="selectTabTimeline('timelineDay')"><a>Nombre journalier</a></li>
               </ul>
             </div>
-            <ng-container *ngIf="tabTimelineSelected === 'timelineCumulated'">
+            <ng-container *ngIf="tabTimelineSelected === 'timelineCumulated' && isBrowser">
               <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
               </app-coronavirus-graph>
             </ng-container>
@@ -246,7 +248,7 @@
                 décédées, le nombre quotidien de nouveaux retours à domicile.
               </p>
               <ng-container *ngIf="(franceStatsDay$ | loading | async) as franceStatsDay">
-                <ng-container *ngIf="franceStatsDay.value">
+                <ng-container *ngIf="franceStatsDay.value && isBrowser">
                   <app-coronavirus-chart-test-column [nameChart]="'chart-day'" [data]="franceStatsDay.value">
                   </app-coronavirus-chart-test-column>
                 </ng-container>
@@ -279,16 +281,16 @@
               </ul>
             </div>
             <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
-              <ng-container *ngIf="selectedDepartment">
+              <ng-container *ngIf="selectedDepartment && isBrowser">
                 <app-coronavirus-chart-age [dataAge]="franceStats.value.age"></app-coronavirus-chart-age>
               </ng-container>
-              <ng-container *ngIf="!selectedDepartment">
+              <ng-container *ngIf="!selectedDepartment && isBrowser">
                 <app-coronavirus-chart-test-column [nameChart]="'chart-national-age'" [data]="franceStats.value.age">
                 </app-coronavirus-chart-test-column>
               </ng-container>
 
             </ng-container>
-            <ng-container *ngIf="tabRepartionSelected === 'repartitionSex'">
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionSex' && isBrowser">
               <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
               </app-coronavirus-chart-pie>
             </ng-container>
