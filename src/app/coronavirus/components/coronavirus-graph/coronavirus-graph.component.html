@@ -1,8 +1,5 @@
-<h2 class="title" *ngIf="dataFrance">
-  Évolution de l'épidémie du Coronavirus COVID-19 en France
-</h2>
-<h2 class="title" *ngIf="!dataFrance">
-  Évolution de l'épidémie de Coronavirus COVID-19
+<h2 class="title">
+  Évolution de l'épidémie du Coronavirus COVID-19
 </h2>
 <p *ngIf="dataFrance">
   <ng-container *ngIf="!dataFrance.total[0].code">
