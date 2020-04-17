@@ -8,15 +8,20 @@
       19:00</strong> par Santé publique.<br>
   </ng-container>
   <ng-container *ngIf="selectedZone">
-    Au <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</strong>,
-    {{selectedZone}} <strong>{{mainStats.translation}}</strong> recense
-    {{mainStats.hospitalStart | number: '' :'fr-FR'}}
-    hospitalisations dont {{mainStats.reanimationStart | number: '' :'fr-FR'}} en réanimation au total depuis le début
-    de l'épidémie. Actuellement,
-    {{mainStats.hospital | number: '' :'fr-FR'}} patients sont hospitalisés dont
-    {{mainStats.reanimation | number: '' :'fr-FR'}} en réanimation.
-    Au total, {{mainStats.deaths | number: '' :'fr-FR'}} patients sont décédés et
-    {{mainStats.recovered | number: '' :'fr-FR'}} sont retournés à leur domicile.
+    <article class="message is-info">
+      <div class="message-header">
+        <p>La situation au {{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</p>
+      </div>
+      <div class="message-body">
+        Au <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</strong>,
+        {{selectedZone}} <strong>{{mainStats.translation}}</strong> compte actuellement
+        {{mainStats.hospital | number: '' :'fr-FR'}} patients hospitalisés pour cause de COVID-19 dont
+        {{mainStats.reanimation | number: '' :'fr-FR'}} en réanimation.
+        Après hospitalisation, {{mainStats.deaths | number: '' :'fr-FR'}} patients sont décédés et
+        {{mainStats.recovered | number: '' :'fr-FR'}} sont retournés à leur domicile.
+      </div>
+    </article>
+
   </ng-container>
 </p>
 <div class="tile is-ancestor">
