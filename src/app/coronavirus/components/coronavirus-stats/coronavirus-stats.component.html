@@ -1,29 +1,41 @@
-<p>
-  <ng-container *ngIf="mainStats.updated">
-    Les données Worldometer ont été mises à jour le
-    <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:mm':'fr-FR'}}</strong>.<br>
-  </ng-container>
-  <ng-container *ngIf="lastUpdate">
-    Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à
-      19:00</strong> par Santé publique.<br>
-  </ng-container>
+<div class="resume">
+  <p>
+    <ng-container *ngIf="mainStats.updated">
+      Les données Worldometer ont été mises à jour le
+      <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:mm':'fr-FR'}}</strong>.<br>
+    </ng-container>
+    <!-- <ng-container *ngIf="lastUpdate">
+      Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à
+        19:00</strong> par Santé publique.<br>
+    </ng-container> -->
+  </p>
   <ng-container *ngIf="selectedZone">
     <article class="message is-info">
       <div class="message-header">
-        <p>La situation au {{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</p>
+        <div>Le résumé du {{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} dans {{selectedZone}} {{mainStats.translation}}</div>
+        <!-- Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à
+          19:00</strong> par Santé publique. -->
+          <div class="fb-share-button"
+          [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
+          data-layout="button">
+        </div>
+        <a class="twitter-share-button"
+        [href]="'https://twitter.com/intent/tweet?text=https://www.cascoronavirus.fr' + router.url">
+      Tweet</a>
       </div>
       <div class="message-body">
         Au <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</strong>,
-        {{selectedZone}} <strong>{{mainStats.translation}}</strong> compte actuellement
+        {{selectedZone}} <strong>{{mainStats.translation}}</strong> recense actuellement
         {{mainStats.hospital | number: '' :'fr-FR'}} patients hospitalisés pour cause de COVID-19 dont
-        {{mainStats.reanimation | number: '' :'fr-FR'}} en réanimation.
+        {{mainStats.reanimation | number: '' :'fr-FR'}} sont en réanimation.
         Après hospitalisation, {{mainStats.deaths | number: '' :'fr-FR'}} patients sont décédés et
-        {{mainStats.recovered | number: '' :'fr-FR'}} sont retournés à leur domicile.
+        {{mainStats.recovered | number: '' :'fr-FR'}} patients sont retournés à leur domicile depuis le début de l'épidémie.
       </div>
     </article>
 
   </ng-container>
-</p>
+</div>
+
 <div class="tile is-ancestor">
   <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
     <article class="tile is-child notification is-warning">
@@ -149,8 +161,8 @@
             ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }})
           </span>
         </p>
-        <p class="subtitle" *ngIf="selectedCountry.country === 'France'">Décès, <span class="rate">soit un taux de décès de <strong
-              class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
+        <p class="subtitle" *ngIf="selectedCountry.country === 'France'">Décès, <span class="rate">soit un taux de décès
+            de <strong class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
         </p>
         <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Décès</p>
         <p class="legend" *ngIf="selectedZone">
@@ -174,8 +186,10 @@
         </span>
 
       </p>
-      <p *ngIf="selectedCountry.country === 'France'" class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">, soit un taux de guérison de
-          <strong class="number" *ngIf="selectedCountry.country === 'France'">{{mainStats.recoveredRate.toFixed(1)}} %</strong> après hospitalisation</span>
+      <p *ngIf="selectedCountry.country === 'France'" class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">,
+          soit un taux de guérison de
+          <strong class="number" *ngIf="selectedCountry.country === 'France'">{{mainStats.recoveredRate.toFixed(1)}}
+            %</strong> après hospitalisation</span>
         <span class="rate" *ngIf="!selectedZone">, soit un taux de guérison de
           <strong class="number">{{ mainStats.recovered | percentage : mainStats.hospitalStart  }}</strong> après
           hospitalisation

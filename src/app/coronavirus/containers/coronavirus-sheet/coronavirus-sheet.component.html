@@ -18,7 +18,7 @@
     de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
     graphiques détaillés.
   </p>
-  <p class="description" *ngIf="selectedCountry?.country === 'France'">
+  <!-- <p class="description" *ngIf="selectedCountry?.country === 'France'">
     Suivez en direct l'épidémie en <strong>
       <ng-container *ngIf="!selectedRegion && !selectedDepartment">
         {{selectedCountry?.country}}
@@ -27,7 +27,7 @@
       {{selectedDepartment?.name}}
     </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
     quotidiennes relatives à l'épidémie du COVID-19.
-  </p>
+  </p> -->
 
 
   <!-- World and Country Container -->
@@ -228,9 +228,9 @@
             <div class="tabs">
               <ul>
                 <li [class.is-active]="tabTimelineSelected === 'timelineCumulated'"
-                  (click)="selectTabTimeline('timelineCumulated')"><a>Évolution de l'épidémie</a></li>
+                  (click)="selectTabTimeline('timelineCumulated')"><a>Évolution temporelle</a></li>
                 <li [class.is-active]="tabTimelineSelected === 'timelineDay'"
-                  (click)="selectTabTimeline('timelineDay')"><a>Nombre journalier</a></li>
+                  (click)="selectTabTimeline('timelineDay')"><a>Nombre quotidien de nouveaux cas</a></li>
               </ul>
             </div>
             <ng-container *ngIf="tabTimelineSelected === 'timelineCumulated' && isBrowser">
@@ -238,7 +238,7 @@
               </app-coronavirus-graph>
             </ng-container>
             <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
-              <h2 class="title">Nombre journalier
+              <h2 class="title">Nombre quotidien
                 de nouvelles hospitalisations, de nouvelles admissions
                 en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier</h2>
               <p>

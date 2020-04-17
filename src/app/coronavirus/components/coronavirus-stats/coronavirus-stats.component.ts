@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
@@ -6,10 +7,19 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./coronavirus-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusStatsComponent {
+export class CoronavirusStatsComponent implements Af {
 
   @Input() mainStats;
   @Input() selectedCountry;
   @Input() selectedZone;
   @Input() lastUpdate;
+
+  constructor(public readonly router: Router) {
+
+  }
+
+  ngAfterViewInit() {
+    // @ts-ignore
+    twttr.widgets.load();
+  }
 }
