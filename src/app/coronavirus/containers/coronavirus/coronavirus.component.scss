@@ -17,12 +17,28 @@ img {
 }
 
 .don {
-  display: flex;
-  margin-bottom: 1.5em;
   align-items: center;
   font-size: 0.8em;
-  margin-top: 1.5em;
-  .text {
-    width: 450px;
+  img {
+    width: 150px;
+    height: 50px;
   }
+  text-align: center;
+  .text {
+    width: 100%;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 640px) {
+    a {
+      display: flex;
+    }
+    .text {
+      width: 400px;
+      text-align: justify;
+    }
+  }
+
+
+
 }
