@@ -18,17 +18,6 @@
     de morts et de cas guéris en <strong>{{selectedCountry?.translation}}</strong> à travers un dashboard et des
     graphiques détaillés.
   </p>
-  <!-- <p class="description" *ngIf="selectedCountry?.country === 'France'">
-    Suivez en direct l'épidémie en <strong>
-      <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-        {{selectedCountry?.country}}
-      </ng-container>
-      {{selectedRegion?.name}}
-      {{selectedDepartment?.name}}
-    </strong> du <strong>Coronavirus COVID-19</strong> avec les données Worldometer et les données hospitalières
-    quotidiennes relatives à l'épidémie du COVID-19.
-  </p> -->
-
 
   <!-- World and Country Container -->
   <ng-container *ngIf="(detailedStats$ | loading | async) as detailedStats">
@@ -114,7 +103,7 @@
                     <div class="message-header">
                       <p>Données indisponibles</p>
                     </div>
-                    <div class="message-body">initChartAgeNationalStat
+                    <div class="message-body">
                       Nous n'avons pas trouvé de données.
                     </div>
                   </article>

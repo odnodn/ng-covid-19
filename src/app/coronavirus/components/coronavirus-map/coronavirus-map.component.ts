@@ -10,7 +10,6 @@ import am4geodata_franceDepartmentsHigh from '@amcharts/amcharts4-geodata/france
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
 am4core.options.queue = true;
-am4core.options.onlyShowOnViewport = true;
 export interface ThemeColor {
   min: string;
   max: string;

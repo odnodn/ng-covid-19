@@ -25,14 +25,14 @@ export class CoronavirusStatsComponent {
       return `Au ${this.datePipe.transform(this.mainStats.total.hospital.lastUpdate, 'd MMMM', 'fr-FR')}, ` +
       `${this.selectedZone} ${this.mainStats.total.hospital.translation} ` +
       `recense ${this.mainStats.total.hospital.hospital} ` +
-      `hospitalisations en cours pour cause de #COVID_19 dont ${this.mainStats.total.hospital.reanimation} en réanimation. ` +
+      `hospitalisations en cours pour cause de #COVID19 dont ${this.mainStats.total.hospital.reanimation} en réanimation. ` +
       `${this.mainStats.total.hospital.deaths} patients sont décédés et ${this.mainStats.total.hospital.recovered} sont ` +
       `retournés à leur domicile depuis le début de l'épidémie.`;
     }
     return `Au ${this.datePipe.transform(this.mainStats.total.global.lastUpdate, 'd MMMM', 'fr-FR')},  ` +
     `la ${this.selectedCountry.translation} recense ${this.mainStats.total.hospital.hospital} ` +
-    `hospitalisations en cours pour cause de #COVID_19 dont ${this.mainStats.total.hospital.reanimation} en réanimation. ` +
+    `hospitalisations en cours pour cause de #COVID19 dont ${this.mainStats.total.hospital.reanimation} en réanimation. ` +
     `Après hospitalisation, ${this.mainStats.total.hospital.recovered} personnes sont de retour à domicile. ` +
-    `On compte ${this.mainStats.total.global.deaths} décès au total depuis le début de l'épidémie.`;
+    `On compte ${this.mainStats.total.global.deaths} décès au total depuis le début de l'épidémie. `;
   }
 }
