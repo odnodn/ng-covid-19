@@ -199,18 +199,18 @@ export class CoronavirusSheetComponent implements OnInit {
     this.title.setTitle(`Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { name: 'description', content: `Coronavirus COVID-19 ${region.name} - Suivez l'évolution de l'épidémie dans ${type} ${region.name}` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: `https://www.cascoronavirus.fr/` },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/france/${urlType}/${region.slug}` },
-      { property: 'og:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
+      { property: 'og:title', content: `Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
       // tslint:disable-next-line:max-line-length
-      { property: 'og:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { property: 'og:description', content: `Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
       { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: `Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}` },
+      { name: 'twitter:title', content: `Coronavirus ${region.name} - suivez l'évolution de l'épidémie dans ${region.name}` },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: `Cas de Coronavirus COVID-19 ${region.name} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel dans ${type} ${region.name}` },
+      { name: 'twitter:description', content: `Coronavirus COVID-19 ${region.name} - suivez l'évolution de l'épidémie dans ${type} ${region.name}` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];

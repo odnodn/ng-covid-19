@@ -1,5 +1,5 @@
 .increase {
-  font-size: 0.6em;
+  font-size: 0.55em;
   font-weight: normal;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .rate {
-  font-size: 0.8em;
+  font-size: 0.9em;
   .number {
     font-size: 1.1em;
   }
@@ -39,6 +39,23 @@
 
 .resume {
   display: flex;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
 }
+
+.share-buttons {
+  display: flex;
+}
+
+.subtitle {
+  font-size: 0.95em;
+}
+
+.title {}
+
+.source-date {
+  min-width: 120px;
+  height: auto;
+}
+.tile.is-parent {
+  display: flex;
+}
+

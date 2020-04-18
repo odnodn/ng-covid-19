@@ -157,7 +157,6 @@ body {
 @import "../node_modules/bulma/sass/elements/notification.sass";
 @import "../node_modules/bulma/sass/elements/button.sass";
 
-
 /* Form */
 @import "../node_modules/bulma/sass/form/_all.sass";
 
@@ -168,6 +167,7 @@ body {
 
 /* Grid */
 @import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/utilities/mixins.sass";
 
 /* Layout */
 @import "../node_modules/bulma/sass/layout/_all.sass";
@@ -209,4 +209,32 @@ body {
 
 strong {
   color: unset;
+}
+
+.stats-france {
+  .notification {
+    @include until($tablet) {
+     height: 120px;
+     padding: 1em;
+   }
+
+   @include from($tablet) {
+     height: 260px;
+     padding: 1em;
+   }
+
+   @include from($desktop) {
+     height: 200px;
+   }
+
+
+   @include from($widescreen) {
+     height: 170px;
+   }
+
+   @include from($fullhd) {
+    height: 120px;
+  }
+ }
+
 }

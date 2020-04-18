@@ -1,207 +1,597 @@
-<div class="resume">
-  <p>
-    <ng-container *ngIf="mainStats.updated">
-      Les données Worldometer ont été mises à jour le
-      <strong>{{mainStats?.updated | date: 'd MMMM yyyy à HH:mm':'fr-FR'}}</strong>.<br>
+
+
+<div class="tile is-ancestor" *ngIf="selectedCountry.country !== 'France'">
+  <div class="tile is-vertical">
+    <div class="tile">
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <p class="subtitle">
+            Les données Worldometer ont été mises à jour le
+            <strong>{{
+              mainStats?.updated | date: "d MMMM yyyy à HH:mm":"fr-FR"
+            }}</strong
+            >.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="tile">
+      <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
+        <article class="tile is-child notification is-warning">
+          <p class="title">
+            {{ mainStats.cases | number: "":"fr-FR" }}
+            <span
+              class="increase"
+              *ngIf="selectedCountry?.country !== 'France' && mainStats.todayCases"
+            >
+              ({{ mainStats?.todayCases | symbolNumber: "mainStats" }})
+            </span>
+          </p>
+          <p class="subtitle">
+            Cas
+            <ng-container *ngIf="selectedCountry.country !== 'France'">
+              confirmés
+            </ng-container>
+            <span class="note">
+              <ng-container *ngIf="mainStats?.todayCasesHospital">
+                dont
+                <strong class="important-stat">{{
+                  mainStats.casesHospital | number: "":"fr-FR"
+                }}</strong>
+                confirmés ({{
+                  mainStats?.todayCasesHospital | symbolNumber: "mainStats"
+                }}
+                en 24h)
+              </ng-container>
+              <ng-container *ngIf="mainStats?.todayCasesEhpad">
+                et
+                <strong class="important-stat">{{
+                  mainStats.casesEhpad | number: "":"fr-FR"
+                }}</strong>
+                signalés ({{
+                  mainStats?.todayCasesEhpad | symbolNumber: "mainStats"
+                }}
+                en 24h) en ESMS
+              </ng-container>
+            </span>
+          </p>
+          <div class="legend">
+            Source : Worldometer
+          </div>
+        </article>
+      </div>
+      <div class="tile is-parent" *ngIf="mainStats.critical !== undefined">
+        <article class="tile is-child notification reanimation">
+          <p class="title">{{ mainStats.critical | number: "":"fr-FR" }}</p>
+          <p class="subtitle">Critiques</p>
+          <p class="legend">
+            Source : Worldometer
+          </p>
+        </article>
+      </div>
+      <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
+        <article class="tile is-child notification is-danger ">
+          <ng-container
+            *ngIf="mainStats.deaths !== undefined && !mainStats.deathsHospital"
+          >
+            <p class="title">
+              {{ mainStats.deaths | number: "":"fr-FR" }}
+              <span
+                class="increase"
+                *ngIf="
+                  selectedCountry.country !== 'France' && mainStats.todayDeaths
+                "
+              >
+                ({{ mainStats.todayDeaths | symbolNumber: "mainStats" }})
+              </span>
+            </p>
+            <p class="subtitle">
+              Décès
+            </p>
+            <p class="legend" >
+              Source : Worldometer
+            </p>
+          </ng-container>
+        </article>
+      </div>
+      <div class="tile is-parent" *ngIf="mainStats.recovered !== undefined">
+        <article class="tile is-child notification is-success active-map">
+          <p class="title">
+            {{ mainStats.recovered | number: "":"fr-FR" }}
+            <span
+              class="increase"
+              *ngIf="mainStats.todayRecovered"
+            >
+              ({{ mainStats.todayRecovered | symbolNumber: "mainStats" }})
+            </span>
+          </p>
+          <p class="subtitle">
+            Guéris
+          </p>
+          <p class="legend">
+            Source : Worldometer
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="selectedCountry.country === 'France'">
+  <ng-container *ngIf="!selectedZone">
+    <ng-container
+      *ngIf="
+      mainStats?.total.global.lastUpdate &&  mainStats?.total.esms.lastUpdate && mainStats?.total.global.lastUpdate === mainStats?.total.esms.lastUpdate
+      "
+    >
+      <article class="message is-info">
+        <div class="message-header">
+          <div>
+            Le résumé du
+            {{
+              mainStats?.total.global.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+            }}
+            en France
+          </div>
+          <div class="share-buttons">
+            <div
+              class="fb-share-button"
+              [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
+              data-layout="button"
+            ></div>
+            <a
+              class="twitter-share-button"
+              data-via="cascoronavirus"
+              data-url="https://"
+              data-hashtags="coronavirus"
+              [href]="'https://twitter.com/share?text=' + getTwittText()"
+            >
+              Tweet</a
+            >
+          </div>
+        </div>
+        <div class="message-body">
+          Au
+          <strong>{{
+            mainStats?.total.global.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+          }}</strong
+          >,
+          <ng-container *ngIf="!selectedZone">
+            la <strong>{{ selectedCountry.translation }}</strong>
+          </ng-container>
+          recense
+          {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
+          hospitalisations en cours pour cause de COVID-19 dont
+          {{ mainStats.total.hospital.reanimation | number: "":"fr-FR" }} en
+          réanimation. Après hospitalisation,
+          {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }} sont de
+          retour à leur domicile. À cette même date,
+          {{ mainStats.total.hospital.deathsHospital | number: "":"fr-FR" }}
+          personnes sont décédées à l'hôpital et
+          {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }} en ESMS
+          depuis le début de l'épidémie.
+        </div>
+      </article>
     </ng-container>
-    <!-- <ng-container *ngIf="lastUpdate">
-      Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à
-        19:00</strong> par Santé publique.<br>
-    </ng-container> -->
-  </p>
+    <div class="stats-france tile  is-ancestor">
+      <div class="tile is-vertical ">
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">Statistiques globales</p>
+              <p class="subtitle">
+                Les données globales ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.global.lastUpdate
+                    | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box notification is-warning">
+              <p class="title">
+                {{ mainStats?.total.global.cases | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.global.todayCases
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Cas confirmés au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box notification is-danger">
+              <p class="title">
+                {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.global.todayDeaths
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Décès au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-vertical ">
+        <div class="tile  is-parent">
+          <div class="tile is-child box">
+            <p class="title">Statistiques ESMS</p>
+            <p class="subtitle">
+              Les données des ESMS ont été mises à jour le
+              <strong>{{
+                mainStats?.total.esms.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+              }}</strong
+              >.
+            </p>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child box notification is-warning">
+            <p class="title">
+              {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
+              <span class="increase">
+                ({{
+                  mainStats?.total.esms.todayCasesEsms
+                    | symbolNumber: "mainStats"
+                }}
+                en 24h)
+              </span>
+            </p>
+            <p class="subtitle">
+              Cas confirmés en ESMS depuis le début de l'épidémie
+            </p>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child box notification is-danger">
+            <p class="title">
+              {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }}
+              <span class="increase">
+                ({{
+                  mainStats?.total.esms.todayDeathsEsms
+                    | symbolNumber: "mainStats"
+                }}
+                en 24h)
+              </span>
+            </p>
+            <p class="subtitle">
+              Décès en ESMS depuis le début de l'épidémie
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-vertical  is-7">
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">Statistiques hospitalières</p>
+              <p class="subtitle">
+                Les données hospitalières ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.hospital.lastUpdate
+                    | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box notification hospital">
+              <p class="title">
+                {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayHospital
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Hospitalisations en cours
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification hospital">
+              <p class="title">
+                {{
+                  mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayHospitalStart
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Hospitalisations au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification is-success">
+              <p class="title">
+                {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayRecovered
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Guéris après hospitalisation depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box notification reanimation">
+              <p class="title">
+                {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayReanimation
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Réanimations en cours
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification reanimation">
+              <p class="title">
+                {{
+                  mainStats.total.hospital.reanimationStart | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayReanimationStart
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Réanimations au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification is-danger">
+              <p class="title">
+                {{
+                  mainStats.total.hospital.deathsHospital | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayDeathsHospital
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Décès après hospitalisation depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
   <ng-container *ngIf="selectedZone">
     <article class="message is-info">
       <div class="message-header">
-        <div>Le résumé du {{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} dans {{selectedZone}} {{mainStats.translation}}</div>
-        <!-- Les données hospitalières ont été mises à jour le <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}} à
-          19:00</strong> par Santé publique. -->
-          <div class="fb-share-button"
-          [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
-          data-layout="button">
+        <div>
+          Le résumé du
+          {{
+            mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+          }}
+          dans {{ selectedZone }} {{ mainStats?.total.hospital.translation }}
         </div>
-        <a class="twitter-share-button"
-        [href]="'https://twitter.com/intent/tweet?text=https://www.cascoronavirus.fr' + router.url">
-      Tweet</a>
+        <div class="share-buttons">
+          <div
+            class="fb-share-button"
+            [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
+            data-layout="button"
+          ></div>
+          <a
+            class="twitter-share-button"
+            data-via="cascoronavirus"
+            data-url="https://"
+            data-hashtags="coronavirus"
+            [href]="'https://twitter.com/share?text=' + getTwittText()"
+          >
+            Tweet</a
+          >
+        </div>
       </div>
       <div class="message-body">
-        Au <strong>{{lastUpdate | date: 'd MMMM yyyy' :'fr-FR'}}</strong>,
-        {{selectedZone}} <strong>{{mainStats.translation}}</strong> recense actuellement
-        {{mainStats.hospital | number: '' :'fr-FR'}} patients hospitalisés pour cause de COVID-19 dont
-        {{mainStats.reanimation | number: '' :'fr-FR'}} sont en réanimation.
-        Après hospitalisation, {{mainStats.deaths | number: '' :'fr-FR'}} patients sont décédés et
-        {{mainStats.recovered | number: '' :'fr-FR'}} patients sont retournés à leur domicile depuis le début de l'épidémie.
+        Au
+        <strong>{{
+          mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+        }}</strong
+        >, la
+        <strong>
+          {{ selectedZone }} {{ mainStats?.total.hospital.translation }}</strong
+        >
+        recense
+        {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
+        hospitalisations en cours pour cause de COVID-19 dont
+        {{ mainStats.total.hospital.reanimation | number: "":"fr-FR" }} en
+        réanimation. Après hospitalisation,
+        {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }} patients
+        sont de retour à leur domicile. À cette même date,
+        {{ mainStats.total.hospital.deaths | number: "":"fr-FR" }}
+        personnes sont décédées à l'hôpital depuis le début de l'épidémie.
       </div>
     </article>
-
+    <div class="stats-zone tile is-ancestor">
+      <div class="tile is-vertical">
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">Statistiques hospitalières</p>
+              <p class="subtitle">
+                Les données hospitalières ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.hospital.lastUpdate
+                    | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile is-block-tablet is-flex-desktop">
+          <div class="tile  is-parent">
+            <div class="tile is-child box notification hospital">
+              <p class="title">
+                {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayHospital
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Hospitalisations en cours
+              </p>
+            </div>
+          </div>
+          <div class="tile  is-parent">
+            <div class="tile is-child box notification hospital">
+              <p class="title">
+                {{
+                  mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayHospitalStart
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Hospitalisations au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification reanimation">
+              <p class="title">
+                {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayReanimation
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Réanimations en cours
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification reanimation">
+              <p class="title">
+                {{
+                  mainStats.total.hospital.reanimationStart | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayReanimationStart
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Réanimations au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+          <div class="tile   is-parent">
+            <div class="tile is-child box notification is-danger">
+              <p class="title">
+                {{ mainStats.total.hospital.deaths | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayDeaths
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Décès après hospitalisation depuis le début de l'épidémie soit
+                un taux de décès de
+                <strong class="number"
+                  >{{ mainStats.total.hospital.deathRate.toFixed(1) }} %</strong
+                >
+              </p>
+            </div>
+          </div>
+          <div class="tile  is-parent">
+            <div class="tile is-child box notification is-success">
+              <p class="title">
+                {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayRecovered
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Guéris après hospitalisation depuis le début de l'épidémie, soit
+                un taux de guérison de
+                <strong class="number"
+                  >{{
+                    mainStats.total.hospital.recoveredRate.toFixed(1)
+                  }}
+                  %</strong
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </ng-container>
-</div>
-
-<div class="tile is-ancestor">
-  <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
-    <article class="tile is-child notification is-warning">
-      <p class="title">{{mainStats.cases | number: '' :'fr-FR'}}
-        <span class="increase" *ngIf="selectedCountry?.country === 'France'">
-          ({{mainStats?.todayCases | symbolNumber: 'mainStats' }} en 24h)
-        </span>
-        <span class="increase" *ngIf="selectedCountry?.country !== 'France' && mainStats.todayCases">
-          ({{mainStats?.todayCases | symbolNumber: 'mainStats' }})
-        </span>
-      </p>
-      <p class="subtitle">Cas
-        <ng-container *ngIf="selectedCountry.country !== 'France'">
-          confirmés
-        </ng-container>
-        <span class="note">
-          <ng-container *ngIf="mainStats?.todayCasesHospital">
-            dont <strong class="important-stat">{{mainStats.casesHospital | number: '' :'fr-FR'}}</strong> confirmés
-            ({{mainStats?.todayCasesHospital | symbolNumber: 'mainStats' }} en 24h)
-          </ng-container>
-          <ng-container *ngIf="mainStats?.todayCasesEhpad">
-            et <strong class="important-stat">{{mainStats.casesEhpad | number: '' :'fr-FR'}}</strong> signalés
-            ({{mainStats?.todayCasesEhpad | symbolNumber: 'mainStats' }} en 24h) en ESMS
-          </ng-container>
-
-        </span>
-      </p>
-      <div class="legend" *ngIf="selectedCountry.country === 'France'">
-        Source : Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et
-        signalement liés au COVID-19 dans les ESMS
-      </div>
-      <div class="legend" *ngIf="selectedCountry.country !== 'France'">
-        Source : Worldometer
-      </div>
-    </article>
-  </div>
-  <div class="tile is-parent" *ngIf="mainStats.hospital !== undefined">
-    <article class="tile is-child notification hospital">
-      <p class="title">{{mainStats.hospitalStart | number: '' :'fr-FR'}}
-        <span class="increase">
-          ({{mainStats.todayHospitalStart | symbolNumber: 'mainStats' }} en 24h)
-        </span>
-      </p>
-      <p class="subtitle">Hospitalisés
-        <span class="note">
-          dont <strong class="important-stat">{{mainStats.hospital | number: '' :'fr-FR'}}</strong>
-          ({{mainStats.todayHospital | symbolNumber: 'mainStats' }} en 24h) actuellement
-        </span>
-      </p>
-      <p class="legend">
-        Source : Données remontées par les centres hospitaliers participants à SI-VIC
-      </p>
-    </article>
-  </div>
-  <div class="tile is-parent" *ngIf="mainStats.active !== undefined && selectedCountry.country !== 'France'">
-    <article class="tile is-child notification hospital">
-      <p class="title">{{mainStats.active | number: '' :'fr-FR'}}
-      </p>
-      <p class="subtitle">Actifs</p>
-      <p class="legend">
-        Source : Worldometer
-      </p>
-    </article>
-  </div>
-  <div class="tile is-parent" *ngIf="mainStats.critical !== undefined ">
-    <article class="tile is-child notification reanimation">
-      <p class="title">{{mainStats.critical | number: '' :'fr-FR'}}
-      </p>
-      <p class="subtitle">Critiques</p>
-      <p class="legend">
-        Source : Worldometer
-      </p>
-    </article>
-  </div>
-  <div class="tile is-parent" *ngIf="mainStats.reanimation !== undefined">
-    <article class="tile is-child notification reanimation">
-      <p class="title">{{mainStats.reanimationStart | number: '' :'fr-FR'}}
-        <span class="increase">
-          ({{mainStats.todayReanimationStart | symbolNumber: 'mainStats' }} en 24h)
-        </span>
-      </p>
-      <p class="subtitle">Admis en réanimation
-        <span class="note">
-          dont <strong class="important-stat">{{mainStats.reanimation | number: '' :'fr-FR'}}</strong>
-          ({{mainStats?.todayReanimation | symbolNumber: 'mainStats' }} en 24h) actuellement
-        </span>
-      </p>
-      <p class="legend">
-        Source : Données remontées par les centres hospitaliers participants à SI-VIC
-      </p>
-    </article>
-  </div>
-  <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
-    <article class="tile is-child notification is-danger ">
-      <ng-container *ngIf="mainStats.deathsHospital">
-        <p class="title">
-          {{mainStats.deaths | number: '' :'fr-FR'}}
-          <span class="increase">
-            ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }} en 24h)
-          </span>
-        </p>
-        <p class="subtitle">Décès
-          <span class="note">
-            dont <strong class="important-stat">{{mainStats.deathsHospital | number: '' :'fr-FR'}}</strong>
-            ({{mainStats.todayDeathsHospital | symbolNumber: 'mainStats' }} en 24h) en milieu
-            hospitalier et <strong class="important-stat">{{mainStats.deathsEhpad | number: '' :'fr-FR'}}</strong>
-            ({{mainStats.todayDeathsEhpad | symbolNumber: 'mainStats'}} en 24h) en ESMS
-          </span>
-        </p>
-        <p class="legend">
-          Source : Worldometer avec les données remontées par les centres hospitaliers participants à SI-VIC et
-          signalement
-          liés au COVID-19 dans les ESMS
-        </p>
-      </ng-container>
-      <ng-container *ngIf="mainStats.deaths !== undefined && !mainStats.deathsHospital">
-        <p class="title">
-          {{mainStats.deaths | number: '' :'fr-FR'}}
-          <span class="increase" *ngIf="selectedCountry.country === 'France'">
-            ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }} en 24h)
-          </span>
-          <span class="increase" *ngIf="selectedCountry.country !== 'France' && mainStats.todayDeaths">
-            ({{mainStats.todayDeaths | symbolNumber: 'mainStats' }})
-          </span>
-        </p>
-        <p class="subtitle" *ngIf="selectedCountry.country === 'France'">Décès, <span class="rate">soit un taux de décès
-            de <strong class="number">{{mainStats.deathRate.toFixed(1)}} %</strong> après hospitalisation</span>
-        </p>
-        <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Décès</p>
-        <p class="legend" *ngIf="selectedZone">
-          Source : Données remontées par les centres hospitaliers participants à SI-VIC
-        </p>
-        <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
-          Source : Worldometer
-        </p>
-      </ng-container>
-    </article>
-  </div>
-  <div class="tile is-parent" *ngIf="mainStats.recovered !== undefined">
-    <article class="tile is-child notification is-success active-map">
-      <p class="title">
-        {{mainStats.recovered | number: '' :'fr-FR'}}
-        <span class="increase" *ngIf="selectedCountry?.country === 'France'">
-          ({{mainStats.todayRecovered | symbolNumber: 'mainStats' }} en 24h)
-        </span>
-        <span class="increase" *ngIf="selectedCountry.country !== 'France' && mainStats.todayRecovered">
-          ({{mainStats.todayRecovered | symbolNumber: 'mainStats' }})
-        </span>
-
-      </p>
-      <p *ngIf="selectedCountry.country === 'France'" class="subtitle">Guéris<span class="rate" *ngIf="selectedZone">,
-          soit un taux de guérison de
-          <strong class="number" *ngIf="selectedCountry.country === 'France'">{{mainStats.recoveredRate.toFixed(1)}}
-            %</strong> après hospitalisation</span>
-        <span class="rate" *ngIf="!selectedZone">, soit un taux de guérison de
-          <strong class="number">{{ mainStats.recovered | percentage : mainStats.hospitalStart  }}</strong> après
-          hospitalisation
-        </span>
-      </p>
-      <p class="subtitle" *ngIf="selectedCountry.country !== 'France'">Guéris</p>
-      <p class="legend" *ngIf="selectedCountry?.country === 'France'">
-        Source : Données remontées par les centres hospitaliers participants à SI-VIC
-      </p>
-      <p class="legend" *ngIf="selectedCountry?.country !== 'France'">
-        Source : Worldometer
-      </p>
-    </article>
-  </div>
-</div>
+</ng-container>
