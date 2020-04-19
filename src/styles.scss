@@ -214,26 +214,26 @@ strong {
 .stats-france {
   .notification {
     @include until($tablet) {
-     height: 120px;
      padding: 1em;
    }
 
    @include from($tablet) {
-     height: 260px;
+     height: 380px;
      padding: 1em;
    }
 
    @include from($desktop) {
-     height: 200px;
+     height: 290px;
+     padding: 1em;
    }
 
 
    @include from($widescreen) {
-     height: 170px;
+     height: 250px;
    }
 
    @include from($fullhd) {
-    height: 120px;
+    height: 180px;
   }
  }
 

@@ -219,9 +219,17 @@
                 </span>
               </p>
               <p class="subtitle">
-                Décès au total depuis le début de l'épidémie
+                Décès au total depuis le début de l'épidémie soit
+                un taux de décès* de
+                <strong class="number"
+                  >{{ mainStats.total.global.deathRate.toFixed(1) }} %</strong
+                >
+                <span class="calcul">
+                  * Taux de décès = nombre de décès sur le nombre de cas confirmés.
+                </span>
               </p>
             </div>
+
           </div>
         </div>
       </div>
@@ -341,6 +349,14 @@
               </p>
               <p class="subtitle">
                 Guéris après hospitalisation depuis le début de l'épidémie
+                soit un taux de guérison* de <strong class="number"
+                >{{
+                  mainStats.total.hospital.recoveredRate.toFixed(1)
+                }}
+                %</strong>
+                <span class="calcul">
+                  *Taux de guérison = nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
+                </span>
               </p>
             </div>
           </div>
@@ -397,10 +413,18 @@
                 </span>
               </p>
               <p class="subtitle">
-                Décès après hospitalisation depuis le début de l'épidémie
+                Décès après hospitalisation depuis le début de l'épidémie soit
+                un taux de décès* de
+                <strong class="number"
+                  >{{ mainStats.total.hospital.deathRate.toFixed(1) }} %</strong
+                >
+                <span class="calcul">
+                  * Taux de décès = nombre de décès suite à une hospitalisation sur le nombre total d'hospitalisations.
+                </span>
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -437,9 +461,9 @@
         <strong>{{
           mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
         }}</strong
-        >, la
+        >, {{ selectedZone }}
         <strong>
-          {{ selectedZone }} {{ mainStats?.total.hospital.translation }}</strong
+           {{ mainStats?.total.hospital.translation }}</strong
         >
         recense
         {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
@@ -560,6 +584,9 @@
                 <strong class="number"
                   >{{ mainStats.total.hospital.deathRate.toFixed(1) }} %</strong
                 >
+                <span class="calcul">
+                  * Taux de décès = nombre de décès suite à une hospitalisation sur le nombre total d'hospitalisations.
+                </span>
               </p>
             </div>
           </div>
@@ -574,16 +601,20 @@
                   }}
                   en 24h)
                 </span>
+
               </p>
               <p class="subtitle">
                 Guéris après hospitalisation depuis le début de l'épidémie, soit
-                un taux de guérison de
+                un taux de guérison* de
                 <strong class="number"
                   >{{
                     mainStats.total.hospital.recoveredRate.toFixed(1)
                   }}
                   %</strong
                 >
+                <span class="calcul">
+                  *Taux de guérison = nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
+                </span>
               </p>
             </div>
           </div>
