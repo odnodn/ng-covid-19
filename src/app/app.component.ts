@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { SwUpdate } from '@angular/service-worker';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,24 @@ export class AppComponent {
   deferredPrompt: any;
   showButton = false;
 
-  constructor(private readonly deviceService: DeviceDetectorService) {
+  constructor(private readonly deviceService: DeviceDetectorService, private swUpdate: SwUpdate) {
     this.isMobile = this.deviceService.isMobile();
+    if (swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(event => {
+        console.log('current version is', event.current);
+        console.log('available version is', event.available);
+      });
+      this.swUpdate.activated.subscribe(event => {
+        console.log('old version was', event.previous);
+        console.log('new version is', event.current);
+      });
+      this.swUpdate.available.subscribe(() => {
+        console.log('reload');
+        if (confirm('Une nouvelle version est disponible. Installer la nouvelle version ?')) {
+              window.location.reload();
+          }
+      });
+    }
   }
 
   @HostListener('window:beforeinstallprompt', ['$event'])

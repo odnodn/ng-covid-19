@@ -26,6 +26,7 @@ export class CoronavirusSheetComponent implements OnInit {
   franceStats$: Observable<any>;
   franceStatsByAge$: Observable<any>;
   franceStatsDay$: Observable<any>;
+  dataEmergency$: Observable<any>;
 
   selectedCountry: any = COUNTRIES[0];
   selectedDivisionMap = 'departmentFrance';
@@ -90,14 +91,18 @@ export class CoronavirusSheetComponent implements OnInit {
   }
 
   selectTabTimeline(type: string): void {
+
     this.tabTimelineSelected = type;
-    if (this.selectedRegion) {
-      this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('region', this.selectedRegion.code);
-    } else if (this.selectedDepartment) {
-      this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('department', this.selectedDepartment.code);
-    } else {
-      this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('national');
+    if (!this.franceStatsDay$) {
+      if (this.selectedRegion) {
+        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('region', this.selectedRegion.code);
+      } else if (this.selectedDepartment) {
+        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('department', this.selectedDepartment.code);
+      } else {
+        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('national');
+      }
     }
+
   }
 
   selectTabRepartition(type: string): void {
@@ -143,6 +148,7 @@ export class CoronavirusSheetComponent implements OnInit {
     this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
     this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('department', this.selectedDepartment.code);
     this.franceStats$ = this.coronavirusFranceService.getData('department', this.selectedDepartment.code);
+    this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('department', this.selectedDepartment.code);
   }
 
   private initMetaTagWorld(): void {

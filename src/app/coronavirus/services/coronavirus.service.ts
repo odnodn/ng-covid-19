@@ -11,7 +11,7 @@ import { COUNTRIES_DICTIONARY } from '@coronavirus/constants/country-dictionary.
 export class CoronavirusService {
 
   private readonly url = 'https://covid19.mathdro.id/api';
-  private readonly url2 = 'https://api-novel-coronavirus.herokuapp.com';
+  private readonly url2 = 'https://api-coronavirus-world.herokuapp.com';
 
 
   constructor(private readonly httpClient: HttpClient) { }

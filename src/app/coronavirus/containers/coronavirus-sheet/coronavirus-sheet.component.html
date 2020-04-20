@@ -226,6 +226,9 @@
               <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
               </app-coronavirus-graph>
             </ng-container>
+
+
+            <ng-container *ngIf="(franceStatsDay$ | loading | async) as franceStatsDay">
             <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
               <h2 class="title">Nombre quotidien
                 de nouvelles hospitalisations, de nouvelles admissions
@@ -236,7 +239,6 @@
                 quotidien de nouvelles admissions en réanimation, le nombre quotidien de personnes nouvellement
                 décédées, le nombre quotidien de nouveaux retours à domicile.
               </p>
-              <ng-container *ngIf="(franceStatsDay$ | loading | async) as franceStatsDay">
                 <ng-container *ngIf="franceStatsDay.value && isBrowser">
                   <app-coronavirus-chart-test-column [nameChart]="'chart-day'" [data]="franceStatsDay.value">
                   </app-coronavirus-chart-test-column>
@@ -256,7 +258,6 @@
                   </article>
                 </ng-container>
               </ng-container>
-
             </ng-container>
 
           </div>
@@ -269,15 +270,28 @@
                   (click)="selectTabRepartition('repartitionSex')"><a>Répartition selon le sexe</a></li>
               </ul>
             </div>
-            <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
-              <ng-container *ngIf="selectedDepartment && isBrowser">
-                <app-coronavirus-chart-age [dataAge]="franceStats.value.age"></app-coronavirus-chart-age>
+            <ng-container *ngIf="(dataEmergency$ | loading | async) as dataEmergency">
+              <ng-container *ngIf="dataEmergency.value">
+                <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
+                  <ng-container *ngIf="selectedDepartment && isBrowser">
+                    <h2 class="title">Taux d'hospitalisation parmi les passages aux urgences pour suspicion de
+                      COVID-19 selon l'âge</h2>
+                    <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-age'"
+                    [data]="dataEmergency?.value">
+                  </app-coronavirus-chart-test-column>
+                    </ng-container>
+                </ng-container>
+
               </ng-container>
+              <ng-container *ngIf="dataEmergency.loading">
+                <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="tabRepartionSelected === 'repartitionAge'">
               <ng-container *ngIf="!selectedDepartment && isBrowser">
                 <app-coronavirus-chart-test-column [nameChart]="'chart-national-age'" [data]="franceStats.value.age">
                 </app-coronavirus-chart-test-column>
               </ng-container>
-
             </ng-container>
             <ng-container *ngIf="tabRepartionSelected === 'repartitionSex' && isBrowser">
               <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">

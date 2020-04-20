@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe, registerLocaleData, DecimalPipe } from '@angular/common';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { environment } from 'environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 registerLocaleData(localeFr, 'fr-FR');
 
 @NgModule({
@@ -26,7 +28,8 @@ registerLocaleData(localeFr, 'fr-FR');
     AppRoutingModule,
     HttpClientModule,
     LayoutModule,
-    DeviceDetectorModule.forRoot()
+    DeviceDetectorModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' })
   ]
 })
 export class AppModule { }

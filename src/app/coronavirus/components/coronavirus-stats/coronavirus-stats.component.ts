@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./coronavirus-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusStatsComponent {
+export class CoronavirusStatsComponent implements AfterViewInit {
 
   @Input() mainStats;
   @Input() selectedCountry;
@@ -16,8 +16,15 @@ export class CoronavirusStatsComponent {
   @Input() lastUpdate;
 
   constructor(public readonly router: Router, private datePipe: DatePipe) {
+
+
+  }
+
+  ngAfterViewInit(): void {
     // @ts-ignore
-    twttr.widgets.load();
+    if ((window as any).twttr) {
+      (window as any).twttr.widgets.load();
+    }
   }
 
   getTwittText(): string {
