@@ -26,10 +26,7 @@ export class AppComponent {
         console.log('new version is', event.current);
       });
       this.swUpdate.available.subscribe(() => {
-        console.log('reload');
-        if (confirm('Une nouvelle version est disponible. Installer la nouvelle version ?')) {
-              window.location.reload();
-          }
+        window.location.reload();
       });
     }
   }
