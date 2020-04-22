@@ -32,28 +32,6 @@
             <ng-container *ngIf="selectedCountry.country !== 'France'">
               confirmés
             </ng-container>
-            <span class="note">
-              <ng-container *ngIf="mainStats?.todayCasesHospital">
-                dont
-                <strong class="important-stat">{{
-                  mainStats.casesHospital | number: "":"fr-FR"
-                }}</strong>
-                confirmés ({{
-                  mainStats?.todayCasesHospital | symbolNumber: "mainStats"
-                }}
-                en 24h)
-              </ng-container>
-              <ng-container *ngIf="mainStats?.todayCasesEhpad">
-                et
-                <strong class="important-stat">{{
-                  mainStats.casesEhpad | number: "":"fr-FR"
-                }}</strong>
-                signalés ({{
-                  mainStats?.todayCasesEhpad | symbolNumber: "mainStats"
-                }}
-                en 24h) en ESMS
-              </ng-container>
-            </span>
           </p>
           <div class="legend">
             Source : Worldometer
@@ -260,11 +238,14 @@
             >
               {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
               <span class="increase">
-                ({{
-                  mainStats?.total.esms.todayCasesEsms
-                    | symbolNumber: "mainStats"
-                }}
-                en 24h)
+                <ng-container *ngIf="mainStats?.total.esms.todayCasesEsms !== -1">
+                  ({{
+                    mainStats?.total.esms.todayCasesEsms
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </ng-container>
+
               </span>
             </p>
             <p class="subtitle">
@@ -280,11 +261,13 @@
             >
               {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }}
               <span class="increase">
-                ({{
-                  mainStats?.total.esms.todayDeathsEsms
-                    | symbolNumber: "mainStats"
-                }}
-                en 24h)
+                <ng-container *ngIf="mainStats?.total.esms.todayCasesEsms !== -1">
+                  ({{
+                    mainStats?.total.esms.todayCasesEsms
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </ng-container>
               </span>
             </p>
             <p class="subtitle">
@@ -528,11 +511,13 @@
               <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie">
                 {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
                 <span class="increase">
-                  ({{
-                    mainStats?.total.esms.todayCasesEsms
-                      | symbolNumber: "mainStats"
-                  }}
-                  en 24h)
+                  <ng-container *ngIf="mainStats?.total.esms.todayCasesEsms !== -1">
+                    ({{
+                      mainStats?.total.esms.todayCasesEsms
+                        | symbolNumber: "mainStats"
+                    }}
+                    en 24h)
+                  </ng-container>
                 </span>
               </p>
               <p class="subtitle">
