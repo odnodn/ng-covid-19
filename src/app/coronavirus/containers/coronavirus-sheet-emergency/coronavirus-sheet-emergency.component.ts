@@ -69,6 +69,7 @@ export class CoronavirusSheetEmergencyComponent implements OnInit {
 
   displayTab(type: string): void {
     this.type = type;
+    window.scrollBy(0, 1);
   }
 
 

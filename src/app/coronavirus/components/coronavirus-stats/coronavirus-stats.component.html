@@ -1,5 +1,3 @@
-
-
 <div class="tile is-ancestor" *ngIf="selectedCountry.country !== 'France'">
   <div class="tile is-vertical">
     <div class="tile">
@@ -18,16 +16,18 @@
     <div class="tile">
       <div class="tile is-parent" *ngIf="mainStats.cases !== undefined">
         <article class="tile is-child notification is-warning">
-          <p class="title" >
+          <p class="title">
             {{ mainStats.cases | number: "":"fr-FR" }}
             <span
               class="increase"
-              *ngIf="selectedCountry?.country !== 'France' && mainStats.todayCases"
+              *ngIf="
+                selectedCountry?.country !== 'France' && mainStats.todayCases
+              "
             >
               ({{ mainStats?.todayCases | symbolNumber: "mainStats" }})
             </span>
           </p>
-          <p class="subtitle" >
+          <p class="subtitle">
             Cas
             <ng-container *ngIf="selectedCountry.country !== 'France'">
               confirmés
@@ -70,7 +70,7 @@
         </article>
       </div>
       <div class="tile is-parent" *ngIf="mainStats.deaths !== undefined">
-        <article class="tile is-child notification is-danger ">
+        <article class="tile is-child notification is-danger">
           <ng-container
             *ngIf="mainStats.deaths !== undefined && !mainStats.deathsHospital"
           >
@@ -88,7 +88,7 @@
             <p class="subtitle">
               Décès
             </p>
-            <p class="legend" >
+            <p class="legend">
               Source : Worldometer
             </p>
           </ng-container>
@@ -98,10 +98,7 @@
         <article class="tile is-child notification is-success active-map">
           <p class="title">
             {{ mainStats.recovered | number: "":"fr-FR" }}
-            <span
-              class="increase"
-              *ngIf="mainStats.todayRecovered"
-            >
+            <span class="increase" *ngIf="mainStats.todayRecovered">
               ({{ mainStats.todayRecovered | symbolNumber: "mainStats" }})
             </span>
           </p>
@@ -121,7 +118,10 @@
   <ng-container *ngIf="!selectedZone">
     <ng-container
       *ngIf="
-      mainStats?.total.global.lastUpdate &&  mainStats?.total.hospital.lastUpdate && mainStats?.total.global.lastUpdate === mainStats?.total.hospital.lastUpdate
+        mainStats?.total.global.lastUpdate &&
+        mainStats?.total.hospital.lastUpdate &&
+        mainStats?.total.global.lastUpdate ===
+          mainStats?.total.hospital.lastUpdate
       "
     >
       <article class="message is-info">
@@ -169,8 +169,8 @@
         </div>
       </article>
     </ng-container>
-    <div class="stats-france tile  is-ancestor">
-      <div class="tile is-vertical ">
+    <div class="stats-france tile is-ancestor is-tablet">
+      <div class="tile is-vertical">
         <div class="tile">
           <div class="tile is-parent">
             <div class="tile is-child box">
@@ -189,7 +189,10 @@
         <div class="tile">
           <div class="tile is-parent">
             <div class="tile is-child box notification is-warning">
-              <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 par Santé publique France depuis le début de l'épidémie">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de cas confirmés de COVID-19 par Santé publique France depuis le début de l'épidémie"
+              >
                 {{ mainStats?.total.global.cases | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -208,7 +211,10 @@
         <div class="tile">
           <div class="tile is-parent">
             <div class="tile is-child box notification is-danger">
-              <p class="title" matTooltip="Nombre cumulé de personnes décédées (Décès en milieu hospitalier + Décès en ESMS) depuis le début de l'épidémie">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de personnes décédées (Décès en milieu hospitalier + Décès en ESMS) depuis le début de l'épidémie"
+              >
                 {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -219,22 +225,22 @@
                 </span>
               </p>
               <p class="subtitle">
-                Décès au total depuis le début de l'épidémie soit
-                un taux de décès* de
+                Décès au total depuis le début de l'épidémie soit un taux de
+                décès* de
                 <strong class="number"
                   >{{ mainStats.total.global.deathRate.toFixed(1) }} %</strong
                 >
                 <span class="calcul">
-                  * Taux de décès = nombre de décès sur le nombre de cas confirmés.
+                  * Taux de décès = nombre de décès sur le nombre de cas
+                  confirmés.
                 </span>
               </p>
             </div>
-
           </div>
         </div>
       </div>
-      <div class="tile is-vertical ">
-        <div class="tile  is-parent">
+      <div class="tile is-vertical">
+        <div class="tile first is-parent">
           <div class="tile is-child box">
             <p class="title">Statistiques ESMS</p>
             <p class="subtitle">
@@ -248,7 +254,10 @@
         </div>
         <div class="tile is-parent">
           <div class="tile is-child box notification is-warning">
-            <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie">
+            <p
+              class="title"
+              matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie"
+            >
               {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
               <span class="increase">
                 ({{
@@ -260,6 +269,364 @@
             </p>
             <p class="subtitle">
               Cas confirmés en ESMS depuis le début de l'épidémie
+            </p>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child box notification is-danger">
+            <p
+              class="title"
+              matTooltip="Nombre cumulé de décès en ESMS pour cause de COVID-19 depuis le début de l'épidémie"
+            >
+              {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }}
+              <span class="increase">
+                ({{
+                  mainStats?.total.esms.todayDeathsEsms
+                    | symbolNumber: "mainStats"
+                }}
+                en 24h)
+              </span>
+            </p>
+            <p class="subtitle">
+              Décès en ESMS depuis le début de l'épidémie
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-vertical is-7">
+        <div class="tile">
+          <div class="tile first is-parent">
+            <div class="tile is-child box">
+              <p class="title">Statistiques hospitalières</p>
+              <p class="subtitle">
+                Les données remontées par les centres hospitaliers participants
+                à SI-VIC et Santé Publique France ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.hospital.lastUpdate
+                    | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box notification hospital">
+              <p
+                class="title"
+                matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19"
+              >
+                {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayHospital
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Hospitalisations en cours
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification hospital">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie"
+              >
+                {{
+                  mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayHospitalStart
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Hospitalisations au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box notification reanimation">
+              <p
+                class="title"
+                matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19"
+              >
+                {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayReanimation
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Réanimations en cours
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification reanimation">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients admis en réanimation pour COVID-19 depuis le début de l'épidémie"
+              >
+                {{
+                  mainStats.total.hospital.reanimationStart | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayReanimationStart
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Réanimations au total depuis le début de l'épidémie
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification is-success">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie"
+              >
+                {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayRecovered
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Guéris après hospitalisation depuis le début de l'épidémie soit
+                un taux de guérison* de
+                <strong class="number"
+                  >{{
+                    mainStats.total.hospital.recoveredRate.toFixed(1)
+                  }}
+                  %</strong
+                >
+                <span class="calcul">
+                  *Taux de guérison = nombre de guéris suite à une
+                  hospitalisation sur le nombre total d'hospitalisations.
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box notification is-danger">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie"
+              >
+                {{
+                  mainStats.total.hospital.deathsHospital | number: "":"fr-FR"
+                }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.hospital.todayDeathsHospital
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Décès après hospitalisation depuis le début de l'épidémie soit
+                un taux de décès* de
+                <strong class="number"
+                  >{{ mainStats.total.hospital.deathRate.toFixed(1) }} %</strong
+                >
+                <span class="calcul">
+                  * Taux de décès = nombre de décès suite à une hospitalisation
+                  sur le nombre total d'hospitalisations.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-france is-desktop">
+      <div class="tile is-ancestor">
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">Statistiques globales</p>
+              <p class="subtitle">
+                Les données globales ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.global.lastUpdate
+                    | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">Statistiques ESMS</p>
+              <p class="subtitle">
+                Les données des ESMS ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.esms.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+          <div class="tile first is-parent is-7">
+            <div class="tile is-child box">
+              <p class="title">Statistiques hospitalières</p>
+              <p class="subtitle">
+                Les données remontées par les centres hospitaliers participants
+                à SI-VIC et Santé Publique France ont été mises à jour le
+                <strong>{{
+                  mainStats?.total.hospital.lastUpdate
+                    | date: "d MMMM yyyy":"fr-FR"
+                }}</strong
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+            <div class="tile is-child box notification is-warning">
+              <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 par Santé publique France depuis le début de l'épidémie">
+                {{ mainStats?.total.global.cases | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.global.todayCases
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Cas confirmés au total depuis le début de l'épidémie
+              </p>
+            </div>
+        </div>
+        <div class="tile is-parent">
+            <div class="tile is-child box notification is-warning">
+              <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie">
+                {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
+                <span class="increase">
+                  ({{
+                    mainStats?.total.esms.todayCasesEsms
+                      | symbolNumber: "mainStats"
+                  }}
+                  en 24h)
+                </span>
+              </p>
+              <p class="subtitle">
+                Cas confirmés en ESMS depuis le début de l'épidémie
+              </p>
+            </div>
+        </div>
+        <div class="tile is-7">
+          <div class="tile is-parent">
+              <div class="tile is-child box notification hospital ">
+                <p class="title" matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19">
+                  {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
+                  <span class="increase">
+                    ({{
+                      mainStats?.total.hospital.todayHospital
+                        | symbolNumber: "mainStats"
+                    }}
+                    en 24h)
+                  </span>
+                </p>
+                <p class="subtitle"
+  >
+                  Hospitalisations en cours
+                </p>
+              </div>
+          </div>
+          <div class="tile is-parent">
+              <div class="tile is-child box notification hospital">
+                <p class="title" matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie">
+                  {{
+                    mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
+                  }}
+                  <span class="increase">
+                    ({{
+                      mainStats?.total.hospital.todayHospitalStart
+                        | symbolNumber: "mainStats"
+                    }}
+                    en 24h)
+                  </span>
+                </p>
+                <p class="subtitle">
+                  Hospitalisations au total depuis le début de l'épidémie
+                </p>
+              </div>
+          </div>
+          <div class="tile is-parent">
+              <div class="tile is-child box notification is-success">
+                <p class="title" matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
+                  {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
+                  <span class="increase">
+                    ({{
+                      mainStats?.total.hospital.todayRecovered
+                        | symbolNumber: "mainStats"
+                    }}
+                    en 24h)
+                  </span>
+                </p>
+                <p class="subtitle">
+                  Guéris après hospitalisation depuis le début de l'épidémie
+                  soit un taux de guérison* de <strong class="number"
+                  >{{
+                    mainStats.total.hospital.recoveredRate.toFixed(1)
+                  }}
+                  %</strong>
+                  <span class="calcul">
+                    *Taux de guérison = nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
+                  </span>
+                </p>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <div class="tile is-child box notification is-danger">
+            <p class="title" matTooltip="Nombre cumulé de personnes décédées (Décès en milieu hospitalier + Décès en ESMS) depuis le début de l'épidémie">
+              {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
+              <span class="increase">
+                ({{
+                  mainStats?.total.global.todayDeaths
+                    | symbolNumber: "mainStats"
+                }}
+                en 24h)
+              </span>
+            </p>
+            <p class="subtitle">
+              Décès au total depuis le début de l'épidémie soit
+              un taux de décès* de
+              <strong class="number"
+                >{{ mainStats.total.global.deathRate.toFixed(1) }} %</strong
+              >
+              <span class="calcul">
+                * Taux de décès = nombre de décès sur le nombre de cas confirmés.
+              </span>
             </p>
           </div>
         </div>
@@ -280,88 +647,7 @@
             </p>
           </div>
         </div>
-      </div>
-      <div class="tile is-vertical  is-7">
-        <div class="tile">
-          <div class="tile is-parent">
-            <div class="tile is-child box">
-              <p class="title">Statistiques hospitalières</p>
-              <p class="subtitle">
-                Les données remontées par les centres hospitaliers participants à SI-VIC et Santé Publique France ont été mises à jour le
-                <strong>{{
-                  mainStats?.total.hospital.lastUpdate
-                    | date: "d MMMM yyyy":"fr-FR"
-                }}</strong
-                >.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="tile">
-          <div class="tile is-parent" >
-            <div class="tile is-child box notification hospital ">
-              <p class="title" matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19">
-                {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
-                <span class="increase">
-                  ({{
-                    mainStats?.total.hospital.todayHospital
-                      | symbolNumber: "mainStats"
-                  }}
-                  en 24h)
-                </span>
-              </p>
-              <p class="subtitle"
->
-                Hospitalisations en cours
-              </p>
-            </div>
-          </div>
-          <div class="tile is-parent">
-            <div class="tile is-child box notification hospital">
-              <p class="title" matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie">
-                {{
-                  mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
-                }}
-                <span class="increase">
-                  ({{
-                    mainStats?.total.hospital.todayHospitalStart
-                      | symbolNumber: "mainStats"
-                  }}
-                  en 24h)
-                </span>
-              </p>
-              <p class="subtitle">
-                Hospitalisations au total depuis le début de l'épidémie
-              </p>
-            </div>
-          </div>
-          <div class="tile is-parent">
-            <div class="tile is-child box notification is-success">
-              <p class="title" matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
-                {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
-                <span class="increase">
-                  ({{
-                    mainStats?.total.hospital.todayRecovered
-                      | symbolNumber: "mainStats"
-                  }}
-                  en 24h)
-                </span>
-              </p>
-              <p class="subtitle">
-                Guéris après hospitalisation depuis le début de l'épidémie
-                soit un taux de guérison* de <strong class="number"
-                >{{
-                  mainStats.total.hospital.recoveredRate.toFixed(1)
-                }}
-                %</strong>
-                <span class="calcul">
-                  *Taux de guérison = nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="tile">
+        <div class="tile is-7">
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
               <p class="title" matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19">
@@ -424,7 +710,6 @@
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -462,9 +747,7 @@
           mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
         }}</strong
         >, {{ selectedZone }}
-        <strong>
-           {{ mainStats?.total.hospital.translation }}</strong
-        >
+        <strong> {{ mainStats?.total.hospital.translation }}</strong>
         recense
         {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
         hospitalisations en cours pour cause de COVID-19 dont
@@ -488,15 +771,19 @@
                   mainStats?.total.hospital.lastUpdate
                     | date: "d MMMM yyyy":"fr-FR"
                 }}</strong
-                >. Ces données sont remontées par les centres hospitaliers participants à SI-VIC et Santé Publique France.
+                >. Ces données sont remontées par les centres hospitaliers
+                participants à SI-VIC et Santé Publique France.
               </p>
             </div>
           </div>
         </div>
         <div class="tile is-block-tablet is-flex-desktop">
-          <div class="tile  is-parent">
+          <div class="tile is-parent">
             <div class="tile is-child box notification hospital">
-              <p class="title" matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19">
+              <p
+                class="title"
+                matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19"
+              >
                 {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -511,9 +798,12 @@
               </p>
             </div>
           </div>
-          <div class="tile  is-parent">
+          <div class="tile is-parent">
             <div class="tile is-child box notification hospital">
-              <p class="title" matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie"
+              >
                 {{
                   mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
                 }}
@@ -532,7 +822,10 @@
           </div>
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
-              <p class="title" matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19">
+              <p
+                class="title"
+                matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19"
+              >
                 {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -549,7 +842,10 @@
           </div>
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
-              <p class="title" matTooltip="Nombre cumulé de patients admis en réanimation pour COVID-19 depuis le début de l'épidémie">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients admis en réanimation pour COVID-19 depuis le début de l'épidémie"
+              >
                 {{
                   mainStats.total.hospital.reanimationStart | number: "":"fr-FR"
                 }}
@@ -568,7 +864,10 @@
           </div>
           <div class="tile is-parent">
             <div class="tile is-child box notification is-danger">
-              <p class="title" matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation depuis le début de l'épidémie">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation depuis le début de l'épidémie"
+              >
                 {{ mainStats.total.hospital.deaths | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -585,14 +884,18 @@
                   >{{ mainStats.total.hospital.deathRate.toFixed(1) }} %</strong
                 >
                 <span class="calcul">
-                  * Taux de décès = nombre de décès suite à une hospitalisation sur le nombre total d'hospitalisations.
+                  * Taux de décès = nombre de décès suite à une hospitalisation
+                  sur le nombre total d'hospitalisations.
                 </span>
               </p>
             </div>
           </div>
-          <div class="tile  is-parent">
+          <div class="tile is-parent">
             <div class="tile is-child box notification is-success">
-              <p class="title" matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
+              <p
+                class="title"
+                matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie"
+              >
                 {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -601,7 +904,6 @@
                   }}
                   en 24h)
                 </span>
-
               </p>
               <p class="subtitle">
                 Guéris après hospitalisation depuis le début de l'épidémie, soit
@@ -613,7 +915,8 @@
                   %</strong
                 >
                 <span class="calcul">
-                  *Taux de guérison = nombre de guéris suite à une hospitalisation sur le nombre total d'hospitalisations.
+                  *Taux de guérison = nombre de guéris suite à une
+                  hospitalisation sur le nombre total d'hospitalisations.
                 </span>
               </p>
             </div>

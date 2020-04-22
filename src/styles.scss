@@ -211,30 +211,52 @@ strong {
   color: unset;
 }
 
+.notification {
+  padding: 1em;
+}
+
 .stats-france {
-  .notification {
-    @include until($tablet) {
-     padding: 1em;
-   }
 
-   @include from($tablet) {
-     height: 380px;
-     padding: 1em;
-   }
+  @include until($tablet) {
 
-   @include from($desktop) {
-     height: 290px;
-     padding: 1em;
-   }
+    &.is-tablet {
+      display: block;
+    }
+    &.is-desktop {
+      display: none;
+    }
+ }
 
-
-   @include from($widescreen) {
-     height: 250px;
-   }
-
-   @include from($fullhd) {
-    height: 180px;
+ @include from($tablet) {
+  &.is-tablet {
+    display: none;
+  }
+  &.is-desktop {
+    display: block;
   }
  }
 
+//   .notification {
+
+//    @include from($desktop) {
+//      height: 290px;
+//      padding: 1em;
+//    }
+
+
+//    @include from($widescreen) {
+//      height: 250px;
+//    }
+
+//    @include from($fullhd) {
+//     height: 180px;
+//   }
+//  }
+
 }
+
+// .tile.is-child {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }

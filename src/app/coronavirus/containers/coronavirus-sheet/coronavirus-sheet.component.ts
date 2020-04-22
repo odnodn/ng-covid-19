@@ -1,7 +1,7 @@
 import { FRANCE_REGIONS, FRANCE_DEPS } from '@coronavirus/constants/france.constants';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, PLATFORM_ID, Inject, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { CoronavirusService } from '@coronavirus/services/coronavirus.service';
 import { DetailedStat } from '@coronavirus/models/coronavirus.models';
 import { isPlatformBrowser } from '@angular/common';
@@ -47,6 +47,7 @@ export class CoronavirusSheetComponent implements OnInit {
     private readonly title: Title,
     private readonly meta: Meta,
     private readonly ref: ChangeDetectorRef,
+    private readonly element: ElementRef,
     @Inject(PLATFORM_ID) private readonly platformId: any
   ) {
   }
@@ -91,7 +92,6 @@ export class CoronavirusSheetComponent implements OnInit {
   }
 
   selectTabTimeline(type: string): void {
-
     this.tabTimelineSelected = type;
     if (!this.franceStatsDay$) {
       if (this.selectedRegion) {
@@ -107,6 +107,7 @@ export class CoronavirusSheetComponent implements OnInit {
 
   selectTabRepartition(type: string): void {
     this.tabRepartionSelected = type;
+    window.scrollBy(0, 1);
   }
 
   private updateFranceDatas(params: any): void {

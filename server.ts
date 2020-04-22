@@ -1,5 +1,4 @@
 import 'zone.js/dist/zone-node';
-
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import * as compression from 'compression';
@@ -56,6 +55,7 @@ export function app() {
       res.redirect(301, 'https://' + host + req.url);
     }
     next();
+    return;
   });
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)

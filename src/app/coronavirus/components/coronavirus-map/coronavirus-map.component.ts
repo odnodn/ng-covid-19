@@ -10,6 +10,7 @@ import am4geodata_franceDepartmentsHigh from '@amcharts/amcharts4-geodata/france
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
 am4core.options.queue = true;
+am4core.options.onlyShowOnViewport = true;
 export interface ThemeColor {
   min: string;
   max: string;
@@ -341,6 +342,9 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
   private initMainMap(): void {
     const mapId = this.selectedCountry.country === 'France' ? 'map-france' : 'map-world';
     this.chart = am4core.create(mapId, am4maps.MapChart);
+
+    this.chart.tapTimeout = 5000;
+    this.chart.tapToActivate = true;
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.geodata = this.divisionMap[this.selectedDivisionMap]; // En fonction monde, region, departement
     this.chart.geodataNames = am4geodata_lang_FR;
