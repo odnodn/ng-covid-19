@@ -10,7 +10,7 @@ export class CoronavirusFranceService {
   private readonly urlCSV = 'https://cascoronavirus-1585048636823.appspot.com/france-datas';
   private readonly urlCSVDay = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-day';
   private readonly urlTest = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-test';
-  private readonly urlEmergency = 'https://api-coronavirus-fr-second.herokuapp.com/france-datas-urgences';
+  private readonly urlEmergency = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-urgences';
 
   constructor(private readonly httpClient: HttpClient) { }
 
