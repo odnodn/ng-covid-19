@@ -134,7 +134,7 @@ body {
   border-radius: 0px !important;
 }
 
-.content ul {
+.tabs ul {
   margin-left: 0px !important;
   margin-top: 0 !important;
 }
@@ -164,6 +164,7 @@ body {
 @import "../node_modules/bulma/sass/components/navbar.sass";
 @import "../node_modules/bulma/sass/components/message.sass";
 @import "../node_modules/bulma/sass/components/tabs.sass";
+@import "../node_modules/bulma/sass/components/menu.sass";
 
 /* Grid */
 @import "../node_modules/bulma/sass/grid/_all.sass";
@@ -235,28 +236,4 @@ strong {
     display: block;
   }
  }
-
-//   .notification {
-
-//    @include from($desktop) {
-//      height: 290px;
-//      padding: 1em;
-//    }
-
-
-//    @include from($widescreen) {
-//      height: 250px;
-//    }
-
-//    @include from($fullhd) {
-//     height: 180px;
-//   }
-//  }
-
 }
-
-// .tile.is-child {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-// }

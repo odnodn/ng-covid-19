@@ -3,23 +3,27 @@
   <div class="columns">
     <div class="column">
       <h2>Par départment</h2>
-      <ul>
+      <aside class="menu">
+      <ul class="menu-list">
         <li *ngFor="let department of departments">
           <a href [routerLink]="['/stats/france/departement/', department.slug]" title="Cas de Coronavirus COVID-19 : {{department.name}}">
             Cas de Coronavirus COVID-19 : {{department.name}}
           </a>
         </li>
       </ul>
+      </aside>
     </div>
     <div class="column">
       <h2>Par région</h2>
-      <ul>
-        <li *ngFor="let region of regions">
-          <a href [routerLink]="['/stats/france/region/', region.slug]" title="Cas de Coronavirus COVID-19 : {{region.name}}">
-            Cas de Coronavirus COVID-19 : {{region.name}}
-          </a>
-        </li>
-      </ul>
+      <aside class="menu">
+        <ul class="menu-list">
+          <li *ngFor="let region of regions">
+            <a href [routerLink]="['/stats/france/region/', region.slug]" title="Cas de Coronavirus COVID-19 : {{region.name}}">
+              Cas de Coronavirus COVID-19 : {{region.name}}
+            </a>
+          </li>
+        </ul>
+      </aside>
     </div>
   </div>
 </div>

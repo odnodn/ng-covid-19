@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   isActive = false;
-
+  isExpand = true;
   constructor() { }
 
   ngOnInit(): void {
@@ -18,4 +18,14 @@ export class HeaderComponent implements OnInit {
     this.isActive = !this.isActive;
   }
 
+  toggleMenu(e: any): void {
+    const menu = e.currentTarget.querySelector('.navbar-dropdown');
+    if (e.target.parentElement.classList.contains('navbar-dropdown')) {
+      menu.style.display = 'none';
+    }
+    setTimeout(() => {
+      menu.style.display = '';
+      e.target.blur();
+    }, 100);
+  }
 }

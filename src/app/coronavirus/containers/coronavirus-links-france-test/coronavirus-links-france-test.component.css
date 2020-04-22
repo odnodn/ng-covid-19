@@ -1,0 +1,8 @@
+.menu-list a:hover {
+  color: #0069cc;
+  font-weight: bold;
+}
+
+.menu-list {
+  list-style: none;
+}
