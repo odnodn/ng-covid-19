@@ -26,7 +26,9 @@ export class AppComponent {
         console.log('new version is', event.current);
       });
       this.swUpdate.available.subscribe(() => {
-        window.location.reload();
+        if (confirm('Une nouvelle version est disponible. Souhaitez-vous accéder à la nouvelle version ?')) {
+              window.location.reload();
+          }
       });
     }
   }
