@@ -168,7 +168,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification is-warning">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de cas confirmés de COVID-19 par Santé publique France depuis le début de l'épidémie"
               >
                 {{ mainStats?.total.global.cases | number: "":"fr-FR" }}
@@ -190,7 +190,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification is-danger">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de personnes décédées (Décès en milieu hospitalier + Décès en ESMS) depuis le début de l'épidémie"
               >
                 {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
@@ -233,7 +233,7 @@
         <div class="tile is-parent">
           <div class="tile is-child box notification is-warning">
             <p
-              class="title"
+              class="title tooltip-item"
               matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie"
             >
               {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
@@ -256,7 +256,7 @@
         <div class="tile is-parent">
           <div class="tile is-child box notification is-danger">
             <p
-              class="title"
+              class="title tooltip-item"
               matTooltip="Nombre cumulé de décès en ESMS pour cause de COVID-19 depuis le début de l'épidémie"
             >
               {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }}
@@ -295,7 +295,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification hospital">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19"
               >
                 {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
@@ -315,7 +315,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification hospital">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie"
               >
                 {{
@@ -339,7 +339,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19"
               >
                 {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
@@ -359,7 +359,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients admis en réanimation pour COVID-19 depuis le début de l'épidémie"
               >
                 {{
@@ -381,7 +381,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification is-success">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie"
               >
                 {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
@@ -412,7 +412,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification is-danger">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie"
               >
                 {{
@@ -489,7 +489,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
             <div class="tile is-child box notification is-warning">
-              <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 par Santé publique France depuis le début de l'épidémie">
+              <p class="title tooltip-item" matTooltip="Nombre cumulé de cas confirmés de COVID-19 par Santé publique France depuis le début de l'épidémie">
                 {{ mainStats?.total.global.cases | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -506,7 +506,7 @@
         </div>
         <div class="tile is-parent">
             <div class="tile is-child box notification is-warning">
-              <p class="title" matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie">
+              <p class="title tooltip-item" matTooltip="Nombre cumulé de cas confirmés de COVID-19 en ESMS depuis le début de l'épidémie">
                 {{ mainStats.total.esms.casesEsms | number: "":"fr-FR" }}
                 <span class="increase">
                   <ng-container *ngIf="mainStats?.total.esms.todayCasesEsms !== -1">
@@ -526,7 +526,7 @@
         <div class="tile is-7">
           <div class="tile is-parent">
               <div class="tile is-child box notification hospital ">
-                <p class="title" matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19">
+                <p class="title tooltip-item" matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19">
                   {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
                   <span class="increase">
                     ({{
@@ -544,7 +544,7 @@
           </div>
           <div class="tile is-parent">
               <div class="tile is-child box notification hospital">
-                <p class="title" matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie">
+                <p class="title tooltip-item" matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie">
                   {{
                     mainStats.total.hospital.hospitalStart | number: "":"fr-FR"
                   }}
@@ -563,7 +563,7 @@
           </div>
           <div class="tile is-parent">
               <div class="tile is-child box notification is-success">
-                <p class="title" matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
+                <p class="title tooltip-item" matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
                   {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}
                   <span class="increase">
                     ({{
@@ -591,7 +591,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <div class="tile is-child box notification is-danger">
-            <p class="title" matTooltip="Nombre cumulé de personnes décédées (Décès en milieu hospitalier + Décès en ESMS) depuis le début de l'épidémie">
+            <p class="title tooltip-item" matTooltip="Nombre cumulé de personnes décédées (Décès en milieu hospitalier + Décès en ESMS) depuis le début de l'épidémie">
               {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
               <span class="increase">
                 ({{
@@ -615,7 +615,7 @@
         </div>
         <div class="tile is-parent">
           <div class="tile is-child box notification is-danger">
-            <p class="title" matTooltip="Nombre cumulé de décès en ESMS pour cause de COVID-19 depuis le début de l'épidémie">
+            <p class="title tooltip-item" matTooltip="Nombre cumulé de décès en ESMS pour cause de COVID-19 depuis le début de l'épidémie">
               {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }}
               <span class="increase">
                 ({{
@@ -633,7 +633,7 @@
         <div class="tile is-7">
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
-              <p class="title" matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19">
+              <p class="title tooltip-item" matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19">
                 {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
                 <span class="increase">
                   ({{
@@ -669,7 +669,7 @@
           </div>
           <div class="tile is-parent">
             <div class="tile is-child box notification is-danger">
-              <p class="title" matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
+              <p class="title tooltip-item" matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie">
                 {{
                   mainStats.total.hospital.deathsHospital | number: "":"fr-FR"
                 }}
@@ -764,7 +764,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification hospital">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre de patients actuellement hospitalisés pour COVID-19"
               >
                 {{ mainStats?.total.hospital.hospital | number: "":"fr-FR" }}
@@ -784,7 +784,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification hospital">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients hospitalisés pour COVID-19 depuis le début de l'épidémie"
               >
                 {{
@@ -806,7 +806,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre de patients actuellement hospitalisés en réanimation pour COVID-19"
               >
                 {{ mainStats?.total.hospital.reanimation | number: "":"fr-FR" }}
@@ -826,7 +826,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification reanimation">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients admis en réanimation pour COVID-19 depuis le début de l'épidémie"
               >
                 {{
@@ -848,7 +848,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification is-danger">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients décédés suite à une hospitalisation depuis le début de l'épidémie"
               >
                 {{ mainStats.total.hospital.deaths | number: "":"fr-FR" }}
@@ -876,7 +876,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box notification is-success">
               <p
-                class="title"
+                class="title tooltip-item"
                 matTooltip="Nombre cumulé de patients guéris suite à une hospitalisation pour COVID-19 depuis le début de l'épidémie"
               >
                 {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }}

@@ -65,6 +65,6 @@
   display: flex;
 }
 
-// .first {
-//   height: 200px;
-// }
+.tooltip-item {
+  touch-action: auto !important;
+}
