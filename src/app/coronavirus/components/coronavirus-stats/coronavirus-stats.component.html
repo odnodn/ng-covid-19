@@ -261,13 +261,11 @@
             >
               {{ mainStats.total.esms.deathsEsms | number: "":"fr-FR" }}
               <span class="increase">
-                <ng-container *ngIf="mainStats?.total.esms.todayCasesEsms !== -1">
                   ({{
-                    mainStats?.total.esms.todayCasesEsms
+                    mainStats?.total.esms.todayDeathsEsms
                       | symbolNumber: "mainStats"
                   }}
                   en 24h)
-                </ng-container>
               </span>
             </p>
             <p class="subtitle">
