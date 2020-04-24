@@ -1,10 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, PLATFORM_ID, Inject } from '@angular/core';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Observable } from 'rxjs';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FRANCE_REGIONS, FRANCE_DEPS } from '@coronavirus/constants/france.constants';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-coronavirus-sheet-test',
@@ -22,14 +23,15 @@ export class CoronavirusSheetTestComponent implements OnInit {
   selectedTypeMap = 'ageAll';
   selectedDivisionMapTable = 'departmentFrance';
   labelTableAge = 'à tous âges';
-
+  isBrowser = isPlatformBrowser(this.platformId);
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly route: ActivatedRoute,
     private readonly ref: ChangeDetectorRef,
     private readonly router: Router,
     private readonly title: Title,
-    private readonly meta: Meta
+    private readonly meta: Meta,
+    @Inject(PLATFORM_ID) private readonly platformId: any
   ) { }
 
   ngOnInit(): void {

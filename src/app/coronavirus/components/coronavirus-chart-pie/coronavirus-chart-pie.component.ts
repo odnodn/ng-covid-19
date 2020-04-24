@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
@@ -19,6 +19,7 @@ export class CoronavirusChartPieComponent implements OnInit, AfterViewInit, OnDe
   labelText: string;
   chart: am4charts.PieChart;
   choices: any[];
+  @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
   constructor() {
   }
 
@@ -28,6 +29,7 @@ export class CoronavirusChartPieComponent implements OnInit, AfterViewInit, OnDe
     } else {
       this.dataType = 'total';
     }
+
   }
 
   ngAfterViewInit(): void {
@@ -36,11 +38,7 @@ export class CoronavirusChartPieComponent implements OnInit, AfterViewInit, OnDe
   }
 
   initChart(): void {
-    if (this.nameChart) {
-      this.chart = am4core.create(this.nameChart, am4charts.PieChart);
-    } else {
-      this.chart = am4core.create('chartdiv', am4charts.PieChart);
-    }
+    this.chart = am4core.create(this.chartElement.nativeElement, am4charts.PieChart);
     this.chart.responsive.enabled = true;
     this.chart.language.locale = am4lang_fr_FR;
     const pieSeries = this.chart.series.push(new am4charts.PieSeries());

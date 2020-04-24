@@ -8,7 +8,7 @@
   (selectDepartmentEvent)="onSelectDepartment($event)"
 >
 </app-coronavirus-select>
-<div class="tabs is-spaced" *ngIf="selectedCountry.country === 'France'">
+<div class="tabs is-spaced" *ngIf="selectedCountry?.country === 'France'">
   <ul>
     <li *ngIf="selectedRegion || selectedDepartment">
       <a

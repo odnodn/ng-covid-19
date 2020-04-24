@@ -23,12 +23,12 @@
   <ng-container *ngIf="(detailedStats$ | loading | async) as detailedStats">
     <ng-container *ngIf="detailedStats.value && detailedStats.value.length > 0">
 
-      <ng-container *ngIf="selectedCountry.country !== 'France'">
-        <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: selectedCountry.code"
+      <ng-container *ngIf="selectedCountry?.country !== 'France'">
+        <app-coronavirus-stats [mainStats]="detailedStats.value | countryfilter: selectedCountry?.code"
           [selectedCountry]="selectedCountry"></app-coronavirus-stats>
 
         <!-- World container -->
-        <ng-container *ngIf="selectedCountry.country === 'Monde'">
+        <ng-container *ngIf="selectedCountry?.country === 'Monde'">
           <div class="columns">
             <div class="column" *ngIf="isBrowser && selectedCountry.country === 'Monde'">
               <app-coronavirus-map [selectedDivisionMap]="'world'" [selectedCountry]="selectedCountry"
@@ -95,7 +95,7 @@
             </div>
             <div class="column is-spaced is-two-thirds">
               <ng-container *ngIf="(dailyDatasByCountry$ | loading | async) as dailyDatasByCountry">
-                <ng-container *ngIf="dailyDatasByCountry.value && dailyDatasByCountry.value.length > 0">
+                <ng-container *ngIf="isBrowser && dailyDatasByCountry.value && dailyDatasByCountry.value.length > 0">
                   <app-coronavirus-graph [dailyDatasByCountry]="dailyDatasByCountry.value"></app-coronavirus-graph>
                 </ng-container>
                 <ng-container *ngIf="!dailyDatasByCountry.value && !dailyDatasByCountry.loading">
@@ -135,7 +135,7 @@
   </ng-container>
 
   <!-- France Container -->
-  <ng-container *ngIf="selectedCountry.country === 'France'">
+  <ng-container *ngIf="selectedCountry?.country === 'France'">
     <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
       <ng-container *ngIf="franceStats.value">
         <app-coronavirus-stats [selectedCountry]="selectedCountry"

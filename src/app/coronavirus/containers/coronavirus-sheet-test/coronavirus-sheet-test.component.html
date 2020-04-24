@@ -78,10 +78,12 @@
               Par région
             </mat-option>
           </mat-select>
-          <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'test'" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-          dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry"
-            (selectTypeMapEvent)="onSelectTypeMap($event)">
-          </app-coronavirus-map>
+          <ng-container *ngIf="isBrowser">
+            <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'test'" [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+            dataTest.value.region : dataTest.value.department" [selectedCountry]="selectedCountry"
+              (selectTypeMapEvent)="onSelectTypeMap($event)">
+            </app-coronavirus-map>
+          </ng-container>
         </div>
         <div class="column is-spaced" *ngIf="!selectedDepartment && !selectedRegion">
           <h2 class="title">Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
@@ -105,8 +107,10 @@
             de
             tests positifs et négatifs.
           </p>
-          <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
-          </app-coronavirus-chart-test-column>
+          <ng-container *ngIf="isBrowser">
+            <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
+            </app-coronavirus-chart-test-column>
+          </ng-container>
         </div>
         <div class="column is-spaced" *ngIf="selectedRegion">
           <h2 class="title">Tableau récapitulatif des tests de dépistage de la région {{labelTableAge}} </h2>
@@ -130,8 +134,10 @@
             </mat-radio-group>
           </div>
         </div>
-        <div class="column is-spaced" *ngIf="!selectedRegion">
-          <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]"></app-coronavirus-chart-pie>
+        <div class="column is-spaced" *ngIf="isBrowser && !selectedRegion">
+          <ng-container *ngIf="isBrowser">
+            <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]" [nameChart]="'chartdiv'"></app-coronavirus-chart-pie>
+          </ng-container>
         </div>
       </div>
       <div class="columns">
@@ -144,8 +150,10 @@
             Ce diagramme montre la répartition de tests positifs et négatifs du Coronavirus COVID-19 en fonction de
             l'âge avec un filtre par sexe.
           </p>
-          <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
-          </app-coronavirus-chart-test-column>
+          <ng-container *ngIf="isBrowser">
+            <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
+            </app-coronavirus-chart-test-column>
+          </ng-container>
         </div>
         <div class="column is-spaced">
           <h2 class="title">Comparaison du nombre de tests de dépistage réalisés en fonction de l'âge et du sexe</h2>
@@ -153,7 +161,9 @@
             Ce diagramme compare le nombre de tests de dépistage du Coronavirus COVID-19 en fonction de l'âge et
             du sexe.
           </p>
-          <app-coronavirus-chart-pyramid [data]="dataTest?.value?.total"></app-coronavirus-chart-pyramid>
+          <ng-container *ngIf="isBrowser">
+            <app-coronavirus-chart-pyramid [data]="dataTest?.value?.total"></app-coronavirus-chart-pyramid>
+          </ng-container>
         </div>
       </div>
     </ng-container>

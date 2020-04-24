@@ -78,8 +78,6 @@
           </article>
         </div>
       </div>
-
-
       <div class="columns">
         <div class="column is-spaced is-half" *ngIf="!selectedDepartment && !selectedRegion">
           <h2 class="title">Cartographie des urgences hospitalières et d'actes médicaux de SOS médecins pour suspicion
@@ -97,10 +95,12 @@
               Par région
             </mat-option>
           </mat-select>
-          <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'emergency'"
-            [detailedStats]="selectedDivisionMap === 'regionFrance' ?
-            dataEmergency.value.region : dataEmergency.value.department" [selectedCountry]="selectedCountry">
-          </app-coronavirus-map>
+          <ng-container *ngIf="isBrowser">
+            <app-coronavirus-map [selectedDivisionMap]="selectedDivisionMap" [selectedTypeData]="'emergency'"
+              [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+              dataEmergency.value.region : dataEmergency.value.department" [selectedCountry]="selectedCountry">
+            </app-coronavirus-map>
+          </ng-container>
         </div>
         <div class="column is-spaced is-half" *ngIf="!selectedDepartment && !selectedRegion">
           <h2 class="title">Tableau récapitulatif des urgences hospitalières et d'actes médicaux de SOS médecins pour
@@ -143,13 +143,17 @@
               Ce diagramme montre le taux de passage aux urgences pour suspicion de COVID-19. Ce taux correspond au nombre
               de passages aux urgences pour suspicion de COVID-19 sur le nombre total de passages aux urgences.
             </p>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage'" [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage'" [data]="dataEmergency?.value">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des passages aux urgences pour suspicion de COVID-19 selon l'âge</h2>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage-age'" [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage-age'" [data]="dataEmergency?.value">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
         </div>
         <div class="columns">
@@ -159,9 +163,11 @@
             <p>
               Ce diagramme montre le taux de passage aux urgences pour suspicion de COVID-19 par jour selon le sexe.
             </p>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage-gender'"
-              [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-passage-gender'"
+                [data]="dataEmergency?.value">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des passages aux urgences pour suspicion de COVID-19 selon le sexe
@@ -170,7 +176,9 @@
               Ce diagramme montre le nombre de passages aux urgences pour suspicion de COVID-19 depuis le début
               de l'épidémie selon le sexe.
             </p>
-            <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-gender'" [dataEmergency]="dataEmergency?.value?.total[0]"></app-coronavirus-chart-pie>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-gender'" [dataEmergency]="dataEmergency?.value?.total[0]"></app-coronavirus-chart-pie>
+            </ng-container>
           </div>
         </div>
       </ng-container>
@@ -189,9 +197,11 @@
           <div class="column is-spaced">
             <h2 class="title">Taux d'hospitalisation parmi les passages aux urgences pour suspicion de
               COVID-19 selon l'âge</h2>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-age'"
-              [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+              <ng-container *ngIf="isBrowser">
+                <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-age'"
+                  [data]="dataEmergency?.value">
+                </app-coronavirus-chart-test-column>
+              </ng-container>
           </div>
         </div>
         <div class="columns">
@@ -202,9 +212,11 @@
               Ce diagramme montre le taux d'hospitalisation parmi les passages aux urgences pour suspicion de
               COVID-19 par jour selon le sexe.
             </p>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-gender'"
-              [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-gender'"
+                [data]="dataEmergency?.value">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des hospitalisations parmi les passages aux urgences pour suspicion de COVID-19 selon le sexe
@@ -213,8 +225,10 @@
               Ce diagramme montre le nombre d'hospitalisation parmi les passages aux urgence pour suspicion de COVID-19 au total depuis le début
               de l'épidémie selon le sexe.
             </p>
-            <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-hospital-gender'" [dataEmergency]="dataEmergency?.value?.total[0]"></app-coronavirus-chart-pie>
-          </div>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-hospital-gender'" [dataEmergency]="dataEmergency?.value?.total[0]"></app-coronavirus-chart-pie>
+            </ng-container>
+            </div>
         </div>
       </ng-container>
       <ng-container *ngIf="type === 'medical'">
@@ -225,15 +239,19 @@
               Ce diagramme montre le taux des actes médicaux pour suspicion de COVID-19. Ce taux correspond au nombre
               d'actes médicaux pour suspicion de COVID-19 sur le nombre total d'actes médicaux.
             </p>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical'" [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical'" [data]="dataEmergency?.value">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des actes médicaux SOS Médecins pour suspicion de
               COVID-19 selon l'âge</h2>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical-age'"
-              [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+              <ng-container *ngIf="isBrowser">
+                <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical-age'"
+                [data]="dataEmergency?.value">
+                </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
         </div>
         <div class="columns">
@@ -242,8 +260,10 @@
             <p>
               Ce diagramme montre le taux des actes médicaux SOS pour suspicion de COVID-19 par jour selon le sexe.
             </p>
-            <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical-gender'" [data]="dataEmergency?.value">
-            </app-coronavirus-chart-test-column>
+            <ng-container *ngIf="isBrowser">
+              <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-medical-gender'" [data]="dataEmergency?.value">
+              </app-coronavirus-chart-test-column>
+            </ng-container>
           </div>
           <div class="column is-spaced">
             <h2 class="title">Répartition des actes médicaux SOS Médecins pour suspicion de
@@ -252,9 +272,11 @@
                 Ce diagramme montre le taux des actes médicaux au total depuis le début
                 de l'épidémie selon le sexe.
               </p>
+              <ng-container *ngIf="isBrowser">
               <app-coronavirus-chart-pie [nameChart]="'chart-pie-urgences-medical-gender'"
               [dataEmergency]="dataEmergency?.value?.total[0]">
-            </app-coronavirus-chart-pie >
+              </app-coronavirus-chart-pie>
+            </ng-container>
           </div>
         </div>
 

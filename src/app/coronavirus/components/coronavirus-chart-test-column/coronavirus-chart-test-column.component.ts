@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';
@@ -18,6 +18,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   title: string;
   @Input() nameChart: string;
   @Input() data;
+  @ViewChild('chartElement', { static: true }) chartElement: ElementRef<HTMLElement>;
   constructor() { }
 
   ngOnInit(): void {
@@ -143,7 +144,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   }
 
   private initChart(): void {
-    this.chart = am4core.create(this.nameChart, am4charts.XYChart);
+    this.chart = am4core.create(this.chartElement.nativeElement, am4charts.XYChart);
     this.chart.language.locale = am4lang_fr_FR;
     this.chart.dateFormatter.dateFormat = 'dd MMMM';
     if (this.nameChart !== 'chart-national-age') {
