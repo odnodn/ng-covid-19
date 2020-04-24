@@ -102,7 +102,7 @@ export class CoronavirusSheetComponent implements OnInit {
         this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('national');
       }
     }
-
+    window.scrollBy(0, 1);
   }
 
   selectTabRepartition(type: string): void {
