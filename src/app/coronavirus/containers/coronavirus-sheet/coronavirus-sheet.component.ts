@@ -8,7 +8,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { CoronavirusFranceAgeService } from '@coronavirus/services/coronavirus-france-age.service';
 
 @Component({
   selector: 'app-coronavirus-sheet',
@@ -24,7 +23,6 @@ export class CoronavirusSheetComponent implements OnInit {
   detailedStats$: Observable<DetailedStat>;
 
   franceStats$: Observable<any>;
-  franceStatsByAge$: Observable<any>;
   franceStatsDay$: Observable<any>;
   dataEmergency$: Observable<any>;
 
@@ -41,7 +39,6 @@ export class CoronavirusSheetComponent implements OnInit {
   constructor(
     private readonly coronavirusService: CoronavirusService,
     private readonly coronavirusFranceService: CoronavirusFranceService,
-    private readonly coronavirusFranceAgeService: CoronavirusFranceAgeService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly title: Title,
@@ -123,7 +120,6 @@ export class CoronavirusSheetComponent implements OnInit {
   private updateFranceNationalDatas(): void {
     this.initMetaTagCountry();
     this.selectedZone = undefined;
-    this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('national');
     this.franceStats$ = this.coronavirusFranceService.getData('national');
   }
 
@@ -135,7 +131,6 @@ export class CoronavirusSheetComponent implements OnInit {
       return;
     }
     this.initMetaTagRegionAndDepartment(this.selectedRegion, 'region', 'la région');
-    this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('region', this.selectedRegion.code);
     this.franceStats$ = this.coronavirusFranceService.getData('region', this.selectedRegion.code);
   }
 
@@ -147,7 +142,6 @@ export class CoronavirusSheetComponent implements OnInit {
       return;
     }
     this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
-    this.franceStatsByAge$ = this.coronavirusFranceAgeService.getFranceDataByAge('department', this.selectedDepartment.code);
     this.franceStats$ = this.coronavirusFranceService.getData('department', this.selectedDepartment.code);
     this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('department', this.selectedDepartment.code);
   }

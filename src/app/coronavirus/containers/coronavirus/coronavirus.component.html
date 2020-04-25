@@ -8,7 +8,10 @@
   (selectDepartmentEvent)="onSelectDepartment($event)"
 >
 </app-coronavirus-select>
-<div class="tabs is-spaced" *ngIf="selectedCountry?.country === 'France'">
+<div
+  class="tabs is-spaced"
+  *ngIf="selectedCountry?.country === 'France'"
+>
   <ul>
     <li *ngIf="selectedRegion || selectedDepartment">
       <a
@@ -66,13 +69,13 @@
         *ngIf="!selectedRegion && !selectedDepartment"
         [routerLink]="['/test-depistage/', selectedCountry.slug]"
       >
-        Statistiques des tests de dépistage
+        Tests de dépistage
       </a>
       <a
         *ngIf="selectedRegion"
         [routerLink]="['/test-depistage/france/region/', selectedRegion.slug]"
       >
-        Statistiques des tests de dépistage
+        Tests de dépistage
       </a>
       <a
         *ngIf="selectedDepartment"
@@ -81,7 +84,7 @@
           selectedDepartment.slug
         ]"
       >
-        Statistiques des tests de dépistage
+        Tests de dépistage
       </a>
     </li>
     <li [class.is-active]="router.url | include: 'urgences'">
@@ -89,19 +92,39 @@
         *ngIf="!selectedRegion && !selectedDepartment"
         [routerLink]="['/urgences/', selectedCountry.slug]"
       >
-        Statistiques des urgences hospitalières
+        Urgences hospitalières
       </a>
       <a
         *ngIf="selectedRegion"
         [routerLink]="['/urgences/france/region', selectedRegion.slug]"
       >
-        Statistiques des urgences hospitalières
+        Urgences hospitalières
       </a>
       <a
         *ngIf="selectedDepartment"
         [routerLink]="['/urgences/france/departement', selectedDepartment.slug]"
       >
-        Statistiques des urgences hospitalières
+        Urgences hospitalières
+      </a>
+    </li>
+    <li [class.is-active]="router.url | include: 'transfert'">
+      <a
+        *ngIf="!selectedRegion && !selectedDepartment"
+        [routerLink]="['/transfert-patients/', selectedCountry.slug]"
+      >
+      <strong>Transferts de patients</strong>
+      </a>
+      <a
+        *ngIf="selectedRegion"
+        [routerLink]="['/transfert-patients/france/region', selectedRegion.slug]"
+      >
+      <strong>Transferts de patients</strong>
+      </a>
+      <a
+        *ngIf="selectedDepartment"
+        [routerLink]="['/transfert-patients/france/departement', selectedDepartment.slug]"
+      >
+      <strong>Transferts de patients</strong>
       </a>
     </li>
   </ul>
@@ -109,19 +132,18 @@
 <div class="don">
   <div class="don-content">
     <a
-    href="https://paypal.me/pools/c/8ojhCZiSX2"
-    target="_blank"
-    rel="noopener noreferrer"
-    ><img src="../../../../assets/images/paypal.png" />
-    <div class="text">
-      <strong>
-        Soutenez toute l'équipe de cascoronavirus.fr, qui chaque jour met tout
-        en oeuvre pour vous relayer l'évolution de l'épidémie en France et dans
-        le monde.
-      </strong>
-    </div>
-  </a>
+      href="https://paypal.me/pools/c/8ojhCZiSX2"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><img src="../../../../assets/images/paypal.png" />
+      <div class="text">
+        <strong>
+          Soutenez toute l'équipe de cascoronavirus.fr, qui chaque jour met tout
+          en oeuvre pour vous relayer l'évolution de l'épidémie en France et
+          dans le monde.
+        </strong>
+      </div>
+    </a>
   </div>
-
 </div>
 <router-outlet (activate)="onActivate($event)"></router-outlet>

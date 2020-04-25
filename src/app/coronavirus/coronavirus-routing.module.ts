@@ -7,6 +7,7 @@ import { CoronavirusLinksComponent } from './containers/coronavirus-links/corona
 import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-france/coronavirus-links-france.component';
 import { CoronavirusLinksFranceTestComponent } from './containers/coronavirus-links-france-test/coronavirus-links-france-test.component';
 import { CoronavirusSheetEmergencyComponent } from './containers/coronavirus-sheet-emergency/coronavirus-sheet-emergency.component';
+import { CoronavirusTransfertComponent } from './containers/coronavirus-transfert/coronavirus-transfert.component';
 
 export const coronavirusRoutes: Routes = [
   {
@@ -52,6 +53,18 @@ export const coronavirusRoutes: Routes = [
       {
         path: 'urgences/:country/departement/:department',
         component: CoronavirusSheetEmergencyComponent
+      },
+      {
+        path: 'transfert-patients/:country',
+        component: CoronavirusTransfertComponent
+      },
+      {
+        path: 'transfert-patients/:country/region/:region',
+        component: CoronavirusTransfertComponent
+      },
+      {
+        path: 'transfert-patients/:country/departement/:department',
+        component: CoronavirusTransfertComponent
       }
     ]
   },

@@ -13,9 +13,7 @@ export class CoronavirusService {
   private readonly url = 'https://covid19.mathdro.id/api';
   private readonly url2 = 'https://api-coronavirus-world.herokuapp.com';
 
-
   constructor(private readonly httpClient: HttpClient) { }
-
 
   getWorldDetailedStats(): Observable<DetailedStat> {
     return this.httpClient.get(`${this.url2}/countries`).pipe(

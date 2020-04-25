@@ -1,0 +1,87 @@
+
+
+.start-region {
+  color: #f9461c;
+  font-weight: 600;
+}
+.end-region {
+  font-weight: 600;
+}
+
+.hospital {
+  background-color: #F17D07;
+  color: white;
+}
+
+
+.number-patients {
+  padding-left: 2em;
+  padding-right: 2em;
+  font-weight: 600;
+}
+
+.message-body {
+  &.subtitle {
+    font-size: 0.9em;
+  }
+  background-color: #0069cc03;
+  margin-bottom: 0.5em !important;
+  color: #4a4a4a !important;
+}
+
+.message-header {
+  font-weight: 600;
+  background-color: #3273dc17 !important;
+  border-bottom: 2px solid whitesmoke;
+  color: #0069cc !important;
+}
+
+.date {
+  align-items: center;
+  display: flex;
+  padding-right: 1em;
+}
+
+.is-transport {
+  background: transparent !important;
+  border: none !important;
+}
+
+.date {
+  .material-icons {
+    padding-right: 0.5em;
+  }
+}
+
+
+.timeline-content {
+  &.patient {
+    padding: 0;
+  }
+}
+
+.timeline .timeline-item .timeline-content {
+  position: relative;
+  top: 5px;
+}
+
+.message.is-info {
+  background: white !important;
+}
+
+.start-region {
+  color: #f9461c;
+}
+
+.end-region {
+  color: #00d1b2;
+}
+
+.legend {
+  font-size: 0.7em;
+}
+
+.block {
+  font-size: 0.9em;
+  font-weight: bold;
+}

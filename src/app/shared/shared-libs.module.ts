@@ -9,6 +9,7 @@ import { AgeFilterPipe } from './pipes/age-filter.pipe';
 import { CountryFilterPipe } from './pipes/country-filter.pipe';
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { IncludePipe } from './pipes/include.pipe';
+import { TransferFilterPipe } from './pipes/transfer-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { IncludePipe } from './pipes/include.pipe';
     CountryFilterPipe,
     AgeFilterPipe,
     PercentagePipe,
-    IncludePipe
+    IncludePipe,
+    TransferFilterPipe
   ],
   exports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { IncludePipe } from './pipes/include.pipe';
     AgeFilterPipe,
     PercentagePipe,
     IncludePipe,
+    TransferFilterPipe,
     NgxMatSelectSearchModule
   ],
   imports: [

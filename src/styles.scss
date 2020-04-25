@@ -1,25 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
-$green: #43D787;
+$green: #43d787;
 $info: #0069cc;
-$yellow: 	#ffbb00;
+$yellow: #ffbb00;
 
 $warning-invert: white;
-$red: 	#f9461c;
+$red: #f9461c;
 $success-invert: white;
 
 * {
   box-sizing: border-box;
- }
- *:before,
- *:after {
+}
+*:before,
+*:after {
   box-sizing: border-box;
- }
+}
 
 html,
 body {
- height: 100%;
- position: relative;
+  height: 100%;
+  position: relative;
 }
 
 .is-spaced {
@@ -82,8 +82,6 @@ body {
   background: #035aac;
 }
 
-
-
 /* Material Table */
 
 .mat-sort-header-container {
@@ -106,7 +104,6 @@ body {
   border: 2px solid lightgrey;
 }
 
-
 .radio-buttons {
   text-align: center;
   margin-top: 1em;
@@ -120,11 +117,11 @@ body {
 }
 
 .reanimation {
-  color: #E95D0C;
+  color: #e95d0c;
 }
 
 .hospital {
-  color: #F17D07;
+  color: #f17d07;
 }
 
 /* Bulma */
@@ -143,7 +140,6 @@ body {
   padding: 0.5em 0.5em !important;
 }
 
-
 /* Utilities */
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 
@@ -156,7 +152,8 @@ body {
 @import "../node_modules/bulma/sass/elements/title.sass";
 @import "../node_modules/bulma/sass/elements/notification.sass";
 @import "../node_modules/bulma/sass/elements/button.sass";
-
+@import "../node_modules/bulma/sass/elements/tag.sass";
+@import "../node_modules/bulma/sass/elements/other.sass";
 /* Form */
 @import "../node_modules/bulma/sass/form/_all.sass";
 
@@ -165,7 +162,7 @@ body {
 @import "../node_modules/bulma/sass/components/message.sass";
 @import "../node_modules/bulma/sass/components/tabs.sass";
 @import "../node_modules/bulma/sass/components/menu.sass";
-
+@import "../node_modules/bulma/sass/components/card.sass";
 /* Grid */
 @import "../node_modules/bulma/sass/grid/_all.sass";
 @import "../node_modules/bulma/sass/utilities/mixins.sass";
@@ -173,8 +170,8 @@ body {
 /* Layout */
 @import "../node_modules/bulma/sass/layout/_all.sass";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/bulma-timeline/dist/css/bulma-timeline.sass";
 
 @include mobile {
   .tabs ul {
@@ -186,11 +183,11 @@ body {
   }
 }
 
-.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
   border-color: $info;
 }
 
-.mat-radio-button.mat-accent .mat-radio-inner-circle{
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
   background-color: $info;
   color: $info;
 }
@@ -217,23 +214,22 @@ strong {
 }
 
 .stats-france {
-
   @include until($tablet) {
-
     &.is-tablet {
       display: block;
     }
     &.is-desktop {
       display: none;
     }
- }
+  }
 
- @include from($tablet) {
-  &.is-tablet {
-    display: none;
+  @include from($tablet) {
+    &.is-tablet {
+      display: none;
+    }
+    &.is-desktop {
+      display: block;
+    }
   }
-  &.is-desktop {
-    display: block;
-  }
- }
 }
+
