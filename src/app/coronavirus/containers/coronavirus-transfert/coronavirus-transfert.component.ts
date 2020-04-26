@@ -18,6 +18,12 @@ export class CoronavirusTransfertComponent implements OnInit {
   selectedRegion: any;
   startRegion: any;
   endRegion: any;
+  selectedSortFilter: string;
+  sortFilters: string[] = [
+    'Le plus grand nombre de patients transférés',
+    'Date de début de transfert le plus récent',
+    'Date de fin de transfert le plus récent'
+  ];
   dataTransfert$: Observable<any>;
   selectedCountry: any = COUNTRIES[0];
   filteredRegions: any[] = FRANCE_REGIONS;
@@ -32,6 +38,7 @@ export class CoronavirusTransfertComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.selectedSortFilter = 'Date de fin de transfert le plus récent';
     this.route.params.subscribe(params => {
       if (!params.country) {
         return;
@@ -87,7 +94,6 @@ export class CoronavirusTransfertComponent implements OnInit {
   clearStartRegion(): void {
     this.startRegion = null;
   }
-
 
   private initMetaTagFrance(): void {
     this.title.setTitle(`Transfert de patients atteints de Coronavirus COVID-19 en France`);

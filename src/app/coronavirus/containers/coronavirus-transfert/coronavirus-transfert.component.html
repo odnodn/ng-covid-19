@@ -39,7 +39,6 @@
         <div class="column">
           <mat-label class="label" >Filtrer par la région de départ</mat-label>
           <mat-select role="listbox" placeholder="Filter par la région de départ" [(ngModel)]="startRegion">
-
             <mat-option role="option">
               <ngx-mat-select-search ngModel placeholderLabel="Rechercher une région..." noEntriesFoundLabel="Région inconnue"
                 clearSearchInput="true" (ngModelChange)="filterRegions($event)">
@@ -50,7 +49,7 @@
             </mat-option>
           </mat-select>
           <div class="block is-spaced" *ngIf="startRegion">
-            Région de départ choisie :
+            Région de départ sélectionnée :
             <span class="tag is-info">
               {{startRegion?.name}}
               <button class="delete is-medium" (click)="clearStartRegion()"></button>
@@ -74,17 +73,43 @@
             </mat-option>
           </mat-select>
           <div class="block is-spaced" *ngIf="endRegion">
-            Région d'arrivée choisie :
+            Région d'arrivée sélectionnée :
             <span class="tag is-info">
               {{endRegion?.name}}
               <button class="delete is-medium" (click)="clearEndRegion()"></button>
             </span>
           </div>
         </div>
+        <div class="column">
+          <mat-label class="label" >Trier par</mat-label>
+          <mat-select role="listbox" placeholder="Filter par la région d'arrivée" [(ngModel)]="selectedSortFilter">
+            <mat-option role="option" *ngFor="let sortFilter of sortFilters; trackByFn" [value]="sortFilter">
+              {{sortFilter}}
+            </mat-option>
+          </mat-select>
+        </div>
       </div>
       <div class="transfert">
+        <h2 class="title" *ngIf="startRegion || endRegion">
+          <ng-container [ngPlural]="(dataTransfert?.value.data | transferFilter: startRegion : endRegion : selectedSortFilter).length">
+            <ng-template ngPluralCase="=0">Aucun transfert effectué</ng-template>
+            <ng-template ngPluralCase="=1">{{(dataTransfert?.value.data | transferFilter: startRegion : endRegion : selectedSortFilter).length}} transfert effectué</ng-template>
+            <ng-template ngPluralCase="other">{{(dataTransfert?.value.data | transferFilter: startRegion : endRegion : selectedSortFilter).length}} transferts effectués</ng-template>
+          </ng-container>
+          <ng-container [ngPlural]="(dataTransfert?.value.data | transferFilter: startRegion : endRegion: selectedSortFilter) | countTransferPatient">
+            <ng-template ngPluralCase="=0"></ng-template>
+            <ng-template ngPluralCase="=1"> avec {{(dataTransfert?.value.data | transferFilter: startRegion : endRegion : selectedSortFilter) | countTransferPatient}} patient</ng-template>
+            <ng-template ngPluralCase="other"> avec {{(dataTransfert?.value.data | transferFilter: startRegion : endRegion : selectedSortFilter) | countTransferPatient}} patients</ng-template>
+          </ng-container>
+          <ng-container *ngIf="startRegion">
+            depuis la région {{startRegion.name}}
+            </ng-container>
+            <ng-container *ngIf="endRegion">
+              vers la région {{endRegion.name}}
+            </ng-container>
+        </h2>
         <div class="columns is-multiline">
-          <article class="message column is-2-fullhd is-3-widescreen is-4-desktop is-4-tablet is-info" *ngFor="let transfert of dataTransfert?.value.data | transferFilter: startRegion : endRegion">
+          <article class="message column is-2-fullhd is-3-widescreen is-4-desktop is-4-tablet is-info" *ngFor="let transfert of dataTransfert?.value.data | transferFilter: startRegion : endRegion : selectedSortFilter">
             <div class="message-header">
               <span class="date" *ngIf="transfert.startDate !== transfert.endDate">
                 {{ transfert.startDate | date: "d MMMM":"fr-FR" }} au
@@ -172,11 +197,6 @@
               </div>
             </div>
           </article>
-          <ng-container *ngIf="(dataTransfert?.value.data | transferFilter: startRegion : endRegion) && (dataTransfert?.value.data | transferFilter: startRegion : endRegion).length === 0">
-            <div class=" column is-danger is-spaced">
-              <strong>Aucun résultat n'a été trouvé avec le(s) filtre(s) sélectionné(s).</strong>
-            </div>
-          </ng-container>
         </div>
 
       </div>
