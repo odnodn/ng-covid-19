@@ -51,7 +51,6 @@ export class CoronavirusSheetComponent implements OnInit {
 
   ngOnInit(): void {
     this.data$ = this.coronavirusService.getDailyDatas();
-    this.news$ = this.coronavirusFranceService.getFranceNews();
     this.route.params.subscribe(params => {
       this.tabTimelineSelected = 'timelineCumulated';
       this.tabRepartionSelected = 'repartitionAge';
@@ -115,6 +114,7 @@ export class CoronavirusSheetComponent implements OnInit {
     } else if (params.department) {
       this.updateFranceDepartmentDatas(params);
     } else {
+      this.news$ = this.coronavirusFranceService.getFranceNews();
       this.updateFranceNationalDatas();
     }
   }

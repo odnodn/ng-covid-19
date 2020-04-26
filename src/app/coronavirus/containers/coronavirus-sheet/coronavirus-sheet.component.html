@@ -139,20 +139,30 @@
     <ng-container *ngIf="(franceStats$ | loading | async) as franceStats">
       <ng-container *ngIf="franceStats.value">
         <div class="news columns is-multiline">
-          <div class="column is-6-fullhd is-6-widescreen is-6-desktop is-12-tablet">
-            <app-coronavirus-resume [selectedCountry]="selectedCountry"
-            [mainStats]="franceStats.value" [selectedZone]="selectedZone"></app-coronavirus-resume>
-          </div>
-          <div class="column is-6-fullhd is-6-widescreen is-6-desktop is-12-tablet">
-            <ng-container *ngIf="(news$ | loading | async) as news">
-              <ng-container *ngIf="news.value">
+          <ng-container *ngIf="news$">
+            <div class="column is-6-fullhd is-6-widescreen is-6-desktop is-12-tablet">
+              <app-coronavirus-resume [selectedCountry]="selectedCountry" [mainStats]="franceStats.value"
+                [selectedZone]="selectedZone"></app-coronavirus-resume>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!news$">
+            <div class="column">
+              <app-coronavirus-resume [selectedCountry]="selectedCountry" [mainStats]="franceStats.value"
+                [selectedZone]="selectedZone"></app-coronavirus-resume>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="(news$ | loading | async) as news">
+            <ng-container *ngIf="news.value">
+              <div class="column is-6-fullhd is-6-widescreen is-6-desktop is-12-tablet">
                 <app-coronavirus-news [news]="news.value"></app-coronavirus-news>
-              </ng-container>
+              </div>
             </ng-container>
-          </div>
+          </ng-container>
+
         </div>
-        <app-coronavirus-stats [selectedCountry]="selectedCountry"
-          [mainStats]="franceStats.value" [selectedZone]="selectedZone">
+        <app-coronavirus-stats [selectedCountry]="selectedCountry" [mainStats]="franceStats.value"
+          [selectedZone]="selectedZone">
         </app-coronavirus-stats>
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
           <div class="column is-spaced">
@@ -174,7 +184,7 @@
             </mat-select>
             <ng-container *ngIf="isBrowser">
               <app-coronavirus-map [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap"
-              [detailedStats]="selectedDivisionMap === 'regionFrance' ?
+                [detailedStats]="selectedDivisionMap === 'regionFrance' ?
               franceStats.value.region.total : franceStats.value.department.total"></app-coronavirus-map>
             </ng-container>
           </div>
@@ -242,16 +252,16 @@
 
 
             <ng-container *ngIf="(franceStatsDay$ | loading | async) as franceStatsDay">
-            <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
-              <h2 class="title">Nombre quotidien
-                de nouvelles hospitalisations, de nouvelles admissions
-                en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier</h2>
-              <p>
-                Les données remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC sont : le
-                nombre quotidien de personnes nouvellement hospitalisées, le nombre
-                quotidien de nouvelles admissions en réanimation, le nombre quotidien de personnes nouvellement
-                décédées, le nombre quotidien de nouveaux retours à domicile.
-              </p>
+              <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
+                <h2 class="title">Nombre quotidien
+                  de nouvelles hospitalisations, de nouvelles admissions
+                  en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier</h2>
+                <p>
+                  Les données remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC sont : le
+                  nombre quotidien de personnes nouvellement hospitalisées, le nombre
+                  quotidien de nouvelles admissions en réanimation, le nombre quotidien de personnes nouvellement
+                  décédées, le nombre quotidien de nouveaux retours à domicile.
+                </p>
                 <ng-container *ngIf="franceStatsDay.value && isBrowser">
                   <app-coronavirus-chart-test-column [nameChart]="'chart-day'" [data]="franceStatsDay.value">
                   </app-coronavirus-chart-test-column>
@@ -290,9 +300,9 @@
                     <h2 class="title">Taux d'hospitalisation parmi les passages aux urgences pour suspicion de
                       COVID-19 selon l'âge</h2>
                     <app-coronavirus-chart-test-column [nameChart]="'chart-urgences-hospital-age'"
-                    [data]="dataEmergency?.value">
-                  </app-coronavirus-chart-test-column>
-                    </ng-container>
+                      [data]="dataEmergency?.value">
+                    </app-coronavirus-chart-test-column>
+                  </ng-container>
                 </ng-container>
 
               </ng-container>
