@@ -1,6 +1,6 @@
 <div class="content">
   <h1 class="title" id="tableDescription">
-    Transferts de patients atteints de COVID-19 France
+    Transferts de patients atteints de COVID-19 en France
   </h1>
   <p>
     Depuis le 18 mars 2020, le gouvernement effectue des transferts de
@@ -38,7 +38,7 @@
       <div class="columns">
         <div class="column">
           <mat-label class="label" >Filtrer par la région de départ</mat-label>
-          <mat-select role="listbox" placeholder="Filter par la région de départ" [(ngModel)]="startRegion">
+          <mat-select role="listbox" placeholder="Filtrer par la région de départ" [(ngModel)]="startRegion">
             <mat-option role="option">
               <ngx-mat-select-search ngModel placeholderLabel="Rechercher une région..." noEntriesFoundLabel="Région inconnue"
                 clearSearchInput="true" (ngModelChange)="filterRegions($event)">
@@ -58,7 +58,7 @@
         </div>
         <div class="column">
           <mat-label class="label" >Filtrer par la région d'arrivée</mat-label>
-          <mat-select role="listbox" placeholder="Filter par la région d'arrivée" [(ngModel)]="endRegion">
+          <mat-select role="listbox" placeholder="Filtrer par la région d'arrivée" [(ngModel)]="endRegion">
 
             <mat-option role="option">
               <ngx-mat-select-search ngModel placeholderLabel="Rechercher une région..." noEntriesFoundLabel="Région inconnue"
@@ -82,7 +82,7 @@
         </div>
         <div class="column">
           <mat-label class="label" >Trier par</mat-label>
-          <mat-select role="listbox" placeholder="Filter par la région d'arrivée" [(ngModel)]="selectedSortFilter">
+          <mat-select role="listbox" placeholder="Trier" [(ngModel)]="selectedSortFilter">
             <mat-option role="option" *ngFor="let sortFilter of sortFilters; trackByFn" [value]="sortFilter">
               {{sortFilter}}
             </mat-option>
