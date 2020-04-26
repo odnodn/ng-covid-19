@@ -96,7 +96,7 @@ export class CoronavirusTransfertComponent implements OnInit {
   }
 
   private initMetaTagFrance(): void {
-    this.title.setTitle(`Transfert de patients atteints de Coronavirus COVID-19 en France`);
+    this.title.setTitle(`Transferts de patients atteints de Coronavirus COVID-19 en France`);
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: `Suivez les transferts de patients atteints de Coronavirus COVID-19 entre les régions et les départements` },
@@ -104,13 +104,13 @@ export class CoronavirusTransfertComponent implements OnInit {
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/transfert-patients/france` },
       // tslint:disable-next-line:max-line-length
-      { property: 'og:title', content: `Transfert de patients atteints de Coronavirus COVID-19` },
+      { property: 'og:title', content: `Transferts de patients atteints de Coronavirus COVID-19` },
       // tslint:disable-next-line:max-line-length
       { property: 'og:description', content: `Suivez les transferts de patients atteints de Coronavirus COVID-19 entre les régions et les départements` },
       { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:title', content: `Transfert de patients atteints de Coronavirus COVID-19` },
+      { name: 'twitter:title', content: `Transferts de patients atteints de Coronavirus COVID-19` },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Suivez les transferts de patients atteints de Coronavirus COVID-19 entre les régions et les départements` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
