@@ -11,7 +11,7 @@ export class CoronavirusFranceService {
   private readonly urlCSVDay = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-day';
   private readonly urlTest = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-test';
   private readonly urlEmergency = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-urgences';
-  private readonly urlTransfert = 'http://localhost:3000/france-datas-transfert';
+  private readonly urlTransfert = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-transfert';
 
   constructor(private readonly httpClient: HttpClient) { }
 
