@@ -1,6 +1,7 @@
 .news {
   height: 150px;
-  overflow:auto;
+  overflow-y:auto;
+  overflow-x: hidden;
   margin: 0;
   a {
     text-decoration: none !important;
