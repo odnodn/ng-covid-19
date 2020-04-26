@@ -19,6 +19,9 @@ import { CoronavirusChartPyramidComponent } from './components/coronavirus-chart
 import { CoronavirusLinksFranceTestComponent } from './containers/coronavirus-links-france-test/coronavirus-links-france-test.component';
 import { CoronavirusSheetEmergencyComponent } from './containers/coronavirus-sheet-emergency/coronavirus-sheet-emergency.component';
 import { CoronavirusTransfertComponent } from './containers/coronavirus-transfert/coronavirus-transfert.component';
+import { CoronavirusResumeComponent } from './components/coronavirus-resume/coronavirus-resume.component';
+import { CoronavirusNewsComponent } from './components/coronavirus-news/coronavirus-news.component';
+import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page/coronavirus-news-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { CoronavirusTransfertComponent } from './containers/coronavirus-transfer
     CoronavirusChartPyramidComponent,
     CoronavirusLinksFranceTestComponent,
     CoronavirusSheetEmergencyComponent,
-    CoronavirusTransfertComponent
+    CoronavirusTransfertComponent,
+    CoronavirusResumeComponent,
+    CoronavirusNewsComponent,
+    CoronavirusNewsPageComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,91 @@
+<div class="content">
+  <div class="don">
+    <div class="don-content">
+      <a
+        href="https://paypal.me/pools/c/8ojhCZiSX2"
+        target="_blank"
+        rel="noopener noreferrer"
+        ><img src="../../../../assets/images/paypal.png" />
+        <div class="text">
+          <strong>
+            Soutenez toute l'équipe de cascoronavirus.fr, qui chaque jour met
+            tout en oeuvre pour vous relayer l'évolution de l'épidémie en France
+            et dans le monde.
+          </strong>
+        </div>
+      </a>
+    </div>
+  </div>
+
+    <a [routerLink]="['/']" class="back"
+      ><span class="material-icons">keyboard_backspace</span> Retour à
+      l'accueil</a
+    >
+
+  <div class="columns is-multiline">
+    <ng-container *ngIf="news && news.value">
+      <div
+        class="column is-6 is-3-fullhd is-4-widescreen is-4-desktop is-12-tablet"
+      >
+        <h1 class="title main">
+          News Coronavirus COVID-19
+        </h1>
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{ news.value.title }}</p>
+                <p class="subtitle is-6">Source : {{ news.value.source }}</p>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="{{news.value.image}}">
+            </div>
+            <div class="content">
+              {{news.value.description}}
+            </div>
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item">
+              <span>
+                <a
+                  href="{{ news.value.link }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Lire l'article</a
+                >
+              </span>
+            </p>
+          </footer>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="newsAll$ | loading | async as newsAll">
+      <ng-container *ngIf="newsAll.value">
+        <div
+          class="column is-6 is-9-fullhd is-8-widescreen is-8-desktop is-12-tablet"
+        >
+          <h2 class="title">
+            Toutes les news
+          </h2>
+          <ul class="menu">
+            <li class="new-item" *ngFor="let newsItem of newsAll.value">
+              <span class="material-icons">
+                arrow_right
+              </span>
+              <div class="link">
+                <a [routerLink]="['/news', newsItem.slug, newsItem.id]">{{
+                  newsItem.title
+                }}</a>
+                <div class="source">
+                  {{ newsItem.source }} -
+                  {{ newsItem.date | date: "d MMMM HH:mm":"fr-FR" }}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

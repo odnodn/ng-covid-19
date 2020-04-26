@@ -25,6 +25,7 @@ export class CoronavirusSheetComponent implements OnInit {
   franceStats$: Observable<any>;
   franceStatsDay$: Observable<any>;
   dataEmergency$: Observable<any>;
+  news$: Observable<any>;
 
   selectedCountry: any = COUNTRIES[0];
   selectedDivisionMap = 'departmentFrance';
@@ -50,6 +51,7 @@ export class CoronavirusSheetComponent implements OnInit {
 
   ngOnInit(): void {
     this.data$ = this.coronavirusService.getDailyDatas();
+    this.news$ = this.coronavirusFranceService.getFranceNews();
     this.route.params.subscribe(params => {
       this.tabTimelineSelected = 'timelineCumulated';
       this.tabRepartionSelected = 'repartitionAge';

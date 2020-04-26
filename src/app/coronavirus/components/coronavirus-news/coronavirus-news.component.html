@@ -1,0 +1,22 @@
+<article class="message is-info">
+  <div class="message-header">
+    News Coronavirus
+  </div>
+  <div class="message-body">
+    <ul class="news">
+      <li class="new-item" *ngFor="let newsItem of news">
+        <span class="material-icons">
+          arrow_right
+        </span>
+        <div class="link">
+          <a
+          [routerLink]="['/news', newsItem.slug, newsItem.id]"
+          >
+            {{ newsItem.title }}
+          </a>
+          <div class="source">{{ newsItem.source }} - {{newsItem.date | date: "d MMMM HH:mm":"fr-FR" }}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</article>

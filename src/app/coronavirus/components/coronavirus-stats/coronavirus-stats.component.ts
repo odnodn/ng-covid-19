@@ -8,38 +8,12 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./coronavirus-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoronavirusStatsComponent implements AfterViewInit {
+export class CoronavirusStatsComponent {
 
   @Input() mainStats;
   @Input() selectedCountry;
   @Input() selectedZone;
   @Input() lastUpdate;
 
-  constructor(public readonly router: Router, private datePipe: DatePipe) {
-
-
-  }
-
-  ngAfterViewInit(): void {
-    // @ts-ignore
-    if ((window as any).twttr) {
-      (window as any).twttr.widgets.load();
-    }
-  }
-
-  getTwittText(): string {
-    if (this.selectedZone) {
-      return `Au ${this.datePipe.transform(this.mainStats.total.hospital.lastUpdate, 'd MMMM', 'fr-FR')}, ` +
-      `${this.selectedZone} ${this.mainStats.total.hospital.translation} ` +
-      `recense ${this.mainStats.total.hospital.hospital} ` +
-      `hospitalisations en cours pour cause de #COVID19 dont ${this.mainStats.total.hospital.reanimation} en réanimation. ` +
-      `${this.mainStats.total.hospital.deaths} patients sont décédés et ${this.mainStats.total.hospital.recovered} sont ` +
-      `retournés à leur domicile depuis le début de l'épidémie.`;
-    }
-    return `Au ${this.datePipe.transform(this.mainStats.total.global.lastUpdate, 'd MMMM', 'fr-FR')},  ` +
-    `la ${this.selectedCountry.translation} recense ${this.mainStats.total.hospital.hospital} ` +
-    `hospitalisations en cours pour cause de #COVID19 dont ${this.mainStats.total.hospital.reanimation} en réanimation. ` +
-    `Après hospitalisation, ${this.mainStats.total.hospital.recovered} personnes sont de retour à domicile. ` +
-    `On compte ${this.mainStats.total.global.deaths} décès au total depuis le début de l'épidémie. `;
-  }
+  constructor() {}
 }

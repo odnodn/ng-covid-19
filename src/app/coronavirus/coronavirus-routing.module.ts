@@ -8,7 +8,7 @@ import { CoronavirusLinksFranceComponent } from './containers/coronavirus-links-
 import { CoronavirusLinksFranceTestComponent } from './containers/coronavirus-links-france-test/coronavirus-links-france-test.component';
 import { CoronavirusSheetEmergencyComponent } from './containers/coronavirus-sheet-emergency/coronavirus-sheet-emergency.component';
 import { CoronavirusTransfertComponent } from './containers/coronavirus-transfert/coronavirus-transfert.component';
-
+import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page/coronavirus-news-page.component';
 export const coronavirusRoutes: Routes = [
   {
     path: '',
@@ -65,7 +65,7 @@ export const coronavirusRoutes: Routes = [
       {
         path: 'transfert-patients/:country/departement/:department',
         component: CoronavirusTransfertComponent
-      }
+      },
     ]
   },
   {
@@ -80,6 +80,14 @@ export const coronavirusRoutes: Routes = [
     component: CoronavirusLinksFranceTestComponent,
     path: 'stats/liens/test-depistage/france',
   },
+  {
+    path: 'news',
+    component: CoronavirusNewsPageComponent
+  },
+  {
+    path: 'news/:title/:id',
+    component: CoronavirusNewsPageComponent
+  }
 ];
 
 @NgModule({

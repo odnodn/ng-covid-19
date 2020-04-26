@@ -1,0 +1,22 @@
+.news {
+  height: 150px;
+  overflow:auto;
+  margin: 0;
+  a {
+    text-decoration: none !important;
+    font-weight: 600;
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.new-item {
+  display: flex;
+  align-items: end;
+}
+
+.source {
+  font-size: 0.8em;
+}
+
