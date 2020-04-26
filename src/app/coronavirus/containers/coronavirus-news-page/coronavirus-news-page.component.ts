@@ -2,6 +2,7 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Observable } from 'rxjs';
@@ -21,6 +22,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly route: ActivatedRoute,
+    private readonly ref: ChangeDetectorRef,
     private readonly title: Title,
     private readonly meta: Meta
   ) { }
@@ -35,7 +37,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
             this.news.value = result;
             this.news.value.image = this.getPicture();
             this.initMetaNews(params.title);
-
+            this.ref.detectChanges();
           });
       } else {
         this.initMetaAllNews();
