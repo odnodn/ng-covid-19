@@ -41,7 +41,7 @@ export function app() {
         next();
         return;
       }
-      res.redirect(301, 'https://' + req.hostname + req.url);
+      // res.redirect(301, 'https://' + req.hostname + req.url);
     } else if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
       res.redirect(301, 'https://www.' + req.hostname + req.url);
     } else if (wwwredirecto && req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
