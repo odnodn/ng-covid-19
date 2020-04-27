@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,13 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './coronavirus-news.component.html',
   styleUrls: ['./coronavirus-news.component.scss']
 })
-export class CoronavirusNewsComponent implements OnInit {
+export class CoronavirusNewsComponent implements AfterViewInit {
 
   @Input() news;
   constructor(private readonly router: Router) { }
 
-  ngOnInit(): void {
-
+  ngAfterViewInit(): void {
+    // @ts-ignore
+    if ((window as any).twttr) {
+      (window as any).twttr.widgets.load();
+    }
   }
+
 
 }

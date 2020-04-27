@@ -17,7 +17,14 @@
   align-items: flex-start;
 }
 
+.share-buttons {
+  display: flex;
+}
+
 .source {
   font-size: 0.8em;
 }
 
+.twitter {
+  margin-right: 1em;
+}

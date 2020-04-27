@@ -1,48 +1,41 @@
 <div class="resume">
   <ng-container *ngIf="!selectedZone">
-    <ng-container *ngIf="
-    mainStats?.total.global.lastUpdate &&
-    mainStats?.total.hospital.lastUpdate &&
-    mainStats?.total.global.lastUpdate ===
-      mainStats?.total.hospital.lastUpdate
-  ">
-      <article class="message is-info">
-        <div class="message-header">
-          <div>
-            Le résumé du
-            {{
+    <article class="message is-info">
+      <div class="message-header">
+        <div>
+          Le résumé du
+          {{
           mainStats?.total.global.lastUpdate | date: "d MMMM yyyy":"fr-FR"
         }}
-            en France
-          </div>
-          <div class="share-buttons">
-            <div class="fb-share-button" [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
-              data-layout="button"></div>
-            <a class="twitter-share-button" data-url="https://www.cascoronavirus.fr/"
-              [href]="'https://twitter.com/share?text=' + getTwittText()">
-              Tweet</a>
-          </div>
+          en France
         </div>
-        <div class="message-body">
-          Au
-          <strong>{{
+        <div class="share-buttons">
+          <div class="fb-share-button" [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
+            data-layout="button"></div>
+          <a class="twitter-share-button" data-url="https://www.cascoronavirus.fr/"
+            [href]="'https://twitter.com/share?text=' + getTwittText()">
+            Tweet</a>
+        </div>
+      </div>
+      <div class="message-body">
+        Au
+        <strong>{{
         mainStats?.total.global.lastUpdate | date: "d MMMM yyyy":"fr-FR"
       }}</strong>,
-          <ng-container *ngIf="!selectedZone">
-            la <strong>{{ selectedCountry.translation }}</strong>
-          </ng-container>
-          recense
-          {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
-          hospitalisations en cours pour cause de COVID-19 dont
-          {{ mainStats.total.hospital.reanimation | number: "":"fr-FR" }} en
-          réanimation. Après hospitalisation,
-          {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }} sont de
-          retour à leur domicile. À cette même date,
-          {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
-          personnes sont décédées depuis le début de l'épidémie.
-        </div>
-      </article>
-    </ng-container>
+        <ng-container *ngIf="!selectedZone">
+          la <strong>{{ selectedCountry.translation }}</strong>
+        </ng-container>
+        recense
+        {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
+        hospitalisations en cours pour cause de COVID-19 dont
+        {{ mainStats.total.hospital.reanimation | number: "":"fr-FR" }} en
+        réanimation. Après hospitalisation,
+        {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }} sont de
+        retour à leur domicile. À cette même date,
+        {{ mainStats.total.global.deaths | number: "":"fr-FR" }}
+        personnes sont décédées depuis le début de l'épidémie.
+      </div>
+    </article>
   </ng-container>
   <ng-container *ngIf="selectedZone">
     <article class="message is-info">
