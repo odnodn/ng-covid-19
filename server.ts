@@ -27,24 +27,29 @@ export function app() {
   server.use(cookieparser());
 
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-
-  const redirectowww = true;
-  const redirectohttps = true;
-  const wwwredirecto = false;
+  const redirectowww = false;
+  const redirectohttps = false;
+  const wwwredirecto = true;
 
   server.use((req, res, next) => {
 
     if (req.url === '/index.html') {
       res.redirect(301, 'https://' + req.hostname);
-    } else if (redirectohttps && req.headers['x-forwarded-proto'] !== 'https' && req.hostname !== 'localhost') {
+    }
+
+    if (redirectohttps && req.headers['x-forwarded-proto'] !== 'https' && req.hostname !== 'localhost') {
       if (req.url === '/robots.txt') {
         next();
         return;
       }
       res.redirect(301, 'https://' + req.hostname + req.url);
-    } else if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
+    }
+
+    if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
       res.redirect(301, 'https://www.' + req.hostname + req.url);
-    } else if (wwwredirecto && req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
+    }
+
+    if (wwwredirecto && req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
       const host = req.hostname.slice(4, req.hostname.length);
       res.redirect(301, 'https://' + host + req.url);
     }
