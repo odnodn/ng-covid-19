@@ -27,9 +27,9 @@ export function app() {
   server.use(cookieparser());
 
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-  const redirectowww = false;
-  const redirectohttps = false;
-  const wwwredirecto = true;
+  const redirectowww = true;
+  const redirectohttps = true;
+  const wwwredirecto = false;
 
   server.use((req, res, next) => {
 
