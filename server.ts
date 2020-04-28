@@ -51,7 +51,7 @@ export function app() {
 
     if (wwwredirecto && req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
       const host = req.hostname.slice(4, req.hostname.length);
-      res.redirect(301, 'https://' + host + req.url);
+      res.redirect(301, 'https://' + req.hostname + req.url);
     }
     next();
   });
