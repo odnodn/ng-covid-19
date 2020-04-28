@@ -42,8 +42,7 @@ export function app() {
     } else if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
       res.redirect(301, 'https://www.' + req.hostname + req.url);
     } else if (redirectowww && req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
-      const host = req.hostname.slice(4, req.hostname.length);
-      res.redirect(301, 'https://' + host + req.url);
+      res.redirect(301, 'https://' + req.hostname + req.url);
     }
     next();
   });
