@@ -42,12 +42,6 @@ export function app() {
         next();
         return;
       }
-      if (!req.hostname.startsWith('www.')) {
-        res.redirect(301, 'https://www.' + req.hostname + req.url);
-      }
-      if (req.hostname.startsWith('www.')) {
-        res.redirect(301, 'https://' + req.hostname + req.url);
-      }
     }
 
     if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
