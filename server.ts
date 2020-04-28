@@ -42,7 +42,12 @@ export function app() {
         next();
         return;
       }
-      res.redirect(301, 'https://' + req.hostname + req.url);
+      if (!req.hostname.startsWith('www.')) {
+        res.redirect(301, 'https://www.' + req.hostname + req.url);
+      }
+      if (req.hostname.startsWith('www.')) {
+        res.redirect(301, 'https://' + req.hostname + req.url);
+      }
     }
 
     if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
@@ -51,7 +56,7 @@ export function app() {
 
     if (wwwredirecto && req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
       const host = req.hostname.slice(4, req.hostname.length);
-      res.redirect(301, 'https://' + req.hostname + req.url);
+      res.redirect(301, 'https://' + host + req.url);
     }
     next();
   });
