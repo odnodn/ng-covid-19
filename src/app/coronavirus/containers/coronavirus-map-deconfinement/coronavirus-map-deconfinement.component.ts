@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-coronavirus-map-deconfinement',
@@ -8,15 +10,17 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class CoronavirusMapDeconfinementComponent implements OnInit {
 
+  data$: Observable<any>;
   constructor(
     private readonly title: Title,
-    private readonly meta: Meta
+    private readonly meta: Meta,
+    private readonly coronavirusFranceService: CoronavirusFranceService
   ) {
     this.initMetaTag();
   }
 
   ngOnInit(): void {
-
+    this.data$ = this.coronavirusFranceService.getDeconfinement();
   }
 
   private initMetaTag(): void {

@@ -44,9 +44,27 @@
     lits de réanimation initialement disponibles. (données de Santé publique France et la Drees 2018)
   </p>
   <div class="map">
-    <iframe src="https://e.infogram.com/b321f554-2b7e-454a-8a35-369357fafa75?src=embed"
-      title="Taux de remplissage en réanimation" width="100%" height="800px" scrolling="no" frameborder="0"
-      style="border:none;" allowfullscreen="allowfullscreen"></iframe>
+      <ng-container *ngIf="data$ | async as data">
+        <h2 *ngIf="data.date">
+          Carte du déconfinement au {{data.date | date: "d MMMM yyyy":"fr-FR" }}
+        </h2>
+        <div class="is-spaced">
+          <ng-container *ngIf="data.img">
+            <img src="{{data.img}}">
+          </ng-container>
+          <ng-container *ngIf="data.link">
+            <iframe src="{{data.link}}"
+            title="Carte du déconfinement" width="100%" height="800px" scrolling="no" frameborder="0"
+            style="border:none;" allowfullscreen="allowfullscreen"></iframe>
+          </ng-container>
+          <ng-container *ngIf="!data.date">
+            <iframe src="https://e.infogram.com/b321f554-2b7e-454a-8a35-369357fafa75?src=embed"
+            title="Taux de remplissage en réanimation" width="100%" height="800px" scrolling="no" frameborder="0"
+            style="border:none;" allowfullscreen="allowfullscreen"></iframe>
+          </ng-container>
+        </div>
+      </ng-container>
   </div>
+
 
 </div>
