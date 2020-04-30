@@ -1,0 +1,46 @@
+<div class="content">
+  <h1 class="title is-spaced" id="tableDescription">Niveau d'excès de mortalité en France pendant l'épidémie de Coronavirus COVID-19
+  </h1>
+  <p class="description">
+    Cette cartographie représente le niveau d'excès standardisé de mortalité pendant l'épidémie de COVID-19 au niveau régional et départemental.
+    Les données proviennent de la partie administrative du certificat du décès et sont collectées
+    par les bureaux d'état-civil des différentes communes possédant une transmission dématérialisée avec l'Insee.
+    Santé Publique France compare le nombre de décès observé avec un nombre de décès attendu, évalué sur la base d'un modèle statistique établi par
+    le consortium EuroMomo.
+    Cette estimation d'excès de mortalité est établi sur le Z-score, un indicateur standardisé qui permet de comparer les excès entre différents niveaux géographiques ou classes d’âges.<br>
+    On calcule le Z-score de la manière suivante : <em>(nombre observé – nombre attendu) / écart-type du nombre attendu.</em>
+  </p>
+  <div>
+    Voici les cinq catégories de niveaux d'excès :
+    <ul>
+      <li>
+        <strong>Pas d'excès</strong> : indicateur standardisé de décès (Z-score) <strong>inférieur à 2</strong>
+      </li>
+      <li>
+        <strong>Excès modéré de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 2 et 4,99</strong>
+      </li>
+      <li>
+        <strong>Excès élevé de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 5 et 6,99</strong>
+      </li>
+      <li>
+        <strong>Excès très élevé de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 7 et 11,99</strong>
+      </li>
+      <li>
+        <strong>Excès exceptionnel de décès</strong> : indicateur standardisé de décès (Z-score) <strong>supérieur à 12</strong>
+      </li>
+    </ul>
+  </div>
+
+  <ng-container *ngIf="(data$ | loading | async) as data">
+    <ng-container *ngIf="data.value">
+      <!-- <ul>
+      <li *ngFor="let item of data.value.region">
+        {{item.numberWeek}} {{item.translation}} {{item.score}}
+      </li>
+    </ul> -->
+      <app-coronavirus-heat-map [data]="data.value.department"></app-coronavirus-heat-map>
+    </ng-container>
+  </ng-container>
+</div>
+
+

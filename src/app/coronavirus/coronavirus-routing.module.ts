@@ -10,6 +10,7 @@ import { CoronavirusSheetEmergencyComponent } from './containers/coronavirus-she
 import { CoronavirusTransfertComponent } from './containers/coronavirus-transfert/coronavirus-transfert.component';
 import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page/coronavirus-news-page.component';
 import { CoronavirusMapDeconfinementComponent } from './containers/coronavirus-map-deconfinement/coronavirus-map-deconfinement.component';
+import { CoronavirusMortalityComponent } from './containers/coronavirus-mortality/coronavirus-mortality.component';
 export const coronavirusRoutes: Routes = [
   {
     path: '',
@@ -70,9 +71,14 @@ export const coronavirusRoutes: Routes = [
       {
         path: 'carte-deconfinement/france',
         component: CoronavirusMapDeconfinementComponent
+      },
+      {
+        path: 'exces-mortalite/:country',
+        component: CoronavirusMortalityComponent
       }
     ]
   },
+
   {
     component: CoronavirusLinksComponent,
     path: 'stats/liens/monde',
@@ -92,8 +98,7 @@ export const coronavirusRoutes: Routes = [
   {
     path: 'news/:title/:id',
     component: CoronavirusNewsPageComponent
-  },
-
+  }
 ];
 
 @NgModule({
