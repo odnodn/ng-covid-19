@@ -24,7 +24,7 @@
     La carte du déconfinement par département va être dévoilée à partir du jeudi 30 avril par
     le ministère de la Santé.
   </p>
-  Elle devrait se baser sur trois critères :
+  Elle se base sur deux critères :
   <ul>
     <li>
       Le taux de nouveaux cas sur sept jours pour savoir si le coronavirus circule activement.
@@ -32,17 +32,11 @@
     <li>
       La taux de saturation des services de réanimation.
     </li>
-    <li>
+    <!-- <li>
       La capacité des départements à détecter les personnes qui ont été en contact avec le COVID-19
       et à tester les patients ayant des symptômes de COVID-19 pour éviter la reprise de l'épidémie.
-    </li>
+    </li> -->
   </ul>
-
-  <p>
-    Voici un premier état des lieux de ce que pourrait être la carte (en se basant seulement sur le taux de saturation des services de réanimation).
-    Pour information, le taux de saturation des services de réanimation présent sur la carte correspond au nombre de patients en réanimation dans chaque département sur le nombre de
-    lits de réanimation initialement disponibles. (données de Santé publique France et la Drees 2018)
-  </p>
   <div class="map">
       <ng-container *ngIf="data$ | async as data">
         <h2 *ngIf="data.date">

@@ -2052,5 +2052,8 @@
     </url><url>
       <loc>https://www.cascoronavirus.fr/transfert-patients/france</loc>
       <changefreq>daily</changefreq>
+    </url><url>
+      <loc>https://www.cascoronavirus.fr/carte-deconfinement/france</loc>
+      <changefreq>daily</changefreq>
     </url>
 </urlset>
