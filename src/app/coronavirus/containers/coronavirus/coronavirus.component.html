@@ -112,19 +112,24 @@
         *ngIf="!selectedRegion && !selectedDepartment"
         [routerLink]="['/transfert-patients/', selectedCountry.slug]"
       >
-      <strong>Transferts de patients</strong>
+      Transferts de patients
       </a>
       <a
         *ngIf="selectedRegion"
         [routerLink]="['/transfert-patients/france/region', selectedRegion.slug]"
       >
-      <strong>Transferts de patients</strong>
+      Transferts de patients
       </a>
       <a
         *ngIf="selectedDepartment"
         [routerLink]="['/transfert-patients/france/departement', selectedDepartment.slug]"
       >
-      <strong>Transferts de patients</strong>
+      Transferts de patients
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/carte-deconfinement/france']">
+        <strong>Carte de déconfinement</strong>
       </a>
     </li>
   </ul>

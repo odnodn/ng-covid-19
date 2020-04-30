@@ -9,6 +9,7 @@ import { CoronavirusLinksFranceTestComponent } from './containers/coronavirus-li
 import { CoronavirusSheetEmergencyComponent } from './containers/coronavirus-sheet-emergency/coronavirus-sheet-emergency.component';
 import { CoronavirusTransfertComponent } from './containers/coronavirus-transfert/coronavirus-transfert.component';
 import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page/coronavirus-news-page.component';
+import { CoronavirusMapDeconfinementComponent } from './containers/coronavirus-map-deconfinement/coronavirus-map-deconfinement.component';
 export const coronavirusRoutes: Routes = [
   {
     path: '',
@@ -87,7 +88,11 @@ export const coronavirusRoutes: Routes = [
   {
     path: 'news/:title/:id',
     component: CoronavirusNewsPageComponent
-  }
+  },
+  {
+    path: 'carte-deconfinement/france',
+    component: CoronavirusMapDeconfinementComponent
+  },
 ];
 
 @NgModule({
