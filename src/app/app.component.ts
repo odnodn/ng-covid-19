@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ApplicationRef } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { SwUpdate } from '@angular/service-worker';
-import { interval } from 'rxjs';
+import { interval, concat } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +15,20 @@ export class AppComponent {
   deferredPrompt: any;
   showButton = false;
 
-  constructor(private readonly deviceService: DeviceDetectorService, private swUpdate: SwUpdate) {
+  constructor(private readonly appRef: ApplicationRef, private readonly deviceService: DeviceDetectorService, private swUpdate: SwUpdate) {
     this.isMobile = this.deviceService.isMobile();
     if (swUpdate.isEnabled) {
+      const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
+      const everySixHours$ = interval(6 * 60 * 60 * 1000);
+      const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
+
+      everySixHoursOnceAppIsStable$.subscribe(() => swUpdate.checkForUpdate());
       this.swUpdate.activated.subscribe(event => {
         console.log('old version was', event.previous);
         console.log('new version is', event.current);
       });
       this.swUpdate.available.subscribe(() => {
-        if (confirm('Une nouvelle version est disponible. Souhaitez-vous accéder à la nouvelle version ?')) {
-          window.location.reload();
-        }
+        swUpdate.activateUpdate().then(() => document.location.reload());
       });
     }
   }
