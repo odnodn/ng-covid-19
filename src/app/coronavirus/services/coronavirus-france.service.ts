@@ -13,6 +13,7 @@ export class CoronavirusFranceService {
   private readonly urlEmergency = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-urgences';
   private readonly urlTransfert = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-transfert';
   private readonly urlNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-news';
+  private readonly urlOneNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-one-news';
   private readonly urlDeconfinement = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-deconfinement';
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -56,9 +57,8 @@ export class CoronavirusFranceService {
     return this.httpClient.get(`${this.urlNews}?type=today`);
   }
 
-
   getNewsById(id: string): Observable<any> {
-    return this.httpClient.get(`${this.urlNews}/${id}`);
+    return this.httpClient.get(`${this.urlOneNews}/${id}`);
   }
 
   getDeconfinement(): Observable<any> {
