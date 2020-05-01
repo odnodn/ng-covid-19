@@ -42,6 +42,7 @@ export function app() {
         next();
         return;
       }
+      res.redirect(301, 'https://' + req.hostname);
     }
 
     if (redirectowww && !req.hostname.startsWith('www.') && req.hostname !== 'localhost') {
