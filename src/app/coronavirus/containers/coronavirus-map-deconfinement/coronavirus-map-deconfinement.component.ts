@@ -1,26 +1,65 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { COUNTRIES } from '@coronavirus/constants/countries.constants';
+import { FRANCE_DEPS, FRANCE_REGIONS } from '@coronavirus/constants/france.constants';
 
 @Component({
   selector: 'app-coronavirus-map-deconfinement',
   templateUrl: './coronavirus-map-deconfinement.component.html',
-  styleUrls: ['./coronavirus-map-deconfinement.component.scss']
+  styleUrls: ['./coronavirus-map-deconfinement.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoronavirusMapDeconfinementComponent implements OnInit {
 
-  data$: Observable<any>;
+  data: any[];
+  selectedDepartment: any;
+  selectedRegion: any;
+  selectedCountry: any = COUNTRIES[0];
+  selectedDate;
   constructor(
+    private readonly coronavirusFranceService: CoronavirusFranceService,
+    private readonly route: ActivatedRoute,
+    private readonly ref: ChangeDetectorRef,
+    private readonly router: Router,
     private readonly title: Title,
     private readonly meta: Meta,
-    private readonly coronavirusFranceService: CoronavirusFranceService
   ) {
-    this.initMetaTag();
+
   }
 
   ngOnInit(): void {
-    this.data$ = this.coronavirusFranceService.getDeconfinement();
+    this.getData();
+    this.route.params.subscribe(params => {
+      if (!params.country) {
+        return;
+      }
+      if (params.department) {
+        this.selectedDepartment = FRANCE_DEPS.find((department) => department.slug === params.department);
+        if (!this.selectedDepartment) {
+          this.router.navigateByUrl('/');
+          return;
+        }
+      } else if (params.region) {
+        this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
+        if (!this.selectedRegion) {
+          this.router.navigateByUrl('/');
+          return;
+        }
+      }
+      this.ref.detectChanges();
+    });
+  }
+
+  private getData(): void {
+    this.coronavirusFranceService.getDeconfinement().subscribe((result) => {
+      this.selectedDate = result[0].date;
+      this.data = result;
+      this.ref.detectChanges();
+    });
+    this.initMetaTag();
   }
 
   private initMetaTag(): void {
@@ -46,5 +85,4 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
       this.meta.updateTag(tag);
     });
   }
-
 }

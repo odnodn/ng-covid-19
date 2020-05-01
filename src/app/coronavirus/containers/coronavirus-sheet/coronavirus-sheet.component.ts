@@ -56,7 +56,7 @@ export class CoronavirusSheetComponent implements OnInit {
       this.tabRepartionSelected = 'repartitionAge';
       if (!params.country) { /* No param route */
         this.updateFranceNationalDatas();
-        this.news$ = this.coronavirusFranceService.getFranceNews();
+        this.news$ = this.coronavirusFranceService.getFranceNewsToday();
       }
       if (params.country) {
         this.selectedCountry = COUNTRIES.find((country) => country.slug === params.country);

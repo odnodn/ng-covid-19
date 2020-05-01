@@ -67,6 +67,10 @@ export const coronavirusRoutes: Routes = [
         path: 'transfert-patients/:country/departement/:department',
         component: CoronavirusTransfertComponent
       },
+      {
+        path: 'carte-deconfinement/france',
+        component: CoronavirusMapDeconfinementComponent
+      }
     ]
   },
   {
@@ -89,10 +93,7 @@ export const coronavirusRoutes: Routes = [
     path: 'news/:title/:id',
     component: CoronavirusNewsPageComponent
   },
-  {
-    path: 'carte-deconfinement/france',
-    component: CoronavirusMapDeconfinementComponent
-  },
+
 ];
 
 @NgModule({

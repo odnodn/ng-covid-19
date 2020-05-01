@@ -1,64 +1,92 @@
 <div class="content">
-  <div class="don">
-    <div class="don-content">
-      <a href="https://paypal.me/pools/c/8ojhCZiSX2" target="_blank" rel="noopener noreferrer"><img
-          src="../../../../assets/images/paypal.png" />
-        <div class="text">
-          <strong>
-            Soutenez toute l'équipe de cascoronavirus.fr, qui chaque jour met
-            tout en oeuvre pour vous relayer l'évolution de l'épidémie en France
-            et dans le monde.
-          </strong>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <a [routerLink]="['/']" class="back"><span class="material-icons">keyboard_backspace</span> Retour à
-    l'accueil
-  </a>
   <h1 class="title">
     Coronavirus COVID-19 : Carte du déconfinement en France
   </h1>
-  <p>
-    La carte du déconfinement par département va être dévoilée à partir du jeudi 30 avril par
-    le ministère de la Santé.
-  </p>
-  Elle se base sur deux critères :
-  <ul>
-    <li>
-      Le taux de nouveaux cas sur sept jours pour savoir si le coronavirus circule activement.
-    </li>
-    <li>
-      La taux de saturation des services de réanimation.
-    </li>
-    <!-- <li>
-      La capacité des départements à détecter les personnes qui ont été en contact avec le COVID-19
-      et à tester les patients ayant des symptômes de COVID-19 pour éviter la reprise de l'épidémie.
-    </li> -->
-  </ul>
-  <div class="map">
-      <ng-container *ngIf="data$ | async as data">
-        <h2 *ngIf="data.date">
-          Carte du déconfinement au {{data.date | date: "d MMMM yyyy":"fr-FR" }}
+  <ng-container *ngIf="data">
+    <div class="select-date">
+      <mat-label class="label">Sélectionner une date</mat-label>
+      <mat-select role="listbox" placeholder="Sélectionner une date" [(ngModel)]="selectedDate">
+        <mat-option role="option" *ngFor="let dataItem of data" [value]="dataItem.date">
+          {{dataItem.date | date: "d MMMM yyyy":"fr-FR"}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <h2>
+      Carte du déconfinement par département au {{selectedDate | date: "d MMMM yyyy":"fr-FR" }}
+    </h2>
+    <p>
+      Chaque jour, le ministère de la Santé présente la carte du déconfinement.
+    </p>
+    <div class="columns is-multiline">
+      <div class="column is-12 map-deconfinement">
+        <h2>
+          Carte de synthèse
         </h2>
-        <div class="is-spaced">
-          <ng-container *ngIf="data.img">
-            <img src="{{data.img}}">
-          </ng-container>
-          <ng-container *ngIf="data.link">
-            <iframe src="{{data.link}}"
-            title="Carte du déconfinement" width="100%" height="800px" scrolling="no" frameborder="0"
-            style="border:none;" allowfullscreen="allowfullscreen"></iframe>
-          </ng-container>
-          <ng-container *ngIf="!data.date">
-            <iframe src="https://e.infogram.com/b321f554-2b7e-454a-8a35-369357fafa75?src=embed"
-            title="Taux de remplissage en réanimation" width="100%" height="800px" scrolling="no" frameborder="0"
-            style="border:none;" allowfullscreen="allowfullscreen"></iframe>
-          </ng-container>
+        <div>
+          <img [src]="(data | dateFilter: selectedDate).synthese" />
         </div>
-      </ng-container>
-  </div>
-
+      </div>
+      <div class="column is-12 map-deconfinement">
+        <h2>
+          Carte de circulation active du virus
+        </h2>
+        <div>
+          <img [src]="(data | dateFilter: selectedDate).circulation" />
+        </div>
+      </div>
+      <div class="column is-12 map-deconfinement">
+        <h2>
+          Carte de la tension hospitalière sur les capacités en réanimation
+        </h2>
+        <div>
+          <img [src]="(data | dateFilter: selectedDate).reanimation" />
+        </div>
+      </div>
+    </div>
+    <p>
+      La carte de synthèse se base sur trois critères principaux :
+    </p>
+    <ul>
+      <li>
+        <strong>La circulation active du virus</strong> : le reflet de l'activité virale sur l'ensemble du
+        territoire national.
+        C'est un indicateur qui permet de mesurer la fréquence, l'intensité de circulation du virus département par
+        département. Pour constituer cet indicateur,
+        Santé publique France s'appuie sur la part des patients qui s'adressent
+        aux urgences de leur hôpital pour une suspicion d'infection de COVID-19.
+        En vert, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est inférieur à 6%.
+        En orange, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est entre 6% et 10%.
+        En rouge, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est supérieur à 10%.
+      </li>
+      <li>
+        <strong>Le niveau de tension hospitalière sur les capacités de réanimation liées au COVID-19.</strong>
+        En vert, la capacité initiale de réanimation est inférieur à 60%.
+        En orange, la capacité initiale de réanimation est entre 60% et 80%.
+        En rouge, la capacité initiale de réanimation est supérieur à 80%.
+      </li>
+      <li>
+        <strong>La capacité des départements à détecter les personnes qui ont été en contact avec le COVID-19
+          et à tester les patients ayant des symptômes de COVID-19</strong> pour éviter la reprise de l'épidémie.
+        Ce troisième critère sera pris en compte le 11 mai.
+      </li>
+    </ul>
+    <p>
+      Au final, la <strong>carte de synthèse</strong> fait le résumé des indicateurs ci-dessus :
+    </p>
+    <ul>
+      <li>
+        Le département apparaît en vert si tous les indicateurs sont au vert.
+      </li>
+      <li>
+        Le département apparaît en rouge si au moins un des indicateurs est en rouge.
+      </li>
+      <li>
+        Le département apparaît en orange si au moins un des indicateurs est en orange et qu'il n'a aucun indicateur
+        rouge.
+        Ces zones oranges ont vocation à basculer d'ici au 11 mai en vert si la pression épidémique se réduit dans le,
+        ou au contraire à basculer en rouge si la pression épidémique grandit.
+      </li>
+    </ul>
+  </ng-container>
 
 </div>

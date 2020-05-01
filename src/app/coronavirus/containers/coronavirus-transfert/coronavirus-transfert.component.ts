@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -13,9 +13,6 @@ import { COUNTRIES } from '@coronavirus/constants/countries.constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoronavirusTransfertComponent implements OnInit {
-
-  selectedDepartment: any;
-  selectedRegion: any;
   startRegion: any;
   endRegion: any;
   selectedSortFilter: string;
@@ -25,6 +22,8 @@ export class CoronavirusTransfertComponent implements OnInit {
     'Date de fin de transfert le plus récent'
   ];
   dataTransfert$: Observable<any>;
+  selectedDepartment: any;
+  selectedRegion: any;
   selectedCountry: any = COUNTRIES[0];
   filteredRegions: any[] = FRANCE_REGIONS;
   constructor(
@@ -34,7 +33,6 @@ export class CoronavirusTransfertComponent implements OnInit {
     private readonly router: Router,
     private readonly title: Title,
     private readonly meta: Meta,
-    @Inject(PLATFORM_ID) private readonly platformId: any
   ) { }
 
   ngOnInit(): void {

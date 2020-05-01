@@ -11,6 +11,7 @@ import { PercentagePipe } from './pipes/percentage.pipe';
 import { IncludePipe } from './pipes/include.pipe';
 import { TransferFilterPipe } from './pipes/transfer-filter.pipe';
 import { CountTransferPatientPipe } from './pipes/count-transfer-patient.pipe';
+import { DateFilterPipe } from './pipes/date-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CountTransferPatientPipe } from './pipes/count-transfer-patient.pipe';
     PercentagePipe,
     IncludePipe,
     TransferFilterPipe,
-    CountTransferPatientPipe
+    CountTransferPatientPipe,
+    DateFilterPipe
   ],
   exports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { CountTransferPatientPipe } from './pipes/count-transfer-patient.pipe';
     IncludePipe,
     TransferFilterPipe,
     CountTransferPatientPipe,
+    DateFilterPipe,
     NgxMatSelectSearchModule
   ],
   imports: [

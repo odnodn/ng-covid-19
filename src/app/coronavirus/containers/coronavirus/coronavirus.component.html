@@ -127,9 +127,9 @@
       Transferts de patients
       </a>
     </li>
-    <li>
+    <li [class.is-active]="router.url | include: 'deconfinement'">
       <a [routerLink]="['/carte-deconfinement/france']">
-        <strong>Carte du déconfinement</strong>
+        🔴<strong>Carte du déconfinement</strong>
       </a>
     </li>
   </ul>

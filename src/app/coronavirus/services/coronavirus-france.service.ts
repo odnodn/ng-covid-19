@@ -52,6 +52,11 @@ export class CoronavirusFranceService {
     return this.httpClient.get(`${this.urlNews}`);
   }
 
+  getFranceNewsToday(): Observable<any> {
+    return this.httpClient.get(`${this.urlNews}?type=today`);
+  }
+
+
   getNewsById(id: string): Observable<any> {
     return this.httpClient.get(`${this.urlNews}/${id}`);
   }
