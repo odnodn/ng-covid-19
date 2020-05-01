@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, PLATFORM_ID, Inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { FRANCE_DEPS, FRANCE_REGIONS } from '@coronavirus/constants/france.constants';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-coronavirus-map-deconfinement',
@@ -21,6 +22,7 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
   greenDepartments: any[];
   redDepartments: any[];
   orangeDepartments: any[];
+  isBrowser = isPlatformBrowser(this.platformId);
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
     private readonly router: Router,
     private readonly title: Title,
     private readonly meta: Meta,
+    @Inject(PLATFORM_ID) private readonly platformId: any
   ) {
 
   }

@@ -35,7 +35,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
           .getNewsById(params.id)
           .subscribe((result) => {
             this.news.value = result;
-            this.news.value.image = this.getPicture();
+            this.news.value.image = !this.getPicture() ? '../../../assets/images/cascoronavirus.png' : this.getPicture();
             this.initMetaNews(params.title);
             this.ref.detectChanges();
           });
@@ -46,6 +46,9 @@ export class CoronavirusNewsPageComponent implements OnInit {
   }
 
   private getPicture(): string {
+    if (!this.news && !this.news.value) {
+      return null;
+    }
     const html = this.news.value.content;
     return html.substring(
       this.news.value.content.indexOf('c=') + 3,

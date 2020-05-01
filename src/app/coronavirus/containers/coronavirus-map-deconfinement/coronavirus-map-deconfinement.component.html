@@ -16,7 +16,7 @@
         <div class="tile">
           <div class="tile is-parent">
             <div class="tile is-child box">
-              <p class="title">Situation du déconfinement au {{selectedDate | date: "d MMMM yyyy":"fr-FR"}}</p>
+              <p class="title">Situation de l'activité épidémique au {{selectedDate | date: "d MMMM yyyy":"fr-FR"}}</p>
               <p class="subtitle main">
                 Les données représentent la situation au
                 <strong>{{ selectedDate | date: "d MMMM yyyy":"fr-FR" }}</strong>.
@@ -96,8 +96,10 @@
         <h2>
           Carte de synthèse du déconfinement par département au {{selectedDate | date: "d MMMM yyyy":"fr-FR" }}
         </h2>
-        <app-coronavirus-map-deconfinement-details [data]="data.map" [selectedDate]="selectedDate">
-        </app-coronavirus-map-deconfinement-details>
+        <ng-container *ngIf="isBrowser">
+          <app-coronavirus-map-deconfinement-details [data]="data.map" [selectedDate]="selectedDate">
+          </app-coronavirus-map-deconfinement-details>
+        </ng-container>
       </div>
       <div class="column is-6">
         <h2>
