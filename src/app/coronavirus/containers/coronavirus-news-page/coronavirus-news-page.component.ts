@@ -54,7 +54,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
   }
 
   private initMetaNews(title: string): void {
-    this.title.setTitle(`News Coronavirus - ${this.news.value.title}`);
+    this.title.setTitle(`${this.news.value.title} - News Coronavirus`);
     const tags = [
       // tslint:disable-next-line:max-line-length
       {
@@ -69,7 +69,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
       },
       {
         property: 'og:title',
-        content: `News Coronavirus - ${this.news.value.title}}`,
+        content: `${this.news.value.title} - News Coronavirus`,
       },
       // tslint:disable-next-line:max-line-length
       {
@@ -83,7 +83,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
       { name: 'twitter:card', content: 'summary' },
       {
         name: 'twitter:title',
-        content: `News Coronavirus - ${this.news.value.title}`,
+        content: `${this.news.value.title} - News Coronavirus`,
       },
       // tslint:disable-next-line:max-line-length
       {

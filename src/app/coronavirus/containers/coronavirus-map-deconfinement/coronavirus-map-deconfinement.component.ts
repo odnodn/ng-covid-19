@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
-import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { FRANCE_DEPS, FRANCE_REGIONS } from '@coronavirus/constants/france.constants';
@@ -14,11 +13,14 @@ import { FRANCE_DEPS, FRANCE_REGIONS } from '@coronavirus/constants/france.const
 })
 export class CoronavirusMapDeconfinementComponent implements OnInit {
 
-  data: any[];
+  data: any;
   selectedDepartment: any;
   selectedRegion: any;
   selectedCountry: any = COUNTRIES[0];
   selectedDate;
+  greenDepartments: any[];
+  redDepartments: any[];
+  orangeDepartments: any[];
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly route: ActivatedRoute,
@@ -53,9 +55,23 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
     });
   }
 
+  dateChange($event): void {
+    this.coronavirusFranceService.getDeconfinement($event).subscribe((result) => {
+      this.greenDepartments = result.map.filter((item) => item.color === 'vert');
+      this.orangeDepartments = result.map.filter((item) => item.color === 'orange');
+      this.redDepartments = result.map.filter((item) => item.color === 'rouge');
+      this.selectedDate = result.images.date;
+      this.data = result;
+      this.ref.detectChanges();
+    });
+  }
+
   private getData(): void {
     this.coronavirusFranceService.getDeconfinement().subscribe((result) => {
-      this.selectedDate = result[0].date;
+      this.greenDepartments = result.map.filter((item) => item.color === 'vert');
+      this.orangeDepartments = result.map.filter((item) => item.color === 'orange');
+      this.redDepartments = result.map.filter((item) => item.color === 'rouge');
+      this.selectedDate = result.images.date;
       this.data = result;
       this.ref.detectChanges();
     });

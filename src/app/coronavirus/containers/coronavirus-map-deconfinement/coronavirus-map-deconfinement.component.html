@@ -5,88 +5,238 @@
   <ng-container *ngIf="data">
     <div class="select-date">
       <mat-label class="label">Sélectionner une date</mat-label>
-      <mat-select role="listbox" placeholder="Sélectionner une date" [(ngModel)]="selectedDate">
-        <mat-option role="option" *ngFor="let dataItem of data" [value]="dataItem.date">
-          {{dataItem.date | date: "d MMMM yyyy":"fr-FR"}}
+      <mat-select role="listbox" placeholder="Sélectionner une date" [(ngModel)]="selectedDate" (ngModelChange)="dateChange($event)">
+        <mat-option role="option" *ngFor="let date of data.dates" [value]="date">
+          {{date | date: "d MMMM yyyy":"fr-FR"}}
         </mat-option>
       </mat-select>
     </div>
-    <h2>
-      Carte du déconfinement par département au {{selectedDate | date: "d MMMM yyyy":"fr-FR" }}
-    </h2>
-    <p>
-      Chaque jour, le ministère de la Santé présente la carte du déconfinement.
-    </p>
-    <div class="columns is-multiline">
-      <div class="column is-12 map-deconfinement">
-        <h2>
-          Carte de synthèse
-        </h2>
-        <div>
-          <img [src]="(data | dateFilter: selectedDate).synthese" />
+    <div class="tile is-ancestor" *ngIf="data.map && data.map.length > 0">
+      <div class="tile is-vertical">
+        <div class="tile">
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">Situation du déconfinement au {{selectedDate | date: "d MMMM yyyy":"fr-FR"}}</p>
+              <p class="subtitle main">
+                Les données représentent la situation au
+                <strong>{{ selectedDate | date: "d MMMM yyyy":"fr-FR" }}</strong>.
+                Elles sont publiées chaque soir
+                par le Ministère des Solidarités et de la Santé. Les indicateurs présentés ont vocation à évoluer jusqu'à la date du déconfinement.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="column is-12 map-deconfinement">
-        <h2>
-          Carte de circulation active du virus
-        </h2>
-        <div>
-          <img [src]="(data | dateFilter: selectedDate).circulation" />
-        </div>
-      </div>
-      <div class="column is-12 map-deconfinement">
-        <h2>
-          Carte de la tension hospitalière sur les capacités en réanimation
-        </h2>
-        <div>
-          <img [src]="(data | dateFilter: selectedDate).reanimation" />
+        <div class="tile">
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+              <p class="title">
+                {{ greenDepartments.length | number: "":"fr-FR" }}
+              </p>
+              <p class="subtitle">
+                Départements en vert (Départements éligibles au déconfinement selon les règles prévues)
+              </p>
+              <div class="list">
+                <ng-container *ngFor="let departement of greenDepartments; let index = index">
+                  <ng-container *ngIf="index !== greenDepartments.length - 1">
+                    {{ departement.translation }},
+                  </ng-container>
+                  <ng-container *ngIf="index === greenDepartments.length - 1">
+                    {{ departement.translation }}
+                  </ng-container>
+                </ng-container>
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-warning">
+              <p class="title">
+                {{ orangeDepartments.length | number: "":"fr-FR" }}
+              </p>
+              <p class="subtitle">
+                Départements en orange (Départements incertains)
+              </p>
+              <div class="list">
+                <ng-container *ngFor="let departement of orangeDepartments; let index = index">
+                  <ng-container *ngIf="index !== orangeDepartments.length - 1">
+                    {{ departement.translation }},
+                  </ng-container>
+                  <ng-container *ngIf="index === orangeDepartments.length - 1">
+                    {{ departement.translation }}
+                  </ng-container>
+                </ng-container>
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+              <p class="title">
+                {{ redDepartments.length | number: "":"fr-FR" }}
+              </p>
+              <p class="subtitle">
+                Départements en rouge (Départements dont le déconfinement pourrait être durci)
+              </p>
+              <div class="list">
+                <ng-container *ngFor="let departement of redDepartments; let index = index">
+                  <ng-container *ngIf="index !== redDepartments.length - 1">
+                    {{ departement.translation }},
+                  </ng-container>
+                  <ng-container *ngIf="index === redDepartments.length - 1">
+                    {{ departement.translation }}
+                  </ng-container>
+                </ng-container>
+              </div>
+
+            </article>
+          </div>
         </div>
       </div>
     </div>
-    <p>
-      La carte de synthèse se base sur trois critères principaux :
-    </p>
-    <ul>
-      <li>
-        <strong>La circulation active du virus</strong> : le reflet de l'activité virale sur l'ensemble du
-        territoire national.
-        C'est un indicateur qui permet de mesurer la fréquence, l'intensité de circulation du virus département par
-        département. Pour constituer cet indicateur,
-        Santé publique France s'appuie sur la part des patients qui s'adressent
-        aux urgences de leur hôpital pour une suspicion d'infection de COVID-19.
-        En vert, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est inférieur à 6%.
-        En orange, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est entre 6% et 10%.
-        En rouge, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est supérieur à 10%.
-      </li>
-      <li>
-        <strong>Le niveau de tension hospitalière sur les capacités de réanimation liées au COVID-19.</strong>
-        En vert, la capacité initiale de réanimation est inférieur à 60%.
-        En orange, la capacité initiale de réanimation est entre 60% et 80%.
-        En rouge, la capacité initiale de réanimation est supérieur à 80%.
-      </li>
-      <li>
-        <strong>La capacité des départements à détecter les personnes qui ont été en contact avec le COVID-19
-          et à tester les patients ayant des symptômes de COVID-19</strong> pour éviter la reprise de l'épidémie.
-        Ce troisième critère sera pris en compte le 11 mai.
-      </li>
-    </ul>
-    <p>
-      Au final, la <strong>carte de synthèse</strong> fait le résumé des indicateurs ci-dessus :
-    </p>
-    <ul>
-      <li>
-        Le département apparaît en vert si tous les indicateurs sont au vert.
-      </li>
-      <li>
-        Le département apparaît en rouge si au moins un des indicateurs est en rouge.
-      </li>
-      <li>
-        Le département apparaît en orange si au moins un des indicateurs est en orange et qu'il n'a aucun indicateur
-        rouge.
-        Ces zones oranges ont vocation à basculer d'ici au 11 mai en vert si la pression épidémique se réduit dans le,
-        ou au contraire à basculer en rouge si la pression épidémique grandit.
-      </li>
-    </ul>
+    <div class="columns" *ngIf="data.map && data.map.length > 0">
+      <div class="column is-6">
+        <h2>
+          Carte de synthèse du déconfinement par département au {{selectedDate | date: "d MMMM yyyy":"fr-FR" }}
+        </h2>
+        <app-coronavirus-map-deconfinement-details [data]="data.map" [selectedDate]="selectedDate">
+        </app-coronavirus-map-deconfinement-details>
+      </div>
+      <div class="column is-6">
+        <h2>
+          Explications de la carte
+        </h2>
+        <p>
+          La carte de synthèse se base sur trois critères principaux :
+        </p>
+        <ul>
+          <li>
+            <strong>La circulation active du virus</strong> : le reflet de l'activité virale sur l'ensemble du
+            territoire national.
+            C'est un indicateur qui permet de mesurer la fréquence, l'intensité de circulation du virus département
+            par
+            département. Pour constituer cet indicateur,
+            Santé publique France s'appuie sur la part des patients qui s'adressent
+            aux urgences de leur hôpital pour une suspicion d'infection de COVID-19.
+            En vert, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est inférieur à 6%.
+            En orange, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est entre 6% et 10%.
+            En rouge, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est supérieur à 10%.
+          </li>
+          <li>
+            <strong>Le niveau de tension hospitalière sur les capacités de réanimation liées au COVID-19.</strong>
+            En vert, la capacité initiale de réanimation est inférieur à 60%.
+            En orange, la capacité initiale de réanimation est entre 60% et 80%.
+            En rouge, la capacité initiale de réanimation est supérieur à 80%.
+          </li>
+          <li>
+            <strong>La capacité des départements à détecter les personnes qui ont été en contact avec le COVID-19
+              et à tester les patients ayant des symptômes de COVID-19</strong> pour éviter la reprise de l'épidémie.
+            Ce troisième critère sera pris en compte le 11 mai.
+          </li>
+        </ul>
+        <p>
+          Au final, la <strong>carte de synthèse</strong> fait le résumé des indicateurs ci-dessus :
+        </p>
+        <ul>
+          <li>
+            Le département apparaît en vert si tous les indicateurs sont au vert.
+          </li>
+          <li>
+            Le département apparaît en rouge si au moins un des indicateurs est en rouge.
+          </li>
+          <li>
+            Le département apparaît en orange si au moins un des indicateurs est en orange et qu'il n'a aucun
+            indicateur
+            rouge.
+            Ces zones oranges ont vocation à basculer d'ici au 11 mai en vert si la pression épidémique se réduit dans
+            le département,
+            ou au contraire à basculer en rouge si la pression épidémique grandit.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ng-container *ngIf="data.map && data.map.length === 0">
+      <h2>
+        Carte du déconfinement par département au {{selectedDate | date: "d MMMM yyyy":"fr-FR" }}
+      </h2>
+      <p>
+        Chaque jour, le ministère de la Santé présente la carte du déconfinement.
+      </p>
+      <div class="columns is-multiline">
+        <div class="column is-12 map-deconfinement">
+          <h2>
+            Carte de synthèse
+          </h2>
+          <div>
+            <img [src]="data.images.synthese" />
+          </div>
+        </div>
+        <div class="column is-12 map-deconfinement">
+          <h2>
+            Carte de circulation active du virus
+          </h2>
+          <div>
+            <img [src]="data.images.circulation" />
+          </div>
+        </div>
+        <div class="column is-12 map-deconfinement">
+          <h2>
+            Carte de la tension hospitalière sur les capacités en réanimation
+          </h2>
+          <div>
+            <img [src]="data.images.reanimation" />
+          </div>
+        </div>
+        <div class="column is-12">
+          <h2>
+            Explications de la carte et des indicateurs
+          </h2>
+          <p>
+            La carte de synthèse se base sur trois critères principaux :
+          </p>
+          <ul>
+            <li>
+              <strong>La circulation active du virus</strong> : le reflet de l'activité virale sur l'ensemble du
+              territoire national.
+              C'est un indicateur qui permet de mesurer la fréquence, l'intensité de circulation du virus département
+              par
+              département. Pour constituer cet indicateur,
+              Santé publique France s'appuie sur la part des patients qui s'adressent
+              aux urgences de leur hôpital pour une suspicion d'infection de COVID-19.
+              En vert, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est inférieur à 6%.
+              En orange, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est entre 6% et 10%.
+              En rouge, le pourcentage des admissions aux urgences pour suspicion de COVID-19 est supérieur à 10%.
+            </li>
+            <li>
+              <strong>Le niveau de tension hospitalière sur les capacités de réanimation liées au COVID-19.</strong>
+              En vert, la capacité initiale de réanimation est inférieur à 60%.
+              En orange, la capacité initiale de réanimation est entre 60% et 80%.
+              En rouge, la capacité initiale de réanimation est supérieur à 80%.
+            </li>
+            <li>
+              <strong>La capacité des départements à détecter les personnes qui ont été en contact avec le COVID-19
+                et à tester les patients ayant des symptômes de COVID-19</strong> pour éviter la reprise de l'épidémie.
+              Ce troisième critère sera pris en compte le 11 mai.
+            </li>
+          </ul>
+          <p>
+            Au final, la <strong>carte de synthèse</strong> fait le résumé des indicateurs ci-dessus :
+          </p>
+          <ul>
+            <li>
+              Le département apparaît en vert si tous les indicateurs sont au vert.
+            </li>
+            <li>
+              Le département apparaît en rouge si au moins un des indicateurs est en rouge.
+            </li>
+            <li>
+              Le département apparaît en orange si au moins un des indicateurs est en orange et qu'il n'a aucun
+              indicateur
+              rouge.
+              Ces zones oranges ont vocation à basculer d'ici au 11 mai en vert si la pression épidémique se réduit dans
+              le département,
+              ou au contraire à basculer en rouge si la pression épidémique grandit.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
   </ng-container>
-
 </div>

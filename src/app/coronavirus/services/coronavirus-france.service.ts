@@ -15,6 +15,7 @@ export class CoronavirusFranceService {
   private readonly urlNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-news';
   private readonly urlOneNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-one-news';
   private readonly urlDeconfinement = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-deconfinement';
+
   constructor(private readonly httpClient: HttpClient) { }
 
   getData(type: string, code?: string): Observable<any> {
@@ -61,7 +62,10 @@ export class CoronavirusFranceService {
     return this.httpClient.get(`${this.urlOneNews}/${id}`);
   }
 
-  getDeconfinement(): Observable<any> {
+  getDeconfinement(date?: string): Observable<any> {
+    if (date) {
+      return this.httpClient.get(`${this.urlDeconfinement}/${date}`);
+    }
     return this.httpClient.get(`${this.urlDeconfinement}`);
   }
 

@@ -115,7 +115,7 @@ export class CoronavirusSheetComponent implements OnInit {
     } else if (params.department) {
       this.updateFranceDepartmentDatas(params);
     } else {
-      this.news$ = this.coronavirusFranceService.getFranceNews();
+      this.news$ = this.coronavirusFranceService.getFranceNewsToday();
       this.updateFranceNationalDatas();
     }
   }

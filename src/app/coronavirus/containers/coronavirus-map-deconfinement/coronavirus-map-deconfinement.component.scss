@@ -7,3 +7,13 @@
 .map-deconfinement {
   text-align: center;
 }
+
+.legend {
+  font-size: 0.85em;
+}
+
+.subtitle {
+  &.main {
+    font-size: 0.95em;
+  }
+}

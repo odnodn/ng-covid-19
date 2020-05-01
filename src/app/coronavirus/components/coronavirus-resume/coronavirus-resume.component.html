@@ -38,39 +38,93 @@
     </article>
   </ng-container>
   <ng-container *ngIf="selectedZone">
-    <article class="message is-info">
-      <div class="message-header">
-        <div>
-          Le résumé du
-          {{
-            mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
-          }}
-          dans {{ selectedZone }} {{ mainStats?.total.hospital.translation }}
-        </div>
-        <div class="share-buttons">
-          <div class="fb-share-button" [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
-            data-layout="button"></div>
-          <a class="twitter-share-button" data-via="cascoronavirus" data-url=" " data-hashtags="coronavirus"
-            [href]="'https://twitter.com/share?text=' + getTwittText()">
-            Tweet</a>
-        </div>
+    <div class="columns">
+      <div class="column">
+        <article class="message is-info">
+          <div class="message-header">
+            <div>
+              Le résumé du
+              {{
+                mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+              }}
+              dans {{ selectedZone }} {{ mainStats?.total.hospital.translation }}
+            </div>
+            <div class="share-buttons">
+              <div class="fb-share-button" [attr.data-href]="'https://www.cascoronavirus.fr' + router.url"
+                data-layout="button"></div>
+              <a class="twitter-share-button" data-via="cascoronavirus" data-url=" " data-hashtags="coronavirus"
+                [href]="'https://twitter.com/share?text=' + getTwittText()">
+                Tweet</a>
+            </div>
+          </div>
+          <div class="message-body">
+            Au
+            <strong>{{
+              mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
+            }}</strong>, {{ selectedZone }}
+            <strong> {{ mainStats?.total.hospital.translation }}</strong>
+            recense
+            {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
+            hospitalisations en cours pour cause de COVID-19 dont
+            {{ mainStats.total.hospital.reanimation | number: "":"fr-FR" }} en
+            réanimation. Après hospitalisation,
+            {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }} patients
+            sont de retour à leur domicile. À cette même date,
+            {{ mainStats.total.hospital.deaths | number: "":"fr-FR" }}
+            personnes sont décédées à l'hôpital depuis le début de l'épidémie.
+          </div>
+        </article>
       </div>
-      <div class="message-body">
-        Au
-        <strong>{{
-          mainStats?.total.hospital.lastUpdate | date: "d MMMM yyyy":"fr-FR"
-        }}</strong>, {{ selectedZone }}
-        <strong> {{ mainStats?.total.hospital.translation }}</strong>
-        recense
-        {{ mainStats.total.hospital.hospital | number: "":"fr-FR" }}
-        hospitalisations en cours pour cause de COVID-19 dont
-        {{ mainStats.total.hospital.reanimation | number: "":"fr-FR" }} en
-        réanimation. Après hospitalisation,
-        {{ mainStats.total.hospital.recovered | number: "":"fr-FR" }} patients
-        sont de retour à leur domicile. À cette même date,
-        {{ mainStats.total.hospital.deaths | number: "":"fr-FR" }}
-        personnes sont décédées à l'hôpital depuis le début de l'épidémie.
+      <div class="column" *ngIf="selectedZone === 'le département'">
+        <article class="message is-danger deconfinement"
+        [class.is-danger]="mainStats.deconfinement.color === 'rouge'"
+        [class.is-success]="mainStats.deconfinement.color === 'vert'"
+        [class.is-warning]="mainStats.deconfinement.color === 'orange'"
+        >
+          <div class="message-header">
+            <ng-container *ngIf="mainStats.deconfinement.color === 'rouge'">
+              🔴 LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN ROUGE SUR LA CARTE DU DÉCONFINEMENT AU {{
+                mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
+              }}
+            </ng-container>
+            <ng-container *ngIf="mainStats.deconfinement.color === 'vert'">
+              🟢 LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN VERT SUR LA CARTE DU DÉCONFINEMENT AU {{
+                mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
+              }}
+            </ng-container>
+            <ng-container *ngIf="mainStats.deconfinement.color === 'orange'">
+              🟠 LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN ORANGE SUR LA CARTE DU DÉCONFINEMENT AU {{
+                mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
+              }}
+            </ng-container>
+
+            </div>
+          <div class="message-body">
+            Au
+            <strong>{{
+              mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
+            }}</strong>, {{ selectedZone }}
+            <strong>  {{ mainStats?.deconfinement.translation }} est en {{mainStats.deconfinement.color}}</strong>
+            sur la carte provisoire du déconfinement.
+            <ng-container *ngIf="mainStats.deconfinement.color === 'vert'">
+              Le département est éligible au déconfinement selon le protocole prévu.
+            </ng-container>
+            <ng-container *ngIf="mainStats.deconfinement.color === 'rouge'">
+              La pression épidémique est encore très élevée dans le département et le déconfinement risque d'être durci.
+            </ng-container>
+            <ng-container *ngIf="mainStats.deconfinement.color === 'orange'">
+              Le département se situe dans une zone intermédiaire.
+              Il peut basculer en vert si la pression épidémique se réduit dans le département
+              ou à l'inverse passé en rouge si la pression épidémique grandit.
+            </ng-container>
+            <ng-container>
+              Cet indicateur est amené à évoluer jusqu'à la date du déconfinement.
+            </ng-container>
+          </div>
+        </article>
       </div>
-    </article>
+    </div>
+
+
   </ng-container>
 </div>

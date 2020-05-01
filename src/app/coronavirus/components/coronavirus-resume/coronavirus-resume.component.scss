@@ -11,3 +11,15 @@
 .share-buttons {
   display: flex;
 }
+
+.hospital {
+  background-color: #F17D07;
+  color: white;
+}
+
+.deconfinement {
+  height: 100%;
+  .message-header {
+    text-transform: uppercase;
+  }
+}
