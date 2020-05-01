@@ -19,10 +19,10 @@ export class AppComponent {
     this.isMobile = this.deviceService.isMobile();
     if (swUpdate.isEnabled) {
       const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
-      const everySixHours$ = interval(6 * 60 * 60 * 1000);
-      const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
+      const everyThirtyMin$ = interval(0.5 * 60 * 60 * 1000);
+      const everyThirtyMinOnceAppIsStable$ = concat(appIsStable$, everyThirtyMin$);
 
-      everySixHoursOnceAppIsStable$.subscribe(() => swUpdate.checkForUpdate());
+      everyThirtyMinOnceAppIsStable$.subscribe(() => swUpdate.checkForUpdate());
       this.swUpdate.activated.subscribe(event => {
         console.log('old version was', event.previous);
         console.log('new version is', event.current);
