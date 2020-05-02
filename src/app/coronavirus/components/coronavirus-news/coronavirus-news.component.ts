@@ -1,22 +1,10 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-coronavirus-news',
   templateUrl: './coronavirus-news.component.html',
   styleUrls: ['./coronavirus-news.component.scss']
 })
-export class CoronavirusNewsComponent implements AfterViewInit {
+export class CoronavirusNewsComponent {
 
   @Input() news;
-  constructor(private readonly router: Router) { }
-
-  ngAfterViewInit(): void {
-    // @ts-ignore
-    if ((window as any).twttr) {
-      (window as any).twttr.widgets.load();
-    }
-  }
-
-
 }

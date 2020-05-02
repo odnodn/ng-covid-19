@@ -45,6 +45,8 @@ export class CoronavirusMapDeconfinementDetailsComponent implements OnInit, OnCh
     this.chart.geodata = am4geodata_franceDepartmentsHigh; // En fonction monde, region, departement
     this.chart.geodataNames = am4geodata_lang_FR;
     this.chart.projection = new am4maps.projections.Miller();
+    this.chart.tapTimeout = 5000;
+    this.chart.tapToActivate = true;
     this.series = this.chart.series.push(new am4maps.MapPolygonSeries());
     this.series.useGeodata = true;
     this.series.nonScalingStroke = true;

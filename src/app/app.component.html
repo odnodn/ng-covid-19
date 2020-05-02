@@ -2,7 +2,12 @@
 
   <app-header></app-header>
   <div class="section">
-    <button class="button is-primary" *ngIf="isMobile && showButton" (click)="addToHomeScreen()">Installer l'application mobile</button>
+    <!-- <button class="button is-primary"  (click)="addToHomeScreen()">Installer l'application
+      mobile</button> -->
+    <div class="shared-buttons is-hidden-tablet">
+      <a href="https://twitter.com/cascoronavirus?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
+        data-lang="fr" data-show-count="false">Follow @cascoronavirus</a>
+    </div>
     <router-outlet></router-outlet>
   </div>
 

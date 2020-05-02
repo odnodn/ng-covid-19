@@ -15,6 +15,10 @@
   padding-left: 1.5rem;
 }
 
+.shared-buttons {
+  display: flex;
+}
+
 .navbar-dropdown {
   &:hover {
     &.hidden {

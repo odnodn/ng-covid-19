@@ -3,12 +3,13 @@
   overflow-y:auto;
   overflow-x: hidden;
   margin: 0;
-  a {
-    text-decoration: none !important;
-    font-weight: 600;
-    &:hover {
-      text-decoration: underline !important;
-    }
+}
+
+a {
+  text-decoration: none !important;
+  font-weight: 600;
+  &:hover {
+    text-decoration: underline !important;
   }
 }
 
@@ -23,8 +24,4 @@
 
 .source {
   font-size: 0.8em;
-}
-
-.twitter {
-  margin-right: 1em;
 }
