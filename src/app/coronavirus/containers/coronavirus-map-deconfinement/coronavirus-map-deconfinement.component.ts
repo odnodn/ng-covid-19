@@ -60,9 +60,9 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
 
   dateChange($event): void {
     this.coronavirusFranceService.getDeconfinement($event).subscribe((result) => {
-      this.greenDepartments = result.map.filter((item) => item.color === 'vert');
-      this.orangeDepartments = result.map.filter((item) => item.color === 'orange');
-      this.redDepartments = result.map.filter((item) => item.color === 'rouge');
+      this.greenDepartments = result.map.filter((item) => item.color === 'vert').sort(this.compare);
+      this.orangeDepartments = result.map.filter((item) => item.color === 'orange').sort(this.compare);
+      this.redDepartments = result.map.filter((item) => item.color === 'rouge').sort(this.compare);
       this.selectedDate = result.images.date;
       this.data = result;
       this.ref.detectChanges();
@@ -71,14 +71,28 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
 
   private getData(): void {
     this.coronavirusFranceService.getDeconfinement().subscribe((result) => {
-      this.greenDepartments = result.map.filter((item) => item.color === 'vert');
-      this.orangeDepartments = result.map.filter((item) => item.color === 'orange');
-      this.redDepartments = result.map.filter((item) => item.color === 'rouge');
+      this.greenDepartments = result.map.filter((item) => item.color === 'vert').sort(this.compare);
+      this.orangeDepartments = result.map.filter((item) => item.color === 'orange').sort(this.compare);
+      this.redDepartments = result.map.filter((item) => item.color === 'rouge').sort(this.compare);
       this.selectedDate = result.images.date;
       this.data = result;
       this.ref.detectChanges();
     });
     this.initMetaTag();
+  }
+
+  private compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const departmentA = a.translation.toUpperCase();
+    const departmentB = b.translation.toUpperCase();
+
+    let comparison = 0;
+    if (departmentA > departmentB) {
+      comparison = 1;
+    } else if (departmentA < departmentB) {
+      comparison = -1;
+    }
+    return comparison;
   }
 
   private initMetaTag(): void {
