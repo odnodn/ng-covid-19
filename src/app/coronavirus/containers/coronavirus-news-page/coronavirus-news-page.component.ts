@@ -30,9 +30,9 @@ export class CoronavirusNewsPageComponent implements OnInit {
   ngOnInit(): void {
     this.newsAll$ = this.coronavirusFranceService.getFranceNews();
     this.route.params.subscribe((params) => {
-      if (params.id) {
+      if (params.title) {
         this.coronavirusFranceService
-          .getNewsById(params.id)
+          .getNewsById(params.title)
           .subscribe((result) => {
             this.news.value = result;
             this.news.value.image = !this.getPicture() ? '../../../assets/images/cascoronavirus.png' : this.getPicture();
@@ -46,14 +46,20 @@ export class CoronavirusNewsPageComponent implements OnInit {
   }
 
   private getPicture(): string {
+    if (this.news.value.image) {
+      return this.news.value.image;
+    }
     if (!this.news && !this.news.value) {
       return null;
     }
-    const html = this.news.value.content;
-    return html.substring(
-      this.news.value.content.indexOf('c=') + 3,
-      this.news.value.content.indexOf('style=') - 2
-    );
+    if (this.news.value.content) {
+      const html = this.news.value.content;
+      return html.substring(
+        this.news.value.content.indexOf('c=') + 3,
+        this.news.value.content.indexOf('style=') - 2
+      );
+    }
+    return null;
   }
 
   private initMetaNews(title: string): void {
