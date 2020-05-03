@@ -5,7 +5,8 @@
   <ng-container *ngIf="data">
     <div class="select-date">
       <mat-label class="label">Sélectionner une date</mat-label>
-      <mat-select role="listbox" placeholder="Sélectionner une date" [(ngModel)]="selectedDate" (ngModelChange)="dateChange($event)">
+      <mat-select role="listbox" placeholder="Sélectionner une date" [(ngModel)]="selectedDate"
+        (ngModelChange)="dateChange($event)">
         <mat-option role="option" *ngFor="let date of data.dates" [value]="date">
           {{date | date: "d MMMM yyyy":"fr-FR"}}
         </mat-option>
@@ -123,7 +124,8 @@
           </li>
           <li>
             <strong>Le niveau de tension hospitalière sur les capacités de réanimation liées au COVID-19.</strong>
-            Cela correspond au taux d'occupation des lits de réanimation par des patients atteints de COVID-19 par rapport à la capacité initiale avant l'épidémie.
+            Cela correspond au taux d'occupation des lits de réanimation par des patients atteints de COVID-19 par
+            rapport à la capacité initiale avant l'épidémie.
             En vert, la capacité initiale de réanimation est inférieur à 60%.
             En orange, la capacité initiale de réanimation est entre 60% et 80%.
             En rouge, la capacité initiale de réanimation est supérieur à 80%.
@@ -242,4 +244,12 @@
       </div>
     </ng-container>
   </ng-container>
+  <h2>Plan de déconfinement</h2>
+  <p>
+    Voici les détails des mesures concernant la vie sociale et les activités dans le cadre de la stratégie nationale de
+    déconfinement présentée par Edouard Philippe.
+  </p>
+  <div class="deconfinement">
+    <img src="../../../../assets/images/plan_deconfinement.jpg" title="plan de déconfinement" />
+  </div>
 </div>

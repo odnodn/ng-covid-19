@@ -71,3 +71,14 @@ th.mat-cell:last-of-type {
   background-color: #F17D07;
   font-weight: bold;
 }
+
+.increase {
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .material-icons {
+    font-size: 1em;
+    font-weight: bold;
+  }
+}

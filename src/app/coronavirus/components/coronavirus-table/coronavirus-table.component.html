@@ -71,7 +71,8 @@
 
     <!-- Hospital Passage Rate Column -->
     <ng-container matColumnDef="hospitalCoronaRate">
-      <th id="hospitalCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Taux d'hospitalisation parmi les passages aux urgences
+      <th id="hospitalCorona" mat-header-cell *matHeaderCellDef mat-sort-header>Taux d'hospitalisation parmi les
+        passages aux urgences
       </th>
       <td mat-cell *matCellDef="let element" class="hospital hospital-rate">
         {{element.hospitalCoronaRate.toFixed(1)}} %
@@ -123,6 +124,20 @@
         {{element.deaths}}<br>
         <span class="rate" *ngIf="element.deathRate && selectedCountry.country !== 'France'">({{element.deathRate}}
           %)</span>
+        <span class="increase" *ngIf="selectedCountry.country === 'France'">
+          <span class="material-icons">
+            <ng-container *ngIf="element.todayDeaths  > 0">
+              arrow_upward
+            </ng-container>
+            <ng-container *ngIf="element.todayDeaths  < 0">
+              arrow_downward
+            </ng-container>
+            <ng-container *ngIf="element.todayDeaths  === 0">
+              arrow_forward
+            </ng-container>
+          </span>
+          {{element.todayDeaths | symbolNumber}}
+        </span>
       </td>
     </ng-container>
 
@@ -148,14 +163,20 @@
       <th id="hospital" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations en cours</th>
       <td mat-cell *matCellDef="let element" class="hospital">
         {{element.hospital | number: '' :'fr-FR'}}
-      </td>
-    </ng-container>
-
-    <!-- Hospital Start Column -->
-    <ng-container matColumnDef="hospitalStart">
-      <th id="hospital" mat-header-cell *matHeaderCellDef mat-sort-header>Hospitalisations cumulées</th>
-      <td mat-cell *matCellDef="let element" class="hospital">
-        {{element.hospitalStart | number: '' :'fr-FR'}}
+        <span class="increase">
+          <span class="material-icons">
+            <ng-container *ngIf="element.todayHospital  > 0">
+              arrow_upward
+            </ng-container>
+            <ng-container *ngIf="element.todayHospital  < 0">
+              arrow_downward
+            </ng-container>
+            <ng-container *ngIf="element.todayHospital === 0">
+              arrow_forward
+            </ng-container>
+          </span>
+          {{element.todayHospital | symbolNumber}}
+        </span>
       </td>
     </ng-container>
 
@@ -165,16 +186,23 @@
       <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>Réanimations en cours</th>
       <td mat-cell *matCellDef="let element" class="reanimation">
         {{element.reanimation | number: '' :'fr-FR'}}
+        <span class="increase">
+          <span class="material-icons">
+            <ng-container *ngIf="element.todayReanimation  > 0">
+              arrow_upward
+            </ng-container>
+            <ng-container *ngIf="element.todayReanimation  < 0">
+              arrow_downward
+            </ng-container>
+            <ng-container *ngIf="element.todayReanimation === 0">
+              arrow_forward
+            </ng-container>
+          </span>
+          {{element.todayReanimation | symbolNumber }}
+        </span>
       </td>
     </ng-container>
 
-    <!-- Reanimation Start Column -->
-    <ng-container matColumnDef="reanimationStart">
-      <th id="reanimation" mat-header-cell *matHeaderCellDef mat-sort-header>Réanimations cumulées</th>
-      <td mat-cell *matCellDef="let element" class="reanimation">
-        {{element.reanimationStart | number: '' :'fr-FR'}}
-      </td>
-    </ng-container>
 
     <!-- Recovered Column -->
     <ng-container matColumnDef="recovered">
@@ -183,6 +211,20 @@
         {{element.recovered | number: '' :'fr-FR'}}<br>
         <span class="rate"
           *ngIf="element.recoveredRate && selectedCountry.country !== 'France'">({{element.recoveredRate}} %)</span>
+        <span class="increase" *ngIf="selectedCountry.country === 'France'">
+          <span class="material-icons">
+            <ng-container *ngIf="element.todayRecovered  > 0">
+              arrow_upward
+            </ng-container>
+            <ng-container *ngIf="element.todayRecovered  < 0">
+              arrow_downward
+            </ng-container>
+            <ng-container *ngIf="element.todayRecovered  === 0">
+              arrow_forward
+            </ng-container>
+          </span>
+          {{element.todayRecovered | symbolNumber }}
+        </span>
       </td>
     </ng-container>
 
@@ -191,6 +233,7 @@
       <th id="recovered" mat-header-cell *matHeaderCellDef mat-sort-header> Taux de guéris</th>
       <td mat-cell *matCellDef="let element" class="recovered-rate has-text-success">
         <strong>{{element.recoveredRate.toFixed(1)}} %</strong>
+
       </td>
     </ng-container>
 

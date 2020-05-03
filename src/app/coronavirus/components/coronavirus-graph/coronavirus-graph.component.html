@@ -1,5 +1,5 @@
 <h2 class="title">
-  Évolution de l'épidémie du Coronavirus COVID-19
+  Évolution de l'épidémie du Coronavirus COVID-19 <ng-container *ngIf="dataEsms"> en ESMS</ng-container>
 </h2>
 <p *ngIf="dataFrance">
   <ng-container *ngIf="!dataFrance.total[0].code">
@@ -22,6 +22,11 @@
     les <strong>centres hospitaliers</strong> participants à SI-VIC.
   </ng-container>
 
+</p>
+<p *ngIf="dataEsms">
+  Les données proviennent des signalements liés au COVID-19 en ESMS.
+   Les cas confirmés et signalés en ESMS (établissements sociaux et médico-sociaux) n'ont été que collectés qu'à partir du 12 avril 2020.
+  Le nombre de cas confirmés en ESMS ont été confirmés suite à des Tests PCR. Ce nombre est inclus dans le nombre total de cas confirmés en France.
 </p>
 <div #chartElement id="chart-line" [class.graph-france]="dataFrance" [class.graph-world]="!dataFrance"></div>
 <div class="radio-buttons" *ngIf="dataFrance">

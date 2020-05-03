@@ -257,6 +257,8 @@
               <ul>
                 <li [class.is-active]="tabTimelineSelected === 'timelineCumulated'"
                   (click)="selectTabTimeline('timelineCumulated')"><a>Évolution temporelle</a></li>
+                  <li [class.is-active]="tabTimelineSelected === 'timelineEsms'" *ngIf="!selectedRegion && !selectedDepartment"
+                  (click)="selectTabTimeline('timelineEsms')"><a>Évolution en ESMS</a></li>
                 <li [class.is-active]="tabTimelineSelected === 'timelineDay'"
                   (click)="selectTabTimeline('timelineDay')"><a>Nombre quotidien de nouveaux cas</a></li>
               </ul>
@@ -265,13 +267,17 @@
               <app-coronavirus-graph [dataFrance]="franceStats.value.timeline">
               </app-coronavirus-graph>
             </ng-container>
+            <ng-container *ngIf="tabTimelineSelected === 'timelineEsms' && isBrowser">
+              <app-coronavirus-graph [dataEsms]="franceStats.value.timeline.total">
+              </app-coronavirus-graph>
+            </ng-container>
 
 
             <ng-container *ngIf="(franceStatsDay$ | loading | async) as franceStatsDay">
               <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
                 <h2 class="title">Nombre quotidien
                   de nouvelles hospitalisations, de nouvelles admissions
-                  en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier</h2>
+                  en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier liés à l'épidémie de COVID-19</h2>
                 <p>
                   Les données remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC sont : le
                   nombre quotidien de personnes nouvellement hospitalisées, le nombre

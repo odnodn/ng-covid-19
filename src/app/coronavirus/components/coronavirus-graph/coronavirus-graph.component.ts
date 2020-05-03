@@ -13,6 +13,7 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
 
   @Input() data;
   @Input() dataFrance;
+  @Input() dataEsms;
   @Input() dailyDatasByCountry;
   chart: am4charts.XYChart;
   chartDatas: any[];
@@ -84,7 +85,12 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
       this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.createSeries('date', 'recovered', 'Guéris', '#43D787');
       this.chart.data = this.dailyDatasByCountry;
-    } else {
+    } else if (this.dataEsms) {
+      this.createSeries('date', 'casesEsms', 'Cas confirmés ESMS', '#ffbb00');
+      this.createSeries('date', 'signaledCasesEsms', 'Cas signalés ESMS', '#F17D07');
+      this.createSeries('date', 'deathsEsms', 'Décès ESMS', '#f9461c');
+      this.chart.data = this.dataEsms.filter((item) => item.deathsEsms);
+    }  else {
       this.createSeries('date', 'cases', 'Confirmés', '#ffbb00');
       this.createSeries('date', 'deaths', 'Décès', '#f9461c');
       this.chart.data = this.data;

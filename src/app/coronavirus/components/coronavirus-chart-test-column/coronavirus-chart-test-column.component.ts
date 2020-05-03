@@ -156,11 +156,14 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   private initChartDay(): void {
     this.initChart();
+    this.data.forEach((item) => {
+      item.hospital = item.hospital - item.reanimation;
+    })
     this.chart.data = this.data;
     this.createXSeries('date');
     this.createYSeries('Nombre de patients');
-    this.createSeries('hospital', 'Hospitalisations', '#F17D07', 'date');
-    this.createSeries('reanimation', 'En réanimation', '#E95D0C', 'date');
+    this.createSeries('hospital', 'Autres hospitalisations', '#F17D07', 'date');
+    this.createSeries('reanimation', 'Hospitalisations en réanimation', '#E95D0C', 'date');
     this.createSeries('deaths', 'Décès', '#f9461c', 'date');
     this.createSeries('recovered', 'Guéris', '#43D787', 'date');
     this.chart.cursor = new am4charts.XYCursor();

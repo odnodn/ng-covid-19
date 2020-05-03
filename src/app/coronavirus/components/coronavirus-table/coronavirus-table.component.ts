@@ -68,8 +68,8 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
       this.displayedColumns = ['translation', 'cases', 'todayCases', 'active', 'critical', 'deaths', 'todayDeaths', 'recovered'];
       this.matSortActive = 'cases';
     } else if (this.selectedCountry.country === 'France') {
-      this.displayedColumns = ['translation', 'deaths', 'deathRate', 'recovered', 'recoveredRate', 'hospital', 'hospitalStart',
-       'reanimation', 'reanimationStart'];
+      this.displayedColumns = ['translation', 'deaths', 'deathRate', 'recovered', 'recoveredRate', 'hospital',
+       'reanimation'];
       this.matSortActive = 'deathRate';
     } else {
       this.matSortActive = 'cases';
