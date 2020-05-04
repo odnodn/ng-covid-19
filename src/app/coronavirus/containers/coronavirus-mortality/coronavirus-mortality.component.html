@@ -1,46 +1,80 @@
 <div class="content">
   <h1 class="title is-spaced" id="tableDescription">Niveau d'excès de mortalité en France pendant l'épidémie de Coronavirus COVID-19
   </h1>
-  <p class="description">
-    Cette cartographie représente le niveau d'excès standardisé de mortalité pendant l'épidémie de COVID-19 au niveau régional et départemental.
-    Les données proviennent de la partie administrative du certificat du décès et sont collectées
-    par les bureaux d'état-civil des différentes communes possédant une transmission dématérialisée avec l'Insee.
-    Santé Publique France compare le nombre de décès observé avec un nombre de décès attendu, évalué sur la base d'un modèle statistique établi par
-    le consortium EuroMomo.
-    Cette estimation d'excès de mortalité est établi sur le Z-score, un indicateur standardisé qui permet de comparer les excès entre différents niveaux géographiques ou classes d’âges.<br>
-    On calcule le Z-score de la manière suivante : <em>(nombre observé – nombre attendu) / écart-type du nombre attendu.</em>
-  </p>
-  <div>
-    Voici les cinq catégories de niveaux d'excès :
-    <ul>
-      <li>
-        <strong>Pas d'excès</strong> : indicateur standardisé de décès (Z-score) <strong>inférieur à 2</strong>
-      </li>
-      <li>
-        <strong>Excès modéré de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 2 et 4,99</strong>
-      </li>
-      <li>
-        <strong>Excès élevé de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 5 et 6,99</strong>
-      </li>
-      <li>
-        <strong>Excès très élevé de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 7 et 11,99</strong>
-      </li>
-      <li>
-        <strong>Excès exceptionnel de décès</strong> : indicateur standardisé de décès (Z-score) <strong>supérieur à 12</strong>
-      </li>
-    </ul>
+  <ng-container *ngIf="data">
+  <div class="columns">
+    <div class="column">
+      <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
+      <mat-select role="listbox" [(ngModel)]="selectedDivisionMap" (ngModelChange)="selectDivisionChange($event)">
+        <mat-option role="option" [value]="'departmentFrance'">
+          Par département
+        </mat-option>
+        <mat-option role="option" [value]="'regionFrance'">
+          Par région
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="column">
+      <mat-label class="label">Sélectionner une date</mat-label>
+      <mat-select role="listbox" placeholder="Sélectionner une date" [(ngModel)]="selectedDate"
+        (ngModelChange)="dateChange($event)">
+        <mat-option role="option" *ngFor="let date of data.dates" [value]="date">
+          {{weekNumbers[date].number}} : {{weekNumbers[date].startDate | date: "d MMMM":"fr-FR" }} au {{weekNumbers[date].endDate | date: "d MMMM":"fr-FR" }}
+        </mat-option>
+      </mat-select>
+    </div>
   </div>
 
-  <ng-container *ngIf="(data$ | loading | async) as data">
-    <ng-container *ngIf="data.value">
-      <!-- <ul>
-      <li *ngFor="let item of data.value.region">
-        {{item.numberWeek}} {{item.translation}} {{item.score}}
-      </li>
-    </ul> -->
-      <app-coronavirus-heat-map [data]="data.value.department"></app-coronavirus-heat-map>
-    </ng-container>
-  </ng-container>
+  <div class="columns">
+    <div class="column">
+      <h2 class="title">Carte du niveau d'excès de mortalité en  {{weekNumbers[selectedDate].number}} : {{weekNumbers[selectedDate].startDate | date: "d MMMM":"fr-FR" }}
+        au {{weekNumbers[selectedDate].endDate | date: "d MMMM":"fr-FR" }} {{age[selectedAge]}}</h2>
+      <ng-container *ngIf="isBrowser">
+        <app-coronavirus-heat-map [selectedAge]="selectedAge" [data]="selectedDivisionMap === 'departmentFrance' ? data.department : data.region" [selectedDate]="selectedDate" [selectedDivisionMap]="selectedDivisionMap"></app-coronavirus-heat-map>
+      </ng-container>
+      <div class="radio-buttons">
+        <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedAge" (change)="onSelectAge()">
+          <mat-radio-button value="tous">Tous âges</mat-radio-button>
+          <mat-radio-button value="65+">Plus de 65 ans</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="column">
+      <h2 class="title">Explications de la carte</h2>
+      <p class="description">
+        Cette cartographie représente le niveau d'excès standardisé de mortalité pendant l'épidémie de COVID-19 au niveau régional et départemental.
+        Les données proviennent de la partie administrative du certificat du décès et sont collectées
+        par les bureaux d'état-civil des différentes communes possédant une transmission dématérialisée avec l'Insee.
+        Santé Publique France compare le nombre de décès observé avec un nombre de décès attendu, évalué sur la base d'un modèle statistique établi par
+        le consortium EuroMomo.
+        Cette estimation d'excès de mortalité est établi sur le Z-score, un indicateur standardisé qui permet de comparer les excès entre différents niveaux géographiques ou classes d’âges.<br>
+        On calcule le Z-score de la manière suivante : <em>(nombre observé – nombre attendu) / écart-type du nombre attendu.</em>
+      </p>
+      <div>
+        Voici les cinq catégories de niveaux d'excès :
+        <ul>
+          <li>
+            <strong>Pas d'excès</strong> : indicateur standardisé de décès (Z-score) <strong>inférieur à 2</strong>
+          </li>
+          <li>
+            <strong>Excès modéré de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 2 et 4,99</strong>
+          </li>
+          <li>
+            <strong>Excès élevé de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 5 et 6,99</strong>
+          </li>
+          <li>
+            <strong>Excès très élevé de décès</strong> : indicateur standardisé de décès (Z-score) <strong>compris entre 7 et 11,99</strong>
+          </li>
+          <li>
+            <strong>Excès exceptionnel de décès</strong> : indicateur standardisé de décès (Z-score) <strong>supérieur à 12</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+
 </div>
 
 

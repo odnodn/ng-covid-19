@@ -20,6 +20,10 @@
 .deconfinement {
   height: 100%;
   .message-header {
+    justify-content: start;
     text-transform: uppercase;
+    .material-icons {
+      padding-right: 5px;
+    }
   }
 }

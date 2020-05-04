@@ -83,17 +83,26 @@
         >
           <div class="message-header">
             <ng-container *ngIf="mainStats.deconfinement.color === 'rouge'">
-              🔴 LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN ROUGE SUR LA CARTE DU DÉCONFINEMENT AU {{
+              <span class="material-icons">
+                radio_button_unchecked
+              </span>
+              LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN ROUGE SUR LA CARTE DU DÉCONFINEMENT AU {{
                 mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
               }}
             </ng-container>
             <ng-container *ngIf="mainStats.deconfinement.color === 'vert'">
-              🟢 LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN VERT SUR LA CARTE DU DÉCONFINEMENT AU {{
+              <span class="material-icons">
+                radio_button_unchecked
+              </span>
+              LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN VERT SUR LA CARTE DU DÉCONFINEMENT AU {{
                 mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
               }}
             </ng-container>
             <ng-container *ngIf="mainStats.deconfinement.color === 'orange'">
-              🟠 LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN ORANGE SUR LA CARTE DU DÉCONFINEMENT AU {{
+              <span class="material-icons">
+                radio_button_unchecked
+              </span>
+              LE DÉPARTEMENT {{ mainStats?.deconfinement.translation }} EST EN ORANGE SUR LA CARTE DU DÉCONFINEMENT AU {{
                 mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
               }}
             </ng-container>

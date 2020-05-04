@@ -236,3 +236,15 @@ strong {
 .message-body {
   padding: 1em;
 }
+
+.material-icons {
+  &.red {
+    color: #f9461c;
+  }
+  &.orange {
+    color: #fb0;
+  }
+  &.green {
+    color: #43d787;
+  }
+}

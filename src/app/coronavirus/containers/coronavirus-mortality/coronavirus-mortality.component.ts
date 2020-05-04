@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
+import { WEEK_NUMBERS } from '@coronavirus/constants/week-numbers.constants';
 
 @Component({
   selector: 'app-coronavirus-mortality',
@@ -15,11 +16,19 @@ import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 })
 export class CoronavirusMortalityComponent implements OnInit {
 
-  data$: Observable<any>;
+  data: any;
   isBrowser = isPlatformBrowser(this.platformId);
   selectedCountry: any = COUNTRIES[0];
   selectedDepartment: any;
   selectedRegion: any;
+  selectedDate: any;
+  selectedDivisionMap = 'departmentFrance';
+  weekNumbers = WEEK_NUMBERS;
+  age = {
+    tous: 'à tous âges',
+    '65+': 'chez les plus de 65 ans',
+  };
+  selectedAge = 'tous';
 
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
@@ -32,7 +41,8 @@ export class CoronavirusMortalityComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.data$ = this.coronavirusFranceService.getFranceMortality('national');
+    this.initDatas();
+    this.initMetaTag();
     this.route.params.subscribe(params => {
       if (!params.country) { /* No param route */
       }
@@ -45,6 +55,52 @@ export class CoronavirusMortalityComponent implements OnInit {
         }
       }
       this.ref.detectChanges();
+    });
+  }
+
+  private initDatas(): void {
+    this.coronavirusFranceService.getFranceMortality('national').subscribe((result) => {
+      this.data = result;
+      this.selectedDate = result.dates[result.dates.length - 1];
+      this.ref.detectChanges();
+    });
+  }
+
+  dateChange($event): void {
+    this.selectedDate = $event;
+  }
+
+  selectDivisionChange($event): void {
+    this.selectedDivisionMap = $event;
+    this.ref.detectChanges();
+  }
+
+  onSelectAge(): void {
+    console.log(this.selectedAge);
+    this.ref.detectChanges();
+  }
+
+  private initMetaTag(): void {
+    this.title.setTitle('Carte du niveau d\'excès de mortalité pendant l\'épidémie de Coronavirus COVID-19');
+    const tags = [
+      // tslint:disable-next-line:max-line-length
+      { name: 'description', content: 'Coronavirus COVID-19 : Carte du niveau d\'excès de mortalité pendant l\'épidémie par département' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: 'https://www.cascoronavirus.fr/carte-exces-mortalite/france' },
+      { property: 'og:title', content: 'Carte du niveau d\'excès de mortalité pendant l\'épidémie de Coronavirus COVID-19' },
+      // tslint:disable-next-line:max-line-length
+      { property: 'og:description', content: 'Coronavirus COVID-19 : Carte du niveau d\'excès de mortalité pendant l\'épidémie par département' },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: 'Carte du niveau d\'excès de mortalité pendant l\'épidémie de Coronavirus COVID-19' },
+      // tslint:disable-next-line:max-line-length
+      { name: 'twitter:description', content: 'Coronavirus COVID-19 : Carte du niveau d\'excès de mortalité pendant l\'épidémie par département' },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { name: 'twitter:site', content: '@SouryvathN' },
+    ];
+    tags.forEach((tag) => {
+      this.meta.updateTag(tag);
     });
   }
 

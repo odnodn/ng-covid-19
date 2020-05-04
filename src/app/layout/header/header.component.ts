@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   isActive = false;
   isExpand = true;
@@ -27,5 +27,12 @@ export class HeaderComponent implements OnInit {
       menu.style.display = '';
       e.target.blur();
     }, 100);
+  }
+
+  ngAfterViewInit(): void {
+    // @ts-ignore
+    if ((window as any).twttr) {
+      (window as any).twttr.widgets.load();
+    }
   }
 }

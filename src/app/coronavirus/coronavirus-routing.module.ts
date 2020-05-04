@@ -73,7 +73,7 @@ export const coronavirusRoutes: Routes = [
         component: CoronavirusMapDeconfinementComponent
       },
       {
-        path: 'exces-mortalite/:country',
+        path: 'carte-exces-mortalite/:country',
         component: CoronavirusMortalityComponent
       }
     ]

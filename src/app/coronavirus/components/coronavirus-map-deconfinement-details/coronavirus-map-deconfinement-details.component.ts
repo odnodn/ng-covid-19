@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
-import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-import am4geodata_franceHigh from '@amcharts/amcharts4-geodata/franceHigh';
 import am4geodata_franceDepartmentsHigh from '@amcharts/amcharts4-geodata/franceDepartmentsHigh';
 import am4geodata_lang_FR from '@amcharts/amcharts4-geodata/lang/FR';
 import am4lang_fr_FR from '@amcharts/amcharts4/lang/fr_FR';

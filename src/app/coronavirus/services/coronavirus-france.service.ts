@@ -15,7 +15,7 @@ export class CoronavirusFranceService {
   private readonly urlNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-news';
   private readonly urlOneNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-one-news';
   private readonly urlDeconfinement = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-deconfinement';
-  private readonly urlMortality = 'http://localhost:3000/france-datas-mortality';
+  private readonly urlMortality = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-mortality';
 
   constructor(private readonly httpClient: HttpClient) { }
 
