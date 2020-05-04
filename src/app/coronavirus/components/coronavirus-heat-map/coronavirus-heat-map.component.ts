@@ -104,7 +104,6 @@ export class CoronavirusHeatMapComponent implements OnInit, OnChanges {
       data.push(itemMortality);
     });
     this.series.data = data;
-    console.log(this.series.data);
   }
 
   private getRateLegend(score: string): string {

@@ -76,7 +76,6 @@ export class CoronavirusMortalityComponent implements OnInit {
   }
 
   onSelectAge(): void {
-    console.log(this.selectedAge);
     this.ref.detectChanges();
   }
 
