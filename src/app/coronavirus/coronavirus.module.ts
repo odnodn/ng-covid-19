@@ -24,6 +24,8 @@ import { CoronavirusNewsComponent } from './components/coronavirus-news/coronavi
 import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page/coronavirus-news-page.component';
 import { CoronavirusMapDeconfinementComponent } from './containers/coronavirus-map-deconfinement/coronavirus-map-deconfinement.component';
 import { CoronavirusMapDeconfinementDetailsComponent } from './components/coronavirus-map-deconfinement-details/coronavirus-map-deconfinement-details.component';
+import { CoronavirusMortalityComponent } from './containers/coronavirus-mortality/coronavirus-mortality.component';
+import { CoronavirusHeatMapComponent } from './components/coronavirus-heat-map/coronavirus-heat-map.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { CoronavirusMapDeconfinementDetailsComponent } from './components/corona
     CoronavirusNewsComponent,
     CoronavirusNewsPageComponent,
     CoronavirusMapDeconfinementComponent,
-    CoronavirusMapDeconfinementDetailsComponent
+    CoronavirusMapDeconfinementDetailsComponent,
+    CoronavirusMortalityComponent,
+    CoronavirusHeatMapComponent
   ],
   imports: [
     CommonModule,

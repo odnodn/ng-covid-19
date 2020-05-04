@@ -74,7 +74,28 @@
     </li>
     <li [class.is-active]="router.url | include: 'deconfinement'">
       <a [routerLink]="['/carte-deconfinement/france']">
-        🟢🟠🔴<strong>Carte du déconfinement</strong>
+        <span class="material-icons green">
+          lens
+        </span>
+        <span class="material-icons orange">
+          lens
+        </span>
+        <span class="material-icons red">
+          lens
+        </span>
+        <strong>Carte du déconfinement</strong>
+      </a>
+    </li>
+    <li [class.is-active]="router.url | include: 'exces'">
+      <a *ngIf="!selectedRegion && !selectedDepartment"
+        [routerLink]="['/carte-exces-mortalite/', selectedCountry.slug]">
+        <strong>Exces de mortalité</strong>
+      </a>
+      <a *ngIf="selectedRegion" [routerLink]="['/carte-exces-mortalite/', selectedRegion.slug]">
+        <strong>Exces de mortalité</strong>
+      </a>
+      <a *ngIf="selectedDepartment" [routerLink]="['/carte-exces-mortalite/', selectedDepartment.slug]">
+        <strong>Exces de mortalité</strong>
       </a>
     </li>
   </ul>
