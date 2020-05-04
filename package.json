@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --watch",
+    "start:ssl": "ng serve --ssl --ssl-key localhost.key --ssl-cert localhost.crt",
     "build": "ng build --prod && ng run ng-coronavirus:server:production",
     "build:prod": "ng build --prod",
     "test": "ng test",
