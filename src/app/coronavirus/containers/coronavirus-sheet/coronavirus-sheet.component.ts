@@ -8,6 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-coronavirus-sheet',
@@ -94,11 +95,32 @@ export class CoronavirusSheetComponent implements OnInit {
     this.tabTimelineSelected = type;
     if (!this.franceStatsDay$) {
       if (this.selectedRegion) {
-        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('region', this.selectedRegion.code);
+        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('region', this.selectedRegion.code).pipe(
+          map((list: any) =>
+            list.map(item =>
+              ({
+                ...item,
+                hospital: item.hospital - item.reanimation
+              })))
+        );
       } else if (this.selectedDepartment) {
-        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('department', this.selectedDepartment.code);
+        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('department', this.selectedDepartment.code).pipe(
+          map((list: any) =>
+            list.map(item =>
+              ({
+                ...item,
+                hospital: item.hospital - item.reanimation
+              })))
+        );
       } else {
-        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('national');
+        this.franceStatsDay$ = this.coronavirusFranceService.getDataDay('national').pipe(
+          map((list: any) =>
+            list.map(item =>
+              ({
+                ...item,
+                hospital: item.hospital - item.reanimation
+              })))
+        );
       }
     }
     window.scrollBy(0, 1);

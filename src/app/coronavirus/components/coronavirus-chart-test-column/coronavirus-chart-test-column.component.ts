@@ -22,6 +22,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   constructor() { }
 
   ngOnInit(): void {
+
     if (this.nameChart === 'chart-national-age') {
       this.dataType = 'deaths';
       this.choices = [
@@ -156,9 +157,6 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
 
   private initChartDay(): void {
     this.initChart();
-    this.data.forEach((item) => {
-      item.hospital = item.hospital - item.reanimation;
-    })
     this.chart.data = this.data;
     this.createXSeries('date');
     this.createYSeries('Nombre de patients');
