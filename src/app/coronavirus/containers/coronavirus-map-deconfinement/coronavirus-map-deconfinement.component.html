@@ -157,6 +157,24 @@
         </ul>
       </div>
     </div>
+    <div class="columns"  *ngIf="data.map && data.map.length > 0">
+      <div class="column is-6 map-deconfinement">
+        <h2>
+          Carte de circulation active du virus
+        </h2>
+        <div>
+          <img [src]="data.images.circulation" />
+        </div>
+      </div>
+      <div class="column is-6 map-deconfinement">
+        <h2>
+          Carte de la tension hospitalière sur les capacités de réanimation
+        </h2>
+        <div>
+          <img [src]="data.images.reanimation" />
+        </div>
+      </div>
+    </div>
     <ng-container *ngIf="data.map && data.map.length === 0">
       <h2>
         Carte du déconfinement par département au {{selectedDate | date: "d MMMM yyyy":"fr-FR" }}
