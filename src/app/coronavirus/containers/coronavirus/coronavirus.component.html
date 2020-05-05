@@ -73,7 +73,31 @@
       </a>
     </li>
     <li [class.is-active]="router.url | include: 'deconfinement'">
-      <a [routerLink]="['/carte-deconfinement/france']">
+      <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/carte-deconfinement/france']">
+        <span class="material-icons green">
+          lens
+        </span>
+        <span class="material-icons orange">
+          lens
+        </span>
+        <span class="material-icons red">
+          lens
+        </span>
+        <strong>Carte du déconfinement</strong>
+      </a>
+      <a *ngIf="selectedRegion" [routerLink]="['/carte-deconfinement/france/region', selectedRegion.slug]">
+        <span class="material-icons green">
+          lens
+        </span>
+        <span class="material-icons orange">
+          lens
+        </span>
+        <span class="material-icons red">
+          lens
+        </span>
+        <strong>Carte du déconfinement</strong>
+      </a>
+      <a *ngIf="selectedDepartment" [routerLink]="['/carte-deconfinement/france/departement', selectedDepartment.slug]">
         <span class="material-icons green">
           lens
         </span>

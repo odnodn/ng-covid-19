@@ -69,7 +69,15 @@ export const coronavirusRoutes: Routes = [
         component: CoronavirusTransfertComponent
       },
       {
-        path: 'carte-deconfinement/france',
+        path: 'carte-deconfinement/:country',
+        component: CoronavirusMapDeconfinementComponent
+      },
+      {
+        path: 'carte-deconfinement/:country/region/:region',
+        component: CoronavirusMapDeconfinementComponent
+      },
+      {
+        path: 'carte-deconfinement/:country/departement/:department',
         component: CoronavirusMapDeconfinementComponent
       },
       {

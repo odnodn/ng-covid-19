@@ -43,12 +43,14 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
       }
       if (params.department) {
         this.selectedDepartment = FRANCE_DEPS.find((department) => department.slug === params.department);
+        this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
         if (!this.selectedDepartment) {
           this.router.navigateByUrl('/');
           return;
         }
       } else if (params.region) {
         this.selectedRegion = FRANCE_REGIONS.find((region) => region.slug === params.region);
+        this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
         if (!this.selectedRegion) {
           this.router.navigateByUrl('/');
           return;
@@ -95,22 +97,47 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
     return comparison;
   }
 
+  private initMetaTagRegionAndDepartment(region: any, urlType: string, type: string): void {
+    this.title.setTitle(`Coronavirus COVID-19 : Carte du déconfinement ${region.name}`);
+    const tags = [
+      // tslint:disable-next-line:max-line-length
+      { name: 'description', content: `Coronavirus COVID-19 : suivez la carte du déconfinement dans ${type} ${region.name}: carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse` },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/carte-deconfinement/france/${urlType}/${region.slug}` },
+      { property: 'og:title', content: `Coronavirus COVID-19 : Carte du déconfinement ${region.name}` },
+      // tslint:disable-next-line:max-line-length
+      { property: 'og:description', content: `Coronavirus COVID-19 : Carte du déconfinement dans ${type} ${region.name}` },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: `Coronavirus COVID-19 : Carte du déconfinement ${region.name}` },
+      // tslint:disable-next-line:max-line-length
+      { name: 'twitter:description', content: `Coronavirus COVID-19 : suivez la carte du déconfinement dans ${type} ${region.name} avec la carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse` },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { name: 'twitter:site', content: '@SouryvathN' },
+    ];
+    tags.forEach((tag) => {
+      this.meta.updateTag(tag);
+    });
+  }
+
+
   private initMetaTag(): void {
     this.title.setTitle('Coronavirus COVID-19 : Carte de France du déconfinement par département');
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: 'Coronavirus COVID-19 : suivez la carte de France du déconfinement par département' },
+      { name: 'description', content: 'Coronavirus COVID-19 : suivez la carte de France du déconfinement par département : carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse' },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: 'https://www.cascoronavirus.fr/carte-deconfinement/france' },
       { property: 'og:title', content: 'Coronavirus COVID-19 : Carte de France du déconfinement par département' },
       // tslint:disable-next-line:max-line-length
-      { property: 'og:description', content: 'Coronavirus COVID-19 : suivez la carte de France du déconfinement par département' },
+      { property: 'og:description', content: 'Coronavirus COVID-19 : carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse' },
       { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Coronavirus COVID-19 : Carte de France du déconfinement par département' },
       // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: 'Coronavirus COVID-19 : suivez la carte de France du déconfinement par département' },
+      { name: 'twitter:description', content: 'Coronavirus COVID-19 : carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
