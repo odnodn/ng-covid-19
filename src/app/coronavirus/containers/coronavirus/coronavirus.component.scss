@@ -21,10 +21,7 @@ img {
   font-size: 0.8em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
-  img {
-    width: 150px;
-    height: 50px;
-  }
+
   text-align: center;
   .text {
     width: 100%;
@@ -47,3 +44,18 @@ img {
   }
 }
 
+.don-container {
+  max-width: 400px;
+  text-align: center;
+  font-size: 0.9em;
+  @media screen and (max-width: 640px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .text {
+    font-weight: 600;
+  }
+  img {
+    width: 175px;
+  }
+}
