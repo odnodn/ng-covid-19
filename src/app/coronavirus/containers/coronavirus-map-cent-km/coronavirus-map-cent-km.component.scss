@@ -1,0 +1,25 @@
+.map-container {
+  height: 70vh;
+  margin-top: 1em;
+}
+
+.map-frame {
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+.form {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: flex;
+
+  .field {
+    flex-basis: 100%;
+  }
+  .button {
+    margin-left: 5px;
+  }
+}

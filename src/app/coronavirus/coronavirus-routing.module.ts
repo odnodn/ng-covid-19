@@ -11,6 +11,7 @@ import { CoronavirusTransfertComponent } from './containers/coronavirus-transfer
 import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page/coronavirus-news-page.component';
 import { CoronavirusMapDeconfinementComponent } from './containers/coronavirus-map-deconfinement/coronavirus-map-deconfinement.component';
 import { CoronavirusMortalityComponent } from './containers/coronavirus-mortality/coronavirus-mortality.component';
+import { CoronavirusMapCentKmComponent } from './containers/coronavirus-map-cent-km/coronavirus-map-cent-km.component';
 export const coronavirusRoutes: Routes = [
   {
     path: '',
@@ -106,6 +107,10 @@ export const coronavirusRoutes: Routes = [
   {
     path: 'news/:title/:id',
     component: CoronavirusNewsPageComponent
+  },
+  {
+    path: 'carte-circulation-100-km-deconfinement',
+    component: CoronavirusMapCentKmComponent
   }
 ];
 

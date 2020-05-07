@@ -61,17 +61,6 @@
         Urgences hospitalières
       </a>
     </li>
-    <li [class.is-active]="router.url | include: 'transfert'">
-      <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/transfert-patients/', selectedCountry.slug]">
-        Transferts de patients
-      </a>
-      <a *ngIf="selectedRegion" [routerLink]="['/transfert-patients/france/region', selectedRegion.slug]">
-        Transferts de patients
-      </a>
-      <a *ngIf="selectedDepartment" [routerLink]="['/transfert-patients/france/departement', selectedDepartment.slug]">
-        Transferts de patients
-      </a>
-    </li>
     <li [class.is-active]="router.url | include: 'deconfinement'">
       <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/carte-deconfinement/france']">
         <span class="material-icons green">
@@ -110,6 +99,22 @@
         <strong>Carte du déconfinement</strong>
       </a>
     </li>
+    <li>
+      <a routerLink="/carte-circulation-100-km-deconfinement">
+        <strong>Carte de 100km autour du domicile</strong>
+      </a>
+    </li>
+    <!-- <li [class.is-active]="router.url | include: 'transfert'">
+      <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/transfert-patients/', selectedCountry.slug]">
+        Transferts de patients
+      </a>
+      <a *ngIf="selectedRegion" [routerLink]="['/transfert-patients/france/region', selectedRegion.slug]">
+        Transferts de patients
+      </a>
+      <a *ngIf="selectedDepartment" [routerLink]="['/transfert-patients/france/departement', selectedDepartment.slug]">
+        Transferts de patients
+      </a>
+    </li>
     <li [class.is-active]="router.url | include: 'exces'">
       <a *ngIf="!selectedRegion && !selectedDepartment"
         [routerLink]="['/carte-exces-mortalite/', selectedCountry.slug]">
@@ -121,7 +126,7 @@
       <a *ngIf="selectedDepartment" [routerLink]="['/carte-exces-mortalite/', selectedDepartment.slug]">
         <strong>Exces de mortalité</strong>
       </a>
-    </li>
+    </li> -->
   </ul>
 </div>
 

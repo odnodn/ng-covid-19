@@ -1,0 +1,26 @@
+<h1 class="title">Carte de circulation de 100 km autour du domicile pour le déconfinement</h1>
+<p>D'ici le 11 mai pour le déconfinement, vos déplacements ne seront pas autorisés au delà de 100 km. Dans quelle limite aurez-vous droit de
+  vous déplacer ? Pour savoir, rentrez votre adresse :
+</p>
+<form #f="ngForm"  class="form" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <div class="control">
+      <input class="input is-primary" name="address" type="text" placeholder="Entrez votre adresse" [(ngModel)]="address">
+    </div>
+  </div>
+  <button class="button is-info" type="submit">Valider</button>
+</form>
+<p class="city" *ngIf="fullAddress">
+  Votre adresse est à {{fullAddress.town}} {{fullAddress.village}} dans le département {{fullAddress.county}}.
+</p>
+<div *ngIf="!isFound" class="geolocalisation">
+  <p>
+    Nous avons besoin de votre géolocalisation pour déterminer votre position.
+  </p>
+  <button class="button is-primary is-spaced" (click)="findMe()">Activer la géolocalisation</button>
+</div>
+<div class="map-container">
+  <div class="map-frame">
+    <div id="map"></div>
+  </div>
+</div>
