@@ -180,6 +180,14 @@
           <img [src]="data.images.reanimation" />
         </div>
       </div>
+      <div class="column is-12 map-deconfinement" *ngIf="data.images.test">
+        <h2>
+          Carte du taux de couverture des besoins en tests, estimés au 11 mai
+        </h2>
+        <div>
+          <img [src]="data.images.test" />
+        </div>
+      </div>
     </div>
     <ng-container *ngIf="data.map && data.map.length === 0">
       <h2>

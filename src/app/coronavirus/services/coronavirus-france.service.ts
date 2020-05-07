@@ -78,7 +78,7 @@ export class CoronavirusFranceService {
   }
 
   getMapPosition(address: string): Observable<any> {
-    return this.httpClient.get(`http://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=${address}&format=json&limit=1`);
+    return this.httpClient.get(`https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=${address}&format=json&limit=1`);
   }
 
 }
