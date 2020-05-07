@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -15,13 +16,18 @@ export class CoronavirusMapCentKmComponent implements OnInit {
   isFound = false;
   address: string;
   fullAddress: any;
+  @ViewChild('taskForm') myForm: NgForm;
 
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly title: Title,
     private readonly meta: Meta,
-
     ) {
+
+  }
+
+  ngOnInit() {
+    this.findMe();
     this.title.setTitle(`Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19`);
     const tags = [
       // tslint:disable-next-line:max-line-length
@@ -43,10 +49,6 @@ export class CoronavirusMapCentKmComponent implements OnInit {
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
     });
-  }
-
-  ngOnInit() {
-    this.findMe();
   }
 
   onSubmit(): void {
