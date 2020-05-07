@@ -51,9 +51,14 @@ export class CoronavirusMapCentKmComponent implements OnInit {
 
   onSubmit(): void {
     this.coronavirusFranceService.getMapPosition(this.address).subscribe((result) => {
-      this.fullAddress = result[0].address;
-      this.map.remove();
-      this.initMap(result[0].lat , result[0].lon);
+      if (result.length > 0) {
+        this.fullAddress = result[0].address;
+        this.map.remove();
+        this.initMap(result[0].lat , result[0].lon);
+      } else {
+        this.fullAddress = null;
+      }
+
     });
   }
 

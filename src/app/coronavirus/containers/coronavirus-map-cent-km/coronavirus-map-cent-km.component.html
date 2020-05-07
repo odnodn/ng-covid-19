@@ -10,14 +10,11 @@
   </div>
   <button class="button is-info" type="submit">Valider</button>
 </form>
-<p class="city" *ngIf="fullAddress">
-  Votre adresse est à {{fullAddress.town}} {{fullAddress.village}} dans le département {{fullAddress.county}}.
-</p>
-<div *ngIf="!isFound" class="geolocalisation">
-  <p>
-    Nous avons besoin de votre géolocalisation pour déterminer votre position.
-  </p>
-  <button class="button is-primary is-spaced" (click)="findMe()">Activer la géolocalisation</button>
+<div class="city" *ngIf="fullAddress">
+  Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département {{fullAddress.county}} {{fullAddress.postcode}}.
+</div>
+<div class="city" *ngIf="fullAddress === null">
+  <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>
 </div>
 <div class="map-container">
   <div class="map-frame">
