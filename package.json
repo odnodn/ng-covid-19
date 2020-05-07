@@ -40,6 +40,7 @@
     "ngx-device-detector": "^1.4.2",
     "ngx-mat-select-search": "^2.1.2",
     "papaparse": "^5.1.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

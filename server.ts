@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as compression from 'compression';
 import * as cookieparser from 'cookie-parser';
 import { join } from 'path';
-
+import 'reflect-metadata';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
@@ -19,10 +19,14 @@ export function app() {
   const template = fs.readFileSync(path.join('.', 'dist/ng-coronavirus/browser', 'index.html')).toString();
   const window = domino.createWindow(template);
 
+
   // tslint:disable-next-line:no-string-literal
   global['window'] = window;
   // tslint:disable-next-line:no-string-literal
   global['document'] = window.document;
+
+  // tslint:disable-next-line:no-string-literal
+  global['navigator'] = window.navigator;
   server.use(compression());
   server.use(cookieparser());
 

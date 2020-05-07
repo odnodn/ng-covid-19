@@ -16,7 +16,7 @@
 <div class="city" *ngIf="fullAddress === null">
   <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>
 </div>
-<div class="map-container">
+<div class="map-container" *ngIf="isBrowser">
   <div class="map-frame">
     <div id="map"></div>
   </div>

@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import * as L from 'leaflet';
+import { Component, OnInit, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
 
-
+declare const require: any;
 @Component({
   selector: 'app-coronavirus-map-cent-km',
   templateUrl: './coronavirus-map-cent-km.component.html',
@@ -17,12 +17,17 @@ export class CoronavirusMapCentKmComponent implements OnInit {
   address: string;
   fullAddress: any;
   @ViewChild('taskForm') myForm: NgForm;
-
+  isBrowser = isPlatformBrowser(this.platformId);
+  L = null;
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly title: Title,
     private readonly meta: Meta,
+    @Inject(PLATFORM_ID) private readonly platformId: any
     ) {
+      if (isPlatformBrowser(platformId)) {
+        this.L = require('leaflet');
+      }
 
   }
 
@@ -77,25 +82,25 @@ export class CoronavirusMapCentKmComponent implements OnInit {
 
   initMap(latitude: number, longitude: number): void {
 
-    this.map = L.map('map', {
+    this.map = this.L.map('map', {
       center: [latitude, longitude],
       zoom: 8
     });
 
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-    const circle = L.circle([latitude, longitude], {
+    const circle = this.L.circle([latitude, longitude], {
       color: '#0069cc',
       fillColor: '#0069cc',
       fillOpacity: 0.5,
       radius: 100000
     }).addTo(this.map);
     tiles.addTo(this.map);
-    const myIcon = L.divIcon({className: 'my-div-icon'});
-    const marker = L.marker([latitude, longitude], {icon: myIcon}).addTo(this.map);
+    const myIcon = this.L.divIcon({className: 'my-div-icon'});
+    const marker = this.L.marker([latitude, longitude], {icon: myIcon}).addTo(this.map);
     marker.bindPopup('Vous êtes ici !').openPopup();
   }
 }
