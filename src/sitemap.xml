@@ -2413,5 +2413,8 @@
     </url><url>
       <loc>https://www.cascoronavirus.fr/carte-deconfinement/france/departement/yvelines</loc>
       <changefreq>daily</changefreq>
+    </url><url>
+      <loc>https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement</loc>
+      <changefreq>daily</changefreq>
     </url>
 </urlset>
