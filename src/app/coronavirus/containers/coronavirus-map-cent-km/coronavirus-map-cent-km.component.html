@@ -1,25 +1,20 @@
-<h1 class="title">Carte de zone de circulation de 100 km autour du domicile pour le déconfinement</h1>
+<h1 class="title">Carte de circulation de 100 km autour du domicile pour le déconfinement</h1>
 <p>A partir du 11 pour le déconfinement, vos déplacements ne seront pas autorisés au delà de 100 km. Dans quelle limite aurez-vous droit de
-  vous déplacer ? Pour le savoir, rentrez votre adresse :
+  vous déplacer ? Pour savoir, rentrez votre adresse.
+  <strong>
+    Si votre destination se trouve hors de la zone bleue, c'est qu'elle est située à plus de 100 km de chez vous et à moins d'avoir un motif impérieux, il vous sera interdit de vous y rendre. Toutefois, un déplacement de plus de 100 km à l'intérieur d'un même département reste possible sans motif impérieux.
+  </strong>
 </p>
-<p>
-  <strong>Si votre destination se trouve hors de la zone bleue, c'est qu'elle est située à plus de 100 km de chez vous et à moins d'avoir un motif impérieux,
-  il vous sera interdit de vous y rendre.
-  Toutefois, un déplacement de plus de 100 km à l'intérieur d'un même département reste possible sans motif impérieux.</strong>
-</p>
-<mat-form-field class="autocomplete-search-address">
-  <input matInput placeholder="Rechercher votre adresse" aria-label="State" [matAutocomplete]="auto" [formControl]="searchAdressCtrl">
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayProperty" (optionSelected)='onSubmit($event.option.value)'>
-    <mat-option *ngIf="isLoading" class="is-loading">Chargement...</mat-option>
-    <ng-container *ngIf="!isLoading">
-      <mat-option *ngFor="let addressData of addressDatas.features" [value]="addressData">
-        <span>{{addressData.properties.label}}</span>
-      </mat-option>
-    </ng-container>
-  </mat-autocomplete>
-</mat-form-field>
+<form #f="ngForm"  class="form" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <div class="control">
+      <input class="input is-primary" name="address" type="text" placeholder="Entrez votre adresse" [(ngModel)]="address">
+    </div>
+  </div>
+  <button class="button is-info" type="submit">Valider</button>
+</form>
 <div class="city" *ngIf="fullAddress">
-  Votre adresse est {{fullAddress}}
+  Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département {{fullAddress.county}} {{fullAddress.postcode}}.
 </div>
 <div class="city" *ngIf="fullAddress === null">
   <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>

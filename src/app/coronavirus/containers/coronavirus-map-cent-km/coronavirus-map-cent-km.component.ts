@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { NgForm, FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
-import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 
 declare const require: any;
 @Component({
@@ -20,13 +19,6 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   @ViewChild('taskForm') myForm: NgForm;
   isBrowser = isPlatformBrowser(this.platformId);
   L = null;
-
-  searchAdressCtrl = new FormControl();
-  addressDatas: any = {}
-  isLoading = false;
-  errorMsg: string;
-
-
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly title: Title,
@@ -60,36 +52,17 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.searchAdressCtrl.valueChanges
-      .pipe(
-        debounceTime(500),
-        tap(() => {
-          this.errorMsg = "";
-          this.addressDatas = {};
-          this.isLoading = true;
-        }),
-        switchMap(value => this.coronavirusFranceService.getMapPositionGeoData(value)
-          .pipe(
-            finalize(() => {
-              this.isLoading = false
-            }),
-          )
-        )
-      )
-      .subscribe(data => {
-        this.addressDatas = data;
-      });
   }
 
   ngAfterViewInit(): void {
     this.findMe();
   }
 
-  onSubmit(value: any): void {
+  onSubmit(): void {
     this.coronavirusFranceService.getMapPosition(this.address).subscribe((result) => {
       if (result.length > 0) {
-        this.fullAddress = value.properties.label;
-        this.initMap(value.geometry.coordinates[1] , value.geometry.coordinates[0], false);
+        this.fullAddress = result[0].address;
+        this.initMap(result[0].lat , result[0].lon, false);
       } else {
         this.fullAddress = null;
       }
@@ -141,12 +114,6 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
       const marker = this.L.marker([latitude, longitude], {icon: myIcon}).addTo(this.map);
       marker.bindPopup('Vous êtes ici !').openPopup();
 
-    }
-  }
-
-  displayProperty(value) {
-    if (value) {
-      return value.properties.label;
     }
   }
 }

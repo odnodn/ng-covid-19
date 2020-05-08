@@ -11,6 +11,18 @@
   height: 100%;
 }
 
+.form {
+  margin-top: 1em;
+  display: flex;
+
+  .field {
+    flex-basis: 100%;
+  }
+  .button {
+    margin-left: 5px;
+  }
+}
+
 .autocomplete-search-address {
   margin-top: 1em;
   width: 100%;
