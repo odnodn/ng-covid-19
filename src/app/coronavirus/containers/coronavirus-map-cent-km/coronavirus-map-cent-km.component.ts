@@ -24,31 +24,31 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
     private readonly title: Title,
     private readonly meta: Meta,
     @Inject(PLATFORM_ID) private readonly platformId: any
-    ) {
-      if (isPlatformBrowser(platformId)) {
-        this.L = require('leaflet');
-      }
-      this.title.setTitle(`Carte de zone de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19`);
-      const tags = [
-        // tslint:disable-next-line:max-line-length
-        { name: 'description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-        { property: 'og:url', content: `https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement` },
-        { property: 'og:title', content: `Carte de zone circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
-        // tslint:disable-next-line:max-line-length
-        { property: 'og:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
-        { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
-        { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:title', content: `Carte de zone de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
-        // tslint:disable-next-line:max-line-length
-        { name: 'twitter:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
-        { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
-        { name: 'twitter:site', content: '@SouryvathN' },
-      ];
-      tags.forEach((tag) => {
-        this.meta.updateTag(tag);
-      });
+  ) {
+    if (this.isBrowser) {
+      this.L = require('leaflet');
+    }
+    this.title.setTitle(`Carte de zone de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19`);
+    const tags = [
+      // tslint:disable-next-line:max-line-length
+      { name: 'description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement` },
+      { property: 'og:title', content: `Carte de zone circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
+      // tslint:disable-next-line:max-line-length
+      { property: 'og:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: `Carte de zone de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
+      // tslint:disable-next-line:max-line-length
+      { name: 'twitter:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
+      { name: 'twitter:site', content: '@SouryvathN' },
+    ];
+    tags.forEach((tag) => {
+      this.meta.updateTag(tag);
+    });
   }
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
     this.coronavirusFranceService.getMapPosition(this.address).subscribe((result) => {
       if (result.length > 0) {
         this.fullAddress = result[0].address;
-        this.initMap(result[0].lat , result[0].lon, false);
+        this.initMap(result[0].lat, result[0].lon, false);
       } else {
         this.fullAddress = null;
       }
@@ -92,27 +92,30 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
       this.map.remove();
     }
 
-    this.map = this.L.map('map', {
-      center: [latitudePos, longitudePos],
-      zoom: init ? 6 : 8
-    });
+    if (this.L) {
+      this.map = this.L.map('map', {
+        center: [latitudePos, longitudePos],
+        zoom: init ? 6 : 8
+      });
 
-    const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-    tiles.addTo(this.map);
-    if (init === false) {
-      const circle = this.L.circle([latitude, longitude], {
-        color: '#0069cc',
-        fillColor: '#0069cc',
-        fillOpacity: 0.5,
-        radius: 100000
-      }).addTo(this.map);
+      const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      });
+      tiles.addTo(this.map);
+      if (init === false) {
+        const circle = this.L.circle([latitude, longitude], {
+          color: '#0069cc',
+          fillColor: '#0069cc',
+          fillOpacity: 0.5,
+          radius: 100000
+        }).addTo(this.map);
 
-      const myIcon = this.L.divIcon({className: 'my-div-icon'});
-      const marker = this.L.marker([latitude, longitude], {icon: myIcon}).addTo(this.map);
-      marker.bindPopup('Vous êtes ici !').openPopup();
+        const myIcon = this.L.divIcon({ className: 'my-div-icon' });
+        const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
+        marker.bindPopup('Vous êtes ici !').openPopup();
+      }
+
 
     }
   }
