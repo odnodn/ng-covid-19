@@ -28,32 +28,32 @@ export class CoronavirusMapCentKmComponent implements OnInit {
       if (isPlatformBrowser(platformId)) {
         this.L = require('leaflet');
       }
-
+      this.title.setTitle(`Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19`);
+      const tags = [
+        // tslint:disable-next-line:max-line-length
+        { name: 'description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+        { property: 'og:url', content: `https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement` },
+        { property: 'og:title', content: `Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
+        // tslint:disable-next-line:max-line-length
+        { property: 'og:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+        { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:title', content: `Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
+        // tslint:disable-next-line:max-line-length
+        { name: 'twitter:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+        { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
+        { name: 'twitter:site', content: '@SouryvathN' },
+      ];
+      tags.forEach((tag) => {
+        this.meta.updateTag(tag);
+      });
   }
 
   ngOnInit() {
     this.findMe();
-    this.title.setTitle(`Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19`);
-    const tags = [
-      // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Où pouvez-vous aller à 100 km de votre domicile ?` },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { property: 'og:url', content: `https://www.cascoronavirus.fr/carte-deconfinement-100-km` },
-      { property: 'og:title', content: `Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
-      // tslint:disable-next-line:max-line-length
-      { property: 'og:description', content: `Où pouvez-vous aller à 100 km de votre domicile ?` },
-      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: `Carte de circulation de 100 km autour du domicile pour le déconfinement lié au Coronavirus COVID-19` },
-      // tslint:disable-next-line:max-line-length
-      { name: 'twitter:description', content: `Où pouvez-vous aller à 100 km de votre domicile ?` },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
-    ];
-    tags.forEach((tag) => {
-      this.meta.updateTag(tag);
-    });
+
   }
 
   onSubmit(): void {
