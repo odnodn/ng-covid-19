@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -20,7 +21,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatRadioModule,
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule
   ],
   imports: [
     MatTableModule,
@@ -31,7 +33,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatRadioModule,
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatInputModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }

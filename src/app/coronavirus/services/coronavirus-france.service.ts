@@ -81,4 +81,8 @@ export class CoronavirusFranceService {
     return this.httpClient.get(`https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=${address}&format=json&limit=1`);
   }
 
+  getMapPositionGeoData(address: string): Observable<any> {
+    return this.httpClient.get(`https://api-adresse.data.gouv.fr/search/?q=${address}&type=housenumber&autocomplete=1`);
+  }
+
 }
