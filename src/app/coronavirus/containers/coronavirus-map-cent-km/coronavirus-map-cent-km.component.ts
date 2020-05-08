@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-france.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
@@ -10,7 +10,7 @@ declare const require: any;
   templateUrl: './coronavirus-map-cent-km.component.html',
   styleUrls: ['./coronavirus-map-cent-km.component.scss']
 })
-export class CoronavirusMapCentKmComponent implements OnInit {
+export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
 
   map: any;
   isFound = false;
@@ -52,18 +52,17 @@ export class CoronavirusMapCentKmComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findMe();
+  }
 
+  ngAfterViewInit(): void {
+    this.findMe();
   }
 
   onSubmit(): void {
     this.coronavirusFranceService.getMapPosition(this.address).subscribe((result) => {
       if (result.length > 0) {
         this.fullAddress = result[0].address;
-        if (this.map) {
-          this.map.remove();
-        }
-        this.initMap(result[0].lat , result[0].lon);
+        this.initMap(result[0].lat , result[0].lon, false);
       } else {
         this.fullAddress = null;
       }
@@ -72,35 +71,53 @@ export class CoronavirusMapCentKmComponent implements OnInit {
   }
 
   findMe() {
+    this.initMap(46.227638, 2.213749, true);
     if (navigator.geolocation) {
       this.isFound = true;
       navigator.geolocation.getCurrentPosition((position) => {
-        this.initMap(position.coords.latitude, position.coords.longitude);
+        this.initMap(position.coords.latitude, position.coords.longitude, false);
       });
     }
   }
 
-  initMap(latitude: number, longitude: number): void {
+  initMap(latitude: number, longitude: number, init: boolean): void {
+    let latitudePos = 0;
+    let longitudePos = 0;
+
+    if (latitude && longitude) {
+      latitudePos = latitude;
+      longitudePos = longitude;
+    }
+    if (this.map) {
+      this.map.remove();
+    }
 
     this.map = this.L.map('map', {
-      center: [latitude, longitude],
-      zoom: 8
+      center: [latitudePos, longitudePos],
+      zoom: init ? 6 : 8
     });
 
     const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
-
-    const circle = this.L.circle([latitude, longitude], {
-      color: '#0069cc',
-      fillColor: '#0069cc',
-      fillOpacity: 0.5,
-      radius: 100000
-    }).addTo(this.map);
     tiles.addTo(this.map);
-    const myIcon = this.L.divIcon({className: 'my-div-icon'});
-    const marker = this.L.marker([latitude, longitude], {icon: myIcon}).addTo(this.map);
-    marker.bindPopup('Vous êtes ici !').openPopup();
+    if (init === false) {
+      const circle = this.L.circle([latitude, longitude], {
+        color: '#0069cc',
+        fillColor: '#0069cc',
+        fillOpacity: 0.5,
+        radius: 100000
+      }).addTo(this.map);
+
+      const myIcon = this.L.divIcon({className: 'my-div-icon'});
+      const marker = this.L.marker([latitude, longitude], {icon: myIcon}).addTo(this.map);
+      marker.bindPopup('Vous êtes ici !').openPopup();
+
+    }
+
+
+
+
   }
 }
