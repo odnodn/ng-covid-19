@@ -8,7 +8,7 @@
   Toutefois, un déplacement de plus de 100 km à l'intérieur d'un même département reste possible sans motif impérieux.</strong>
 </p>
 <mat-form-field class="autocomplete-search-address">
-  <input matInput placeholder="Rechercher votre addresse" aria-label="State" [matAutocomplete]="auto" [formControl]="searchAdressCtrl">
+  <input matInput placeholder="Rechercher votre adresse" aria-label="State" [matAutocomplete]="auto" [formControl]="searchAdressCtrl">
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayProperty" (optionSelected)='onSubmit($event.option.value)'>
     <mat-option *ngIf="isLoading" class="is-loading">Chargement...</mat-option>
     <ng-container *ngIf="!isLoading">
