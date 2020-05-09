@@ -28,10 +28,10 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
     if (this.isBrowser) {
       this.L = require('leaflet');
     }
-    this.title.setTitle(`Carte de la zone de circulation de 100 km autour du domicile pour le déconfinement`);
+    this.title.setTitle(`Carte de la zone de circulation de 100 km à vol d'oiseau autour du domicile pour le déconfinement`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
+      { name: 'description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km à vol d"oiseau autour votre domicile ?` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement` },
