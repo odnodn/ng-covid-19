@@ -111,7 +111,11 @@ export const coronavirusRoutes: Routes = [
   {
     path: 'carte-circulation-100-km-deconfinement',
     component: CoronavirusMapCentKmComponent
-  }
+  },
+  // {
+  //   path: 'attestation-100-km-deconfinement',
+  //   component: CoronavirusMapCentKmComponent
+  // }
 ];
 
 @NgModule({
