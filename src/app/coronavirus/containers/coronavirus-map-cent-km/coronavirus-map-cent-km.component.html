@@ -11,7 +11,7 @@
   </div>
 </a>
 </div>
-<p>Pour le déconfinement du 11 mai, les déplacements ne seront autorisés que dans un rayon de 100 km à vol d'oiseau autour du domicile. Dans quelle limite aurez-vous droit de vous déplacer ? Pour savoir, utilisez cette carte interactive qui calcule le rayon de 100 km en vous géolocalisant ou en rentrant votre adresse.
+<p>Pour le déconfinement du 11 mai, les déplacements ne seront autorisés que dans un rayon de 100 km à vol d'oiseau autour du domicile. Dans quelle limite aurez-vous droit de vous déplacer ? Pour savoir, utilisez cette carte interactive qui calcule le rayon de 100 km en vous géolocalisant ou en rentrant votre adresse, votre ville ou votre code postal.
   <strong>
     Si votre destination se trouve hors de la zone bleue, c'est qu'elle est située à plus de 100 km de chez vous et à moins d'avoir un motif impérieux, il vous sera interdit de vous y rendre. Toutefois, un déplacement de plus de 100 km à l'intérieur d'un même département reste possible sans motif impérieux.
   </strong>
@@ -19,7 +19,7 @@
 <form #f="ngForm"  class="form" (ngSubmit)="onSubmit()">
   <div class="field">
     <div class="control">
-      <input class="input is-primary" name="address" type="text" placeholder="Entrez votre adresse" [(ngModel)]="address">
+      <input class="input is-primary" name="address" type="text" placeholder="Entrez votre adresse, votre ville ou votre code postal..." [(ngModel)]="address">
     </div>
   </div>
   <button class="button is-info" type="submit">Valider</button>
