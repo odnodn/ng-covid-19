@@ -72,12 +72,25 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   }
 
   findMe() {
-    this.initMap(46.227638, 2.213749, true);
+    this.map = this.L.map('map', {
+      center: [46.227638, 2.213749],
+      zoom: 6
+    });
+    const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    tiles.addTo(this.map);
     if (navigator.geolocation) {
       this.isFound = true;
       navigator.geolocation.getCurrentPosition((position) => {
         this.initMap(position.coords.latitude, position.coords.longitude, false);
-      });
+      },
+        (error) => {
+          this.initMapColor();
+        });
+    } else {
+      this.initMapColor();
     }
   }
 
@@ -116,9 +129,8 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
         const myIcon = this.L.divIcon({ className: 'my-div-icon' });
         const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
         marker.bindPopup('Vous êtes ici !').openPopup();
-        this.initMapColor();
       }
-
+      this.initMapColor();
     }
   }
 
@@ -127,7 +139,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
       this.coronavirusFranceService.getUseGeojson(),
       this.coronavirusFranceService.getDeconfinement()
     ])
-    .subscribe((result) => {
+      .subscribe((result) => {
         this.L.geoJSON(result[0], {
           style:
             function styleMap(feature) {
@@ -145,6 +157,6 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
               };
             }
         }).addTo(this.map);
-    });
+      });
   }
 }
