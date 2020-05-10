@@ -3,6 +3,7 @@ import { CoronavirusFranceService } from '@coronavirus/services/coronavirus-fran
 import { Title, Meta } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
+import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 
 declare const require: any;
 @Component({
@@ -16,9 +17,9 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   isFound = false;
   address: string;
   fullAddress: any;
-  @ViewChild('taskForm') myForm: NgForm;
   isBrowser = isPlatformBrowser(this.platformId);
   L = null;
+  @ViewChild('taskForm') myForm: NgForm;
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly title: Title,
@@ -56,6 +57,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.findMe();
+
   }
 
   onSubmit(): void {
@@ -66,7 +68,6 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
       } else {
         this.fullAddress = null;
       }
-
     });
   }
 
@@ -107,16 +108,43 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
         const circle = this.L.circle([latitude, longitude], {
           color: '#0069cc',
           fillColor: '#0069cc',
-          fillOpacity: 0.5,
+          fillOpacity: 0.2,
+          dashArray: '6',
           radius: 100000
         }).addTo(this.map);
 
         const myIcon = this.L.divIcon({ className: 'my-div-icon' });
         const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
         marker.bindPopup('Vous êtes ici !').openPopup();
+        this.initMapColor();
       }
 
-
     }
+  }
+
+  private initMapColor(): void {
+    combineLatest([
+      this.coronavirusFranceService.getUseGeojson(),
+      this.coronavirusFranceService.getDeconfinement()
+    ])
+    .subscribe((result) => {
+        this.L.geoJSON(result[0], {
+          style:
+            function styleMap(feature) {
+              const colors = {
+                orange: '#fb0',
+                vert: '#43d787',
+                rouge: '#f9461c'
+              };
+              return {
+                color: colors[result[1].map.find((item) => item.code === feature.properties.code).color],
+                weight: 2,
+                opacity: 1,
+                dashArray: '4',
+                fillOpacity: 0.3
+              };
+            }
+        }).addTo(this.map);
+    });
   }
 }

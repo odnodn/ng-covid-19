@@ -28,6 +28,8 @@ import { CoronavirusMortalityComponent } from './containers/coronavirus-mortalit
 import { CoronavirusHeatMapComponent } from './components/coronavirus-heat-map/coronavirus-heat-map.component';
 import { CoronavirusMapCentKmComponent } from './containers/coronavirus-map-cent-km/coronavirus-map-cent-km.component';
 import { CoronavirusAttestationCentKmComponent } from './containers/coronavirus-attestation-cent-km/coronavirus-attestation-cent-km.component';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,11 @@ import { CoronavirusAttestationCentKmComponent } from './containers/coronavirus-
   imports: [
     CommonModule,
     SharedModule,
-    CoronavirusRoutingModule
+    CoronavirusRoutingModule,
+    ShareButtonsModule.withConfig({
+      debug: true
+    }),
+    ShareIconsModule.forRoot()
   ]
 })
 export class CoronavirusModule { }

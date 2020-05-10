@@ -85,4 +85,8 @@ export class CoronavirusFranceService {
     return this.httpClient.get(`https://api-adresse.data.gouv.fr/search/?q=${address}&type=housenumber&autocomplete=1`);
   }
 
+  getUseGeojson(): Observable<any> {
+    return this.httpClient.get('../../assets/departements.geojson');
+  }
+
 }
