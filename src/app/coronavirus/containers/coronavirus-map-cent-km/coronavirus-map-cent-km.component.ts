@@ -57,7 +57,6 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.findMe();
-
   }
 
   onSubmit(): void {
@@ -72,25 +71,27 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   }
 
   findMe() {
-    this.map = this.L.map('map', {
-      center: [46.227638, 2.213749],
-      zoom: 6
-    });
-    const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-    tiles.addTo(this.map);
-    if (navigator.geolocation) {
-      this.isFound = true;
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.initMap(position.coords.latitude, position.coords.longitude, false);
-      },
-        (error) => {
-          this.initMapColor();
-        });
-    } else {
-      this.initMapColor();
+    if (this.L) {
+      this.map = this.L.map('map', {
+        center: [46.227638, 2.213749],
+        zoom: 6
+      });
+      const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      });
+      tiles.addTo(this.map);
+      if (navigator.geolocation) {
+        this.isFound = true;
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.initMap(position.coords.latitude, position.coords.longitude, false);
+        },
+          (error) => {
+            this.initMapColor();
+          });
+      } else {
+        this.initMapColor();
+      }
     }
   }
 
@@ -143,6 +144,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
         this.L.geoJSON(result[0], {
           style:
             function styleMap(feature) {
+              console.log(feature.properties.code);
               const colors = {
                 orange: '#fb0',
                 vert: '#43d787',
