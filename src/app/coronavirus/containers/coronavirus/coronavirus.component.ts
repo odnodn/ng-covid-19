@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, PLATFORM_ID, Inject } from '@angular/core';
 import { COUNTRIES } from '@coronavirus/constants/countries.constants';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-coronavirus',
@@ -15,10 +16,11 @@ export class CoronavirusComponent implements OnInit {
   selectedRegion: any;
   selectedDepartment: any;
   isMobile: boolean;
-
+  isBrowser = isPlatformBrowser(this.platformId);
   constructor(
     public readonly router: Router,
-    private readonly ref: ChangeDetectorRef
+    private readonly ref: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private readonly platformId: any
   ) {
   }
 

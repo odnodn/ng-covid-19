@@ -3,6 +3,7 @@
   [selectedDepartment]="selectedDepartment" (selectCountryEvent)="onSelectCountry($event)"
   (selectRegionEvent)="onSelectRegion($event)" (selectDepartmentEvent)="onSelectDepartment($event)">
 </app-coronavirus-select>
+
 <div class="tabs is-spaced" *ngIf="selectedCountry?.country === 'France'">
   <ul>
     <li *ngIf="selectedRegion || selectedDepartment">
@@ -141,5 +142,11 @@
   </div>
 </a>
 </div>
-
+<div class="shared-buttons" *ngIf="isBrowser">
+  <share-buttons theme="material-dark"
+  [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
+  [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']"
+  [show]="5"
+ ></share-buttons>
+</div>
 <router-outlet (activate)="onActivate($event)"></router-outlet>
