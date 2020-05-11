@@ -34,10 +34,8 @@
   font-size: 0.9em;
   margin-bottom: 1em;
   margin-top: 1em;
-  @media screen and (max-width: 640px) {
-    margin-left: auto;
-    margin-right: auto;
-  }
+  margin-left: auto;
+  margin-right: auto;
   .text {
     font-weight: 600;
   }
@@ -53,6 +51,7 @@
 .shared-buttons {
   margin-top: 1em;
   margin-bottom: 1em;
+  text-align: center;
 }
 
 .text {
