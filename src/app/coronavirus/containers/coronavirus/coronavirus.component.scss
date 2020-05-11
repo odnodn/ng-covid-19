@@ -70,6 +70,10 @@ img {
 .shared-buttons {
   margin-top: 1em;
   margin-bottom: 1em;
+  h2 {
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+  }
 }
 
 @media screen and (max-width: 640px) {
