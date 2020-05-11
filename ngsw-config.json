@@ -11,6 +11,7 @@
           "/manifest.webmanifest",
           "/sitemap.xml",
           "/robots.txt",
+          "/ads.txt",
           "/*.css",
           "/*.js",
           "/assets/*.png"

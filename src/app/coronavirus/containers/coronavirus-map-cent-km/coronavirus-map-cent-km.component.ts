@@ -144,7 +144,6 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
         this.L.geoJSON(result[0], {
           style:
             function styleMap(feature) {
-              console.log(feature.properties.code);
               const colors = {
                 orange: '#fb0',
                 vert: '#43d787',

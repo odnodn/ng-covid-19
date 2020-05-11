@@ -30,6 +30,7 @@ import { CoronavirusMapCentKmComponent } from './containers/coronavirus-map-cent
 import { CoronavirusAttestationCentKmComponent } from './containers/coronavirus-attestation-cent-km/coronavirus-attestation-cent-km.component';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,11 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
     ShareButtonsModule.withConfig({
       debug: true
     }),
-    ShareIconsModule.forRoot()
+    ShareIconsModule.forRoot(),
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-8075252379413311',
+      adSlot: 4190207743,
+    })
   ]
 })
 export class CoronavirusModule { }

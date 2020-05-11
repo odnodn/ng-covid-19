@@ -25,6 +25,7 @@
               "src/manifest.webmanifest",
               "src/sitemap.xml",
               "src/robots.txt",
+              "src/ads.txt",
               "src/images/meta_og_social.png",
               "src/assets/images/flag_world.png"
             ],
@@ -97,6 +98,7 @@
               "src/manifest.webmanifest",
               "src/sitemap.xml",
               "src/robots.txt",
+              "src/ads.txt",
               "src/images/meta_og_social.png",
               "src/assets/images/flag_world.png"
             ],

@@ -1,36 +1,29 @@
-
 <h1 class="title">Carte de la zone de sortie de 100 km à vol d'oiseau autour du domicile pour le déconfinement</h1>
-<div class="don-container">
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y4URADTSF28QY&source=url" target="_blank"
-  rel="noopener noreferrer">
-  <img src="../../../../assets/images/don_paypal.png">
-  <div class="text">
-    Soutenez-nous pour nous permettre de continuer
-      d'exister et de vous relayer l'évolution de
-      l'épidémie, on compte sur vous !
-  </div>
-</a>
-</div>
+
+<ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="4190207743" [display]="'block'" [adtest]="'on'" [fullWidthResponsive]="true"></ng2-adsense>
 <div class="shared-buttons" *ngIf="isBrowser">
   <share-buttons theme="material-dark"
-  [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
-  [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']"
-  [show]="5"
-  [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"
- ></share-buttons>
+    [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
+    [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="5"
+    [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
 </div>
 
-<p>Pour le déconfinement du 11 mai, les déplacements ne seront autorisés que dans un rayon de 100 km à vol d'oiseau autour du domicile. Dans quelle limite aurez-vous droit de vous déplacer ? Pour savoir, utilisez cette carte interactive qui calcule le rayon de 100 km en vous géolocalisant ou en rentrant votre adresse, votre ville ou votre code postal.
-<form #f="ngForm"  class="form" (ngSubmit)="onSubmit()">
+<p>Pour le déconfinement du 11 mai, les déplacements ne seront autorisés que dans un rayon de 100 km à vol d'oiseau
+  autour du domicile. Dans quelle limite aurez-vous droit de vous déplacer ? Pour savoir, utilisez cette carte
+  interactive qui calcule le rayon de 100 km en vous géolocalisant ou en rentrant votre adresse, votre ville ou votre
+  code postal.
+<form #f="ngForm" class="form" (ngSubmit)="onSubmit()">
   <div class="field">
     <div class="control">
-      <input class="input is-primary" name="address" type="text" placeholder="Entrez votre adresse, votre ville ou votre code postal..." [(ngModel)]="address">
+      <input class="input is-primary" name="address" type="text"
+        placeholder="Entrez votre adresse, votre ville ou votre code postal..." [(ngModel)]="address">
     </div>
   </div>
   <button class="button is-info" type="submit">Valider</button>
 </form>
 <div class="city" *ngIf="fullAddress">
-  Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département {{fullAddress.county}} {{fullAddress.postcode}}.
+  Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département
+  {{fullAddress.county}} {{fullAddress.postcode}}.
 </div>
 <div class="city" *ngIf="fullAddress === null">
   <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>
@@ -42,6 +35,20 @@
 </div>
 <p>
   <strong>
-    Si votre destination se trouve hors de la zone bleue, c'est qu'elle est située à plus de 100 km de chez vous et à moins d'avoir un motif impérieux, il vous sera interdit de vous y rendre. Toutefois, un déplacement de plus de 100 km à l'intérieur d'un même département reste possible sans motif impérieux.
+    Si votre destination se trouve hors de la zone bleue, c'est qu'elle est située à plus de 100 km de chez vous et à
+    moins d'avoir un motif impérieux, il vous sera interdit de vous y rendre. Toutefois, un déplacement de plus de 100
+    km à l'intérieur d'un même département reste possible sans motif impérieux.
   </strong>
 </p>
+<div class="don-container">
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y4URADTSF28QY&source=url"
+    target="_blank" rel="noopener noreferrer">
+    <img src="../../../../assets/images/don_paypal.png">
+    <div class="text">
+      Soutenez-nous pour nous permettre de continuer
+      d'exister et de vous relayer l'évolution de
+      l'épidémie, on compte sur vous !
+    </div>
+
+  </a>
+</div>
