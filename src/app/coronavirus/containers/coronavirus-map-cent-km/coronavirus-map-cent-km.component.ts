@@ -4,6 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
 import { combineLatest } from 'rxjs/internal/observable/combineLatest';
+import { URLS_PREFECTURE } from '@coronavirus/constants/urls-prefecture.constants';
 
 declare const require: any;
 @Component({
@@ -84,7 +85,10 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
       if (navigator.geolocation) {
         this.isFound = true;
         navigator.geolocation.getCurrentPosition((position) => {
-          this.initMap(position.coords.latitude, position.coords.longitude, false);
+          this.coronavirusFranceService.getMapPositionReverse(position.coords.latitude, position.coords.longitude).subscribe((result) => {
+            this.fullAddress = result.address;
+            this.initMap(position.coords.latitude, position.coords.longitude, false);
+          });
         },
           (error) => {
             this.initMapColor();
@@ -127,9 +131,21 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
           radius: 100000
         }).addTo(this.map);
 
+
         const myIcon = this.L.divIcon({ className: 'my-div-icon' });
         const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
-        marker.bindPopup('Vous êtes ici !').openPopup();
+        if (this.fullAddress && this.fullAddress.county) {
+          const url = URLS_PREFECTURE.find((urlItem) => urlItem.nomDepartement === this.fullAddress.county);
+          if (url) {
+            this.fullAddress.urlPrefecture = url.pagePrefecture;
+              // tslint:disable-next-line: max-line-length
+            marker.bindPopup('Vous êtes ici ! </br><a href=\'' + this.fullAddress.urlPrefecture + '\' target="_blank" rel="noopener noreferrer">Accéder aux consignes préfectorales du département</a>').openPopup();
+          } else {
+            marker.bindPopup('Vous êtes ici !').openPopup();
+          }
+        } else {
+          marker.bindPopup('Vous êtes ici !').openPopup();
+        }
       }
       this.initMapColor();
     }
