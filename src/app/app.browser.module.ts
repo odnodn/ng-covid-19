@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'tinesoft.github.io'
+    domain: 'cascoronavirus.fr'
   },
   position: 'bottom',
   theme: 'classic',
