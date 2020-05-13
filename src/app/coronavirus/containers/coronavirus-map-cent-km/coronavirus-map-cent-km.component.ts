@@ -19,6 +19,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   address: string;
   fullAddress: any;
   isBrowser = isPlatformBrowser(this.platformId);
+  icon: any;
   L = null;
   @ViewChild('taskForm') myForm: NgForm;
   constructor(
@@ -116,6 +117,16 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
         center: [latitudePos, longitudePos],
         zoom: init ? 6 : 8
       });
+      this.icon = {
+        icon: this.L.icon({
+          // specify the path here
+          iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png',
+          iconSize: [24, 36],
+          iconAnchor: [12, 36],
+          popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
+        })
+      };
 
       const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
         maxZoom: 16,
@@ -130,15 +141,12 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
           dashArray: '6',
           radius: 100000
         }).addTo(this.map);
-        // const icon = new this.L.Icon.Default();
-        // icon.options.shadowSize = [0, 0];
-        const myIcon = this.L.divIcon({ className: 'my-div-icon' });
-        const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
+        const marker = this.L.marker([latitude, longitude], this.icon).addTo(this.map);
         if (this.fullAddress && this.fullAddress.county) {
           const url = URLS_PREFECTURE.find((urlItem) => urlItem.nomDepartement === this.fullAddress.county);
           if (url) {
             this.fullAddress.urlPrefecture = url.pagePrefecture;
-              // tslint:disable-next-line: max-line-length
+            // tslint:disable-next-line: max-line-length
             marker.bindPopup('<div style="text-align: center">Vous êtes ici ! </br><a href=\'' + this.fullAddress.urlPrefecture + '\' target="_blank" rel="noopener noreferrer">Accéder aux consignes préfectorales</br> de votre département</a></div>').openPopup();
           } else {
             marker.bindPopup('Vous êtes ici !').openPopup();

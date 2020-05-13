@@ -26,13 +26,15 @@
               "src/sitemap.xml",
               "src/robots.txt",
               "src/ads.txt",
-              "src/images/meta_og_social.png",
+              "src/assets/images/meta_og_social.png",
               "src/assets/images/flag_world.png"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
             "scripts": [
+              "./node_modules/cookieconsent/build/cookieconsent.min.js"
             ]
           },
           "configurations": {
@@ -99,7 +101,7 @@
               "src/sitemap.xml",
               "src/robots.txt",
               "src/ads.txt",
-              "src/images/meta_og_social.png",
+              "src/assets/images/meta_og_social.png",
               "src/assets/images/flag_world.png"
             ],
             "styles": [

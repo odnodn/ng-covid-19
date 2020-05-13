@@ -1,6 +1,7 @@
 import { DiseaseComponent } from './disease/disease.component';
 import { GouvComponent } from './gouv/gouv.component';
 import { AdviseComponent } from './advise/advise.component';
+import { CookiesComponent } from './cookies/cookies.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DiseaseTestComponent } from './disease-test/disease-test.component';
@@ -21,6 +22,14 @@ export const infoRoutes: Routes = [
   {
     component: DiseaseComponent,
     path: 'maladie-coronavirus',
+  },
+  {
+    component: DiseaseComponent,
+    path: 'maladie-coronavirus',
+  },
+  {
+    component: CookiesComponent,
+    path: 'cookies',
   }
 ];
 

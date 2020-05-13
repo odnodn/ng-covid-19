@@ -5,13 +5,15 @@ import { GouvComponent } from './gouv/gouv.component';
 import { AdviseComponent } from './advise/advise.component';
 import { DiseaseTestComponent } from './disease-test/disease-test.component';
 import { DiseaseComponent } from './disease/disease.component';
+import { CookiesComponent } from './cookies/cookies.component';
 
 @NgModule({
   declarations: [
     GouvComponent,
     AdviseComponent,
     DiseaseTestComponent,
-    DiseaseComponent
+    DiseaseComponent,
+    CookiesComponent
   ],
   imports: [
     CommonModule,
