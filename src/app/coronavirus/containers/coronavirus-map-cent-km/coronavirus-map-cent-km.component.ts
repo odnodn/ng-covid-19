@@ -130,9 +130,10 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
           dashArray: '6',
           radius: 100000
         }).addTo(this.map);
-        const icon = new this.L.Icon.Default();
-        icon.options.shadowSize = [0, 0];
-        const marker = this.L.marker([latitude, longitude], {icon : icon}).addTo(this.map);
+        // const icon = new this.L.Icon.Default();
+        // icon.options.shadowSize = [0, 0];
+        const myIcon = this.L.divIcon({ className: 'my-div-icon' });
+        const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
         if (this.fullAddress && this.fullAddress.county) {
           const url = URLS_PREFECTURE.find((urlItem) => urlItem.nomDepartement === this.fullAddress.county);
           if (url) {
