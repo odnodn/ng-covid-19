@@ -117,8 +117,8 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
         zoom: init ? 6 : 8
       });
 
-      const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+      const tiles = this.L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        maxZoom: 16,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       });
       tiles.addTo(this.map);
@@ -130,16 +130,15 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
           dashArray: '6',
           radius: 100000
         }).addTo(this.map);
-
-
-        const myIcon = this.L.divIcon({ className: 'my-div-icon' });
-        const marker = this.L.marker([latitude, longitude], { icon: myIcon }).addTo(this.map);
+        const icon = new this.L.Icon.Default();
+        icon.options.shadowSize = [0, 0];
+        const marker = this.L.marker([latitude, longitude], {icon : icon}).addTo(this.map);
         if (this.fullAddress && this.fullAddress.county) {
           const url = URLS_PREFECTURE.find((urlItem) => urlItem.nomDepartement === this.fullAddress.county);
           if (url) {
             this.fullAddress.urlPrefecture = url.pagePrefecture;
               // tslint:disable-next-line: max-line-length
-            marker.bindPopup('Vous êtes ici ! </br><a href=\'' + this.fullAddress.urlPrefecture + '\' target="_blank" rel="noopener noreferrer">Accéder aux consignes préfectorales du département</a>').openPopup();
+            marker.bindPopup('<div style="text-align: center">Vous êtes ici ! </br><a href=\'' + this.fullAddress.urlPrefecture + '\' target="_blank" rel="noopener noreferrer">Accéder aux consignes préfectorales</br> de votre département</a></div>').openPopup();
           } else {
             marker.bindPopup('Vous êtes ici !').openPopup();
           }
@@ -167,7 +166,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
               };
               return {
                 color: colors[result[1].map.find((item) => item.code === feature.properties.code).color],
-                weight: 2,
+                weight: 3,
                 opacity: 1,
                 dashArray: '4',
                 fillOpacity: 0.3
