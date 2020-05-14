@@ -7,12 +7,18 @@
   </div>
   <div class="column is-6 is-hidden-mobile">
     <h1 class="title">Carte de la zone de sortie de 100 km à vol d'oiseau autour du domicile</h1>
-    <p class="text">Pour le déconfinement du 11 mai, les déplacements ne seront autorisés que dans un rayon de 100 km à
-      vol d'oiseau
-      autour du domicile. Dans quelle limite aurez-vous droit de vous déplacer ? Pour savoir, utilisez cette carte
-      interactive qui calcule le rayon de 100 km en vous géolocalisant ou en rentrant votre adresse, votre ville ou
-      votre
-      code postal.
+    <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
+      (date qui marque la fin du confinement) en France,
+      les déplacements ne seront autorisés que dans un
+      rayon de 100 km à vol d'oiseau autour du domicile.
+      De ce fait, vous vous posez sûrement cette question
+      : que représentent les 100 km autour de chez moi ? Pour le savoir,
+      utilisez cette carte interactive, qui calcule le rayon et le
+      périmètre de 100 km autour de votre maison, en vous géolocalisant
+      ou en rentrant : soit votre adresse (ex: 5 Avenue Anatole France),
+      votre ville (ex: Paris ou Lyon), votre code postal (ex: 75009),
+      votre département (ex: Ain) ou bien encore
+      votre région (ex: Bretagne).
     </p>
     <p>
       <strong>
@@ -29,7 +35,7 @@
       <div class="field">
         <div class="control">
           <input class="input is-primary" name="address" type="text"
-            placeholder="Entrez votre adresse, votre ville ou votre code postal..." [(ngModel)]="address">
+            placeholder="Entrez votre adresse, votre ville, votre région, votre département ou votre code postal..." [(ngModel)]="address">
         </div>
       </div>
       <button class="button is-info" type="submit">Valider</button>
@@ -77,13 +83,18 @@
         [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
     </div>
     <div class="is-hidden-tablet">
-      <p class="text">Pour le déconfinement du 11 mai, les déplacements ne seront autorisés que dans un rayon de 100 km
-        à
-        vol d'oiseau
-        autour du domicile. Dans quelle limite aurez-vous droit de vous déplacer ? Pour savoir, utilisez cette carte
-        interactive qui calcule le rayon de 100 km en vous géolocalisant ou en rentrant votre adresse, votre ville ou
-        votre
-        code postal.
+      <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
+        (date qui marque la fin du confinement) en France,
+        les déplacements ne seront autorisés que dans un
+        rayon de 100 km à vol d'oiseau autour du domicile.
+        De ce fait, vous vous posez sûrement cette question
+        : que représentent les 100 km autour de chez moi ? Pour le savoir,
+        utilisez cette carte interactive, qui calcule le rayon et le
+        périmètre de 100 km autour de votre maison, en vous géolocalisant
+        ou en rentrant : soit votre adresse (ex: 5 Avenue Anatole France),
+        votre ville (ex: Paris ou Lyon), votre code postal (ex: 75009),
+        votre département (ex: Ain) ou bien encore
+        votre région (ex: Bretagne).
       </p>
       <p>
         <strong>
