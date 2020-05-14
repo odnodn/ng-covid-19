@@ -40,6 +40,13 @@
       </div>
       <button class="button is-info" type="submit">Valider</button>
     </form>
+    <div class="city" *ngIf="fullAddress">
+      Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département
+      {{fullAddress.county}} {{fullAddress.postcode}}.
+    </div>
+    <div class="city" *ngIf="fullAddress === null">
+      <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>
+    </div>
   </div>
   <div class="column is-12 is-hidden-tablet">
     <div class="ads">
@@ -60,14 +67,14 @@
       </div>
       <button class="button is-info" type="submit">Valider</button>
     </form>
+    <div class="city" *ngIf="fullAddress">
+      Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département
+      {{fullAddress.county}} {{fullAddress.postcode}}.
+    </div>
+    <div class="city" *ngIf="fullAddress === null">
+      <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>
+    </div>
   </div>
-</div>
-<div class="city" *ngIf="fullAddress">
-  Votre adresse est à {{fullAddress.town}} {{fullAddress.city}} {{fullAddress.village}} dans le département
-  {{fullAddress.county}} {{fullAddress.postcode}}.
-</div>
-<div class="city" *ngIf="fullAddress === null">
-  <strong>Nous n'avons pas trouvé votre adresse, veuillez recommencer.</strong>
 </div>
 <div class="map-container" *ngIf="isBrowser">
   <div class="map-frame">
@@ -81,6 +88,10 @@
         [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
         [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="5"
         [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
+    </div>
+    <div class="ads">
+      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="1828742058"
+        [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
     </div>
     <div class="is-hidden-tablet">
       <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
@@ -107,16 +118,14 @@
         </strong>
       </p>
     </div>
-    <div class="ads">
-      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'fluid'"  [adSlot]="4044342867" [layout]="'in-article'"
-        [display]="'block'" [fullWidthResponsive]="true" ></ng2-adsense>
-    </div>
+
   </div>
   <div class="column is-12 is-6-fullhd is-6-widescreen is-6-desktop is-6-tablet">
     <div class="shared-buttons is-hidden-mobile" *ngIf="isBrowser">
+      <h2 class="title">Partagez votre zone de sortie de 100 km à vos proches !</h2>
       <share-buttons theme="material-dark"
         [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
-        [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="5"
+        [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="10"
         [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
     </div>
     <!-- <div class="don-container">
