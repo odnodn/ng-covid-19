@@ -32,12 +32,12 @@ export class CoronavirusMapBeachComponent implements OnInit {
       { property: 'og:title', content: `Carte des plages ouvertes pour le déconfinement` },
       // tslint:disable-next-line:max-line-length
       { property: 'og:description', content: `Visualiser la carte des plages ouvertes pour le déconfinement` },
-      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/carte_plage_ouverture.png' },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: `Carte des plages ouvertes pour le déconfinement` },
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Visualiser la carte des plages ouvertes pour le déconfinement` },
-      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/carte_plage_ouverture.png' },
       { name: 'twitter:site', content: '@SouryvathN' },
     ];
     tags.forEach((tag) => {
