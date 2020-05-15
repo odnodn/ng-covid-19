@@ -1,0 +1,89 @@
+<div class="columns">
+  <div class="column is-6 is-hidden-mobile">
+    <div class="ads">
+      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="4190207743"
+        [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+    </div>
+  </div>
+  <div class="column is-6 is-hidden-mobile">
+    <h1 class="title">Carte des plages ouvertes pour le déconfinement</h1>
+    <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
+      (date qui marque la fin du confinement) en France,
+      certaines plages vont donc réouvrir à partir du week-end du 16 mai.
+      Dans le cadre de ces ouvertures de plages, les préfets ont accordé une dérogation en fonction des demandes des maires.
+      Toutefois, il faut bien distinguer la notion de <strong>plage dynamique</strong> et de <strong>plage statique</strong>.
+      Les plages seront ouvertes en mode dynamique avec des plages horaires définies. Il sera ainsi possible de marcher, courir, de pratiquer
+      un sport individuel.
+      Le mode statique ne sera pas autorisé, il sera impossible de poser sa serviette pour des activités de bronzage.<br>
+    </p>
+    <p class="text">
+      Vous trouverez la liste des plages ouvertes, en attente d'ouverture et fermées dans des lieux
+      comme le Finistère, le Calvados, le Morbihan, en Normandie, dans le Touquet, la Bretagne, le Var etc.
+      Il faudra faire attention à respecter la zone des 100kms.
+    </p>
+  </div>
+  <div class="column is-12 is-hidden-tablet">
+    <div class="ads">
+      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="4190207743"
+        [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+    </div>
+  </div>
+  <div class="column is-12 is-hidden-tablet">
+    <h1 class="title">Carte des plages ouvertes pour le déconfinement</h1>
+  </div>
+</div>
+<div class="map-container" *ngIf="isBrowser">
+  <iframe width="100%" height="520" frameborder="0" data-ofiframe-src="https://ouestfrance.carto.com/u/ouest-france/builder/950b5f00-8425-48ed-a1e2-5bd264a5e275/embed" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen="" src="https://ouestfrance.carto.com/u/ouest-france/builder/950b5f00-8425-48ed-a1e2-5bd264a5e275/embed"></iframe>
+</div>
+<div class="columns is-multiline">
+  <div class="column is-12 is-6-fullhd is-6-widescreen is-6-desktop is-6-tablet">
+    <div class="shared-buttons is-hidden-tablet" *ngIf="isBrowser">
+      <share-buttons theme="material-dark"
+        [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
+        [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="5"
+        [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
+    </div>
+    <div class="ads">
+      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="1828742058"
+        [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+    </div>
+    <div class="is-hidden-tablet">
+      <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
+        (date qui marque la fin du confinement) en France,
+        certaines plages vont donc réouvrir à partir du week-end du 16 mai.
+        Ce sera l'occasion pour les français de profiter des plages pendant les vacances et les week-ends.
+        Dans le cadre de ces ouvertures de plages, les préfets ont accordé une dérogation en fonction des demandes des maires.
+        Toutefois, il faut bien distinguer la notion de <strong>plage dynamique</strong> et de <strong>plage statique</strong>.
+        Les plages seront ouvertes en mode dynamique avec des plages horaires définies. Il sera ainsi possible de marcher, courir, de pratiquer
+        un sport individuel.
+        Le mode statique ne sera pas autorisé, il sera impossible de poser sa serviette pour des activités de bronzage.<br>
+      </p>
+      <p class="text">
+        Vous trouverez la liste des plages ouvertes, en attente d'ouverture et fermées dans des lieux
+        comme le Finistère, le Calvados, le Morbihan, en Normandie, dans le Touquet, la Bretagne, le Var etc.
+        Il faudra faire attention à respecter la zone des 100kms.
+      </p>
+    </div>
+
+  </div>
+  <div class="column is-12 is-6-fullhd is-6-widescreen is-6-desktop is-6-tablet">
+    <div class="shared-buttons is-hidden-mobile" *ngIf="isBrowser">
+      <h2 class="title">Partagez la carte des plages ouvertes !</h2>
+      <share-buttons theme="material-dark"
+        [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
+        [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="10"
+        [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
+    </div>
+    <!-- <div class="don-container">
+      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y4URADTSF28QY&source=url"
+        target="_blank" rel="noopener noreferrer">
+        <img src="../../../../assets/images/don_paypal.png">
+        <div class="text">
+          Soutenez-nous pour nous permettre de continuer
+          d'exister et de vous relayer l'évolution de
+          l'épidémie, on compte sur vous !
+        </div>
+      </a>
+    </div> -->
+  </div>
+</div>

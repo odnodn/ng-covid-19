@@ -12,6 +12,7 @@ import { CoronavirusNewsPageComponent } from './containers/coronavirus-news-page
 import { CoronavirusMapDeconfinementComponent } from './containers/coronavirus-map-deconfinement/coronavirus-map-deconfinement.component';
 import { CoronavirusMortalityComponent } from './containers/coronavirus-mortality/coronavirus-mortality.component';
 import { CoronavirusMapCentKmComponent } from './containers/coronavirus-map-cent-km/coronavirus-map-cent-km.component';
+import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach/coronavirus-map-beach.component';
 export const coronavirusRoutes: Routes = [
   {
     path: '',
@@ -111,6 +112,10 @@ export const coronavirusRoutes: Routes = [
   {
     path: 'carte-circulation-100-km-deconfinement',
     component: CoronavirusMapCentKmComponent
+  },
+  {
+    path: 'carte-ouverture-plage-deconfinement',
+    component: CoronavirusMapBeachComponent
   },
   // {
   //   path: 'attestation-100-km-deconfinement',

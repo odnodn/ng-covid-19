@@ -31,6 +31,7 @@ import { CoronavirusAttestationCentKmComponent } from './containers/coronavirus-
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { AdsenseModule } from 'ng2-adsense';
+import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach/coronavirus-map-beach.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AdsenseModule } from 'ng2-adsense';
     CoronavirusMortalityComponent,
     CoronavirusHeatMapComponent,
     CoronavirusMapCentKmComponent,
-    CoronavirusAttestationCentKmComponent
+    CoronavirusAttestationCentKmComponent,
+    CoronavirusMapBeachComponent
   ],
   imports: [
     CommonModule,
