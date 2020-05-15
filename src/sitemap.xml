@@ -2417,4 +2417,8 @@
       <loc>https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement</loc>
       <changefreq>daily</changefreq>
     </url>
+    <url>
+      <loc>https://www.cascoronavirus.fr/carte-ouverture-plage-deconfinement'</loc>
+      <changefreq>daily</changefreq>
+    </url>
 </urlset>
