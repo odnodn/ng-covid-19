@@ -76,11 +76,20 @@
     </div>
   </div>
 </div>
-<div class="map-container" *ngIf="isBrowser">
-  <div class="map-frame">
-    <div id="map"></div>
+<div class="columns">
+  <div class="column is-10">
+    <div class="map-container" *ngIf="isBrowser">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-2 is-hidden-table">
+    <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="5556034384"
+    [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
   </div>
 </div>
+
 <div class="columns is-multiline">
   <div class="column is-12 is-6-fullhd is-6-widescreen is-6-desktop is-6-tablet">
     <div class="shared-buttons is-hidden-tablet" *ngIf="isBrowser">

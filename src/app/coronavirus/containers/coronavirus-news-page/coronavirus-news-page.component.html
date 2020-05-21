@@ -1,27 +1,8 @@
 <div class="content">
-  <div class="don">
-    <div class="don-content">
-      <a
-        href="https://paypal.me/pools/c/8ojhCZiSX2"
-        target="_blank"
-        rel="noopener noreferrer"
-        ><img src="../../../../assets/images/paypal.png" />
-        <div class="text">
-          <strong>
-            Soutenez toute l'équipe de cascoronavirus.fr, qui chaque jour met
-            tout en oeuvre pour vous relayer l'évolution de l'épidémie en France
-            et dans le monde.
-          </strong>
-        </div>
-      </a>
-    </div>
-  </div>
-
     <a [routerLink]="['/']" class="back"
       ><span class="material-icons">keyboard_backspace</span> Retour à
       l'accueil</a
     >
-
   <div class="columns is-multiline">
     <ng-container *ngIf="news && news.value">
       <div
@@ -32,6 +13,10 @@
         </h1>
         <div class="card">
           <div class="card-content">
+            <div class="ads">
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+                [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+            </div>
             <div class="media">
               <div class="media-content">
                 <p class="title is-4">{{ news.value.title }}</p>
