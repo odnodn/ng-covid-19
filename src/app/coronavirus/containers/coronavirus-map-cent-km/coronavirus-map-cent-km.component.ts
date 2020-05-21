@@ -31,7 +31,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
     if (this.isBrowser) {
       this.L = require('leaflet');
     }
-    this.title.setTitle(`Carte de la zone de sortie de 100 km à vol d'oiseau autour du domicile pour le déconfinement`);
+    this.title.setTitle(`Déconfinement : Carte de la zone de sortie de 100 km à vol d'oiseau autour de chez soi`);
     const tags = [
       // tslint:disable-next-line:max-line-length
       { name: 'description', content: `Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai

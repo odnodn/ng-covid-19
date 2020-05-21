@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="column is-6 is-hidden-mobile">
-    <h1 class="title">Carte de la zone de sortie de 100 km à vol d'oiseau autour du domicile</h1>
+    <h1 class="title">Déconfinement : Carte de la zone de sortie de 100 km à vol d'oiseau autour de chez soi</h1>
     <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
       (date qui marque la fin du confinement) en France,
       les déplacements ne seront autorisés que dans un
@@ -56,8 +56,6 @@
   </div>
   <div class="column is-12 is-hidden-tablet">
     <h1 class="title">Carte de la zone de sortie de 100 km à vol d'oiseau autour du domicile</h1>
-    <a href="https://www.interieur.gouv.fr/declaration-deplacement-100-km" target="_blank" rel="noopener noreferrer"><strong>Télécharger attestation 100 km (PDF)</strong></a><br>
-    <a href="https://media.interieur.gouv.fr/deplacement-covid-19/" target="_blank" rel="noopener noreferrer"><strong>Générer attestation 100 km (numérique)</strong></a>
     <form #f="ngForm" class="form" (ngSubmit)="onSubmit()">
       <div class="field">
         <div class="control">
@@ -76,7 +74,7 @@
     </div>
   </div>
 </div>
-<div class="columns">
+<div class="columns is-multiline">
   <div class="column is-10-desktop is-12-mobile">
     <div class="map-container" *ngIf="isBrowser">
       <div class="map-frame">
@@ -84,7 +82,7 @@
       </div>
     </div>
   </div>
-  <div class="column is-2 is-hidden-tablet">
+  <div class="column is-2 is-hidden-mobile">
     <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="5556034384"
     [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
   </div>
@@ -92,17 +90,20 @@
 
 <div class="columns is-multiline">
   <div class="column is-12 is-6-fullhd is-6-widescreen is-6-desktop is-6-tablet">
+    <div class="ads">
+      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="1828742058"
+        [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+    </div>
     <div class="shared-buttons is-hidden-tablet" *ngIf="isBrowser">
       <share-buttons theme="material-dark"
         [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
         [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="5"
         [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
     </div>
-    <div class="ads">
-      <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="1828742058"
-        [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
-    </div>
+
     <div class="is-hidden-tablet">
+      <a href="https://www.interieur.gouv.fr/declaration-deplacement-100-km" target="_blank" rel="noopener noreferrer"><strong>Télécharger attestation 100 km (PDF)</strong></a><br>
+      <a href="https://media.interieur.gouv.fr/deplacement-covid-19/" target="_blank" rel="noopener noreferrer"><strong>Générer attestation 100 km (numérique)</strong></a>
       <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
         (date qui marque la fin du confinement) en France,
         les déplacements ne seront autorisés que dans un
@@ -137,16 +138,5 @@
         [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="10"
         [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>
     </div>
-    <!-- <div class="don-container">
-      <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Y4URADTSF28QY&source=url"
-        target="_blank" rel="noopener noreferrer">
-        <img src="../../../../assets/images/don_paypal.png">
-        <div class="text">
-          Soutenez-nous pour nous permettre de continuer
-          d'exister et de vous relayer l'évolution de
-          l'épidémie, on compte sur vous !
-        </div>
-      </a>
-    </div> -->
   </div>
 </div>
