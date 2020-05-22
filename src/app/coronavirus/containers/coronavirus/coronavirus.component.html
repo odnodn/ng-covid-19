@@ -62,54 +62,7 @@
         Urgences hospitalières
       </a>
     </li>
-    <li [class.is-active]="router.url | include: 'deconfinement'">
-      <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/carte-deconfinement/france']">
-        <span class="material-icons green">
-          lens
-        </span>
-        <span class="material-icons orange">
-          lens
-        </span>
-        <span class="material-icons red">
-          lens
-        </span>
-        <strong>Carte du déconfinement</strong>
-      </a>
-      <a *ngIf="selectedRegion" [routerLink]="['/carte-deconfinement/france/region', selectedRegion.slug]">
-        <span class="material-icons green">
-          lens
-        </span>
-        <span class="material-icons orange">
-          lens
-        </span>
-        <span class="material-icons red">
-          lens
-        </span>
-        <strong>Carte du déconfinement</strong>
-      </a>
-      <a *ngIf="selectedDepartment" [routerLink]="['/carte-deconfinement/france/departement', selectedDepartment.slug]">
-        <span class="material-icons green">
-          lens
-        </span>
-        <span class="material-icons orange">
-          lens
-        </span>
-        <span class="material-icons red">
-          lens
-        </span>
-        <strong>Carte du déconfinement</strong>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/carte-circulation-100-km-deconfinement">
-        <strong>Carte des 100km</strong>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/carte-ouverture-plage-deconfinement">
-        <strong>Carte des plages ouvertes</strong>
-      </a>
-    </li>
+
     <!-- <li [class.is-active]="router.url | include: 'transfert'">
       <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/transfert-patients/', selectedCountry.slug]">
         Transferts de patients
@@ -137,6 +90,61 @@
 </div>
 <div class="columns is-multiline">
   <div class="column column-left is-4">
+    <aside class="menu">
+      <p class="menu-label">
+        Nos cartes
+      </p>
+      <ul class="menu-list">
+        <li>
+          <a [class.is-active]="router.url | include: 'deconfinement'" *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/carte-deconfinement/france']">
+            <span class="material-icons green">
+              lens
+            </span>
+            <span class="material-icons orange">
+              lens
+            </span>
+            <span class="material-icons red">
+              lens
+            </span>
+            <strong>Carte du déconfinement</strong>
+          </a>
+          <a [class.is-active]="router.url | include: 'deconfinement'" *ngIf="selectedRegion" [routerLink]="['/carte-deconfinement/france/region', selectedRegion.slug]">
+            <span class="material-icons green">
+              lens
+            </span>
+            <span class="material-icons orange">
+              lens
+            </span>
+            <span class="material-icons red">
+              lens
+            </span>
+            <strong>Carte du déconfinement</strong>
+          </a>
+          <a [class.is-active]="router.url | include: 'deconfinement'" *ngIf="selectedDepartment" [routerLink]="['/carte-deconfinement/france/departement', selectedDepartment.slug]">
+            <span class="material-icons green">
+              lens
+            </span>
+            <span class="material-icons orange">
+              lens
+            </span>
+            <span class="material-icons red">
+              lens
+            </span>
+            <strong>Carte du déconfinement</strong>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/carte-circulation-100-km-deconfinement">
+            <strong>Carte des 100km</strong>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/carte-ouverture-plage-deconfinement">
+            <strong>Carte des plages ouvertes</strong>
+          </a>
+        </li>
+      </ul>
+    </aside>
     <div class="shared-buttons" *ngIf="isBrowser">
       <h2>N'hésitez pas à partager notre site grâce à ces boutons !</h2>
       <share-buttons theme="material-dark"
