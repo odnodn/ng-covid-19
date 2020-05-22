@@ -1,3 +1,4 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
 <div class="columns">
   <div class="column is-6 is-hidden-mobile">
     <div class="ads">
@@ -7,6 +8,7 @@
   </div>
   <div class="column is-6 is-hidden-mobile">
     <h1 class="title">Déconfinement : Carte de la zone de sortie de 100 km à vol d'oiseau autour de chez soi</h1>
+
     <p class="text">Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
       (date qui marque la fin du confinement) en France,
       les déplacements ne seront autorisés que dans un
@@ -87,6 +89,14 @@
         [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
     </div>
     <div class="shared-buttons is-hidden-tablet" *ngIf="isBrowser">
+      <div class="text post-meta">
+        <div class="published-date">
+          Publié le <time [dateTime]="time">{{time | date: 'dd/MM/yyyy' }}</time>
+        </div>
+        <div class="updated-date">
+          Mis à jour le <time [dateTime]="time">{{time |  date: 'dd/MM/yyyy' }}</time>
+        </div>
+      </div>
       <share-buttons theme="material-dark"
         [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
         [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="5"
@@ -125,7 +135,15 @@
   <div class="column is-12 is-6-fullhd is-6-widescreen is-6-desktop is-6-tablet">
     <div class="shared-buttons is-hidden-mobile" *ngIf="isBrowser">
       <h2 class="title">Partagez votre zone de sortie de 100 km à vos proches !</h2>
-      <share-buttons theme="material-dark"
+      <div class="post-meta">
+        <div class="published-date">
+          Publié le <time [dateTime]="time">{{time | date: 'dd/MM/yyyy' }}</time>
+        </div>
+        <div class="updated-date">
+          Mis à jour le <time [dateTime]="time">{{time |  date: 'dd/MM/yyyy' }}</time>
+        </div>
+      </div>
+        <share-buttons theme="material-dark"
         [include]="['facebook','twitter','linkedin','google','pinterest','reddit','tumblr','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
         [exclude]="['google','pinterest','reddit','tumblr','mix','vk','telegram','xing','line','print']" [show]="10"
         [url]="'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement'"></share-buttons>

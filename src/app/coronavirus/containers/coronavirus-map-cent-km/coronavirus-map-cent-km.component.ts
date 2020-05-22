@@ -22,6 +22,46 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
   icon: any;
   L = null;
   @ViewChild('taskForm') myForm: NgForm;
+  time: any = new Date('2020-05-22').toISOString();
+  schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    mainEntityOfPage: 'https://www.cascoronavirus.fr/carte-circulation-100-km-deconfinement/',
+    headline: 'Déconfinement : Carte de la zone de sortie de 100 km à vol d\'oiseau autour de chez soi',
+    datePublished: this.time,
+    dateModified: this.time,
+    description: `Pour le déconfinement relatif au Coronavirus COVID-19 du 11 mai
+    (date qui marque la fin du confinement) en France,
+    les déplacements ne seront autorisés que dans un
+    rayon de 100 km à vol d'oiseau autour du domicile.
+    De ce fait, vous vous posez sûrement cette question
+    : que représentent les 100 km autour de chez moi ? Pour le savoir,
+    utilisez cette carte interactive, qui calcule le rayon et le
+    périmètre de 100 km autour de votre maison, en vous géolocalisant
+    ou en rentrant : soit votre adresse (ex: 5 Avenue Anatole France),
+    votre ville (ex: Paris ou Lyon), votre code postal (ex: 75009),
+    votre département (ex: Ain) ou bien encore
+    votre région (ex: Bretagne).`,
+    image: [
+      'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png'
+    ],
+    author: {
+      '@type': 'Organization',
+      name: 'Cas Coronavirus',
+      url: 'https://www.cascoronavirus.fr/'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Cas Coronavirus',
+      url: 'https://www.cascoronavirus.fr/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png',
+        width: '250',
+        height: '40'
+      }
+    }
+  };
   constructor(
     private readonly coronavirusFranceService: CoronavirusFranceService,
     private readonly title: Title,

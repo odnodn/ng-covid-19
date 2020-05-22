@@ -9,10 +9,8 @@ import { DatePipe, registerLocaleData, DecimalPipe } from '@angular/common';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { environment } from 'environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 registerLocaleData(localeFr, 'fr-FR');
-
 
 @NgModule({
   bootstrap: [
@@ -32,7 +30,6 @@ registerLocaleData(localeFr, 'fr-FR');
     HttpClientModule,
     LayoutModule,
     DeviceDetectorModule.forRoot(),
-
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
   ]
 })

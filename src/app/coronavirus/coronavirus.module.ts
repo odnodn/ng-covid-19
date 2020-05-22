@@ -32,6 +32,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { AdsenseModule } from 'ng2-adsense';
 import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach/coronavirus-map-beach.component';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach
     AdsenseModule.forRoot({
       adClient: 'ca-pub-8075252379413311',
       adSlot: 4190207743,
-    })
+    }),
+    NgxJsonLdModule
   ]
 })
 export class CoronavirusModule { }
