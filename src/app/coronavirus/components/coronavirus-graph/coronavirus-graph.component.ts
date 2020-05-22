@@ -67,7 +67,11 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     valueAxis.renderer.minGridDistance = 20;
     valueAxis.cursorTooltipEnabled = false;
     valueAxis.fontSize = 13;
+
     if (this.dataFrance) {
+      this.dataFrance.total = this.dataFrance.total.filter((item) => item.date !== '2020-05-14');
+      this.dataFrance.men = this.dataFrance.men.filter((item) => item.date !== '2020-05-14');
+      this.dataFrance.women = this.dataFrance.women.filter((item) => item.date !== '2020-05-14');
       if (!this.dataFrance.total[0].code) {
         this.createSeries('date', 'cases', 'Cas confirmés', '#ffbb00');
       }

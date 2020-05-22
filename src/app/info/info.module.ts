@@ -6,6 +6,7 @@ import { AdviseComponent } from './advise/advise.component';
 import { DiseaseTestComponent } from './disease-test/disease-test.component';
 import { DiseaseComponent } from './disease/disease.component';
 import { CookiesComponent } from './cookies/cookies.component';
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,11 @@ import { CookiesComponent } from './cookies/cookies.component';
   ],
   imports: [
     CommonModule,
-    InfoRoutingModule
+    InfoRoutingModule,
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-8075252379413311',
+      adSlot: 4190207743,
+    }),
   ]
 })
 export class InfoModule { }

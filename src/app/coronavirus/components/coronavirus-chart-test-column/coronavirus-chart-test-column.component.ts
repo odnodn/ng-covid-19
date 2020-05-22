@@ -158,6 +158,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
   private initChartDay(): void {
     this.initChart();
     this.chart.data = this.data;
+    this.chart.data = this.chart.data.filter((item) => item.date !== '2020-05-14' && item.date !== '2020-05-15');
     this.createXSeries('date');
     this.createYSeries('Nombre de patients');
     this.createSeries('hospital', 'Autres hospitalisations', '#F17D07', 'date');
@@ -343,7 +344,7 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
     this.series.tooltip.label.fontSize = 13;
     // this.series.tooltip.
     if (this.nameChart === 'chart-day') {
-      this.series.columns.template.tooltipText =
+      this.series.tooltipText =
         '[bold]{dateX}[\] \n [bold] {valueY}[\] {name}';
       this.series.tooltip.getFillFromObject = false;
       this.series.tooltip.background.fill = am4core.color(color);
