@@ -33,6 +33,7 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { AdsenseModule } from 'ng2-adsense';
 import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach/coronavirus-map-beach.component';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
+import { CoronavirusMapTestCentresComponent } from './containers/coronavirus-map-test-centres/coronavirus-map-test-centres.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { NgxJsonLdModule } from '@ngx-lite/json-ld';
     CoronavirusHeatMapComponent,
     CoronavirusMapCentKmComponent,
     CoronavirusAttestationCentKmComponent,
-    CoronavirusMapBeachComponent
+    CoronavirusMapBeachComponent,
+    CoronavirusMapTestCentresComponent
   ],
   imports: [
     CommonModule,

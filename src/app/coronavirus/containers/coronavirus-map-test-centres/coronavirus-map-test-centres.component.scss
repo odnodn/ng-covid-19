@@ -1,0 +1,53 @@
+.map-container {
+  height: 75vh;
+}
+
+.map-frame {
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+.title {
+  font-size: 1.3rem;
+}
+
+.side-panel {
+  height: 75vh;
+  position: sticky;
+  top: 70px;
+  overflow-y: scroll;
+  padding-top: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+
+  .material-icons {
+    padding-right: 0.5em;
+    color: #0069cc;
+  }
+}
+
+.card {
+  &.is-active {
+    border: 2px solid #0069cc;
+    background: #f0f8ff;
+  }
+}
+
+.form {
+  display: flex;
+
+  .field {
+    flex-basis: 100%;
+    margin-bottom: 0;
+  }
+  .button {
+    margin-left: 5px;
+  }
+}

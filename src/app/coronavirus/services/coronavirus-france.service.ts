@@ -16,6 +16,7 @@ export class CoronavirusFranceService {
   private readonly urlOneNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-one-news';
   private readonly urlDeconfinement = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-deconfinement';
   private readonly urlMortality = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-mortality';
+  private readonly urlTestCentres = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-centre-depistage';
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -91,6 +92,13 @@ export class CoronavirusFranceService {
 
   getUseGeojson(): Observable<any> {
     return this.httpClient.get('../../assets/departements.geojson');
+  }
+
+  getFranceTestCentres(lat?: number, long?: number): Observable<any> {
+    if (lat && long) {
+      return this.httpClient.get(`${this.urlTestCentres}/?lat=${lat}&long=${long}`);
+    }
+    return this.httpClient.get(`${this.urlTestCentres}`);
   }
 
 }

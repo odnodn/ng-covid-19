@@ -1,0 +1,124 @@
+<div class="content">
+  <div class="columns is-multiline">
+    <div class="column is-8">
+      <div class="ads">
+        <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="4190207743"
+          [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+      </div>
+    </div>
+    <div class="column is-4">
+      <h1 class="title">Carte des centres de test de dépistage COVID-19 Coronavirus</h1>
+      <p>
+        Vous souhaitez vous faire dépister du Coronavirus COVID-19 ?
+        Utilisez notre carte qui permet de retrouver les 50 centres de tests de dépistage
+        les plus proches de chez vous.
+      </p>
+      <p>
+        <strong>IMPORTANT - Pour effectuer un test virologique (RT-PCR)
+          de dépistage du COVID-19, il est obligatoire de posséder une prescription.
+          Soit je dispose d’une ordonnance de prescription de mon médecin,
+          soit j’ai été appelé par l’Assurance Maladie dans le cadre de la
+          recherche des personnes contacts. Dans ce cas, le laboratoire disposera
+          automatiquement de la prescription. Le test sera réalisable uniquement à
+          ces conditions. Dans tous les cas, il est important de prendre rendez-vous,
+           par téléphone ou internet, avant de vous rendre au laboratoire.</strong>
+      </p>
+      <form #f="ngForm" class="form" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <div class="control">
+            <input class="input is-primary" name="address" type="text"
+              placeholder="Entrez votre adresse, votre ville, votre région, votre département ou votre code postal..." [(ngModel)]="address">
+          </div>
+        </div>
+        <button class="button is-info" type="submit">Valider</button>
+      </form>
+    </div>
+    <div class="column is-8">
+    <div class="map-container" *ngIf="isBrowser">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
+    </div>
+    </div>
+    <div class="column is-4" >
+      <div class="side-panel" *ngIf="testCentres && testCentres.length > 0">
+
+        <div class="card"  [id]="centre.id" [class.is-active]="centre.id === selectedCentre.id" *ngFor="let centre of testCentres">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{centre.socialReason}}</p>
+                <p class="subtitle is-6">
+                  <strong>Modalité de prélèvement : </strong>
+                  {{centre.modalite}}<br>
+
+                </p>
+              </div>
+            </div>
+            <div class="content">
+              <div class="item" *ngIf="centre.address">
+                <span class="material-icons">
+                  place
+                </span>
+                <span>
+                  {{centre.address}}
+                </span>
+              </div>
+              <div class="item" *ngIf="centre.telephone">
+                <span class="material-icons">
+                  phone
+                </span>
+                <span>
+                  {{centre.telephone}}
+                </span>
+              </div>
+              <div class="item" *ngIf="centre.web">
+                <span class="material-icons">
+                  public
+                </span>
+                <span>
+                  <a href="{{centre.web}}" target="_blank" rel="noopener noreferrer">Accéder au site web</a>
+                </span>
+              </div>
+              <div class="item" *ngIf="centre.hours">
+                <span class="material-icons">
+                  schedule
+                </span>
+                <span>
+                  {{centre.hours}}
+                </span>
+              </div>
+              <div class="item" *ngIf="centre.publicType">
+                <span class="material-icons">
+                  people
+                </span>
+                <span>
+                  {{centre.publicType}}
+                </span>
+              </div>
+              <div class="item" *ngIf="centre.rendezVous">
+                <span class="material-icons">
+                  calendar_today
+                </span>
+                <span>
+                  {{centre.rendezVous}}
+                </span>
+              </div>
+              <div class="item" *ngIf="centre.distance">
+                <span class="material-icons">
+                  near_me
+                </span>
+                <span>
+                  À {{centre.distance.toFixed(2)}} kms
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
