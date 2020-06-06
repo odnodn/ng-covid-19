@@ -182,26 +182,6 @@
           </div>
         </div>
         <div class="tile is-parent">
-          <div class="tile is-child box notification is-warning">
-            <p class="title tooltip-item"
-              matTooltip="Nombre cumulé de cas signalés de COVID-19 en ESMS depuis le début de l'épidémie">
-              {{ mainStats.total.esms.signaledCasesEsms | number: "":"fr-FR" }}
-              <span class="increase">
-                <ng-container *ngIf="mainStats?.total.esms.todaySignaledCasesEsms !== -1">
-                  ({{
-                  mainStats?.total.esms.todaySignaledCasesEsms
-                    | symbolNumber: "mainStats"
-                }}
-                  en 24h)
-                </ng-container>
-              </span>
-            </p>
-            <p class="subtitle">
-              Cas signalés en ESMS depuis le début de l'épidémie
-            </p>
-          </div>
-        </div>
-        <div class="tile is-parent">
           <div class="tile is-child box notification is-danger">
             <p class="title tooltip-item"
               matTooltip="Nombre cumulé de décès en ESMS pour cause de COVID-19 depuis le début de l'épidémie">
@@ -447,22 +427,6 @@
             </p>
             <p class="subtitle">
               Cas confirmés en ESMS depuis le début de l'épidémie
-            </p>
-            <p class="title signaled-esms tooltip-item"
-              matTooltip="Nombre cumulé de cas signalés de COVID-19 en ESMS depuis le début de l'épidémie">
-              {{ mainStats.total.esms.signaledCasesEsms | number: "":"fr-FR" }}
-              <span class="increase">
-                <ng-container *ngIf="mainStats?.total.esms.todaySignaledCasesEsms !== -1">
-                  ({{
-                      mainStats?.total.esms.todaySignaledCasesEsms
-                        | symbolNumber: "mainStats"
-                    }}
-                  en 24h)
-                </ng-container>
-              </span>
-            </p>
-            <p class="subtitle">
-              Cas signalés en ESMS depuis le début de l'épidémie
             </p>
           </div>
         </div>
