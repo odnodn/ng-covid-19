@@ -114,21 +114,7 @@
               mainStats.deconfinement.date | date: "d MMMM yyyy":"fr-FR"
             }}</strong>, {{ selectedZone }}
             <strong>  {{ mainStats?.deconfinement.translation }} est en {{mainStats.deconfinement.color}}</strong>
-            sur la carte provisoire du déconfinement.
-            <ng-container *ngIf="mainStats.deconfinement.color === 'vert'">
-              Le département est éligible au déconfinement selon le protocole prévu.
-            </ng-container>
-            <ng-container *ngIf="mainStats.deconfinement.color === 'rouge'">
-              La pression épidémique est encore très élevée dans le département et le déconfinement risque d'être durci.
-            </ng-container>
-            <ng-container *ngIf="mainStats.deconfinement.color === 'orange'">
-              Le département se situe dans une zone intermédiaire.
-              Il peut basculer en vert si la pression épidémique se réduit dans le département
-              ou à l'inverse passé en rouge si la pression épidémique grandit.
-            </ng-container>
-            <ng-container>
-              Cet indicateur est amené à évoluer jusqu'au 7 mai.
-            </ng-container>
+            sur la carte du déconfinement.
           </div>
         </article>
       </div>
