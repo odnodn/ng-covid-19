@@ -180,16 +180,10 @@
         <app-coronavirus-stats [selectedCountry]="selectedCountry" [mainStats]="franceStats.value"
           [selectedZone]="selectedZone">
         </app-coronavirus-stats>
-        <div class="columns">
-          <div class="column is-12">
-            <div class="ads is-spaced">
-              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
-                [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
-            </div>
-          </div>
-        </div>
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
           <div class="column is-spaced">
+            <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+            [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
             <h2 class="title">Cartographie de l'épidémie en France</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
@@ -228,6 +222,10 @@
         </div>
         <div class="columns" *ngIf="selectedRegion">
           <div class="column is-three-fifths is-spaced">
+            <div class="ads is-spaced">
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+                [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+            </div>
             <h2 class="title">Tableau récapitulatif de l'épidémie dans la région</h2>
             <p>
               Les données sont remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC.
@@ -257,11 +255,17 @@
               <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
               </app-coronavirus-chart-pie>
             </ng-container>
+            <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+            [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
           </div>
         </div>
 
         <div class="columns">
           <div class="column">
+            <ng-container *ngIf="selectedDepartment">
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+              [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+            </ng-container>
             <div class="tabs">
               <ul>
                 <li [class.is-active]="tabTimelineSelected === 'timelineCumulated'"
@@ -350,6 +354,10 @@
             <ng-container *ngIf="tabRepartionSelected === 'repartitionSex' && isBrowser">
               <app-coronavirus-chart-pie [dataGender]="{ men: franceStats.value.men, women: franceStats.value.women }">
               </app-coronavirus-chart-pie>
+            </ng-container>
+            <ng-container *ngIf="selectedDepartment">
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+              [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
             </ng-container>
           </div>
         </div>
