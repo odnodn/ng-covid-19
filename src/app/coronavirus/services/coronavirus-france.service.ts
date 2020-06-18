@@ -7,16 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class CoronavirusFranceService {
 
-  private readonly urlCSV = 'http://api.cascoronavirus.fr/france-datas';
-  private readonly urlCSVDay = 'http://api.cascoronavirus.fr/france-datas-day';
-  private readonly urlTest = 'http://api.cascoronavirus.fr/france-datas-test';
-  private readonly urlEmergency = 'http://api.cascoronavirus.fr/france-datas-urgences';
-  private readonly urlTransfert = 'http://api.cascoronavirus.fr/france-datas-transfert';
-  private readonly urlNews = 'http://api.cascoronavirus.fr/france-datas-news';
-  private readonly urlOneNews = 'http://api.cascoronavirus.fr/france-datas-one-news';
-  private readonly urlDeconfinement = 'http://api.cascoronavirus.fr/france-datas-deconfinement';
-  private readonly urlMortality = 'http://api.cascoronavirus.fr/france-datas-mortality';
-  private readonly urlTestCentres = 'http://api.cascoronavirus.fr/france-datas-centre-depistage';
+  private readonly urlCSV = 'https://cascoronavirus-1585048636823.appspot.com/france-datas';
+  private readonly urlCSVDay = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-day';
+  private readonly urlTest = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-test';
+  private readonly urlEmergency = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-urgences';
+  private readonly urlTransfert = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-transfert';
+  private readonly urlNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-news';
+  private readonly urlOneNews = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-one-news';
+  private readonly urlDeconfinement = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-deconfinement';
+  private readonly urlMortality = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-mortality';
+  private readonly urlTestCentres = 'https://cascoronavirus-1585048636823.appspot.com/france-datas-centre-depistage';
 
   constructor(private readonly httpClient: HttpClient) { }
 
