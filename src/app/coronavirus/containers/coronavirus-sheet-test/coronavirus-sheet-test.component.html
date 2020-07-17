@@ -11,8 +11,7 @@
       <ng-container *ngIf="!selectedRegion && !selectedDepartment">
         {{selectedCountry?.country}}
       </ng-container>
-      {{selectedRegion?.name}} {{selectedDepartment?.name}}</strong> réalisés par les
-    laboratoires de villes.
+      {{selectedRegion?.name}} {{selectedDepartment?.name}}</strong>.
   </p>
   <ng-container *ngIf="(dataTest$ | loading | async) as dataTest">
     <ng-container *ngIf="dataTest?.value">
