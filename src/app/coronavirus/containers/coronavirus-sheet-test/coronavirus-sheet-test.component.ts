@@ -20,7 +20,7 @@ export class CoronavirusSheetTestComponent implements OnInit {
   selectedCountry: any = COUNTRIES[0];
   selectedDepartment: any;
   selectedRegion: any;
-  selectedTypeMap = 'ageAll';
+  selectedTypeMap = '0';
   selectedDivisionMapTable = 'departmentFrance';
   labelTableAge = 'à tous âges';
   isBrowser = isPlatformBrowser(this.platformId);
@@ -65,12 +65,17 @@ export class CoronavirusSheetTestComponent implements OnInit {
 
   onSelectTypeMap(type: string): void {
     const age = {
-      ageAll: 'à tous âges',
-      ageA: 'chez les moins de 15 ans',
-      ageB: 'chez les 15-44 ans',
-      ageC: 'chez les 45-64 ans',
-      ageD: 'chez les 65-74 ans',
-      ageE: 'chez les plus de 75 ans',
+      0: 'tous',
+      9: '0-9',
+      19: '10-19',
+      29: '20-29',
+      39: '30-39',
+      49: '40-49',
+      59: '50-59',
+      69: '60-69',
+      79: '70-79',
+      89: '80-89',
+      90: '90+'
     };
     this.selectedTypeMap = type;
     this.labelTableAge = age[type];

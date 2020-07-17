@@ -44,12 +44,17 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
 
   private initDataTable(): void {
     const age = {
-      ageAll: 'à tous les âges',
-      ageA: 'chez les moins de 15 ans',
-      ageB: 'chez les 15-44 ans',
-      ageC: 'chez les 45-64 ans',
-      ageD: 'chez les 65-74 ans',
-      ageE: 'chez les plus de 75 ans',
+      0: 'tous',
+      9: '0-9',
+      19: '10-19',
+      29: '20-29',
+      39: '30-39',
+      49: '40-49',
+      59: '50-59',
+      69: '60-69',
+      79: '70-79',
+      89: '80-89',
+      90: '90+'
     };
     if (this.selectedTypeMap === 'passage') {
       this.displayedColumns = ['translation', 'passageCorona', 'hospitalCorona', 'hospitalCoronaRate', 'acteCorona'];
@@ -59,8 +64,7 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
 
     if (age[this.selectedTypeMap]) {
       this.displayedColumns = ['translation', 'testTotal',
-      'testTotalPositive', 'testTotalPositiveRate',
-      'testMenPositiveRate', 'testWomenPositiveRate'];
+      'testTotalPositive', 'testTotalPositiveRate'];
       this.matSortActive = 'testTotalPositive';
       return ;
     }

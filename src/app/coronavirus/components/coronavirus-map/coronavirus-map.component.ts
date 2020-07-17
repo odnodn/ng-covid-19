@@ -105,7 +105,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       label: 'réanimations en cours',
       tooltipText: '{name} [bold]\n{value}[\] réanimations en cours'
     },
-    ageAll: {
+    'tous': {
       colors: {
         max: '#f9461c'
       },
@@ -113,63 +113,96 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
-        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
-    ageA: {
+    '0-9': {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistage chez les moins de 15 ans',
+      title: 'Cartographie des tests de dépistage chez les 0-9 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
-        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
-    ageB: {
+    '10-19': {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistage chez les 15-44 ans',
+      title: 'Cartographie des tests de dépistage chez les 10-19 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
-        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
-    ageC: {
+    '20-29': {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistage chez les 45-64 ans',
+      title: 'Cartographie des tests de dépistage chez les 20-29 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
-        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
-    ageD: {
+    '30-39': {
       colors: {
         max: '#f9461c'
       },
-      title: 'Cartographie des tests de dépistage chez les 65-74 ans',
+      title: 'Carte des tests de dépistage chez les plus de 30-39 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
-        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
     },
-    ageE: {
+    '40-49': {
       colors: {
         max: '#f9461c'
       },
-      title: 'Carte des tests de dépistage chez les plus de 75 ans',
+      title: 'Carte des tests de dépistage chez les plus de 40-49 ans',
       datas: [],
       label: 'Tests de dépistages',
       tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
-        + '[bold]{testMen}[\] tests chez les hommes\n' + '[bold]{testMenPositive}[\] tests positifs chez les hommes\n' +
-        '[bold]{testWomen}[\] tests chez les femmes\n' + '[bold]{testWomenPositive}[\] tests positifs chez les femmes\n'
+    },
+    '50-59': {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Carte des tests de dépistage chez les plus de 50-59 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+    },
+    '60-69': {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Carte des tests de dépistage chez les plus de 60-69 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+    },
+    '70-79': {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Carte des tests de dépistage chez les plus de 70-79 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+    },
+    '80-89': {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Carte des tests de dépistage chez les plus de 80-89 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
+    },
+    '90+': {
+      colors: {
+        max: '#f9461c'
+      },
+      title: 'Carte des tests de dépistage chez les plus de 90 ans',
+      datas: [],
+      label: 'Tests de dépistages',
+      tooltipText: '{name} \n[bold]{value}[\] tests au total\n [bold]{testTotalPositive}[\] tests positifs au total \n'
     },
     passageCorona: {
       colors: {
@@ -214,7 +247,7 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       this.selectedTypeMap = 'hospital';
     }
     if (this.selectedTypeData === 'test') {
-      this.selectedTypeMap = 'ageAll';
+      this.selectedTypeMap = '0';
     }
     if (this.selectedTypeData === 'emergency') {
       this.selectedTypeMap = 'passageCorona';
@@ -291,24 +324,25 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
 
   private initDataTest(id: string, stat: any): void {
     const age = {
-      tous: 'ageAll',
-      '-15': 'ageA',
-      '15-44': 'ageB',
-      '45-64': 'ageC',
-      '65-74': 'ageD',
-      '75+': 'ageE'
+      0: 'tous',
+      9: '0-9',
+      19: '10-19',
+      29: '20-29',
+      39: '30-39',
+      49: '40-49',
+      59: '50-59',
+      69: '60-69',
+      79: '70-79',
+      89: '80-89',
+      90: '90+'
     };
-    this.maps[age[stat.age]].datas = [{
+    this.maps[stat.age].datas = [{
       id,
       name: stat.translation,
       value: stat.testTotal,
       testTotalPositive: stat.testTotalPositive,
-      testMen: stat.testMen,
-      testMenPositive: stat.testMenPositive,
-      testWomen: stat.testWomen,
-      testWomenPositive: stat.testWomenPositive,
-      color: this.maps[age[stat.age]].colors.max
-    }, ...this.maps[age[stat.age]].datas];
+      color: this.maps[stat.age].colors.max
+    }, ...this.maps[stat.age].datas];
   }
 
   private initDataEmergency(id: string, stat: any): void {
@@ -333,10 +367,23 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
   }
 
   private updateMap(): void { // A chq ngOnChanges
-    this.imageSeries.data = this.maps[this.selectedTypeMap].datas;
-    this.title.text = this.maps[this.selectedTypeMap].title;
-    this.imageSeries.tooltip.background.fill = am4core.color(this.maps[this.selectedTypeMap].colors.max);
-    this.circle.tooltipText = this.maps[this.selectedTypeMap].tooltipText;
+    const age = {
+      0: 'tous',
+      9: '0-9',
+      19: '10-19',
+      29: '20-29',
+      39: '30-39',
+      49: '40-49',
+      59: '50-59',
+      69: '60-69',
+      79: '70-79',
+      89: '80-89',
+      90: '90+'
+    };
+    this.imageSeries.data = this.maps[age[this.selectedTypeMap]].datas;
+    this.title.text = this.maps[age[this.selectedTypeMap]].title;
+    this.imageSeries.tooltip.background.fill = am4core.color(this.maps[age[this.selectedTypeMap]].colors.max);
+    this.circle.tooltipText = this.maps[age[this.selectedTypeMap]].tooltipText;
   }
 
   private initMainMap(): void {

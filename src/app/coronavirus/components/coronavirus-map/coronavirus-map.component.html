@@ -15,12 +15,17 @@
 </div>
 <div class="radio-buttons" *ngIf="selectedTypeData === 'test'">
   <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap" (change)="onSelectTypeMap()">
-    <mat-radio-button value="ageAll">Tous</mat-radio-button>
-    <mat-radio-button value="ageA">Moins de 15 ans</mat-radio-button>
-    <mat-radio-button value="ageB" >15-44 ans</mat-radio-button>
-    <mat-radio-button value="ageC" >45-64 ans</mat-radio-button>
-    <mat-radio-button value="ageD" >65-74 ans</mat-radio-button>
-    <mat-radio-button value="ageE" >Plus de 75 ans</mat-radio-button>
+    <mat-radio-button value="0">Tous</mat-radio-button>
+    <mat-radio-button value="9">0-9 ans</mat-radio-button>
+    <mat-radio-button value="19">10-19 ans</mat-radio-button>
+    <mat-radio-button value="29">20-29 ans</mat-radio-button>
+    <mat-radio-button value="39">30-39 ans</mat-radio-button>
+    <mat-radio-button value="49">40-49 ans</mat-radio-button>
+    <mat-radio-button value="59">50-59 ans</mat-radio-button>
+    <mat-radio-button value="69">60-69 ans</mat-radio-button>
+    <mat-radio-button value="79">70-79 ans</mat-radio-button>
+    <mat-radio-button value="89">80-89 ans</mat-radio-button>
+    <mat-radio-button value="90">90 ans et plus</mat-radio-button>
   </mat-radio-group>
 </div>
 <div class="radio-buttons" *ngIf="selectedTypeData === 'emergency'">

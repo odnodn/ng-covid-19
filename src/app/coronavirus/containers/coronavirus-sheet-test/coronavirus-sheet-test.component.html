@@ -66,8 +66,7 @@
           <h2 class="title">Cartographie des tests de dépistage selon l'âge</h2>
           <p>
             Cette carte permet de voir les tests de dépistage du Coronavirus COVID-19 réalisés selon le
-            département, la région, l'âge et le sexe
-            en France.
+            département, la région, l'âge.
           </p>
           <mat-label class="label" for="country-select">Sélectionner un découpage</mat-label>
           <mat-select role="listbox" [(ngModel)]="selectedDivisionMap">
@@ -89,7 +88,7 @@
           <h2 class="title">Tableau récapitulatif des tests de dépistage en France {{labelTableAge}} </h2>
           <p>
             Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 par région et par département, ainsi
-            qu'en fonction du sexe et de l'âge.
+            qu'en fonction de l'âge.
           </p>
           <app-coronavirus-table [selectedDivisionMap]="selectedDivisionMap"
             [detailedStats]="selectedDivisionMap === 'regionFrance' ?
@@ -99,24 +98,23 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column is-spaced" [class.is-three-fifths]="selectedRegion"
-          [class.is-three-quarters]="!selectedRegion">
-          <h2 class="title">Nombre de tests réalisés, nombre de tests positifs et taux de positivité depuis le 10 mars</h2>
+        <div class="column is-spaced">
+          <h2 class="title">
+            Répartition des tests de dépistage positifs et négatifs en fonction de l'âge
+          </h2>
           <p>
-            Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 par jour avec le nombre
-            de
-            tests positifs et négatifs.
+            Ce diagramme montre la répartition de tests positifs et négatifs du Coronavirus COVID-19 en fonction de
+            l'âge.
           </p>
           <ng-container *ngIf="isBrowser">
-            <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
+            <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
             </app-coronavirus-chart-test-column>
           </ng-container>
         </div>
         <div class="column is-spaced" *ngIf="selectedRegion">
           <h2 class="title">Tableau récapitulatif des tests de dépistage de la région {{labelTableAge}} </h2>
           <p>
-            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 en fonction du sexe avec un filtre par
-            tranche d'âge.
+            Ce tableau récapitule les tests de dépistage du Coronavirus COVID-19 en fonction de l'âge.
           </p>
           <app-coronavirus-table [selectedDivisionMap]="'departmentFrance'"
             [detailedStats]="(dataTest?.value.details | ageFilter : selectedTypeMap)"
@@ -125,19 +123,19 @@
           <div class="radio-buttons">
             <mat-radio-group aria-label="Sélectionner" [(ngModel)]="selectedTypeMap"
               (change)="onSelectTypeMap($event.value)">
-              <mat-radio-button value="ageAll">Tous</mat-radio-button>
-              <mat-radio-button value="ageA">Moins de 15 ans</mat-radio-button>
-              <mat-radio-button value="ageB">15-44 ans</mat-radio-button>
-              <mat-radio-button value="ageC">45-64 ans</mat-radio-button>
-              <mat-radio-button value="ageD">65-74 ans</mat-radio-button>
-              <mat-radio-button value="ageE">Plus de 75 ans</mat-radio-button>
+              <mat-radio-button value="0">Tous</mat-radio-button>
+              <mat-radio-button value="9">0-9 ans</mat-radio-button>
+              <mat-radio-button value="19">10-19 ans</mat-radio-button>
+              <mat-radio-button value="29">20-29 ans</mat-radio-button>
+              <mat-radio-button value="39">30-39 ans</mat-radio-button>
+              <mat-radio-button value="49">40-49 ans</mat-radio-button>
+              <mat-radio-button value="59">50-59 ans</mat-radio-button>
+              <mat-radio-button value="69">60-69 ans</mat-radio-button>
+              <mat-radio-button value="79">70-79 ans</mat-radio-button>
+              <mat-radio-button value="89">80-89 ans</mat-radio-button>
+              <mat-radio-button value="90">90 ans et plus</mat-radio-button>
             </mat-radio-group>
           </div>
-        </div>
-        <div class="column is-spaced" *ngIf="isBrowser && !selectedRegion">
-          <ng-container *ngIf="isBrowser">
-            <app-coronavirus-chart-pie [dataTest]="dataTest?.value?.total[0]" [nameChart]="'chartdiv'"></app-coronavirus-chart-pie>
-          </ng-container>
         </div>
       </div>
       <div class="columns">
@@ -149,30 +147,19 @@
         </div>
       </div>
       <div class="columns">
-
         <div class="column is-spaced">
-          <h2 class="title">
-            Répartition des tests de dépistage positifs et négatifs en fonction de l'âge
-          </h2>
+          <h2 class="title">Nombre de tests réalisés, nombre de tests positifs et taux de positivité</h2>
           <p>
-            Ce diagramme montre la répartition de tests positifs et négatifs du Coronavirus COVID-19 en fonction de
-            l'âge avec un filtre par sexe.
+            Ce diagramme montre le nombre de tests de dépistage du Coronavirus COVID-19 par jour avec le nombre
+            de
+            tests positifs et négatifs.
           </p>
           <ng-container *ngIf="isBrowser">
-            <app-coronavirus-chart-test-column [nameChart]="'chart-test-age'" [data]="dataTest?.value">
+            <app-coronavirus-chart-test-column [nameChart]="'chart-timeline'" [data]="dataTest?.value">
             </app-coronavirus-chart-test-column>
           </ng-container>
         </div>
-        <div class="column is-spaced">
-          <h2 class="title">Comparaison du nombre de tests de dépistage réalisés en fonction de l'âge et du sexe</h2>
-          <p>
-            Ce diagramme compare le nombre de tests de dépistage du Coronavirus COVID-19 en fonction de l'âge et
-            du sexe.
-          </p>
-          <ng-container *ngIf="isBrowser">
-            <app-coronavirus-chart-pyramid [data]="dataTest?.value?.total"></app-coronavirus-chart-pyramid>
-          </ng-container>
-        </div>
+
       </div>
     </ng-container>
     <ng-container *ngIf="dataTest?.loading">

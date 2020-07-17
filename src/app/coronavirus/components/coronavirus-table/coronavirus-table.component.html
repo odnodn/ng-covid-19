@@ -261,23 +261,6 @@
       </td>
     </ng-container>
 
-
-    <!-- Test Homme Positif Taux Column -->
-    <ng-container matColumnDef="testMenPositiveRate">
-      <th id="testMenPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité homme </th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger">
-        {{element.testMenPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %
-      </td>
-    </ng-container>
-
-    <!-- Test Femme Positif Taux Column -->
-    <ng-container matColumnDef="testWomenPositiveRate">
-      <th id="testWomenPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité femme </th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger">
-        {{element.testWomenPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %
-      </td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
