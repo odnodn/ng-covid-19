@@ -380,10 +380,14 @@ export class CoronavirusMapComponent implements OnInit, OnDestroy, OnChanges, Af
       89: '80-89',
       90: '90+'
     };
-    this.imageSeries.data = this.maps[age[this.selectedTypeMap]].datas;
-    this.title.text = this.maps[age[this.selectedTypeMap]].title;
-    this.imageSeries.tooltip.background.fill = am4core.color(this.maps[age[this.selectedTypeMap]].colors.max);
-    this.circle.tooltipText = this.maps[age[this.selectedTypeMap]].tooltipText;
+    let selectedTypeMap = age[this.selectedTypeMap];
+    if (!selectedTypeMap) {
+      selectedTypeMap = this.selectedTypeMap;
+    }
+    this.imageSeries.data = this.maps[selectedTypeMap].datas;
+    this.title.text = this.maps[selectedTypeMap].title;
+    this.imageSeries.tooltip.background.fill = am4core.color(this.maps[selectedTypeMap].colors.max);
+    this.circle.tooltipText = this.maps[selectedTypeMap].tooltipText;
   }
 
   private initMainMap(): void {
