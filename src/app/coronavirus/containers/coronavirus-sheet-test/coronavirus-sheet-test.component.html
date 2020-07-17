@@ -7,7 +7,7 @@
     </ng-container>
   </h1>
   <p>
-    Suivez le nombre de tests de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
+    Suivez le nombre de tests virologiques PCR de dépistage du <strong>Coronavirus COVID-19</strong> en <strong>
       <ng-container *ngIf="!selectedRegion && !selectedDepartment">
         {{selectedCountry?.country}}
       </ng-container>
@@ -19,9 +19,6 @@
       <p>
         Les données des tests de dépistage du Coronavirus COVID-19 sont datées du
         <strong>{{dataTest?.value.lastUpdate | date: 'd MMMM yyyy':'fr-FR'}}</strong> par Santé publique.<br>
-        <strong class="important">Les données contiennent uniquement les tests réalisés par les laboratoires de villes et ne recensent pas
-          l’ensemble des tests
-          réalisés.</strong>
       </p>
       <div class="tile is-ancestor">
         <div class="tile is-parent">
