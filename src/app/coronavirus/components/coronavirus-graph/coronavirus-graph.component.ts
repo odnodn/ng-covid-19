@@ -135,7 +135,6 @@ export class CoronavirusGraphComponent implements OnInit, OnDestroy {
     /* Hover */
     const bullethover = bullet.states.create('hover');
     bullethover.properties.scale = 1.3;
-
   }
 
 }

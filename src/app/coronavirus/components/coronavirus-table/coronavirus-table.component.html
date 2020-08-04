@@ -29,7 +29,7 @@
             {{element.translation}} {{element.provinceState}}
           </a>
         </ng-container>
-        <ng-container *ngIf="selectedTypeMap && selectedTypeMap !== 'passage'">
+        <ng-container *ngIf="selectedTypeMap && selectedTypeMap !== 'passage' && selectedTypeMap !== 'indicateur'">
           <a *ngIf="selectedDivisionMap === 'regionFrance'"
             [routerLink]="['/test-depistage/france/region/', element.slug]">
             {{element.translation}} {{element.provinceState}}
@@ -46,6 +46,16 @@
           <a *ngIf="selectedDivisionMap === 'departmentFrance'"
             [routerLink]="['/urgences/france/departement/', element.slug]">
             {{element.translation}} {{element.provinceState}}
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="selectedTypeMap === 'indicateur'">
+          <a *ngIf="selectedDivisionMap === 'regionFrance'"
+            [routerLink]="['/indicateurs-suivi-epidemie/france/region/', element.slug]">
+            {{element.translation}} {{element.provinceState}}
+          </a>
+          <a [routerLink]="['/indicateurs-suivi-epidemie/france/departement/', element.slug]">
+            {{element.translation}}
           </a>
         </ng-container>
 
@@ -253,11 +263,48 @@
       </td>
     </ng-container>
 
-    <!-- Test Total Positive Column -->
-    <ng-container matColumnDef="testTotalPositiveRate">
-      <th id="testTotalPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité total</th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger death-rate">
-        <strong>{{element.testTotalPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %</strong>
+    <!-- R0 Column -->
+    <ng-container matColumnDef="R0">
+      <th id="R0" mat-header-cell *matHeaderCellDef mat-sort-header>R0</th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger"
+        [class.recovered-rate]="element.rZeroLast.rZeroColor === 'vert'"
+        [class.death-rate]="element.rZeroLast.rZeroColor === 'rouge'"
+        [class.hospital-rate]="element.rZeroLast.rZeroColor === 'orange'">
+        <strong>{{element.rZeroLast.rZero}}</strong>
+      </td>
+    </ng-container>
+
+    <!-- Incident Rate Column -->
+    <ng-container matColumnDef="incidentRate">
+      <th id="incidentRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux d'incidence</th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger death-rate"
+        [class.recovered-rate]="element.incidentRateLast.incidentRateColor === 'vert'"
+        [class.death-rate]="element.incidentRateLast.incidentRateColor === 'rouge'"
+        [class.hospital-rate]="element.incidentRateLast.incidentRateColor === 'orange'">
+        <strong>{{element.incidentRateLast.incidentRate}}</strong>
+      </td>
+    </ng-container>
+
+    <!-- Positive Rate column -->
+    <ng-container matColumnDef="positiveRate">
+      <th id="positiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité</th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger"
+        [class.recovered-rate]="element.positiveRateLast.positiveRateColor === 'vert'"
+        [class.death-rate]="element.positiveRateLast.positiveRateColor === 'rouge'"
+        [class.hospital-rate]="element.positiveRateLast.positiveRateColor === 'orange'">
+        <strong>{{element.positiveRateLast.positiveRate.toFixed(2)}} %</strong>
+      </td>
+    </ng-container>
+
+    <!-- Reanimation Capacity column -->
+    <ng-container matColumnDef="reanimationCapacity">
+      <th id="reanimationCapacity" mat-header-cell *matHeaderCellDef mat-sort-header>Taux d'occupation des lits en
+        réanimation</th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger"
+        [class.recovered-rate]="element.reanimationCapacityLast.reanimationCapacityColor === 'vert'"
+        [class.death-rate]="element.reanimationCapacityLast.reanimationCapacityColor === 'rouge'"
+        [class.hospital-rate]="element.reanimationCapacityLast.reanimationCapacityColor === 'orange'">
+        <strong>{{element.reanimationCapacityLast.reanimationCapacity}} %</strong>
       </td>
     </ng-container>
 

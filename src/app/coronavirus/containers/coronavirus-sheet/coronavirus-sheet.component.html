@@ -161,33 +161,41 @@
               franceStats?.value.total.hospital.lastUpdate &&
               franceStats?.value.total.global.lastUpdate ===
               franceStats?.value.total.hospital.lastUpdate">
-              <div class="column is-6-fullhd is-6-widescreen is-6-desktop is-12-tablet">
-                <app-coronavirus-news [news]="news.value"></app-coronavirus-news>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="franceStats?.value.total.global.lastUpdate &&
+                <div class="column is-6-fullhd is-6-widescreen is-6-desktop is-12-tablet">
+                  <app-coronavirus-news [news]="news.value"></app-coronavirus-news>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="franceStats?.value.total.global.lastUpdate &&
             franceStats?.value.total.hospital.lastUpdate &&
             franceStats?.value.total.global.lastUpdate !==
             franceStats?.value.total.hospital.lastUpdate">
-            <div class="column">
-              <app-coronavirus-news [news]="news.value"></app-coronavirus-news>
-            </div>
-          </ng-container>
+                <div class="column">
+                  <app-coronavirus-news [news]="news.value"></app-coronavirus-news>
+                </div>
+              </ng-container>
             </ng-container>
           </ng-container>
-
         </div>
+
         <app-coronavirus-stats [selectedCountry]="selectedCountry" [mainStats]="franceStats.value"
           [selectedZone]="selectedZone">
         </app-coronavirus-stats>
-        <div class="columns">
+        <ng-container *ngIf="(epidemicMeasures$ | loading | async) as epidemicMeasures">
+          <ng-container *ngIf="epidemicMeasures.value">
+            <div class="is-spaced">
+              <h1 class="title">Indicateurs de suivi</h1>
+              <app-coronavirus-epidemic-measure [epidemicMeasures]="epidemicMeasures.value" [selectedZone]="selectedZone"></app-coronavirus-epidemic-measure>
+            </div>
+          </ng-container>
+        </ng-container>
+        <!-- <div class="columns">
           <div class="column is-12">
             <div class="ads is-spaced">
-              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
                 [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
           <div class="column is-spaced">
             <h2 class="title">Cartographie de l'épidémie en France</h2>
@@ -260,22 +268,23 @@
             </ng-container>
           </div>
         </div>
-        <div class="columns" *ngIf="!selectedDepartment">
+        <!-- <div class="columns" *ngIf="!selectedDepartment">
           <div class="column is-12">
             <div class="ads is-spaced">
-              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'"  [adSlot]="7139325788"
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
                 [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="columns">
           <div class="column">
             <div class="tabs">
               <ul>
                 <li [class.is-active]="tabTimelineSelected === 'timelineCumulated'"
                   (click)="selectTabTimeline('timelineCumulated')"><a>Évolution temporelle</a></li>
-                  <li [class.is-active]="tabTimelineSelected === 'timelineEsms'" *ngIf="!selectedRegion && !selectedDepartment"
-                  (click)="selectTabTimeline('timelineEsms')"><a>Évolution en ESMS</a></li>
+                <li [class.is-active]="tabTimelineSelected === 'timelineEsms'"
+                  *ngIf="!selectedRegion && !selectedDepartment" (click)="selectTabTimeline('timelineEsms')">
+                  <a>Évolution en ESMS</a></li>
                 <li [class.is-active]="tabTimelineSelected === 'timelineDay'"
                   (click)="selectTabTimeline('timelineDay')"><a>Nombre quotidien de nouveaux cas</a></li>
               </ul>
@@ -294,7 +303,8 @@
               <ng-container *ngIf="tabTimelineSelected === 'timelineDay'">
                 <h2 class="title">Nombre quotidien
                   de nouvelles hospitalisations, de nouvelles admissions
-                  en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier liés à l'épidémie de COVID-19</h2>
+                  en réanimation, de nouveaux décès et de nouveaux guéris en milieu hospitalier liés à l'épidémie de
+                  COVID-19</h2>
                 <p>
                   Les données remontées par les <strong>centres hospitaliers</strong> participants à SI-VIC sont : le
                   nombre quotidien de personnes nouvellement hospitalisées, le nombre

@@ -14,6 +14,7 @@ import { CoronavirusMortalityComponent } from './containers/coronavirus-mortalit
 import { CoronavirusMapCentKmComponent } from './containers/coronavirus-map-cent-km/coronavirus-map-cent-km.component';
 import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach/coronavirus-map-beach.component';
 import { CoronavirusMapTestCentresComponent } from './containers/coronavirus-map-test-centres/coronavirus-map-test-centres.component';
+import { CoronavirusSheetEpidemicComponent } from './containers/coronavirus-sheet-epidemic/coronavirus-sheet-epidemic.component';
 export const coronavirusRoutes: Routes = [
   {
     path: '',
@@ -86,7 +87,19 @@ export const coronavirusRoutes: Routes = [
       {
         path: 'carte-exces-mortalite/:country',
         component: CoronavirusMortalityComponent
-      }
+      },
+      {
+        path: 'indicateurs-suivi-epidemie/:country',
+        component: CoronavirusSheetEpidemicComponent
+      },
+      {
+        path: 'indicateurs-suivi-epidemie/:country/region/:region',
+        component: CoronavirusSheetEpidemicComponent
+      },
+      {
+        path: 'indicateurs-suivi-epidemie/:country/departement/:department',
+        component: CoronavirusSheetEpidemicComponent
+      },
     ]
   },
 
@@ -122,6 +135,7 @@ export const coronavirusRoutes: Routes = [
     path: 'carte-centres-test-depistage',
     component: CoronavirusMapTestCentresComponent
   },
+
   // {
   //   path: 'attestation-100-km-deconfinement',
   //   component: CoronavirusMapCentKmComponent

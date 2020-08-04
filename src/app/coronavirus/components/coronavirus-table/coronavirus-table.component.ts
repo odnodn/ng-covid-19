@@ -28,6 +28,7 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
     this.initDataTable();
     this.dataSource = new MatTableDataSource(this.detailedStats);
     this.dataSource.sort = this.sort;
+    console.log(this.dataSource.data);
     this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
       const dataStr = Object.keys(data).reduce((currentTerm: string, key: string) => {
         return (currentTerm + (data as { [key: string]: any })[key] + '◬');
@@ -59,6 +60,12 @@ export class CoronavirusTableComponent implements OnInit, OnChanges {
     if (this.selectedTypeMap === 'passage') {
       this.displayedColumns = ['translation', 'passageCorona', 'hospitalCorona', 'hospitalCoronaRate', 'acteCorona'];
       this.matSortActive = 'hospitalCorona';
+      return ;
+    }
+
+    if (this.selectedTypeMap === 'indicateur') {
+      this.displayedColumns = ['translation', 'R0', 'incidentRate', 'positiveRate', 'reanimationCapacity'];
+      this.matSortActive = 'R0';
       return ;
     }
 

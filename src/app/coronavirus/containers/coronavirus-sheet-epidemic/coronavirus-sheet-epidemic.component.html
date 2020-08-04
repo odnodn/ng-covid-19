@@ -1,0 +1,127 @@
+<div class="content">
+  <ng-container *ngIf="(epidemicMeasures$ | loading | async) as epidemicMeasures">
+    <h1 class="title" *ngIf="selectedDepartment">Indicateurs de suivi de Coronavirus COVID-19
+      {{selectedDepartment?.name}}</h1>
+    <h1 class="title" *ngIf="selectedRegion">Indicateurs de suivi du Coronavirus COVID-19 {{selectedRegion?.name}}</h1>
+    <p>
+      Suivez l'évolution de l'épidémie de <strong>Coronavirus COVID-19</strong> en <strong>
+        <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+          {{selectedCountry?.country}}
+        </ng-container>
+         {{selectedRegion?.name}} {{selectedDepartment?.name}}
+      </strong> avec les différents indicateurs de suivi : le R0, le taux d'incidence, le taux de positivité des tests virologiques et la tension hospitalière.
+    </p>
+    <ng-container *ngIf="epidemicMeasures.value">
+      <ng-container *ngIf="selectedDepartment">
+        <div class="is-spaced">
+
+          <app-coronavirus-epidemic-measure [epidemicMeasures]="epidemicMeasures.value" [selectedZone]="selectedZone">
+          </app-coronavirus-epidemic-measure>
+        </div>
+        <div class="columns">
+          <div class="column is-spaced">
+            <h2 class="title">Évolution du R0</h2>
+            <p>
+              Ce nombre correspond au taux de reproduction du virus, cest-à-dire le nombre de personnes contaminées pour chaque malade.
+            </p>
+            Les niveaux d'indicateurs sont :
+            <ul>
+              <li>
+                Vert : R0 entre 0 et 1
+              </li>
+              <li>
+                Orange : R0 entre 1 et 1,5
+              </li>
+              <li>
+                Rouge : R0 supérieur à 1,5
+              </li>
+            </ul>
+            <app-coronavirus-graph-measure [data]="epidemicMeasures.value.timeline" [type]="'rZero'">
+            </app-coronavirus-graph-measure>
+          </div>
+          <div class="column is-spaced">
+            <h2 class="title">Évolution du taux d'incidence</h2>
+            <p>
+              Ce taux correspond au nombre de tests virologiques positifs pour 100 000 habitants sur une semaine glissante.
+            </p>
+            Les niveaux d'indicateurs sont :
+            <ul>
+              <li>
+                Vert : en dessous de 10 tests positifs pour 100 000 habitants sur une semaine glissante
+              </li>
+              <li>
+                Orange : au-delà de 10 tests positifs pour 100 000 habitants sur une semaine glissante
+              </li>
+              <li>
+                Rouge : au-delà de 50 tests positifs pour 100 000 habitants sur une semaine glissante
+              </li>
+            </ul>
+            <app-coronavirus-graph-measure [data]="epidemicMeasures.value.timeline" [type]="'incidentRate'">
+            </app-coronavirus-graph-measure>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-spaced">
+            <h2 class="title">Évolution du taux de positivité des tests virologiques</h2>
+            <p>
+              Ce taux correspond au nombre de tests positifs sur une semaine par rapport au nombre de tests réalisés.
+            </p>
+            Les niveaux d'indicateurs sont :
+            <ul>
+              <li>
+                Vert : taux de tests positifs entre 0 et 5%
+              </li>
+              <li>
+                Orange : taux de tests positifs entre 5 et 10%
+              </li>
+              <li>
+                Rouge : taux de tests positifs supérieur à 10%
+              </li>
+            </ul>
+            <app-coronavirus-graph-measure [data]="epidemicMeasures.value.timeline" [type]="'positiveRate'">
+            </app-coronavirus-graph-measure>
+          </div>
+          <div class="column is-spaced">
+            <h2 class="title">Évolution de la tension hospitalière</h2>
+            <p>
+              Ce taux correspond au nombre de lits en réanimation occupés par les patients atteints du COVID-19 sur la capacité initiale en réanimation.
+            </p>
+            Les niveaux d'indicateurs sont :
+            <ul>
+              <li>
+                Vert : taux d'occupation entre 0 et 40%
+              </li>
+              <li>
+                Orange : taux d'occupation entre 40 et 60%
+              </li>
+              <li>
+                Rouge : taux d'occupation supérieur à 60%
+              </li>
+            </ul>
+            <app-coronavirus-graph-measure [data]="epidemicMeasures.value.timeline" [type]="'reanimationCapacity'">
+            </app-coronavirus-graph-measure>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="selectedRegion">
+        <app-coronavirus-table [detailedStats]="epidemicMeasures.value.details" [selectedTypeMap]="selectedTypeMap"
+        [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap">
+      </app-coronavirus-table>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="epidemicMeasures?.loading">
+      <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
+    </ng-container>
+    <ng-container *ngIf="(epidemicMeasures?.value && epidemicMeasures?.value.length === 0) && !epidemicMeasures.loading">
+      <article class="message is-danger is-spaced">
+        <div class="message-header">
+          <p>Données indisponibles</p>
+        </div>
+        <div class="message-body">
+          Nous n'avons pas trouvé de données.
+        </div>
+      </article>
+    </ng-container>
+  </ng-container>
+
+</div>

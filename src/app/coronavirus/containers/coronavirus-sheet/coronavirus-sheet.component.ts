@@ -26,6 +26,7 @@ export class CoronavirusSheetComponent implements OnInit {
   franceStats$: Observable<any>;
   franceStatsDay$: Observable<any>;
   dataEmergency$: Observable<any>;
+  epidemicMeasures$: Observable<any>;
   news$: Observable<any>;
 
   selectedCountry: any = COUNTRIES[0];
@@ -157,6 +158,7 @@ export class CoronavirusSheetComponent implements OnInit {
     }
     this.initMetaTagRegionAndDepartment(this.selectedRegion, 'region', 'la région');
     this.franceStats$ = this.coronavirusFranceService.getData('region', this.selectedRegion.code);
+    this.epidemicMeasures$ = this.coronavirusFranceService.getFranceEpidemicMeasure('region', this.selectedRegion.code);
   }
 
   private updateFranceDepartmentDatas(params: any): void {
@@ -169,6 +171,8 @@ export class CoronavirusSheetComponent implements OnInit {
     this.initMetaTagRegionAndDepartment(this.selectedDepartment, 'departement', 'le département');
     this.franceStats$ = this.coronavirusFranceService.getData('department', this.selectedDepartment.code);
     this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('department', this.selectedDepartment.code);
+    this.epidemicMeasures$ = this.coronavirusFranceService.getFranceEpidemicMeasure('department', this.selectedDepartment.code);
+    console.log('epidemioc');
   }
 
   private initMetaTagWorld(): void {

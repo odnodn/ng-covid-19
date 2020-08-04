@@ -34,6 +34,9 @@ import { AdsenseModule } from 'ng2-adsense';
 import { CoronavirusMapBeachComponent } from './containers/coronavirus-map-beach/coronavirus-map-beach.component';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 import { CoronavirusMapTestCentresComponent } from './containers/coronavirus-map-test-centres/coronavirus-map-test-centres.component';
+import { CoronavirusEpidemicMeasureComponent } from './components/coronavirus-epidemic-measure/coronavirus-epidemic-measure.component';
+import { CoronavirusSheetEpidemicComponent } from './containers/coronavirus-sheet-epidemic/coronavirus-sheet-epidemic.component';
+import { CoronavirusGraphMeasureComponent } from './components/coronavirus-graph-measure/coronavirus-graph-measure.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { CoronavirusMapTestCentresComponent } from './containers/coronavirus-map
     CoronavirusMapCentKmComponent,
     CoronavirusAttestationCentKmComponent,
     CoronavirusMapBeachComponent,
-    CoronavirusMapTestCentresComponent
+    CoronavirusMapTestCentresComponent,
+    CoronavirusEpidemicMeasureComponent,
+    CoronavirusSheetEpidemicComponent,
+    CoronavirusGraphMeasureComponent
   ],
   imports: [
     CommonModule,

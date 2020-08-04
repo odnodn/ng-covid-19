@@ -17,6 +17,7 @@ export class CoronavirusFranceService {
   private readonly urlDeconfinement = 'https://api.cascoronavirus.fr/france-datas-deconfinement';
   private readonly urlMortality = 'https://api.cascoronavirus.fr/france-datas-mortality';
   private readonly urlTestCentres = 'https://api.cascoronavirus.fr/france-datas-centre-depistage';
+  private readonly urlEpidemicMeasure = 'http://localhost:3000/france-datas-indicateurs';
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -99,6 +100,13 @@ export class CoronavirusFranceService {
       return this.httpClient.get(`${this.urlTestCentres}/?lat=${lat}&long=${long}`);
     }
     return this.httpClient.get(`${this.urlTestCentres}`);
+  }
+
+  getFranceEpidemicMeasure(type: string, code?: string): Observable<any> {
+    if (code) {
+      return this.httpClient.get(`${this.urlEpidemicMeasure}/${type}?code=${code}`);
+    }
+    return this.httpClient.get(`${this.urlEpidemicMeasure}/${type}`);
   }
 
 }
