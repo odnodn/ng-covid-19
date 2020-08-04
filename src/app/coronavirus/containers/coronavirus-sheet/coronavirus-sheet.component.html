@@ -183,19 +183,20 @@
         <ng-container *ngIf="(epidemicMeasures$ | loading | async) as epidemicMeasures">
           <ng-container *ngIf="epidemicMeasures.value">
             <div class="is-spaced">
-              <h1 class="title">Indicateurs de suivi</h1>
-              <app-coronavirus-epidemic-measure [epidemicMeasures]="epidemicMeasures.value" [selectedZone]="selectedZone"></app-coronavirus-epidemic-measure>
+              <app-coronavirus-epidemic-measure [epidemicMeasures]="epidemicMeasures.value"
+                [selectedCountry]="selectedCountry" [isMain]="false" [selectedDepartment]="selectedDepartment"
+                [selectedRegion]="selectedRegion" [selectedZone]="selectedZone"></app-coronavirus-epidemic-measure>
             </div>
           </ng-container>
         </ng-container>
-        <!-- <div class="columns">
+        <div class="columns">
           <div class="column is-12">
             <div class="ads is-spaced">
               <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
                 [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
             </div>
           </div>
-        </div> -->
+        </div>
         <div class="columns" *ngIf="!selectedRegion && !selectedDepartment">
           <div class="column is-spaced">
             <h2 class="title">Cartographie de l'épidémie en France</h2>
@@ -268,14 +269,14 @@
             </ng-container>
           </div>
         </div>
-        <!-- <div class="columns" *ngIf="!selectedDepartment">
+        <div class="columns" *ngIf="!selectedDepartment">
           <div class="column is-12">
             <div class="ads is-spaced">
               <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
                 [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
             </div>
           </div>
-        </div> -->
+        </div>
         <div class="columns">
           <div class="column">
             <div class="tabs">

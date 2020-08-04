@@ -28,7 +28,7 @@ export class CoronavirusAttestationCentKmComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Jusqu'où pouvez-vous aller dans un rayon de 100 km autour votre domicile ?` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

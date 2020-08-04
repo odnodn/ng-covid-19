@@ -114,7 +114,7 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Coronavirus COVID-19 : suivez la carte du déconfinement dans ${type} ${region.name} avec la carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -139,7 +139,7 @@ export class CoronavirusMapDeconfinementComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Coronavirus COVID-19 : carte de la circulation du virus, carte des capacités de réanimation, carte de synthèse' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

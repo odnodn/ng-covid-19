@@ -33,11 +33,6 @@ export class CoronavirusChartTestColumnComponent implements OnInit, AfterViewIni
       ];
     } else if (this.nameChart === 'chart-test-age' || this.nameChart === 'chart-timeline') {
       this.dataType = 'total';
-      this.choices = [
-        { label: 'Total', value: 'total' },
-        { label: 'Hommes', value: 'men' },
-        { label: 'Femmes', value: 'women' },
-      ];
     }
   }
 

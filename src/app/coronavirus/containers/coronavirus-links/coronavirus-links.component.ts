@@ -35,7 +35,7 @@ export class CoronavirusLinksComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées en temps réel' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

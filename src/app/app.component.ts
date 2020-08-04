@@ -34,10 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
       const everyThirtyMinOnceAppIsStable$ = concat(appIsStable$, everyThirtyMin$);
 
       everyThirtyMinOnceAppIsStable$.subscribe(() => swUpdate.checkForUpdate());
-      this.swUpdate.activated.subscribe(event => {
-        console.log('old version was', event.previous);
-        console.log('new version is', event.current);
-      });
       this.swUpdate.available.subscribe(() => {
         swUpdate.activateUpdate().then(() => document.location.reload());
       });

@@ -37,6 +37,7 @@ import { CoronavirusMapTestCentresComponent } from './containers/coronavirus-map
 import { CoronavirusEpidemicMeasureComponent } from './components/coronavirus-epidemic-measure/coronavirus-epidemic-measure.component';
 import { CoronavirusSheetEpidemicComponent } from './containers/coronavirus-sheet-epidemic/coronavirus-sheet-epidemic.component';
 import { CoronavirusGraphMeasureComponent } from './components/coronavirus-graph-measure/coronavirus-graph-measure.component';
+import { CoronavirusMapMeasureComponent } from './components/coronavirus-map-measure/coronavirus-map-measure.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { CoronavirusGraphMeasureComponent } from './components/coronavirus-graph
     CoronavirusMapTestCentresComponent,
     CoronavirusEpidemicMeasureComponent,
     CoronavirusSheetEpidemicComponent,
-    CoronavirusGraphMeasureComponent
+    CoronavirusGraphMeasureComponent,
+    CoronavirusMapMeasureComponent
   ],
   imports: [
     CommonModule,

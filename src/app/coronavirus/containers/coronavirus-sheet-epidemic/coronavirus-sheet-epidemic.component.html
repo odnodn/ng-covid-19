@@ -1,28 +1,53 @@
 <div class="content">
   <ng-container *ngIf="(epidemicMeasures$ | loading | async) as epidemicMeasures">
-    <h1 class="title" *ngIf="selectedDepartment">Indicateurs de suivi de Coronavirus COVID-19
-      {{selectedDepartment?.name}}</h1>
-    <h1 class="title" *ngIf="selectedRegion">Indicateurs de suivi du Coronavirus COVID-19 {{selectedRegion?.name}}</h1>
-    <p>
-      Suivez l'évolution de l'épidémie de <strong>Coronavirus COVID-19</strong> en <strong>
-        <ng-container *ngIf="!selectedRegion && !selectedDepartment">
-          {{selectedCountry?.country}}
-        </ng-container>
-         {{selectedRegion?.name}} {{selectedDepartment?.name}}
-      </strong> avec les différents indicateurs de suivi : le R0, le taux d'incidence, le taux de positivité des tests virologiques et la tension hospitalière.
-    </p>
     <ng-container *ngIf="epidemicMeasures.value">
-      <ng-container *ngIf="selectedDepartment">
-        <div class="is-spaced">
-
-          <app-coronavirus-epidemic-measure [epidemicMeasures]="epidemicMeasures.value" [selectedZone]="selectedZone">
-          </app-coronavirus-epidemic-measure>
+      <div>
+        <app-coronavirus-epidemic-measure [selectedCountry]="selectedCountry" [selectedRegion]="selectedRegion"
+          [selectedDepartment]="selectedDepartment" [epidemicMeasures]="epidemicMeasures.value" [isMain]="true"
+          [selectedZone]="selectedZone">
+        </app-coronavirus-epidemic-measure>
+      </div>
+      <div class="columns">
+        <div class="column is-12">
+          <div class="ads is-spaced">
+            <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
+              [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+          </div>
         </div>
+      </div>
+      <ng-container *ngIf="!selectedRegion && !selectedDepartment">
+        <div class="columns">
+          <div class="column is-spaced">
+            <h2 class="title">
+              Tableau des indicateurs de suivi des départements
+            </h2>
+            <app-coronavirus-table [detailedStats]="epidemicMeasures.value.department"
+              [selectedTypeMap]="selectedTypeMap" [selectedCountry]="selectedCountry"
+              [selectedDivisionMap]="selectedDivisionMap">
+            </app-coronavirus-table>
+          </div>
+
+          <div class="column is-spaced">
+
+            <app-coronavirus-map-measure [data]="epidemicMeasures.value.department"></app-coronavirus-map-measure>
+          </div>
+        </div>
+      </ng-container>
+      <div class="columns">
+        <div class="column is-12">
+          <div class="ads is-spaced">
+            <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
+              [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="!selectedRegion">
         <div class="columns">
           <div class="column is-spaced">
             <h2 class="title">Évolution du R0</h2>
             <p>
-              Ce nombre correspond au taux de reproduction du virus, cest-à-dire le nombre de personnes contaminées pour chaque malade.
+              Ce nombre correspond au taux de reproduction du virus, cest-à-dire le nombre de personnes contaminées pour
+              chaque malade.
             </p>
             Les niveaux d'indicateurs sont :
             <ul>
@@ -42,7 +67,8 @@
           <div class="column is-spaced">
             <h2 class="title">Évolution du taux d'incidence</h2>
             <p>
-              Ce taux correspond au nombre de tests virologiques positifs pour 100 000 habitants sur une semaine glissante.
+              Ce taux correspond au nombre de tests virologiques positifs pour 100 000 habitants sur une semaine
+              glissante.
             </p>
             Les niveaux d'indicateurs sont :
             <ul>
@@ -82,9 +108,10 @@
             </app-coronavirus-graph-measure>
           </div>
           <div class="column is-spaced">
-            <h2 class="title">Évolution de la tension hospitalière</h2>
+            <h2 class="title">Évolution de la tension hospitalière sur la capacité en réanimation</h2>
             <p>
-              Ce taux correspond au nombre de lits en réanimation occupés par les patients atteints du COVID-19 sur la capacité initiale en réanimation.
+              Ce taux correspond au nombre de lits en réanimation occupés par les patients atteints du COVID-19 sur la
+              capacité initiale en réanimation.
             </p>
             Les niveaux d'indicateurs sont :
             <ul>
@@ -104,15 +131,72 @@
         </div>
       </ng-container>
       <ng-container *ngIf="selectedRegion">
-        <app-coronavirus-table [detailedStats]="epidemicMeasures.value.details" [selectedTypeMap]="selectedTypeMap"
-        [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap">
-      </app-coronavirus-table>
+        <div class="columns">
+          <div class="column is-spaced">
+            <h2 class="title">
+              Tableau des indicateurs de suivi des départements dans la région {{selectedRegion.name}}
+            </h2>
+            <app-coronavirus-table [detailedStats]="epidemicMeasures.value.details" [selectedTypeMap]="selectedTypeMap"
+              [selectedCountry]="selectedCountry" [selectedDivisionMap]="selectedDivisionMap">
+            </app-coronavirus-table>
+          </div>
+          <div class="column is-spaced">
+            <h2 class="title">
+              Explication des indicateurs
+            </h2>
+            <p>
+              Le suivi de l'épidémie se base sur quatre indicateurs
+            </p>
+            <ul>
+              <li>
+                <strong>R0</strong> : ce nombre correspond au taux de reproduction du virus, cest-à-dire le nombre de
+                personnes contaminées pour chaque malade.
+                Les niveaux d'indicateurs sont :<br>
+                Vert : R0 entre 0 et 1<br>
+                Orange : R0 entre 1 et 1,5<br>
+                Rouge : R0 supérieur à 1,5<br>
+              </li>
+              <li>
+                <strong>Le taux d'incidence</strong> : ce taux correspond au nombre de tests virologiques positifs pour
+                100 000 habitants sur une semaine glissante.
+
+                Les niveaux d'indicateurs sont :<br>
+                Vert : en dessous de 10 tests positifs pour 100 000 habitants sur une semaine glissante<br>
+                Orange : au-delà de 10 tests positifs pour 100 000 habitants sur une semaine glissante<br>
+                Rouge : au-delà de 50 tests positifs pour 100 000 habitants sur une semaine glissante<br>
+              </li>
+              <li>
+                <strong>Le taux de positivité des tests virologiques</strong> : ce taux correspond au nombre de tests
+                positifs sur une semaine par rapport au nombre de tests réalisés.
+
+                Les niveaux d'indicateurs sont :<br>
+                Vert : taux de tests positifs entre 0 et 5%<br>
+                Orange : taux de tests positifs entre 5 et 10%<br>
+                Rouge : taux de tests positifs supérieur à 10%<br>
+              </li>
+              <li>
+                <strong>La tension hospitalière sur la capacité en réanimation</strong> :
+                ce taux correspond au nombre de lits en réanimation occupés par les patients atteints du COVID-19 sur la
+                capacité initiale en réanimation.
+
+                Les niveaux d'indicateurs sont :<br>
+                Vert : taux d'occupation entre 0 et 40%<br>
+                Orange : taux d'occupation entre 40 et 60%<br>
+                Rouge : taux d'occupation supérieur à 60%<br>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
       </ng-container>
+
     </ng-container>
     <ng-container *ngIf="epidemicMeasures?.loading">
       <mat-spinner [diameter]="60" class="spinner is-spaced"></mat-spinner>
     </ng-container>
-    <ng-container *ngIf="(epidemicMeasures?.value && epidemicMeasures?.value.length === 0) && !epidemicMeasures.loading">
+    <ng-container
+      *ngIf="(epidemicMeasures?.value && epidemicMeasures?.value.length === 0) && !epidemicMeasures.loading">
       <article class="message is-danger is-spaced">
         <div class="message-header">
           <p>Données indisponibles</p>

@@ -64,13 +64,19 @@
     </li>
     <li [class.is-active]="router.url | include: 'indicateurs'">
       <a *ngIf="!selectedRegion && !selectedDepartment" [routerLink]="['/indicateurs-suivi-epidemie/', selectedCountry.slug]">
-        Indicateurs de suivi
+        <span class="material-icons red">
+          lens
+        </span> Indicateurs de suivi
       </a>
       <a *ngIf="selectedRegion" [routerLink]="['/indicateurs-suivi-epidemie/france/region', selectedRegion.slug]">
-        Indicateurs de suivi
+        <span class="material-icons red">
+          lens
+        </span> Indicateurs de suivi
       </a>
       <a *ngIf="selectedDepartment" [routerLink]="['/indicateurs-suivi-epidemie/france/departement', selectedDepartment.slug]">
-        Indicateurs de suivi
+        <span class="material-icons red">
+          lens
+        </span> Indicateurs de suivi
       </a>
     </li>
 

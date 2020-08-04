@@ -120,7 +120,7 @@ export class CoronavirusMapCentKmComponent implements OnInit, AfterViewInit {
       votre département (ex: Ain) ou bien encore
       votre région (ex: Bretagne).` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/map_deconfinement_100km.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

@@ -9,6 +9,10 @@ export class CoronavirusEpidemicMeasureComponent implements OnInit {
 
   @Input() epidemicMeasures;
   @Input() selectedZone;
+  @Input() selectedCountry;
+  @Input() selectedRegion;
+  @Input() selectedDepartment;
+  @Input() isMain;
   constructor() { }
 
   ngOnInit(): void {

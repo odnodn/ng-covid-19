@@ -103,7 +103,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
         name: 'twitter:image',
         content: this.getPicture(),
       },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -154,7 +154,7 @@ export class CoronavirusNewsPageComponent implements OnInit {
         content:
           'https://www.cascoronavirus.fr/assets/images/meta_og_social.png',
       },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

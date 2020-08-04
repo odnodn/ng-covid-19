@@ -112,7 +112,7 @@ export class CoronavirusTransfertComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Suivez les transferts de patients atteints de Coronavirus COVID-19 entre les régions et les départements` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

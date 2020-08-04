@@ -263,36 +263,44 @@
       </td>
     </ng-container>
 
+
+    <!-- Test Total Positive Rate Column -->
+    <ng-container matColumnDef="testTotalPositiveRate">
+      <th id="testTotalPositiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité total</th>
+      <td mat-cell *matCellDef="let element" class="has-text-danger death-rate">
+        <strong>{{element.testTotalPositiveRate.toFixed(1) | number: '' :'fr-FR'}} %</strong>
+      </td>
+    </ng-container>
+
     <!-- R0 Column -->
-    <ng-container matColumnDef="R0">
-      <th id="R0" mat-header-cell *matHeaderCellDef mat-sort-header>R0</th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger"
-        [class.recovered-rate]="element.rZeroLast.rZeroColor === 'vert'"
-        [class.death-rate]="element.rZeroLast.rZeroColor === 'rouge'"
-        [class.hospital-rate]="element.rZeroLast.rZeroColor === 'orange'">
-        <strong>{{element.rZeroLast.rZero}}</strong>
+    <ng-container matColumnDef="rZero">
+      <th id="rZero" mat-header-cell *matHeaderCellDef mat-sort-header>R0</th>
+      <td mat-cell *matCellDef="let element" [class.has-text-success]="element.rZeroColor === 'vert'"
+        [class.has-text-danger]="element.rZeroColor === 'rouge'"
+        [class.hospital]="element.rZeroColor === 'orange'">
+        <strong>{{element.rZero}}</strong>
       </td>
     </ng-container>
 
     <!-- Incident Rate Column -->
     <ng-container matColumnDef="incidentRate">
       <th id="incidentRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux d'incidence</th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger death-rate"
-        [class.recovered-rate]="element.incidentRateLast.incidentRateColor === 'vert'"
-        [class.death-rate]="element.incidentRateLast.incidentRateColor === 'rouge'"
-        [class.hospital-rate]="element.incidentRateLast.incidentRateColor === 'orange'">
-        <strong>{{element.incidentRateLast.incidentRate}}</strong>
+      <td mat-cell *matCellDef="let element"
+        [class.has-text-success]="element.incidentRateColor === 'vert'"
+        [class.has-text-danger]="element.incidentRateColor === 'rouge'"
+        [class.hospital]="element.incidentRateColor === 'orange'">
+        <strong>{{element.incidentRate}}</strong>
       </td>
     </ng-container>
 
     <!-- Positive Rate column -->
     <ng-container matColumnDef="positiveRate">
       <th id="positiveRate" mat-header-cell *matHeaderCellDef mat-sort-header>Taux de positivité</th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger"
-        [class.recovered-rate]="element.positiveRateLast.positiveRateColor === 'vert'"
-        [class.death-rate]="element.positiveRateLast.positiveRateColor === 'rouge'"
-        [class.hospital-rate]="element.positiveRateLast.positiveRateColor === 'orange'">
-        <strong>{{element.positiveRateLast.positiveRate.toFixed(2)}} %</strong>
+      <td mat-cell *matCellDef="let element"
+        [class.has-text-success]="element.positiveRateColor === 'vert'"
+        [class.has-text-danger]="element.positiveRateColor === 'rouge'"
+        [class.hospital]="element.positiveRateColor === 'orange'">
+        <strong>{{element.positiveRate.toFixed(2)}} %</strong>
       </td>
     </ng-container>
 
@@ -300,11 +308,11 @@
     <ng-container matColumnDef="reanimationCapacity">
       <th id="reanimationCapacity" mat-header-cell *matHeaderCellDef mat-sort-header>Taux d'occupation des lits en
         réanimation</th>
-      <td mat-cell *matCellDef="let element" class="has-text-danger"
-        [class.recovered-rate]="element.reanimationCapacityLast.reanimationCapacityColor === 'vert'"
-        [class.death-rate]="element.reanimationCapacityLast.reanimationCapacityColor === 'rouge'"
-        [class.hospital-rate]="element.reanimationCapacityLast.reanimationCapacityColor === 'orange'">
-        <strong>{{element.reanimationCapacityLast.reanimationCapacity}} %</strong>
+      <td mat-cell *matCellDef="let element"
+        [class.has-text-success]="element.reanimationCapacityColor === 'vert'"
+        [class.has-text-danger]="element.reanimationCapacityColor === 'rouge'"
+        [class.hospital]="element.reanimationCapacityColor === 'orange'">
+        <strong>{{element.reanimationCapacity}} %</strong>
       </td>
     </ng-container>
 

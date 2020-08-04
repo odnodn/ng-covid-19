@@ -93,7 +93,7 @@ export class CoronavirusSheetEmergencyComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 ${region.name} - Suivez les urgences hospitalières et actes médicaux Coronavirus dans ${type} ${region.name}` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -119,7 +119,7 @@ export class CoronavirusSheetEmergencyComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Statstiques sur les urgences hospitalières et actes médicaux Coronavirus COVID-19 en France par région et département` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

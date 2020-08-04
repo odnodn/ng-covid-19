@@ -24,7 +24,7 @@ export class AdviseComponent implements OnInit {
       { name: 'twitter:title', content: 'Coronavirus COVID-19 : informations, symptômes, conseils' },
       { name: 'twitter:description', content: 'Retrouvez tous les conseils pour se protéger contrer le Coronavirus COVID-19' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

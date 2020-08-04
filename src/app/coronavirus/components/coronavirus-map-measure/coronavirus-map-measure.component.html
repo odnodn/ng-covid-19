@@ -1,0 +1,14 @@
+<h2 class="title">
+  Carte de synthèse des indicateurs de suivi pour chaque département
+</h2>
+<div class="is-spaced">
+  <div #chartElement id="map"></div>
+</div>
+<div class="radio-buttons">
+  <mat-radio-group aria-label="Sélectionner" [(ngModel)]="type" (change)="onSelectTypeMap()">
+    <mat-radio-button value="rZero">R0</mat-radio-button>
+    <mat-radio-button value="incidentRate">Taux d'incidence</mat-radio-button>
+    <mat-radio-button value="positiveRate">Taux de positivité des tests virologiques</mat-radio-button>
+    <mat-radio-button value="reanimationCapacity">Taux d'occupation des lits en réanimation</mat-radio-button>
+  </mat-radio-group>
+</div>

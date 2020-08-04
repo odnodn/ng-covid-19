@@ -21,8 +21,6 @@ export class CoronavirusSheetEpidemicComponent implements OnInit {
   selectedRegion: any;
   selectedTypeMap = 'indicateur';
 
-  // selectedDivisionMapTable = 'departmentFrance';
-  // type = 'passage';
   isBrowser = isPlatformBrowser(this.platformId);
   selectedZone: string;
   constructor(
@@ -60,7 +58,7 @@ export class CoronavirusSheetEpidemicComponent implements OnInit {
         this.initMetaTagRegionAndDepartment(this.selectedRegion, 'region', 'la région');
       } else {
         this.epidemicMeasures$ = this.coronavirusFranceService.getFranceEpidemicMeasure('national');
-        // this.initMetaTagFrance();
+        this.initMetaTagFrance();
       }
       this.ref.detectChanges();
     });
@@ -73,7 +71,7 @@ export class CoronavirusSheetEpidemicComponent implements OnInit {
       { name: 'description', content: `Suivez l'évolution de l'épidémie dans ${type} ${region.name} : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
-      { property: 'og:url', content: `https://www.cascoronavirus.fr/indicateurs-suivi-epidemie//france/${urlType}/${region.slug}` },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/indicateurs-suivi-epidemie/france/${urlType}/${region.slug}` },
       { property: 'og:title', content: `Indicateurs de suivi de l'épidémie de Coronavirus COVID-19 ${region.name}` },
       // tslint:disable-next-line:max-line-length
       { property: 'og:description', content: `Suivez l'évolution de l'épidémie dans ${type} ${region.name} : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
@@ -83,7 +81,33 @@ export class CoronavirusSheetEpidemicComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Suivez l'évolution de l'épidémie dans ${type} ${region.name} : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
+    ];
+    tags.forEach((tag) => {
+      this.meta.updateTag(tag);
+    });
+  }
+
+  private initMetaTagFrance(): void {
+    this.title.setTitle(`Indicateurs de suivi de l'épidémie de Coronavirus COVID-19 en France`);
+    const tags = [
+      // tslint:disable-next-line:max-line-length
+      { name: 'description', content: `Suivez l'évolution de l'épidémie en France : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
+      { property: 'og:url', content: `https://www.cascoronavirus.fr/indicateurs-suivi-epidemie/${this.selectedCountry.slug}` },
+      // tslint:disable-next-line:max-line-length
+      { property: 'og:title', content: `Indicateurs de suivi de l'épidémie de Coronavirus COVID-19 en France` },
+      // tslint:disable-next-line:max-line-length
+      { property: 'og:description', content: `Suivez l'évolution de l'épidémie en France : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
+      { property: 'og:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { name: 'twitter:card', content: 'summary' },
+      // tslint:disable-next-line:max-line-length
+      { name: 'twitter:title', content: `Indicateurs de suivi de l'épidémie de Coronavirus COVID-19 en France` },
+      // tslint:disable-next-line:max-line-length
+      { name: 'twitter:description', content: `Suivez l'évolution de l'épidémie en France : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
+      { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

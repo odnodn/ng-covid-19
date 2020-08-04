@@ -147,6 +147,7 @@ export class CoronavirusSheetComponent implements OnInit {
     this.initMetaTagCountry();
     this.selectedZone = undefined;
     this.franceStats$ = this.coronavirusFranceService.getData('national');
+    this.epidemicMeasures$ = this.coronavirusFranceService.getFranceEpidemicMeasure('national');
   }
 
   private updateFranceRegionDatas(params: any): void {
@@ -172,7 +173,6 @@ export class CoronavirusSheetComponent implements OnInit {
     this.franceStats$ = this.coronavirusFranceService.getData('department', this.selectedDepartment.code);
     this.dataEmergency$ = this.coronavirusFranceService.getFranceDataEmergency('department', this.selectedDepartment.code);
     this.epidemicMeasures$ = this.coronavirusFranceService.getFranceEpidemicMeasure('department', this.selectedDepartment.code);
-    console.log('epidemioc');
   }
 
   private initMetaTagWorld(): void {
@@ -192,7 +192,7 @@ export class CoronavirusSheetComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: 'Cas de Coronavirus COVID-19 - Suivez les cas et morts du virus en France et dans le monde entier : Chine, Italie, Espagne avec des statistiques détaillées et une carte en temps réel' },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -218,7 +218,7 @@ export class CoronavirusSheetComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Suivez les cas et morts du Coronavirus COVID-19 en ${this.selectedCountry.translation} avec des graphs et statistiques détaillées` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
@@ -242,7 +242,7 @@ export class CoronavirusSheetComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       { name: 'twitter:description', content: `Coronavirus COVID-19 ${region.name} - suivez l'évolution de l'épidémie dans ${type} ${region.name}` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/meta_og_social.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);

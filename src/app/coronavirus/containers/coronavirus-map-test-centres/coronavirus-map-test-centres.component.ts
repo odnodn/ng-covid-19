@@ -63,7 +63,7 @@ export class CoronavirusMapTestCentresComponent implements OnInit, AfterViewInit
       Utilisez notre carte qui permet de retrouver les 50 centres de tests de dépistage
       les plus proches de chez vous.` },
       { name: 'twitter:image', content: 'https://www.cascoronavirus.fr/assets/images/carte_centres_test_depistage_covid_19_coronavirus.png' },
-      { name: 'twitter:site', content: '@SouryvathN' },
+      { name: 'twitter:site', content: '@cascoronavirus' },
     ];
     tags.forEach((tag) => {
       this.meta.updateTag(tag);
