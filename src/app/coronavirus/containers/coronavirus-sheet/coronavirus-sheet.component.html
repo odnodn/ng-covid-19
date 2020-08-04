@@ -180,6 +180,14 @@
         <app-coronavirus-stats [selectedCountry]="selectedCountry" [mainStats]="franceStats.value"
           [selectedZone]="selectedZone">
         </app-coronavirus-stats>
+        <div class="columns" *ngIf="!selectedDepartment && !selectedRegion">
+          <div class="column is-12">
+            <div class="ads is-spaced">
+              <ng2-adsense [adClient]="'ca-pub-8075252379413311'" [adFormat]="'auto'" [adSlot]="7139325788"
+                [display]="'block'" [fullWidthResponsive]="true"></ng2-adsense>
+            </div>
+          </div>
+        </div>
         <ng-container *ngIf="(epidemicMeasures$ | loading | async) as epidemicMeasures">
           <ng-container *ngIf="epidemicMeasures.value">
             <div class="is-spaced">
