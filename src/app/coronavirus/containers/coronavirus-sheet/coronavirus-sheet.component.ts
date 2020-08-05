@@ -203,7 +203,8 @@ export class CoronavirusSheetComponent implements OnInit {
     this.title.setTitle(`Cas Coronavirus ${this.selectedCountry.translation} - suivez le COVID-19 en ${this.selectedCountry.translation}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Cas de Coronavirus COVID-19 ${this.selectedCountry.translation} - Suivez les cas et morts du virus avec des statistiques détaillées en temps réel` },
+      { name: 'description', content: `Cas de Coronavirus COVID-19 ${this.selectedCountry.translation} - Suivez les cas, hospitalisations, réanimations
+      et morts du Covid avec des statistiques et une carte de la situation en direct` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/${this.selectedCountry.slug}` },
@@ -229,7 +230,7 @@ export class CoronavirusSheetComponent implements OnInit {
     this.title.setTitle(`Cas Coronavirus ${region.name} - suivez le COVID-19 en ${region.name}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Coronavirus COVID-19 ${region.name} - Suivez l'évolution de l'épidémie dans ${type} ${region.name}` },
+      { name: 'description', content: `Coronavirus COVID-19 ${region.name} - Suivez les cas, hospitalisations, réanimations et morts du Covid avec des statistiques et une carte de la situation en direct dans ${type} ${region.name}` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: `https://www.cascoronavirus.fr/` },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/stats/france/${urlType}/${region.slug}` },
