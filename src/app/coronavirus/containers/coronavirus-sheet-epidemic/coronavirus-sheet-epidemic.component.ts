@@ -68,7 +68,7 @@ export class CoronavirusSheetEpidemicComponent implements OnInit {
     this.title.setTitle(`Indicateurs de suivi de l'épidémie de Coronavirus COVID-19 ${region.name}`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Suivez l'évolution de l'épidémie dans ${type} ${region.name} : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
+      { name: 'description', content: `Suivez l'évolution de l'épidémie dans ${type} ${region.name} : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation, carte de la situation` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/indicateurs-suivi-epidemie/france/${urlType}/${region.slug}` },
@@ -92,7 +92,7 @@ export class CoronavirusSheetEpidemicComponent implements OnInit {
     this.title.setTitle(`Indicateurs de suivi de l'épidémie de Coronavirus COVID-19 en France`);
     const tags = [
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: `Suivez l'évolution de l'épidémie en France : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation` },
+      { name: 'description', content: `Suivez l'évolution de l'épidémie en France : R0, taux d'incidence, taux de positivité des tests, taux d'occupation des lits en réanimation, bilan et carte ` },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'https://www.cascoronavirus.fr/' },
       { property: 'og:url', content: `https://www.cascoronavirus.fr/indicateurs-suivi-epidemie/${this.selectedCountry.slug}` },
